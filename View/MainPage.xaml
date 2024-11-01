@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="MacroTracker.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacroTracker.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <NavigationView x:Name="NavigationView" SelectionChanged="Nv_SelectionChanged">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Food" Tag="FoodPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xED56;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Exercise" Tag="ExercisePage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE805;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Report" Tag="ReportPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE904;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Goals" Tag="GoalsPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE7C1;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Calculator" Tag="CalculatorPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE8EF;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+        <Frame x:Name="contentFrame"/>
+    </NavigationView>
+</Page>

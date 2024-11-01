@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MacroTracker (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MacroTracker (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
