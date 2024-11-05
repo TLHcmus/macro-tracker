@@ -27,14 +27,6 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         this.InitializeComponent();
-        content.Navigate(typeof(MainPage));
-
-        //this.Activated += MainWindow_Activated;
-
+        Content.Navigate(typeof(LoginPageShell), Content);
     }
-
-    //private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
-    //{
-    //    content.Navigate(typeof(MainPage));
-    //}
 }
