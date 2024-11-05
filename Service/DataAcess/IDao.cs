@@ -13,17 +13,13 @@ public interface IDao
     List<Exercise> GetExercises();
 
     /// <summary>
-    /// Mock method to check if username and password match
-    /// Username: admin
-    /// Password: 123
+    /// Check if username and password match
     /// </summary>
     /// <param name="username"></param>
     /// <param name="password"></param>
-    /// <returns></returns>
-    public bool DoesUserMatchPassword(string username, string password)
-    {
-        if (username == "admin" && password == "123")
-            return true;
-        return false;
-    }
+    /// <returns>
+    /// Return false if username doesn't exist or username doesn't match password
+    /// Return true if  username and password match
+    /// </returns>
+    bool DoesUserMatchPassword(string username, string password);
 }
