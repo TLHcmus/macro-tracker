@@ -1,3 +1,4 @@
+using MacroTracker.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,8 +24,13 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class GoalsPage : Page
 {
+    public GoalsViewModel ViewModel
+    {
+        get; set;
+    }
     public GoalsPage()
     {
         this.InitializeComponent();
+        ViewModel = new GoalsViewModel();
     }
 }
