@@ -12,6 +12,8 @@ public interface IDao
 
     List<Exercise> GetExercises();
 
+    List<User> GetUsers();
+
     /// <summary>
     /// Check if username and password match
     /// </summary>

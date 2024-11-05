@@ -20,12 +20,12 @@
         </TextBlock>
 
         <TextBox
-            x:Name="username"
+            x:Name="UsernameBox"
             PlaceholderText="Enter your user name"
             Margin="0 30 0 0"/>
 
         <PasswordBox
-            x:Name="password"
+            x:Name="PasswordBox"
             PlaceholderText="Enter your password"
             Margin="0 30 0 0"/>
 

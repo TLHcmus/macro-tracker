@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using MacroTracker.ViewModel;
+using MacroTracker.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -41,8 +42,8 @@ namespace MacroTracker.View
         /// <param name="e"></param>
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Username = username.Text;
-            ViewModel.Password = password.Password;
+            ViewModel.Username = UsernameBox.Text;
+            ViewModel.Password = PasswordEncryptionHelper.EncryptPasswordToDatabase(PasswordBox.Password);
 
             if (ViewModel.DoesUserMatchPassword())
                 RootFrame.Navigate(typeof(MainPage));
