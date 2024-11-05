@@ -29,28 +29,32 @@ public sealed partial class MainPage : Page
         contentFrame.Navigate(typeof(FoodPage));
     }
 
+    /// <summary>
+    /// Event handler for when the navigation view selection changes
+    /// </summary>
+    /// <param name="sender"></param> 
+    /// <param name="args"></param>
     private void Nv_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItemContainer != null)
         {
-            var selectedItem = args.SelectedItemContainer.Tag.ToString();
-            switch (selectedItem)
+            // Check if the settings item is selected
+            if (args.IsSettingsSelected)
             {
-                case "FoodPage":
-                    contentFrame.Navigate(typeof(FoodPage));
-                    break;
-                case "ExercisePage":
-                    contentFrame.Navigate(typeof(ExercisePage));
-                    break;
-                case "ReportPage":
-                    contentFrame.Navigate(typeof(ReportPage));
-                    break;
-                case "GoalsPage":
-                    contentFrame.Navigate(typeof(GoalsPage));
-                    break;
-                case "CalculatorPage":
-                    contentFrame.Navigate(typeof(CalculatorPage));
-                    break;
+                contentFrame.Navigate(typeof(SettingsPage));
+                return;
+            }
+
+            // Get the other selected items
+            var selectedItem = args.SelectedItemContainer.Tag.ToString(); // Get the tag of the selected item
+            try
+            {
+                Type pageType = Type.GetType(this.GetType().Namespace + "." + selectedItem); // MacroTracker.View + selectedItem
+                contentFrame.Navigate(pageType);
+            }
+            catch (Exception)
+            {
+                contentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
             }
         }
     }

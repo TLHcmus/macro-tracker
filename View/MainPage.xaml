@@ -11,31 +11,37 @@
 
     <NavigationView x:Name="NavigationView" SelectionChanged="Nv_SelectionChanged">
         <NavigationView.MenuItems>
+
             <NavigationViewItem Content="Food" Tag="FoodPage">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xED56;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+
             <NavigationViewItem Content="Exercise" Tag="ExercisePage">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE805;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+
             <NavigationViewItem Content="Report" Tag="ReportPage">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE904;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+
             <NavigationViewItem Content="Goals" Tag="GoalsPage">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE7C1;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+
             <NavigationViewItem Content="Calculator" Tag="CalculatorPage">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE8EF;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+
         </NavigationView.MenuItems>
         <Frame x:Name="contentFrame"/>
     </NavigationView>
