@@ -17,8 +17,7 @@ namespace MacroTracker.Helpers
         /// </summary>
         /// <param name="rawPassword"></param>
         /// <returns>
-        /// A pair of strings: the first string is the encrypted password in base64
-        ///                    the second string is the entropy in base64
+        /// A pair of strings: the first string is the encrypted password in base64 and the second string is the entropy in base64
         /// </returns>
         static public (string, string) EncryptPasswordToLocalStorage(string rawPassword)
         {
@@ -44,7 +43,7 @@ namespace MacroTracker.Helpers
         /// <param name="encryptedPasswordInBase64"></param>
         /// <param name="entropyInBase64"></param>
         /// <returns>Raw password</returns>
-        static public string DecryptPasswordToLocalStorage(string encryptedPasswordInBase64, string entropyInBase64)
+        static public string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64)
         {
             Byte[] encryptedPasswordInBytes = Convert.FromBase64String(encryptedPasswordInBase64);
             Byte[] entropyInBytes = Convert.FromBase64String(entropyInBase64);

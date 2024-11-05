@@ -20,13 +20,19 @@
         </TextBlock>
 
         <TextBox
-            x:Name="UsernameBox"
             PlaceholderText="Enter your user name"
+            Text="{x:Bind ViewModel.Username,
+                          Mode=TwoWay,
+                          UpdateSourceTrigger=PropertyChanged}"
             Margin="0 30 0 0"/>
 
         <PasswordBox
-            x:Name="PasswordBox"
             PlaceholderText="Enter your password"
+            Password="{x:Bind ViewModel.Password,
+                              Mode=TwoWay,
+                              UpdateSourceTrigger=PropertyChanged}"
+            PasswordRevealMode="Peek"
+            IsPasswordRevealButtonEnabled="True"
             Margin="0 30 0 0"/>
 
         <Grid
@@ -38,6 +44,7 @@
             </Grid.ColumnDefinitions>
 
             <CheckBox
+                x:Name="RememberMeBox"
                 Content="Remember me"
                 HorizontalAlignment="Left"
                 Grid.Column="0"/>
