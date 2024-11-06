@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MacroTracker.Service
 {
+    /// <summary>
+    /// This class is used to register important services
+    /// </summary>
     public class ServiceRegistry
     {
         public static Dictionary<string, object> RegisteredService { get; } = RegisterService();

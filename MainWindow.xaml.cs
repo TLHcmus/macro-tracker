@@ -27,6 +27,6 @@ public sealed partial class MainWindow : Window
     public MainWindow()
     {
         this.InitializeComponent();
-        Content.Navigate(typeof(LoginPageShell), Content);
+        Content.Navigate(typeof(MainPage), Content);
     }
 }
