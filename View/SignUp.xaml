@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="MacroTracker.View.Login"
+    x:Class="MacroTracker.View.SignUp"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MacroTracker.View"
@@ -11,12 +11,12 @@
     <StackPanel
         Orientation="Vertical"
         Background="#00FFFFFF">
-        
+
         <TextBlock
             FontSize="30"
             FontWeight="Bold"
             HorizontalAlignment="Center">
-            LOG IN
+            SIGN UP
         </TextBlock>
 
         <TextBox
@@ -27,7 +27,7 @@
             Margin="0 30 0 0"/>
 
         <PasswordBox
-            PlaceholderText="Enter your password"
+            PlaceholderText="Reenter your password"
             Password="{x:Bind ViewModel.Password,
                               Mode=TwoWay,
                               UpdateSourceTrigger=PropertyChanged}"
@@ -35,43 +35,28 @@
             IsPasswordRevealButtonEnabled="True"
             Margin="0 30 0 0"/>
 
-        <Grid
-            Margin="0 10 0 0">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <CheckBox
-                x:Name="RememberMeBox"
-                Content="Remember me"
-                HorizontalAlignment="Left"
-                Grid.Column="0"
-                Unchecked="RememberMeBox_Uncheck"/>
-
-            <TextBlock
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Grid.Column="1">
-                <Hyperlink>Forgot password?</Hyperlink>
-            </TextBlock>
-
-        </Grid>
+        <PasswordBox
+            PlaceholderText="Enter your password"
+            Password="{x:Bind ViewModel.ReenteredPassword,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged}"
+            PasswordRevealMode="Peek"
+            IsPasswordRevealButtonEnabled="True"
+            Margin="0 30 0 0"/>
 
         <Button
             Margin="0 30 0 0"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Width="150"
-            Content="Log in"
-            Click="LoginButton_Click"/>
+            Content="Sign up"
+            Click="SignUpButton_Click"/>
 
         <TextBlock
             Margin="0 5 0 0"
             FontSize="12"
             HorizontalAlignment="Center">
-            Don't have an account? <Hyperlink Click="SignUpLink_Click">Sign up</Hyperlink>
+            Already have an account? <Hyperlink Click="LoginLink_Click">Log in</Hyperlink>
         </TextBlock>
 
     </StackPanel>

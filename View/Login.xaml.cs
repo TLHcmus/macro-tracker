@@ -14,6 +14,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using MacroTracker.ViewModel;
 using MacroTracker.Helpers;
+using Microsoft.UI.Xaml.Media.Animation;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +33,6 @@ namespace MacroTracker.View
 
         private Frame LoginShellFrame {  get; set; }
 
-
         public Login()
         {
             this.InitializeComponent();
@@ -42,7 +43,7 @@ namespace MacroTracker.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Username = ViewModel.Username;
             ViewModel.DatabaseEncryptedPassword = 
@@ -62,7 +63,7 @@ namespace MacroTracker.View
                 var contentDialog = new ContentDialog
                 {
                     XamlRoot = this.XamlRoot,
-                    Content = "Invalid Login",
+                    Content = "Wrong username or password!",
                     CloseButtonText = "OK",
                 };
 
@@ -107,7 +108,7 @@ namespace MacroTracker.View
             else throw new Exception("Cannot cast to Frame");
 
             // Check if the user is already logged in and clicked "Remember me" button
-            // DidUserClickRemember();
+            DidUserClickRemember();
         }
 
         /// <summary>
@@ -143,12 +144,43 @@ namespace MacroTracker.View
                     localSettings.Values["Entropy"].ToString());
                 RememberMeBox.IsChecked = true;
             }
-            else
+            else CleanUpLocalStorage(localSettings);
+      
+        }
+
+        private static void CleanUpLocalStorage(ApplicationDataContainer localSettings)
+        {
+            localSettings.Values.Remove("Username");
+            localSettings.Values.Remove("Password");
+            localSettings.Values.Remove("Entropy");
+        }
+
+
+
+        /// <summary>
+        /// Sign up link click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void SignUpLink_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            LoginShellFrame.Navigate(typeof(SignUp), (RootFrame, LoginShellFrame), new SlideNavigationTransitionInfo()
             {
-                localSettings.Values.Remove("Username");
-                localSettings.Values.Remove("Password");
-                localSettings.Values.Remove("Entropy");
-            }
+                Effect = SlideNavigationTransitionEffect.FromRight
+            });
+        }
+
+        /// <summary>
+        /// Handle the action: checked to unchecked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RememberMeBox_Uncheck(object sender, RoutedEventArgs e)
+        {
+            Windows.Storage.ApplicationDataContainer localSettings =
+                Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            CleanUpLocalStorage(localSettings);
         }
     }
 }

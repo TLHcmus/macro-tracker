@@ -17,7 +17,7 @@
         VerticalAlignment="Center"
         HorizontalAlignment="Center"
         Width="400"
-        Height="350"
+        Height="380"
         Background="#A0606060">
 
         <Frame 

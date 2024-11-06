@@ -24,4 +24,13 @@ public interface IDao
     /// Return true if  username and password match
     /// </returns>
     bool DoesUserMatchPassword(string username, string password);
+
+    /// <summary>
+    /// Check if username exists
+    /// </summary>
+    /// <param name="username"></param>
+    /// <returns></returns>
+    bool DoesUsernameExist(string username);
+
+    void AddUser(User user);
 }

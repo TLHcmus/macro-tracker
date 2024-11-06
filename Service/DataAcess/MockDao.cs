@@ -13,16 +13,17 @@ public class MockDao : IDao
 
     public List<Food> GetFoods() => throw new NotImplementedException();
 
+    private List<User> UserList { get; set; } = new List<User>()
+        {
+            new User { Username = "admin", EncryptedPassword = PasswordEncryptionHelper.EncryptPasswordToDatabase("123") }
+        };
     /// <summary>
     /// Mock method to get a list of users
     /// </summary>
     /// <returns>Return a list of mock users</returns>
     public List<User> GetUsers()
     {
-        return new List<User>
-        {
-            new User { Username = "admin", EncryptedPassword = PasswordEncryptionHelper.EncryptPasswordToDatabase("123") }
-        };
+        return UserList;
     }
 
     /// <summary>
@@ -65,5 +66,20 @@ public class MockDao : IDao
             }
         }
         return -1; // Return -1 if not found
+    }
+
+    public bool DoesUsernameExist(string username)
+    {
+        var users = GetUsers();
+        return FindUsernameIndex(users, username) != -1;
+    }
+
+    /// <summary>
+    /// Add a user to the list of mock users
+    /// </summary>
+    /// <param name="user"></param>
+    public void AddUser(User user)
+    {
+        UserList.Add(user);
     }
 }

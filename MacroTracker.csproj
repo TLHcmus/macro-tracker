@@ -23,6 +23,7 @@
     <None Remove="View\MainPage.xaml" />
     <None Remove="View\ReportPage.xaml" />
     <None Remove="View\SettingsPage.xaml" />
+    <None Remove="View\SignUp.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\SignUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\CalculatorPage.xaml">
