@@ -1,3 +1,4 @@
+﻿using MacroTracker.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,8 +24,20 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class CalculatorPage : Page
 {
+    // View model
+    public CalculatorViewModel ViewModel
+    {
+        get; set;
+    }
     public CalculatorPage()
     {
         this.InitializeComponent();
+        ViewModel = new CalculatorViewModel();
+    }
+
+    private void calculateButton_Click(object sender, RoutedEventArgs e)
+    {
+        int tdee = (int)ViewModel.healthInfo.CalculateTDEE();
+        ResultTextBlock.Text = $"Your Maintenance Calories is {tdee} calories per day";
     }
 }
