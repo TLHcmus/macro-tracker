@@ -49,5 +49,10 @@ namespace MacroTracker.View
 
             RootFrame = e.Parameter as Frame;
         }
+
+        private void LogIn_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            RootFrame.Navigate(typeof(LoginPageShell), RootFrame);
+        }
     }
 }
