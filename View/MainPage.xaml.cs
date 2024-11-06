@@ -23,10 +23,12 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class MainPage : Page
 {
+    private Frame RootFrame { get; set; }
+
     public MainPage()
     {
         this.InitializeComponent();
-        contentFrame.Navigate(typeof(FoodPage));
+        ContentFrame.Navigate(typeof(FoodPage), RootFrame);
     }
 
     /// <summary>
@@ -38,10 +40,10 @@ public sealed partial class MainPage : Page
     {
         if (args.SelectedItemContainer != null)
         {
-            // Check if the settings item is selected
+            // Check if the settings item is selected   
             if (args.IsSettingsSelected)
             {
-                contentFrame.Navigate(typeof(SettingsPage));
+                ContentFrame.Navigate(typeof(SettingsPage), RootFrame);
                 return;
             }
 
@@ -50,12 +52,19 @@ public sealed partial class MainPage : Page
             try
             {
                 Type pageType = Type.GetType(this.GetType().Namespace + "." + selectedItem); // MacroTracker.View + selectedItem
-                contentFrame.Navigate(pageType);
+                ContentFrame.Navigate(pageType);
             }
             catch (Exception)
             {
-                contentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
+                ContentFrame.Navigate(typeof(FoodPage), RootFrame); // Default page if there is an error
             }
         }
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        RootFrame = e.Parameter as Frame;
     }
 }

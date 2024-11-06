@@ -23,9 +23,18 @@ namespace MacroTracker.View
     /// </summary>
     public sealed partial class FoodPage : Page
     {
+        private Frame RootFrame { get; set; }
+
         public FoodPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            RootFrame = e.Parameter as Frame;
         }
     }
 }

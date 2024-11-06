@@ -23,7 +23,7 @@ namespace MacroTracker.View
     /// </summary>
     public sealed partial class LoginPageShell : Page
     {
-        Frame RootFrame { get; set; }
+        private Frame RootFrame { get; set; }
 
         public LoginPageShell()
         {

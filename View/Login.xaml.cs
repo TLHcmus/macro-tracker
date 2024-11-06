@@ -25,11 +25,13 @@ namespace MacroTracker.View
     /// </summary>
     public sealed partial class Login : Page
     {
-        LoginViewModel ViewModel { get; } = new LoginViewModel();
+        private LoginViewModel ViewModel { get; } = new LoginViewModel();
 
-        Frame RootFrame { get; set; }
+        private Frame RootFrame { get; set; }
 
-        Frame LoginShellFrame {  get; set; }
+        private Frame LoginShellFrame {  get; set; }
+
+
         public Login()
         {
             this.InitializeComponent();
@@ -53,7 +55,7 @@ namespace MacroTracker.View
                     StoreLoginInfoInLocalStorage();
 
                 // Navigate to the main page
-                RootFrame.Navigate(typeof(MainPage));
+                RootFrame.Navigate(typeof(MainPage), RootFrame);
             }
             else // If not, show a dialog
             {
@@ -105,7 +107,20 @@ namespace MacroTracker.View
             else throw new Exception("Cannot cast to Frame");
 
             // Check if the user is already logged in and clicked "Remember me" button
-            DidUserClickRemember();
+            // DidUserClickRemember();
+        }
+
+        /// <summary>
+        /// Set up configurations when the page is navigated from
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            // Reset box contents
+            ViewModel.Username = "";
+            ViewModel.Password = "";
         }
 
         /// <summary>
