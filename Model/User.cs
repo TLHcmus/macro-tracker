@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MacroTracker.Model
+namespace MacroTracker.Model;
+
+public class User
 {
-    public class User
-    {
-        public string Username { get; set; }
-        public string EncryptedPassword { get; set; }
-    }
+    public string Username { get; set; }
+    public string EncryptedPassword { get; set; }
 }
