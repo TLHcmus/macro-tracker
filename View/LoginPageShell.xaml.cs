@@ -21,11 +21,11 @@ namespace MacroTracker.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FoodPage : Page
+    public sealed partial class LoginPageShell : Page
     {
         private Frame RootFrame { get; set; }
 
-        public FoodPage()
+        public LoginPageShell()
         {
             this.InitializeComponent();
         }
@@ -35,6 +35,7 @@ namespace MacroTracker.View
             base.OnNavigatedTo(e);
 
             RootFrame = e.Parameter as Frame;
+            LoginMode.Navigate(typeof(Login), (RootFrame, LoginMode));
         }
     }
 }

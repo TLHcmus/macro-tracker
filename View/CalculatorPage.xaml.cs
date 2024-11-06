@@ -24,6 +24,8 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class CalculatorPage : Page
 {
+    private Frame RootFrame { get; set; }
+
     // View model
     public CalculatorViewModel ViewModel
     {
@@ -39,5 +41,12 @@ public sealed partial class CalculatorPage : Page
     {
         int tdee = (int)ViewModel.healthInfo.CalculateTDEE();
         ResultTextBlock.Text = $"Your Maintenance Calories is {tdee} calories per day";
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        RootFrame = e.Parameter as Frame;
     }
 }

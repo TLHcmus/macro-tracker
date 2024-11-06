@@ -23,35 +23,48 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class MainPage : Page
 {
+    private Frame RootFrame { get; set; }
+
     public MainPage()
     {
         this.InitializeComponent();
-        contentFrame.Navigate(typeof(FoodPage));
+        ContentFrame.Navigate(typeof(FoodPage), RootFrame);
     }
 
+    /// <summary>
+    /// Event handler for when the navigation view selection changes
+    /// </summary>
+    /// <param name="sender"></param> 
+    /// <param name="args"></param>
     private void Nv_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItemContainer != null)
         {
-            var selectedItem = args.SelectedItemContainer.Tag.ToString();
-            switch (selectedItem)
+            // Check if the settings item is selected   
+            if (args.IsSettingsSelected)
             {
-                case "FoodPage":
-                    contentFrame.Navigate(typeof(FoodPage));
-                    break;
-                case "ExercisePage":
-                    contentFrame.Navigate(typeof(ExercisePage));
-                    break;
-                case "ReportPage":
-                    contentFrame.Navigate(typeof(ReportPage));
-                    break;
-                case "GoalsPage":
-                    contentFrame.Navigate(typeof(GoalsPage));
-                    break;
-                case "CalculatorPage":
-                    contentFrame.Navigate(typeof(CalculatorPage));
-                    break;
+                ContentFrame.Navigate(typeof(SettingsPage), RootFrame);
+                return;
+            }
+
+            // Get the other selected items
+            var selectedItem = args.SelectedItemContainer.Tag.ToString(); // Get the tag of the selected item
+            try
+            {
+                Type pageType = Type.GetType(this.GetType().Namespace + "." + selectedItem); // MacroTracker.View + selectedItem
+                ContentFrame.Navigate(pageType);
+            }
+            catch (Exception)
+            {
+                ContentFrame.Navigate(typeof(FoodPage), RootFrame); // Default page if there is an error
             }
         }
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        RootFrame = e.Parameter as Frame;
     }
 }

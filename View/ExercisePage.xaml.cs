@@ -23,8 +23,17 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class ExercisePage : Page
 {
+    private Frame RootFrame { get; set; }
+
     public ExercisePage()
     {
         this.InitializeComponent();
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        RootFrame = e.Parameter as Frame;
     }
 }

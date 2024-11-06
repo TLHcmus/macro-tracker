@@ -24,6 +24,8 @@ namespace MacroTracker.View;
 /// </summary>
 public sealed partial class GoalsPage : Page
 {
+    private Frame RootFrame { get; set; }
+
     public GoalsViewModel ViewModel
     {
         get; set;
@@ -32,5 +34,12 @@ public sealed partial class GoalsPage : Page
     {
         this.InitializeComponent();
         ViewModel = new GoalsViewModel();
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        RootFrame = e.Parameter as Frame;
     }
 }
