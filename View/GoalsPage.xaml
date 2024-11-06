@@ -9,7 +9,53 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="GoalsPage" />
+    <Grid Margin="10, 30, 10, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Your Goal" FontSize="24" Margin="0, 0, 0, 40" Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Nutrition" FontSize="24" Margin="0, 0, 0, 20" Grid.Row="0" Grid.Column="0"/>
+            <TextBlock Text="Calories" FontSize="20" Margin="0,0,0,20" Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="Protein" FontSize="20" Margin="0,0,0,20" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock Text="Carbs" FontSize="20" Margin="0,0,0,20" Grid.Row="3" Grid.Column="0"/>
+            <TextBlock Text="Fat" FontSize="20" Margin="0,0,0,20" Grid.Row="4" Grid.Column="0"/>
+            
+            <TextBlock Text="Daily target" Grid.Row="0" Grid.Column="1"/>
+
+            <TextBox Text="{x:Bind ViewModel.CurrentGoal.Calories, Mode=TwoWay}" FontSize="20" Width="150" Margin="0,0,0,20" Grid.Row="1" Grid.Column="1"/>
+            <!--Will use Converter later-->
+            <TextBlock FontSize="20" Margin="0,0,0,20" Grid.Row="2" Grid.Column="1">
+                <Run Text="{x:Bind ViewModel.CurrentGoal.Protein, Mode=OneWay}"/>
+                <Run Text="g"/>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="0,0,0,20" Grid.Row="3" Grid.Column="1">
+                <Run Text="{x:Bind ViewModel.CurrentGoal.Carbs, Mode=OneWay}"/>
+                <Run Text="g"/>
+            </TextBlock>
+
+            <TextBlock FontSize="20" Margin="0,0,0,20" Grid.Row="4" Grid.Column="1">
+                <Run Text="{x:Bind ViewModel.CurrentGoal.Fat, Mode=OneWay}"/>
+                <Run Text="g"/>
+            </TextBlock>
+
+        </Grid>
+
     </Grid>
 </Page>
