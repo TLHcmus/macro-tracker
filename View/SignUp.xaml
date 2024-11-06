@@ -27,7 +27,7 @@
             Margin="0 30 0 0"/>
 
         <PasswordBox
-            PlaceholderText="Reenter your password"
+            PlaceholderText="Enter your password"
             Password="{x:Bind ViewModel.Password,
                               Mode=TwoWay,
                               UpdateSourceTrigger=PropertyChanged}"
@@ -36,7 +36,7 @@
             Margin="0 30 0 0"/>
 
         <PasswordBox
-            PlaceholderText="Enter your password"
+            PlaceholderText="Re-enter your password"
             Password="{x:Bind ViewModel.ReenteredPassword,
                     Mode=TwoWay,
                     UpdateSourceTrigger=PropertyChanged}"

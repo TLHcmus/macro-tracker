@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MacroTracker.Model;
 
-public class Exercise : INotifyPropertyChanged
+public class ExerciseInfo : INotifyPropertyChanged
 {
-    public string Name { get; set; } // Vi du: Bench Press
-    public int Sets { get; set; } // Vi du: 3 Sets
-    public int Reps { get; set; } // Vi du: 10 Reps
+    public string IconFileName { get; set; }
+
+    public string Name { get; set; } 
 
     public event PropertyChangedEventHandler PropertyChanged;  
 }

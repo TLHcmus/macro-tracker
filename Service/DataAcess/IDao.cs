@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ public interface IDao
 {
     List<Food> GetFoods();
 
-    List<Exercise> GetExercises();
+    ObservableCollection<ExerciseInfo> GetExercises();
 
     List<User> GetUsers();
 
@@ -33,4 +34,5 @@ public interface IDao
     bool DoesUsernameExist(string username);
 
     void AddUser(User user);
+
 }

@@ -1,3 +1,4 @@
+using MacroTracker.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,7 @@ public sealed partial class ExercisePage : Page
 {
     private Frame RootFrame { get; set; }
 
+    private ExerciseViewModel ViewModel { get; set; } = new ExerciseViewModel();
     public ExercisePage()
     {
         this.InitializeComponent();
