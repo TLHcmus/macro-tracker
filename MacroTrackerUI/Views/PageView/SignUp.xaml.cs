@@ -11,34 +11,11 @@ namespace MacroTrackerUI.Views.PageView
     /// </summary>
     public sealed partial class SignUp : Page
     {
-        private Frame RootFrame { get; set; }
-
-        private Frame LoginShellFrame { get; set; }
-
         private SignUpViewModel ViewModel { get; } = new SignUpViewModel();
 
         public SignUp()
         {
             this.InitializeComponent();
-        }
-
-        /// <summary>
-        /// Set configuration for the navigation to
-        /// </summary>
-        /// <param name="e"></param>
-        /// <exception cref="Exception"></exception>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            // Get the root frame and the login shell frame
-            var pairFrame = e.Parameter as (Frame, Frame)?;
-            if (pairFrame.HasValue)
-            {
-                RootFrame = pairFrame.Value.Item1 as Frame;
-                LoginShellFrame = pairFrame.Value.Item2 as Frame;
-            }
-            else throw new Exception("Cannot cast to Frame");
         }
 
         /// <summary>
@@ -67,7 +44,7 @@ namespace MacroTrackerUI.Views.PageView
 
             if (statusSignUp == true)
             {
-                LoginShellFrame.GoBack();
+                Frame.GoBack();
             }
         }
 
@@ -78,7 +55,7 @@ namespace MacroTrackerUI.Views.PageView
         /// <param name="args"></param>
         private void LoginLink_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
-            LoginShellFrame.GoBack();
+            Frame.GoBack();
         }
     }
 }

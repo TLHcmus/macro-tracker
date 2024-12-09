@@ -15,10 +15,6 @@ namespace MacroTrackerUI.Views.PageView
     {
         private LoginViewModel ViewModel { get; } = new LoginViewModel();
 
-        private Frame RootFrame { get; set; }
-
-        private Frame LoginShellFrame { get; set; }
-
         public Login()
         {
             this.InitializeComponent();
@@ -42,7 +38,7 @@ namespace MacroTrackerUI.Views.PageView
                     StoreLoginInfoInLocalStorage();
 
                 // Navigate to the main page
-                RootFrame.Navigate(typeof(MainPage), RootFrame);
+                Frame.Navigate(typeof(MainPage));
             }
             else // If not, show a dialog
             {
@@ -63,8 +59,7 @@ namespace MacroTrackerUI.Views.PageView
         private void StoreLoginInfoInLocalStorage()
         {
             // Save the username and password to the local settings
-            Windows.Storage.ApplicationDataContainer localSettings =
-                Windows.Storage.ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
             localSettings.Values["Username"] = ViewModel.Username;
 
@@ -83,15 +78,6 @@ namespace MacroTrackerUI.Views.PageView
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            // Get the root frame and the login shell frame
-            var pairFrame = e.Parameter as (Frame, Frame)?;
-            if (pairFrame.HasValue)
-            {
-                RootFrame = pairFrame.Value.Item1 as Frame;
-                LoginShellFrame = pairFrame.Value.Item2 as Frame;
-            }
-            else throw new Exception("Cannot cast to Frame");
 
             // Check if the user is already logged in and clicked "Remember me" button
             DidUserClickRemember();
@@ -117,8 +103,7 @@ namespace MacroTrackerUI.Views.PageView
         /// <returns></returns>
         private void DidUserClickRemember()
         {
-            Windows.Storage.ApplicationDataContainer localSettings =
-                Windows.Storage.ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
             if (localSettings.Values.ContainsKey("Username") &&
                 localSettings.Values.ContainsKey("Password") &&
@@ -150,7 +135,7 @@ namespace MacroTrackerUI.Views.PageView
         /// <param name="args"></param>
         private void SignUpLink_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
-            LoginShellFrame.Navigate(typeof(SignUp), (RootFrame, LoginShellFrame), new SlideNavigationTransitionInfo()
+            Frame.Navigate(typeof(SignUp), null, new SlideNavigationTransitionInfo()
             {
                 Effect = SlideNavigationTransitionEffect.FromRight
             });

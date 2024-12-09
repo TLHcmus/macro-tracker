@@ -8,17 +8,8 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class ReportPage : Page
 {
-    private Frame RootFrame { get; set; }
-
     public ReportPage()
     {
         this.InitializeComponent();
-    }
-
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-
-        RootFrame = e.Parameter as Frame;
     }
 }

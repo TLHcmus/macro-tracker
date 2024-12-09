@@ -8,11 +8,11 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class MainPage : Page
 {
-    private Frame RootFrame { get; set; }
     public MainPage()
     {
         this.InitializeComponent();
-        ContentFrame.Navigate(typeof(FoodPage), RootFrame);
+        ContentFrame.Navigate(typeof(FoodPage));
+        ContentFrame.BackStack.Clear();
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public sealed partial class MainPage : Page
             // Check if the settings item is selected   
             if (args.IsSettingsSelected)
             {
-                ContentFrame.Navigate(typeof(SettingsPage), RootFrame);
+                ContentFrame.Navigate(typeof(SettingsPage));
                 return;
             }
 
@@ -40,7 +40,7 @@ public sealed partial class MainPage : Page
             }
             catch (Exception)
             {
-                ContentFrame.Navigate(typeof(FoodPage), RootFrame); // Default page if there is an error
+                ContentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
             }
         }
     }

@@ -8,8 +8,6 @@ namespace MacroTrackerUI.Views.PageView
     /// </summary>
     public sealed partial class LoginPageShell : Page
     {
-        private Frame RootFrame { get; set; }
-
         public LoginPageShell()
         {
             this.InitializeComponent();
@@ -19,8 +17,7 @@ namespace MacroTrackerUI.Views.PageView
         {
             base.OnNavigatedTo(e);
 
-            RootFrame = e.Parameter as Frame;
-            LoginMode.Navigate(typeof(Login), (RootFrame, LoginMode));
+            LoginMode.Navigate(typeof(Login));
         }
     }
 }

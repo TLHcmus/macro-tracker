@@ -8,8 +8,6 @@ namespace MacroTrackerUI.Views.PageView
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private Frame RootFrame { get; set; }
-
         public SettingsPage()
         {
             this.InitializeComponent();
@@ -22,22 +20,15 @@ namespace MacroTrackerUI.Views.PageView
         /// <param name="args"></param>
         private void LogOut_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
-            while (RootFrame.CanGoBack)
+            while (Frame.CanGoBack)
             {
-                RootFrame.GoBack();
+                Frame.GoBack();
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            RootFrame = e.Parameter as Frame;
         }
 
         private void LogIn_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
-            RootFrame.Navigate(typeof(LoginPageShell), RootFrame);
+            Frame.Navigate(typeof(LoginPageShell));
         }
     }
 }
