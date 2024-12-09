@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MacroTrackerUI.Views.WindowView.ShellWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacroTrackerUI.Views.WindowView"
+    xmlns:pageView="using:MacroTrackerUI.Views.PageView"
+    Title="ShellWindow">
+
+    <Frame x:Name="MainFrame" />
+
+</Window>
