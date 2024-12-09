@@ -49,8 +49,13 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender
         /// </returns>
         public bool DoesUserMatchPassword(string username, string password)
         {
+            JsonSerializerOptions options = new()
+            {
+                IncludeFields = true
+            };
+            string signInJson = JsonSerializer.Serialize((username, password), options);
             return JsonSerializer.Deserialize<bool>(
-                Receiver.DoesUserMatchPassword(JsonSerializer.Serialize((username, password)))
+                Receiver.DoesUserMatchPassword(signInJson)
             );
         }
 
@@ -63,8 +68,9 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender
         /// </returns>
         public bool DoesUsernameExist(string username)
         {
+            string usernameJson = JsonSerializer.Serialize(username);
             return JsonSerializer.Deserialize<bool>(
-                JsonSerializer.Serialize(Receiver.DoesUsernameExist(username))
+                Receiver.DoesUsernameExist(usernameJson)
             );
         }
 
@@ -72,7 +78,7 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender
         /// Adds a new user.
         /// </summary>
         /// <param name="user">The user to add.</param>
-        public void AddUser(User user)
+        public void AddUser(object user)
         {
             Receiver.AddUser(
                 JsonSerializer.Serialize(user)

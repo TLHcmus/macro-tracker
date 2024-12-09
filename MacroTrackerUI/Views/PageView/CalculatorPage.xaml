@@ -41,7 +41,7 @@
                 <ComboBoxItem Content="Super Active: very intense exercise daily" Tag="Super Active"/>
             </ComboBox>
 
-            <Button Content="Calculate TDEE" Click="calculateButton_Click"/>
+            <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
             <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
         </StackPanel>
     </Grid>

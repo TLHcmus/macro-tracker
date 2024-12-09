@@ -20,32 +20,56 @@
         </TextBlock>
 
         <TextBox
+            x:Name="Username"
             PlaceholderText="Enter your user name"
             Text="{x:Bind ViewModel.Username,
                           Mode=TwoWay,
                           UpdateSourceTrigger=PropertyChanged}"
-            Margin="0 30 0 0"/>
+            Margin="0 30 0 0"
+            TextChanged="Username_TextChanged"/>
+        <TextBlock 
+            x:Name="UsernamePrompt"
+            Text="Username cannot be empty!"
+            Margin="10 5 0 0"
+            FontSize="10"
+            Foreground="LightPink"/>
 
         <PasswordBox
+            x:Name="Password"
             PlaceholderText="Enter your password"
             Password="{x:Bind ViewModel.Password,
                               Mode=TwoWay,
                               UpdateSourceTrigger=PropertyChanged}"
             PasswordRevealMode="Peek"
             IsPasswordRevealButtonEnabled="True"
-            Margin="0 30 0 0"/>
+            Margin="0 20 0 0"
+            PasswordChanged="Password_TextChanged"/>
+        <TextBlock 
+            x:Name="PasswordPrompt"
+            Text="Password cannot be empty!"
+            Margin="10 5 0 0"
+            FontSize="10"
+            Foreground="LightPink"/>
 
         <PasswordBox
+            x:Name="ReenteredPassword"
             PlaceholderText="Re-enter your password"
             Password="{x:Bind ViewModel.ReenteredPassword,
-                    Mode=TwoWay,
-                    UpdateSourceTrigger=PropertyChanged}"
+                              Mode=TwoWay,
+                              UpdateSourceTrigger=PropertyChanged}"
             PasswordRevealMode="Peek"
             IsPasswordRevealButtonEnabled="True"
-            Margin="0 30 0 0"/>
+            Margin="0 20 0 0"
+            PasswordChanged="ReenteredPassword_PasswordChanged"/>
+        <TextBlock 
+            x:Name="ReenteredPasswordPrompt"
+            Text="Reentered password cannot be empty!"
+            Margin="10 5 0 0"
+            FontSize="10"
+            Foreground="LightPink"/>
 
         <Button
-            Margin="0 30 0 0"
+            Margin="0 40 0 0"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Width="150"

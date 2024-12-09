@@ -1,5 +1,6 @@
 ﻿using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.DataAccessService;
+using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
@@ -48,7 +49,12 @@ namespace MacroTrackerCore.Services.ReceiverService.DataAccessReceiver
         /// </returns>
         public string DoesUserMatchPassword(string userJson)
         {
-            (string username, string password) = JsonSerializer.Deserialize<(string, string)>(userJson);
+            JsonSerializerOptions options = new()
+            {
+                IncludeFields = true
+            };
+            (string username, string password) = 
+                JsonSerializer.Deserialize<(string, string)>(userJson, options);
             if (username == null || password == null)
             {
                 throw new ArgumentNullException();
@@ -81,12 +87,23 @@ namespace MacroTrackerCore.Services.ReceiverService.DataAccessReceiver
         /// <param name="user">The user to add.</param>
         public void AddUser(string userJson)
         {
-            User? user = JsonSerializer.Deserialize<User>(userJson);
-            if (user == null)
+            var anonymousObject = JsonSerializer.Deserialize<JsonElement>(userJson);
+            string? username = anonymousObject.GetProperty("Username").GetString();
+            string? password = anonymousObject.GetProperty("Password").GetString();
+            if (username == null || password == null)
             {
                 throw new ArgumentNullException();
             }
-            Dao.AddUser(user);
+
+            IPasswordEncryption passwordEncryption =
+                ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
+
+            Dao.AddUser(new User
+                {
+                    Username = username,
+                    EncryptedPassword = passwordEncryption.EncryptPasswordToDatabase(password)
+            }
+            );
         }
     }
 }

@@ -39,10 +39,22 @@ public class PasswordEncryptionReceiver
     /// A JSON string containing a pair of strings: the first string is the encrypted password in base64 and the second string is the entropy in base64.
     /// </returns>
     /// <exception cref="PlatformNotSupportedException">Thrown when the platform is not Windows.</exception>
-    public string EncryptPasswordToLocalStorage(string rawPassword)
+    public string EncryptPasswordToLocalStorage(string rawPasswordJson)
     {
+        string rawPassword = JsonSerializer.Deserialize<string>(rawPasswordJson); 
+        if (rawPassword == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true // Enables serialization of fields
+        };
+
         return JsonSerializer.Serialize(
-            Encryptor.EncryptPasswordToLocalStorage(rawPassword)
+            Encryptor.EncryptPasswordToLocalStorage(rawPassword),
+            options
         );
     }
 
@@ -54,23 +66,20 @@ public class PasswordEncryptionReceiver
     /// <exception cref="PlatformNotSupportedException">Thrown when the platform is not Windows.</exception>
     public string DecryptPasswordFromLocalStorage(string passwordJson)
     {
-        (string encryptedPasswordInBase64, string entropyInBase64) =
-            JsonSerializer.Deserialize<(string, string)>(passwordJson);
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true // Enables serialization of fields
+        };
+        (string encryptedPasswordInBase64, string entropyInBase64) = 
+            JsonSerializer.Deserialize<(string, string)>(passwordJson, options);
+
+        if (encryptedPasswordInBase64 == null || entropyInBase64 == null)
+        {
+            throw new ArgumentNullException();
+        }
 
         return JsonSerializer.Serialize(
             Encryptor.DecryptPasswordFromLocalStorage(encryptedPasswordInBase64, entropyInBase64)
-        );
-    }
-
-    /// <summary>
-    /// Encrypts the password using SHA256 for database storage.
-    /// </summary>
-    /// <param name="rawPassword">The raw password to encrypt.</param>
-    /// <returns>A JSON string containing the encrypted password.</returns>
-    public string EncryptPasswordToDatabase(string rawPassword)
-    {
-        return JsonSerializer.Serialize(
-            Encryptor.EncryptPasswordToDatabase(rawPassword)
         );
     }
 }

@@ -1,21 +1,19 @@
 ﻿using MacroTrackerUI.Models;
 using System.ComponentModel;
 
-namespace MacroTrackerUI.ViewModels
+namespace MacroTrackerUI.ViewModels;
+
+public class GoalsViewModel : INotifyPropertyChanged
 {
-    public class GoalsViewModel : INotifyPropertyChanged
+    public Goal CurrentGoal
     {
-        public Goal CurrentGoal
-        {
-            get; set;
-        }
-
-        public GoalsViewModel()
-        {
-            CurrentGoal = new Goal();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        get; set;
     }
 
+    public GoalsViewModel()
+    {
+        CurrentGoal = new Goal();
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 }

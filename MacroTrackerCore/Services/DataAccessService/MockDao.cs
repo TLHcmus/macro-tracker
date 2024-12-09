@@ -101,8 +101,8 @@ public class MockDao : IDao
             Username = "admin",
             EncryptedPassword =
                 ProviderCore.GetServiceProvider()
-                        .GetRequiredService<IPasswordEncryption>()
-                        .EncryptPasswordToDatabase("123")
+                            .GetRequiredService<IPasswordEncryption>()
+                            .EncryptPasswordToDatabase("123")
         },
     ];
 
@@ -123,7 +123,7 @@ public class MockDao : IDao
     /// <param name="username">The username to check</param>  
     /// <param name="endcryptedPassword">The encrypted password to check</param>  
     /// <returns>True if the username and password match, otherwise false</returns>  
-    public bool DoesUserMatchPassword(string username, string endcryptedPassword)
+    public bool DoesUserMatchPassword(string username, string password)
     {
         var users = GetUsers();
 
@@ -131,7 +131,10 @@ public class MockDao : IDao
         if (indexUsername == -1)
             return false;
 
-        if (users[indexUsername].EncryptedPassword == endcryptedPassword)
+        IPasswordEncryption passwordEncryption =
+            ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
+
+        if (users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password))
             return true;
         return false;
     }
