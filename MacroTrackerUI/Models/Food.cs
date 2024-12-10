@@ -5,10 +5,10 @@ namespace MacroTrackerUI.Models;
 public class Food : INotifyPropertyChanged
 {
     required public string Name { get; set; }
-    required public int CaloriesPer100g { get; set; }
-    required public int ProteinPer100g { get; set; }
-    required public int CarbsPer100g { get; set; }
-    required public int FatPer100g { get; set; }
+    required public double CaloriesPer100g { get; set; }
+    required public double ProteinPer100g { get; set; }
+    required public double CarbsPer100g { get; set; }
+    required public double FatPer100g { get; set; }
 
     public (double Calories, double Protein, double Carbs, double Fat) GetNutrition(double grams)
     {

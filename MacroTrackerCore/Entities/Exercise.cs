@@ -1,8 +1,11 @@
-﻿namespace MacroTrackerCore.Entities
+﻿using System;
+using System.Collections.Generic;
+
+namespace MacroTrackerCore.Entities;
+
+public partial class Exercise
 {
-    public class Exercise
-    {
-        required public string IconFileName { get; set; }
-        required public string Name { get; set; }
-    }
+    public string Name { get; set; } = null!;
+
+    public string IconFileName { get; set; } = null!;
 }
