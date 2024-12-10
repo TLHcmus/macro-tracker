@@ -11,6 +11,7 @@ namespace MacroTrackerCore.Services.ProviderService
         private static ServiceProvider SetUpDependencyInjection()
         {
             ServiceCollection services = new();
+            //services.AddSingleton<IDao, DatabaseDao>();
             services.AddSingleton<IDao, MockDao>();
             services.AddSingleton<IPasswordEncryption, PasswordEncryption>();
 

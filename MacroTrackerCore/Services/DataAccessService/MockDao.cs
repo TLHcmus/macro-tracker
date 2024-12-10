@@ -92,7 +92,7 @@ public class MockDao : IDao
     /// Throws a NotImplementedException  
     /// </summary>  
     /// <returns>Throws NotImplementedException</returns>  
-    public List<Food> GetFoods() => throw new NotImplementedException();
+    public ObservableCollection<Food> GetFoods() => throw new NotImplementedException();
 
     private List<User> UserList { get; set; } =
     [
@@ -126,7 +126,7 @@ public class MockDao : IDao
     public bool DoesUserMatchPassword(string username, string endcryptedPassword)
     {
         var users = GetUsers();
-
+         
         int indexUsername = FindUsernameIndex(users, username);
         if (indexUsername == -1)
             return false;
