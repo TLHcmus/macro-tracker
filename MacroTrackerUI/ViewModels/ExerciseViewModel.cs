@@ -9,14 +9,14 @@ namespace MacroTrackerUI.ViewModels;
 
 public class ExerciseViewModel : INotifyPropertyChanged
 {
-    public ObservableCollection<ExerciseInfo> Exercises { get; set; }
+    public ObservableCollection<Exercise> Exercises { get; set; }
 
     private DaoSender Dao { get; } =
         ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
     public ExerciseViewModel()
     {
-        Exercises = new ObservableCollection<ExerciseInfo>(Dao.GetExercises());
+        Exercises = new ObservableCollection<Exercise>(Dao.GetExercises());
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

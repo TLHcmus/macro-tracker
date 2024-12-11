@@ -17,7 +17,7 @@ public interface IDao
     /// Retrieves a collection of exercises.
     /// </summary>
     /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
-    ObservableCollection<Exercise> GetExercises();
+    List<Exercise> GetExercises();
 
     /// <summary>
     /// Retrieves a list of users.
@@ -49,4 +49,8 @@ public interface IDao
     /// </summary>
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
+
+    List<LogDate> GetAllLogs();
+
+    void AddLogDate(LogDate logDate);
 }

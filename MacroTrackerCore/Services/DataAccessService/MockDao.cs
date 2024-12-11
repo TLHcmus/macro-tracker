@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
@@ -10,80 +9,80 @@ public class MockDao : IDao
     /// <summary>  
     /// Collection of mock exercises  
     /// </summary>  
-    public ObservableCollection<Exercise> Exercises =
+    public List<Exercise> Exercises =
     [
-                new Exercise
-                {
-                    IconFileName = "basketball.png",
-                    Name = "Basketball",
-                },
-                new Exercise
-                {
-                    IconFileName = "climbing.png",
-                    Name = "Climbing",
-                },
-                new Exercise
-                {
-                    IconFileName = "martialarts.png",
-                    Name = "Martial Arts",
-                },
-                new Exercise
-                {
-                    IconFileName = "running.png",
-                    Name = "Running",
-                },
-                new Exercise
-                {
-                    IconFileName = "swimming.png",
-                    Name = "Swimming",
-                },
-                new Exercise
-                {
-                    IconFileName = "pickleball.png",
-                    Name = "Pickle Ball",
-                },
-                new Exercise
-                {
-                    IconFileName = "tennis.png",
-                    Name = "Tennis",
-                },
-                new Exercise
-                {
-                    IconFileName = "volleyball.png",
-                    Name = "Volleyball",
-                },
-                new Exercise
-                {
-                    IconFileName = "walking.png",
-                    Name = "Walking",
-                },
-                new Exercise
-                {
-                    IconFileName = "weightlifting.png",
-                    Name = "Weight Lifting",
-                },
-                new Exercise
-                {
-                    IconFileName = "yoga.png",
-                    Name = "Yoga",
-                },
-                new Exercise
-                {
-                    IconFileName = "pilates.png",
-                    Name = "Pilates",
-                },
-                new Exercise
-                {
-                    IconFileName = "baseball.png",
-                    Name = "Baseball",
-                },
-            ];
+        new Exercise
+        {
+            IconFileName = "basketball.png",
+            Name = "Basketball",
+        },
+        new Exercise
+        {
+            IconFileName = "climbing.png",
+            Name = "Climbing",
+        },
+        new Exercise
+        {
+            IconFileName = "martialarts.png",
+            Name = "Martial Arts",
+        },
+        new Exercise
+        {
+            IconFileName = "running.png",
+            Name = "Running",
+        },
+        new Exercise
+        {
+            IconFileName = "swimming.png",
+            Name = "Swimming",
+        },
+        new Exercise
+        {
+            IconFileName = "pickleball.png",
+            Name = "Pickle Ball",
+        },
+        new Exercise
+        {
+            IconFileName = "tennis.png",
+            Name = "Tennis",
+        },
+        new Exercise
+        {
+            IconFileName = "volleyball.png",
+            Name = "Volleyball",
+        },
+        new Exercise
+        {
+            IconFileName = "walking.png",
+            Name = "Walking",
+        },
+        new Exercise
+        {
+            IconFileName = "weightlifting.png",
+            Name = "Weight Lifting",
+        },
+        new Exercise
+        {
+            IconFileName = "yoga.png",
+            Name = "Yoga",
+        },
+        new Exercise
+        {
+            IconFileName = "pilates.png",
+            Name = "Pilates",
+        },
+        new Exercise
+        {
+            IconFileName = "baseball.png",
+            Name = "Baseball",
+        },
+    ];
 
     /// <summary>  
     /// Gets the collection of exercises  
     /// </summary>  
     /// <returns>Collection of exercises</returns>  
-    public ObservableCollection<Exercise> GetExercises()
+    public List<Exercise> GetExercises()
     {
         return Exercises;
     }
@@ -175,5 +174,143 @@ public class MockDao : IDao
     public void AddUser(User user)
     {
         UserList.Add(user);
+    }
+
+    private List<LogDate> DateLogs = new()
+    {
+        new LogDate
+        {
+            ID = 1,
+            Date = new(2023, 10, 5),
+            LogFood = [
+                new LogFood() {
+                    Id = 1,
+                    Time = new(2023, 10, 5, 1, 2, 4),
+                    Food = new Food() {
+                        Name = "Apple",
+                        CaloriesPer100g = 95,
+                        ProteinPer100g = 5,
+                        CarbsPer100g = 25,
+                        FatPer100g = 3,
+                    },
+                    Calories = 13.2f,
+                    Quantity = 1,
+                },
+                new LogFood() {
+                    Id = 2,
+                    Time = new(2023, 10, 5, 2, 4, 5),
+                    Food = new Food() {
+                        Name = "Banana",
+                        CaloriesPer100g = 105,
+                        ProteinPer100g = 13,
+                        CarbsPer100g = 27,
+                        FatPer100g = 4,
+                    },
+                    Calories = 15.2f,
+                    Quantity = 2,
+                }
+            ],
+            LogExercise = []
+        },
+        new LogDate
+        {
+            ID = 2,
+            Date = new(2024, 4, 2),
+            LogExercise = [
+                new LogExercise() {
+                    Id = 1,
+                    Time = new(2024,4, 2, 2, 1,3),
+                    Exercise = new Exercise {
+                        IconFileName = "basketball.png",
+                        Name = "Basketball",
+                    },
+                    Calories = -24.2f,
+                    Minutes = 15,
+                }
+            ],
+            LogFood = [
+                new LogFood() {
+                    Id = 2,
+                    Time = new(2024,4,2,2, 3,45),
+                    Food = new Food {
+                        Name = "Coconut",
+                        CaloriesPer100g = 15,
+                        ProteinPer100g = 131,
+                        CarbsPer100g = 273,
+                        FatPer100g = 44,
+                    },
+                    Calories = 55f,
+                    Quantity = 2,
+                }
+            ]
+        },
+        new LogDate
+        {
+            ID = 3,
+            Date = new(2024, 4, 2),
+            LogExercise = [
+                new LogExercise() {
+                    Id = 1,
+                    Time = new(2024,4, 2, 2, 1,3),
+                    Exercise = new Exercise {
+                        IconFileName = "yoga.png",
+                        Name = "Yoga",
+                    },
+                    Calories = -14.4f,
+                    Minutes = 30,
+                }
+            ],
+            LogFood = [
+                new LogFood() {
+                    Id = 2,
+                    Time = new(2024,4,2,2, 3,45),
+                    Food = new Food {
+                        Name = "Meme",
+                        CaloriesPer100g = 15,
+                        ProteinPer100g = 131,
+                        CarbsPer100g = 273,
+                        FatPer100g = 44,
+                    },
+                    Calories = 65f,
+                    Quantity = 4,
+                },
+                new LogFood() {
+                    Id = 3,
+                    Time = new(2024,4,2, 1, 2, 4),
+                    Food = new Food() {
+                        Name = "Pepsi",
+                        CaloriesPer100g = 95,
+                        ProteinPer100g = 5,
+                        CarbsPer100g = 25,
+                        FatPer100g = 3,
+                    },
+                    Calories = 44f,
+                    Quantity = 1,
+                },
+                new LogFood() {
+                    Id = 4,
+                    Time = new(2024,4,2, 2, 4, 5),
+                    Food = new Food() {
+                        Name = "Cacoa",
+                        CaloriesPer100g = 105,
+                        ProteinPer100g = 13,
+                        CarbsPer100g = 27,
+                        FatPer100g = 4,
+                    },
+                    Calories = 55.2f,
+                    Quantity = 1,
+                }
+            ]
+        }
+    };
+
+    public List<LogDate> GetAllLogs()
+    {
+        return DateLogs;
+    }
+
+    public void AddLogDate(LogDate logDate)
+    {
+        DateLogs.Insert(0, logDate);
     }
 }

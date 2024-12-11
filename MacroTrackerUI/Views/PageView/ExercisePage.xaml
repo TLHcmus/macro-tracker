@@ -63,7 +63,7 @@
                         Height="Auto">
 
                         <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="model:ExerciseInfo">
+                            <DataTemplate x:DataType="model:Exercise">
                                 <StackPanel
                                     Margin="20"
                                     Orientation="Horizontal">

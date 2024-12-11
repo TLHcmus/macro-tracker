@@ -11,7 +11,7 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         this.InitializeComponent();
-        ContentFrame.Navigate(typeof(FoodPage));
+        ContentFrame.Navigate(typeof(LogPage));
         ContentFrame.BackStack.Clear();
     }
 

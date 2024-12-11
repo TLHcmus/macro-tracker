@@ -29,6 +29,7 @@
     <None Remove="Views\Login.xaml" />
     <None Remove="Views\LoginPageShell.xaml" />
     <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\PageView\LogPage.xaml" />
     <None Remove="Views\ReportPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\SignUp.xaml" />
@@ -162,5 +163,15 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Remove="Views\Page\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\PageView\LogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\UserControl\LogItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

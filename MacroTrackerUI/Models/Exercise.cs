@@ -2,7 +2,7 @@
 
 namespace MacroTrackerUI.Models;
 
-public class ExerciseInfo : INotifyPropertyChanged
+public class Exercise : INotifyPropertyChanged
 {
     required public string IconFileName { get; set; }
 

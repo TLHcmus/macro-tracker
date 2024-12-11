@@ -1,5 +1,5 @@
 ﻿namespace MacroTrackerUI.Models;
-public class HealthInfo
+public class Health
 {
     // Health Info
     public int Age

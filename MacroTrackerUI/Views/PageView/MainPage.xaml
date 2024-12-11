@@ -11,6 +11,11 @@
 
     <NavigationView x:Name="NavigationView" SelectionChanged="Nv_SelectionChanged">
         <NavigationView.MenuItems>
+            <NavigationViewItem Content="Log" Tag="LogPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE932;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
 
             <NavigationViewItem Content="Food" Tag="FoodPage">
                 <NavigationViewItem.Icon>

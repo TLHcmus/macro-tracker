@@ -4,10 +4,10 @@ namespace MacroTrackerUI.ViewModels;
 
 public partial class CalculatorViewModel
 {
-    public HealthInfo HealthInfo { get; set; }
+    public Health HealthInfo { get; set; }
 
     public CalculatorViewModel()
     {
-        HealthInfo = new HealthInfo();
+        HealthInfo = new Health();
     }
 }
