@@ -6,10 +6,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MacroTrackerUI.Services.ProviderService
 {
+    /// <summary>
+    /// Provides a service provider for dependency injection.
+    /// </summary>
     public static class ProviderUI
     {
         private static readonly ServiceProvider serviceProvider = SetUpDependencyInjection();
 
+        /// <summary>
+        /// Sets up the dependency injection by registering services.
+        /// </summary>
+        /// <returns>A configured <see cref="ServiceProvider"/>.</returns>
         private static ServiceProvider SetUpDependencyInjection()
         {
             ServiceCollection services = new();
@@ -22,6 +29,10 @@ namespace MacroTrackerUI.Services.ProviderService
             return services.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Gets the configured service provider.
+        /// </summary>
+        /// <returns>The configured <see cref="ServiceProvider"/>.</returns>
         public static ServiceProvider GetServiceProvider() => serviceProvider;
     }
 }

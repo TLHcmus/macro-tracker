@@ -2,10 +2,10 @@
 using Microsoft.UI.Xaml.Controls;
 using System.Reflection;
 
-namespace MacroTrackerUI.ViewModels
+namespace MacroTrackerUI.ViewModels;
+
+public partial class CalculatorViewModel
 {
-    public partial class CalculatorViewModel
-    {
         public HealthInfo HealthInfo { get; set; }
 
         public CalculatorViewModel()
@@ -48,5 +48,5 @@ namespace MacroTrackerUI.ViewModels
             tdee = bmr * activityMultiplier;
             return tdee;
         }
-    }
+    
 }

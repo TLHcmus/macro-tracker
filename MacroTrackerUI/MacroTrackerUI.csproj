@@ -30,6 +30,7 @@
     <None Remove="Views\LoginPageShell.xaml" />
     <None Remove="Views\MainPage.xaml" />
     <None Remove="Views\PageView\EditGoalPage.xaml" />
+    <None Remove="Views\PageView\LogPage.xaml" />
     <None Remove="Views\ReportPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\SignUp.xaml" />
@@ -169,6 +170,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Page Update="Views\PageView\EditGoalPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\PageView\LogPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\UserControl\LogItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

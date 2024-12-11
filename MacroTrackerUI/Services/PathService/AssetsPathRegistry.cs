@@ -7,12 +7,15 @@ namespace MacroTrackerUI.Services.PathService;
 /// </summary>
 public class AssetsPathRegistry
 {
+    /// <summary>
+    /// Gets the dictionary of registered assets paths.
+    /// </summary>
     public static Dictionary<string, string> RegisteredAssetsPath { get; } = RegisterAssetsPath();
 
     /// <summary>
-    /// Register assets path
+    /// Registers the assets paths.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A dictionary containing the registered assets paths.</returns>
     private static Dictionary<string, string> RegisterAssetsPath()
     {
         var registeredAssetsPath = new Dictionary<string, string>

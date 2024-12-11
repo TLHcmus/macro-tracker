@@ -10,18 +10,30 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class CalculatorPage : Page
 {
-    // View model
+    /// <summary>
+    /// Gets or sets the view model for the CalculatorPage.
+    /// </summary>
     public CalculatorViewModel ViewModel
     {
         get; set;
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CalculatorPage"/> class.
+    /// </summary>
     public CalculatorPage()
     {
         this.InitializeComponent();
         ViewModel = new CalculatorViewModel();
     }
 
-    private void calculateButton_Click(object sender, RoutedEventArgs e)
+    /// <summary>
+    /// Handles the Click event of the CalculateButton control.
+    /// Calculates the Total Daily Energy Expenditure (TDEE) and displays the result.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
+    private void CalculateButton_Click(object sender, RoutedEventArgs e)
     {
         int tdee = (int)ViewModel.CalculateTDEE();
         ResultTextBlock.Text = $"Your Maintenance Calories is {tdee} calories per day";

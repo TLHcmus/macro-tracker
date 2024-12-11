@@ -18,9 +18,9 @@ public class DatabaseDao : IDao
         _context = new MacroTrackerContext();
     }
 
-    public ObservableCollection<Exercise> GetExercises()
+    public List<Exercise> GetExercises()
     {
-        return new ObservableCollection<Exercise>(_context.Exercises);
+        return new List<Exercise>(_context.Exercises);
     }
 
     public ObservableCollection<Food> GetFoods()
@@ -36,5 +36,14 @@ public class DatabaseDao : IDao
 
     public List<User> GetUsers() => throw new NotImplementedException();
 
-    public Goal GetGoal() => throw new NotImplementedException();  
+    public Goal GetGoal() => throw new NotImplementedException();
+
+    public LogDate AddDefaultLogDate() => throw new NotImplementedException();
+
+    public List<LogDate> GetAllLogs() => throw new NotImplementedException();
+
+    public void AddLogDate(LogDate logDate) => throw new NotImplementedException();
+
+    public void DeleteLogDate(int id) => throw new NotImplementedException();
+
 }

@@ -21,20 +21,16 @@ public class PasswordEncryptionSender
     /// <returns>The decrypted raw password.</returns>
     public string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64)
     {
-        string passwordJsonSend = JsonSerializer.Serialize((encryptedPasswordInBase64, entropyInBase64));
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true
+        };
+        string passwordJsonSend = JsonSerializer.Serialize(
+            (encryptedPasswordInBase64, entropyInBase64),
+            options
+        );
 
         string jsonResult = Receiver.DecryptPasswordFromLocalStorage(passwordJsonSend);
-        return JsonSerializer.Deserialize<string>(jsonResult);
-    }
-
-    /// <summary>
-    /// Encrypts the password for database storage.
-    /// </summary>
-    /// <param name="rawPassword">The raw password to encrypt.</param>
-    /// <returns>The encrypted password.</returns>
-    public string EncryptPasswordToDatabase(string rawPassword)
-    {
-        string jsonResult = Receiver.EncryptPasswordToDatabase(JsonSerializer.Serialize(rawPassword));
         return JsonSerializer.Deserialize<string>(jsonResult);
     }
 
@@ -45,7 +41,12 @@ public class PasswordEncryptionSender
     /// <returns>A tuple containing the encrypted password and entropy, both in base64 format.</returns>
     public (string, string) EncryptPasswordToLocalStorage(string rawPassword)
     {
-        string jsonResult = Receiver.EncryptPasswordToDatabase(JsonSerializer.Serialize(rawPassword));
-        return JsonSerializer.Deserialize<(string, string)>(jsonResult);
+        string jsonResult = Receiver.EncryptPasswordToLocalStorage(JsonSerializer.Serialize(rawPassword));
+
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true
+        };
+        return JsonSerializer.Deserialize<(string, string)>(jsonResult, options);
     }
 }
