@@ -22,6 +22,10 @@ public sealed partial class LogPage : Page
 
     private void AddLogDateButton_Click(object sender, RoutedEventArgs e)
     {
+        DateTime date = DateTime.Now;
+        if (ViewModel.DoesContainDate(date))
+            return;
+
         ViewModel.AddLogDate(new LogDate()
             {
                 Date = DateTime.Now,

@@ -181,7 +181,7 @@ public class MockDao : IDao
         new LogDate
         {
             ID = 1,
-            Date = new(2023, 10, 5),
+            Date = new(2024, 5, 5),
             LogFood = [
                 new LogFood() {
                     Id = 1,
@@ -309,8 +309,8 @@ public class MockDao : IDao
         return DateLogs;
     }
 
-    public void AddLogDate(LogDate logDate)
+    public void AddLogDate(LogDate date)
     {
-        DateLogs.Insert(0, logDate);
+        DateLogs.Insert(0, date);
     }
 }

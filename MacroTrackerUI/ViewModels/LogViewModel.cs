@@ -3,12 +3,8 @@ using MacroTrackerUI.Services.ProviderService;
 using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Devices.SmartCards;
 
 namespace MacroTrackerUI.ViewModels;
 
@@ -26,5 +22,10 @@ class LogViewModel
     {
         Sender.AddLogDate(log);
         LogList.Insert(0, log);
+    }
+
+    internal bool DoesContainDate(DateTime date)
+    {
+        return LogList.Any(log => log.Date.Date == date.Date);
     }
 }
