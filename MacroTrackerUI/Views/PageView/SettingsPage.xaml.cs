@@ -1,5 +1,4 @@
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -8,6 +7,9 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class SettingsPage : Page
 {
+    public delegate void LogOutClickHandler();
+    public event LogOutClickHandler LogOutClickEvent;
+
     public SettingsPage()
     {
         this.InitializeComponent();
@@ -20,10 +22,7 @@ public sealed partial class SettingsPage : Page
     /// <param name="args"></param>
     private void LogOut_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
     {
-        while (Frame.CanGoBack)
-        {
-            Frame.GoBack();
-        }
+        LogOutClickEvent?.Invoke();
     }
 
     private void LogIn_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
