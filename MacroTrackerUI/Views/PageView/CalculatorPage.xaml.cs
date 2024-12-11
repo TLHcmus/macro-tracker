@@ -23,7 +23,7 @@ public sealed partial class CalculatorPage : Page
 
     private void calculateButton_Click(object sender, RoutedEventArgs e)
     {
-        int tdee = (int)ViewModel.HealthInfo.CalculateTDEE();
+        int tdee = (int)ViewModel.CalculateTDEE();
         ResultTextBlock.Text = $"Your Maintenance Calories is {tdee} calories per day";
     }
 }

@@ -29,6 +29,7 @@
     <None Remove="Views\Login.xaml" />
     <None Remove="Views\LoginPageShell.xaml" />
     <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\PageView\EditGoalPage.xaml" />
     <None Remove="Views\ReportPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\SignUp.xaml" />
@@ -167,5 +168,8 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\PageView\EditGoalPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

@@ -173,4 +173,16 @@ public class MockDao : IDao
     {
         UserList.Add(user);
     }
+
+    // Get Goal
+    public Goal GetGoal()
+    {
+        return new Goal()
+        {
+            Calories = 2500,
+            Protein = 156,
+            Carbs = 313,
+            Fat = 69
+        };
+    }
 }

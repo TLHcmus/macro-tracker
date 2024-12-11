@@ -88,5 +88,11 @@ namespace MacroTrackerCore.Services.ReceiverService.DataAccessReceiver
             }
             Dao.AddUser(user);
         }
+
+        // Get Goal
+        public string GetGoal()
+        {
+            return JsonSerializer.Serialize(Dao.GetGoal());
+        }
     }
 }
