@@ -123,4 +123,9 @@ public class DaoReceiver
     {
         return JsonSerializer.Serialize(Dao.AddDefaultLogDate());
     }
+
+    public void DeleteLogDate(string idJson)
+    {
+        Dao.DeleteLogDate(JsonSerializer.Deserialize<int>(idJson));
+    }
 }

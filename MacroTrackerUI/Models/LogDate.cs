@@ -7,6 +7,7 @@ namespace MacroTrackerUI.Models;
 
 public class LogDate : INotifyPropertyChanged
 {
+    public int ID { get; set; }
     public DateTime Date { get; set; }
     public ObservableCollection<LogExercise> LogExercise { get; set; }
     public ObservableCollection<LogFood> LogFood { get; set; }

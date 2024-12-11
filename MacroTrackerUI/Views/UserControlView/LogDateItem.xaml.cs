@@ -9,6 +9,8 @@ namespace MacroTrackerUI.Views.UserControlView;
 public sealed partial class LogDateItem : UserControl, INotifyPropertyChanged
 {
     private LogDateItemViewModel ViewModel { get; set; } = new LogDateItemViewModel();
+    public delegate void DeleteLogDateEventHandler(int ID);
+    public event DeleteLogDateEventHandler DeleteLogDate;
 
     public static readonly DependencyProperty LogDateProperty = DependencyProperty.Register(
             "LogDate",
@@ -56,6 +58,6 @@ public sealed partial class LogDateItem : UserControl, INotifyPropertyChanged
 
     private void DeleteLogDateButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        DeleteLogDate?.Invoke(LogDate.ID);
     }
 }

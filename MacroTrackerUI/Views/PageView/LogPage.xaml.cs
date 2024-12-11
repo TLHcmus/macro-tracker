@@ -28,4 +28,9 @@ public sealed partial class LogPage : Page
 
         ViewModel.AddDefaultLogDate();
     }
+
+    private void DeleteLogDate(int ID)
+    {
+        ViewModel.DeleteLogDate(ID);
+    }
 }

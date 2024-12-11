@@ -180,11 +180,9 @@ public class MockDao : IDao
     {
         new LogDate
         {
-            ID = 1,
             Date = new(2024, 5, 5),
             LogFood = [
                 new LogFood() {
-                    Id = 1,
                     Time = new(2023, 10, 5, 1, 2, 4),
                     Food = new Food() {
                         Name = "Apple",
@@ -197,7 +195,6 @@ public class MockDao : IDao
                     Quantity = 1,
                 },
                 new LogFood() {
-                    Id = 2,
                     Time = new(2023, 10, 5, 2, 4, 5),
                     Food = new Food() {
                         Name = "Banana",
@@ -214,11 +211,9 @@ public class MockDao : IDao
         },
         new LogDate
         {
-            ID = 2,
             Date = new(2024, 4, 2),
             LogExercise = [
                 new LogExercise() {
-                    Id = 1,
                     Time = new(2024,4, 2, 2, 1,3),
                     Exercise = new Exercise {
                         IconFileName = "basketball.png",
@@ -230,7 +225,6 @@ public class MockDao : IDao
             ],
             LogFood = [
                 new LogFood() {
-                    Id = 2,
                     Time = new(2024,4,2,2, 3,45),
                     Food = new Food {
                         Name = "Coconut",
@@ -246,11 +240,9 @@ public class MockDao : IDao
         },
         new LogDate
         {
-            ID = 3,
             Date = new(2024, 4, 2),
             LogExercise = [
                 new LogExercise() {
-                    Id = 1,
                     Time = new(2024,4, 2, 2, 1,3),
                     Exercise = new Exercise {
                         IconFileName = "yoga.png",
@@ -262,7 +254,6 @@ public class MockDao : IDao
             ],
             LogFood = [
                 new LogFood() {
-                    Id = 2,
                     Time = new(2024,4,2,2, 3,45),
                     Food = new Food {
                         Name = "Meme",
@@ -275,7 +266,6 @@ public class MockDao : IDao
                     Quantity = 4,
                 },
                 new LogFood() {
-                    Id = 3,
                     Time = new(2024,4,2, 1, 2, 4),
                     Food = new Food() {
                         Name = "Pepsi",
@@ -288,7 +278,6 @@ public class MockDao : IDao
                     Quantity = 1,
                 },
                 new LogFood() {
-                    Id = 4,
                     Time = new(2024,4,2, 2, 4, 5),
                     Food = new Food() {
                         Name = "Cacoa",
@@ -324,5 +313,10 @@ public class MockDao : IDao
         };
         DateLogs.Insert(0, date);
         return date;
+    }
+
+    public void DeleteLogDate(int Id)
+    {
+        DateLogs.Remove(DateLogs.First(log => log.ID == Id));
     }
 }

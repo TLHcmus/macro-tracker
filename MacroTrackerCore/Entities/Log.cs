@@ -4,6 +4,13 @@ namespace MacroTrackerCore.Entities;
 
 public class Log
 {
-    public int Id { get; set; }
+    private static int IDCount { get; set; } = 0;
+    public int ID { get; private set; }
     public DateTime Time { get; set; }
+
+    public Log()
+    {
+        IDCount++;
+        ID = IDCount;
+    }
 }

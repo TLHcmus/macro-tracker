@@ -33,4 +33,10 @@ class LogViewModel
     {
         LogList.Insert(0, Sender.AddDefaultLogDate());
     }
+
+    public void DeleteLogDate(int Id)
+    {
+        Sender.DeleteLogDate(Id);
+        LogList.Remove(LogList.First(log => log.ID == Id));
+    }
 }

@@ -55,4 +55,6 @@ public interface IDao
     List<LogDate> GetAllLogs();
 
     void AddLogDate(LogDate logDate);
+
+    void DeleteLogDate(int id);
 }

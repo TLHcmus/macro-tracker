@@ -2,6 +2,7 @@
 using MacroTrackerUI.Models;
 using MacroTrackerUI.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Windows.ApplicationModel.Appointments.AppointmentsProvider;
@@ -100,6 +101,13 @@ public class DaoSender
     {
         return JsonSerializer.Deserialize<LogDate>(
             Receiver.AddDefaultLogDate()
+        );
+    }
+
+    public void DeleteLogDate(int id)
+    {
+        Receiver.DeleteLogDate(
+            JsonSerializer.Serialize(id)
         );
     }
 }
