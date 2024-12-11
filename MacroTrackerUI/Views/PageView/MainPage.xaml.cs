@@ -12,7 +12,7 @@ public sealed partial class MainPage : Page
     {
         this.InitializeComponent();
         ContentFrame.Navigate(typeof(LogPage));
-        ContentFrame.BackStack.Clear();
+        //ContentFrame.BackStack.Clear();
     }
 
     /// <summary>
@@ -28,6 +28,7 @@ public sealed partial class MainPage : Page
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingsPage));
+                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent; ;
                 return;
             }
 
@@ -42,6 +43,14 @@ public sealed partial class MainPage : Page
             {
                 ContentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
             }
+        }
+    }
+
+    private void Setting_LogOutClickEvent()
+    {
+        while (Frame.CanGoBack)
+        {
+            Frame.GoBack();
         }
     }
 }

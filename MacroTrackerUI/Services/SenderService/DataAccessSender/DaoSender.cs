@@ -78,10 +78,10 @@ public class DaoSender
     /// Adds a new user.
     /// </summary>
     /// <param name="user">The user to add.</param>
-    public void AddUser(object user)
+    public void AddUser((string, string) user)
     {
         Receiver.AddUser(
-            JsonSerializer.Serialize(user)
+            JsonSerializer.Serialize(user, Options)
         );
     }
 

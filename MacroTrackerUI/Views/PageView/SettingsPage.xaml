@@ -11,13 +11,6 @@
 
     <StackPanel
         Margin="20">
-        <TextBlock
-            FontSize="20"
-            FontWeight="Bold">
-            <Hyperlink 
-                Click="LogIn_Click">
-                Log in</Hyperlink>
-        </TextBlock>
 
         <TextBlock
             FontSize="20"

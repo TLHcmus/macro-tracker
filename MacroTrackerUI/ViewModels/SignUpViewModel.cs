@@ -128,11 +128,6 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// </summary>
     public void AddUser()
     {
-        Dao.AddUser(new
-        {
-            Username = Username,
-            Password = Password,
-        }
-        );
+        Dao.AddUser((Username, Password));
     }
 }
