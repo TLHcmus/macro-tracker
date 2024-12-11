@@ -95,4 +95,11 @@ public class DaoSender
     {
         Receiver.AddLogDate(JsonSerializer.Serialize(logDate));
     }
+
+    public LogDate AddDefaultLogDate()
+    {
+        return JsonSerializer.Deserialize<LogDate>(
+            Receiver.AddDefaultLogDate()
+        );
+    }
 }

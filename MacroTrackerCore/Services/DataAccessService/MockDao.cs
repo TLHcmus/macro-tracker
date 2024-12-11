@@ -313,4 +313,16 @@ public class MockDao : IDao
     {
         DateLogs.Insert(0, date);
     }
+
+    public LogDate AddDefaultLogDate()
+    {
+        LogDate date = new()
+        {
+            Date = DateTime.Now,
+            LogExercise = [],
+            LogFood = []
+        };
+        DateLogs.Insert(0, date);
+        return date;
+    }
 }

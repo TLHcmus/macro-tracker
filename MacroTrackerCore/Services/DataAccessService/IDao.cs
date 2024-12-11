@@ -50,6 +50,8 @@ public interface IDao
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
 
+    LogDate AddDefaultLogDate();
+
     List<LogDate> GetAllLogs();
 
     void AddLogDate(LogDate logDate);

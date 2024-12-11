@@ -26,12 +26,6 @@ public sealed partial class LogPage : Page
         if (ViewModel.DoesContainDate(date))
             return;
 
-        ViewModel.AddLogDate(new LogDate()
-            {
-                Date = DateTime.Now,
-                LogExercise = [],
-                LogFood = []
-            }
-        );
+        ViewModel.AddDefaultLogDate();
     }
 }

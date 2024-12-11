@@ -54,6 +54,7 @@
                                         HorizontalAlignment="Stretch"
                                         FontSize="14"
                                         Click="AddLogFoodButton_Click"/>
+                                
                                 <Button Content="Add Exercise Log"
                                         Background="{x:Null}"
                                         BorderThickness="0"

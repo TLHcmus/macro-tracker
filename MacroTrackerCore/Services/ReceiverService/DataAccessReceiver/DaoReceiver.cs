@@ -116,6 +116,11 @@ public class DaoReceiver
         {
             throw new ArgumentNullException();
         }
+        Dao.AddLogDate(logDate);
+    }
 
+    public string AddDefaultLogDate()
+    {
+        return JsonSerializer.Serialize(Dao.AddDefaultLogDate());
     }
 }

@@ -24,8 +24,13 @@ class LogViewModel
         LogList.Insert(0, log);
     }
 
-    internal bool DoesContainDate(DateTime date)
+    public bool DoesContainDate(DateTime date)
     {
         return LogList.Any(log => log.Date.Date == date.Date);
+    }
+
+    public void AddDefaultLogDate()
+    {
+        LogList.Insert(0, Sender.AddDefaultLogDate());
     }
 }
