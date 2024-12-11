@@ -14,13 +14,13 @@
             <TextBlock Text="TDEE Calculator" FontSize="24" Margin="0,0,0,20"/>
 
             <TextBlock Text="Weight (kg):"/>
-            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Text="{x:Bind ViewModel.HealthInfo.Weight, Mode=TwoWay}"/>
+            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Weight, Mode=TwoWay}"/>
 
             <TextBlock Text="Height (cm):"/>
-            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Text="{x:Bind ViewModel.HealthInfo.Height, Mode=TwoWay}"/>
+            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Height, Mode=TwoWay}"/>
 
             <TextBlock Text="Age:"/>
-            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Text="{x:Bind ViewModel.HealthInfo.Age, Mode=TwoWay}"/>
+            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Age, Mode=TwoWay}"/>
 
             <TextBlock Text="Gender:"/>
             <ComboBox x:Name="GenderComboBox" Margin="0,0,0,10" 
@@ -30,7 +30,14 @@
                 <ComboBoxItem Content="Female"/>
             </ComboBox>
 
-            <TextBlock Text="Activity Level:"/>
+            <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <RadioButton Content="Male" GroupName="GenderGroup" 
+                     IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
+                <RadioButton Content="Female" GroupName="GenderGroup" 
+                     IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
+            </StackPanel>-->
+
+                <TextBlock Text="Activity Level:"/>
             <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,20" 
                         SelectedValue="{x:Bind ViewModel.HealthInfo.ActivityLevel, Mode=TwoWay}" 
                         SelectedValuePath="Tag">

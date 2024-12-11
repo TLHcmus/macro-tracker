@@ -14,7 +14,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Your Goal" FontSize="24" Margin="0, 0, 0, 40" Grid.Row="0"/>
+        <!--<TextBlock Text="Your Goal" FontSize="24" Margin="0, 0, 0, 40" Grid.Row="0"/>-->
+        <StackPanel Grid.Row="0" Margin="0, 0, 0, 40">
+            <TextBlock Text="Your Goal" FontSize="24"/>
+            <TextBlock FontSize="16" Margin="0, 10, 0, 0">
+                <Hyperlink Click="EditGoal_Click">Edit your goal</Hyperlink>
+            </TextBlock>
+        </StackPanel>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,8 +44,12 @@
             
             <TextBlock Text="Daily target" Grid.Row="0" Grid.Column="1"/>
 
-            <TextBox Text="{x:Bind ViewModel.CurrentGoal.Calories, Mode=TwoWay}" FontSize="20" Width="150" Margin="0,0,0,20" Grid.Row="1" Grid.Column="1"/>
             <!--Will use Converter later-->
+            <TextBlock FontSize="20" Margin="0,0,0,20" Grid.Row="1" Grid.Column="1">
+                <Run Text="{x:Bind ViewModel.CurrentGoal.Calories, Mode=OneWay}"/>
+                <Run Text="calories"/>
+            </TextBlock>
+
             <TextBlock FontSize="20" Margin="0,0,0,20" Grid.Row="2" Grid.Column="1">
                 <Run Text="{x:Bind ViewModel.CurrentGoal.Protein, Mode=OneWay}"/>
                 <Run Text="g"/>

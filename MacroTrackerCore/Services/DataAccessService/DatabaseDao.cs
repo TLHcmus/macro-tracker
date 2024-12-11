@@ -36,4 +36,5 @@ public class DatabaseDao : IDao
 
     public List<User> GetUsers() => throw new NotImplementedException();
 
+    public Goal GetGoal() => throw new NotImplementedException();  
 }

@@ -1,0 +1,30 @@
+<Page
+    x:Class="MacroTrackerUI.Views.PageView.EditGoalPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MacroTrackerUI.Views.PageView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Background= "LightGray" >
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Padding="30, 20, 30, 20">
+            <TextBlock Text="Edit Your goal" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 0, 0, 20"/>
+
+            <TextBlock Text="Calories:" FontSize="20"/>
+            <TextBox Name="CaloriesInput" PlaceholderText="Enter calories" Width="300" Margin="0, 5"/>
+
+            <TextBlock Text="Protein(%):" FontSize="20"/>
+            <TextBox Name="ProteinInput" PlaceholderText="Enter protein" Width="300" Margin="0, 5"/>
+
+            <TextBlock Text="Carbs(%):" FontSize="20"/>
+            <TextBox Name="CarbsInput" PlaceholderText="Enter carbs" Width="300" Margin="0, 5"/>
+
+            <TextBlock Text="Fat(%):" FontSize="20"/>
+            <TextBox Name="FatInput" PlaceholderText="Enter fat" Width="300" Margin="0, 5"/>
+
+            <Button Content="Confirm" Width="150" HorizontalAlignment="Center" Margin="0, 20, 0, 0" Click="ConfirmButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

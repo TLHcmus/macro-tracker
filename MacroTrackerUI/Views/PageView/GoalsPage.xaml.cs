@@ -1,6 +1,9 @@
+using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using System;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -17,5 +20,21 @@ public sealed partial class GoalsPage : Page
     {
         this.InitializeComponent();
         ViewModel = new GoalsViewModel();
+    }
+
+    // Edit goal click event handler
+    private void EditGoal_Click(object sender, RoutedEventArgs e)
+    {
+        Frame.Navigate(typeof(EditGoalPage), ViewModel.CurrentGoal);
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        if (e.Parameter is Goal goal)
+        {
+            ViewModel.CurrentGoal = goal;
+        }
     }
 }

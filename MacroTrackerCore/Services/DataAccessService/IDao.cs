@@ -49,4 +49,7 @@ public interface IDao
     /// </summary>
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
+
+    // Get Goal
+    Goal GetGoal();
 }

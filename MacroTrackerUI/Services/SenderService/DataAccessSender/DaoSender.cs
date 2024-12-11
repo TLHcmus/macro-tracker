@@ -78,5 +78,11 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender
                 JsonSerializer.Serialize(user)
             );
         }
+
+        // Get Goal
+        public Goal GetGoal()
+        {
+            return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
+        }
     }
 }
