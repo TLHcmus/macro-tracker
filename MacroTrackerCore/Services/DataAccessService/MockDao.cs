@@ -179,8 +179,7 @@ public class MockDao : IDao
 
     private List<LogDate> DateLogs = new()
     {
-        new LogDate
-        {
+        new LogDate {
             Date = new(2024, 5, 5),
             LogFood = [
                 new LogFood() {
@@ -210,12 +209,11 @@ public class MockDao : IDao
             ],
             LogExercise = []
         },
-        new LogDate
-        {
+        new LogDate {
             Date = new(2024, 4, 2),
             LogExercise = [
                 new LogExercise() {
-                    Time = new(2024,4, 2, 2, 1,3),
+                    Time = new(2024, 4, 2, 2, 1, 3),
                     Exercise = new Exercise {
                         IconFileName = "basketball.png",
                         Name = "Basketball",
@@ -226,7 +224,7 @@ public class MockDao : IDao
             ],
             LogFood = [
                 new LogFood() {
-                    Time = new(2024,4,2,2, 3,45),
+                    Time = new(2024, 4, 2, 2, 3, 45),
                     Food = new Food {
                         Name = "Coconut",
                         CaloriesPer100g = 15,
@@ -239,12 +237,11 @@ public class MockDao : IDao
                 }
             ]
         },
-        new LogDate
-        {
+        new LogDate {
             Date = new(2024, 4, 2),
             LogExercise = [
                 new LogExercise() {
-                    Time = new(2024,4, 2, 2, 1,3),
+                    Time = new(2024, 4, 2, 2, 1, 3),
                     Exercise = new Exercise {
                         IconFileName = "yoga.png",
                         Name = "Yoga",
@@ -255,7 +252,7 @@ public class MockDao : IDao
             ],
             LogFood = [
                 new LogFood() {
-                    Time = new(2024,4,2,2, 3,45),
+                    Time = new(2024, 4, 2, 2, 3, 45),
                     Food = new Food {
                         Name = "Meme",
                         CaloriesPer100g = 15,
@@ -267,7 +264,7 @@ public class MockDao : IDao
                     Quantity = 4,
                 },
                 new LogFood() {
-                    Time = new(2024,4,2, 1, 2, 4),
+                    Time = new(2024, 4, 2, 1, 2, 4),
                     Food = new Food() {
                         Name = "Pepsi",
                         CaloriesPer100g = 95,
@@ -279,9 +276,9 @@ public class MockDao : IDao
                     Quantity = 1,
                 },
                 new LogFood() {
-                    Time = new(2024,4,2, 2, 4, 5),
+                    Time = new(2024, 4, 2, 2, 4, 5),
                     Food = new Food() {
-                        Name = "Cacoa",
+                        Name = "Cacao",
                         CaloriesPer100g = 105,
                         ProteinPer100g = 13,
                         CarbsPer100g = 27,
@@ -289,6 +286,128 @@ public class MockDao : IDao
                     },
                     Calories = 55.2f,
                     Quantity = 1,
+                }
+            ]
+        },
+        new LogDate {
+            Date = new(2024, 6, 10),
+            LogFood = [
+                new LogFood() {
+                    Time = new(2024, 6, 10, 8, 15, 0),
+                    Food = new Food() {
+                        Name = "Oatmeal",
+                        CaloriesPer100g = 68,
+                        ProteinPer100g = 2.4,
+                        CarbsPer100g = 12,
+                        FatPer100g = 1.4,
+                    },
+                    Calories = 204f,
+                    Quantity = 3,
+                },
+                new LogFood() {
+                    Time = new(2024, 6, 10, 12, 30, 0),
+                    Food = new Food() {
+                        Name = "Grilled Chicken Breast",
+                        CaloriesPer100g = 165,
+                        ProteinPer100g = 31,
+                        CarbsPer100g = 0,
+                        FatPer100g = 3.6,
+                    },
+                    Calories = 330f,
+                    Quantity = 2,
+                },
+                new LogFood() {
+                    Time = new(2024, 6, 10, 19, 0, 0),
+                    Food = new Food() {
+                        Name = "Mixed Vegetables",
+                        CaloriesPer100g = 45,
+                        ProteinPer100g = 3,
+                        CarbsPer100g = 8,
+                        FatPer100g = 1,
+                    },
+                    Calories = 90f,
+                    Quantity = 2,
+                }
+            ],
+            LogExercise = [
+                new LogExercise() {
+                    Time = new(2024, 6, 10, 9, 0, 0),
+                    Exercise = new Exercise() {
+                        IconFileName = "running.png",
+                        Name = "Running",
+                    },
+                    Calories = -300f,
+                    Minutes = 30,
+                },
+                new LogExercise() {
+                    Time = new(2024, 6, 10, 18, 0, 0),
+                    Exercise = new Exercise() {
+                        IconFileName = "weightlifting.png",
+                        Name = "Weightlifting",
+                    },
+                    Calories = -100f,
+                    Minutes = 45,
+                }
+            ]
+        },
+        new LogDate {
+            Date = new(2024, 7, 15),
+            LogFood = [
+                new LogFood() {
+                    Time = new(2024, 7, 15, 7, 0, 0),
+                    Food = new Food() {
+                        Name = "Greek Yogurt",
+                        CaloriesPer100g = 59,
+                        ProteinPer100g = 10,
+                        CarbsPer100g = 3.6,
+                        FatPer100g = 0.4,
+                    },
+                    Calories = 118f,
+                    Quantity = 2,
+                },
+                new LogFood() {
+                    Time = new(2024, 7, 15, 13, 0, 0),
+                    Food = new Food() {
+                        Name = "Turkey Sandwich",
+                        CaloriesPer100g = 200,
+                        ProteinPer100g = 18,
+                        CarbsPer100g = 30,
+                        FatPer100g = 4,
+                    },
+                    Calories = 400f,
+                    Quantity = 2,
+                },
+                new LogFood() {
+                    Time = new(2024, 7, 15, 20, 0, 0),
+                    Food = new Food() {
+                        Name = "Dark Chocolate",
+                        CaloriesPer100g = 600,
+                        ProteinPer100g = 7.8,
+                        CarbsPer100g = 45,
+                        FatPer100g = 42,
+                    },
+                    Calories = 120f,
+                    Quantity = 4,
+                }
+            ],
+            LogExercise = [
+                new LogExercise() {
+                    Time = new(2024, 7, 15, 6, 30, 0),
+                    Exercise = new Exercise() {
+                        IconFileName = "cycling.png",
+                        Name = "Cycling",
+                    },
+                    Calories = -250f,
+                    Minutes = 40,
+                },
+                new LogExercise() {
+                    Time = new(2024, 7, 15, 17, 0, 0),
+                    Exercise = new Exercise() {
+                        IconFileName = "cycling.png",
+                        Name = "Cycling",
+                    },
+                    Calories = -20f,
+                    Minutes = 5,
                 }
             ]
         }
