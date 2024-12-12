@@ -1,10 +1,17 @@
-﻿namespace MacroTrackerCore.Entities;
+﻿using System;
+using System.Collections.Generic;
 
-public class Food
+namespace MacroTrackerCore.Entities;
+
+public partial class Food
 {
-    required public string Name { get; set; }
-    required public int CaloriesPer100g { get; set; }
-    required public int ProteinPer100g { get; set; }
-    required public int CarbsPer100g { get; set; }
-    required public int FatPer100g { get; set; }
+    public string Name { get; set; } = null!;
+
+    public double CaloriesPer100g { get; set; }
+
+    public double ProteinPer100g { get; set; }
+
+    public double CarbsPer100g { get; set; }
+
+    public double FatPer100g { get; set; }
 }

@@ -1,4 +1,6 @@
 ﻿using MacroTrackerUI.Views.WindowView;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 
 namespace MacroTrackerUI;
@@ -24,7 +26,17 @@ public partial class App : Application
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         m_window = new ShellWindow();
+        MaximizeWindow(m_window);
         m_window.Activate();
+    }
+
+    private void MaximizeWindow(Window m_window)
+    {
+        var windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
+        var windowId = Win32Interop.GetWindowIdFromWindow(windowHandle);
+        AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+        OverlappedPresenter presenter = (OverlappedPresenter)appWindow.Presenter;
+        presenter.Maximize();
     }
 
     private Window m_window;

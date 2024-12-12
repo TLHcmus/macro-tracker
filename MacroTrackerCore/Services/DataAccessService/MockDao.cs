@@ -2,7 +2,7 @@
 using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 public class MockDao : IDao
@@ -92,7 +92,7 @@ public class MockDao : IDao
     /// Throws a NotImplementedException  
     /// </summary>  
     /// <returns>Throws NotImplementedException</returns>  
-    public List<Food> GetFoods() => throw new NotImplementedException();
+    public ObservableCollection<Food> GetFoods() => throw new NotImplementedException();
 
     private List<User> UserList { get; set; } =
     [
@@ -126,7 +126,7 @@ public class MockDao : IDao
     public bool DoesUserMatchPassword(string username, string password)
     {
         var users = GetUsers();
-
+         
         int indexUsername = FindUsernameIndex(users, username);
         if (indexUsername == -1)
             return false;
@@ -321,15 +321,15 @@ public class MockDao : IDao
         DateLogs.Remove(DateLogs.First(log => log.ID == Id));
     }
 
-    public void DeleteLogFood(int idLogDate, int idLog)
+    // Get Goal
+    public Goal GetGoal()
     {
-        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
-        logDate.LogFood.Remove(logDate.LogFood.First(log => log.ID == idLog));
-    }
-
-    public void DeleteLogExercise(int idLogDate, int idLog)
-    {
-        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
-        logDate.LogExercise.Remove(logDate.LogExercise.First(log => log.ID == idLog));
+        return new Goal()
+        {
+            Calories = 2500,
+            Protein = 156,
+            Carbs = 313,
+            Fat = 69
+        };
     }
 }

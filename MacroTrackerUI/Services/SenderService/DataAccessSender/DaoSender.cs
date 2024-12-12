@@ -78,10 +78,10 @@ public class DaoSender
     /// Adds a new user.
     /// </summary>
     /// <param name="user">The user to add.</param>
-    public void AddUser(object user)
+    public void AddUser((string, string) user)
     {
         Receiver.AddUser(
-            JsonSerializer.Serialize(user)
+            JsonSerializer.Serialize(user, Options)
         );
     }
 
@@ -109,6 +109,13 @@ public class DaoSender
         Receiver.DeleteLogDate(
             JsonSerializer.Serialize(id)
         );
+        
+    }
+
+    // Get Goal
+    public Goal GetGoal()
+    {
+        return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
     }
 
     public void DeleteLogFood(int logDateID, int logID)

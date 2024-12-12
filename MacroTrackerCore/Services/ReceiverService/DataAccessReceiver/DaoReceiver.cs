@@ -127,6 +127,14 @@ public class DaoReceiver
     public void DeleteLogDate(string idJson)
     {
         Dao.DeleteLogDate(JsonSerializer.Deserialize<int>(idJson));
+        
+    }
+
+ 
+    // Get Goal
+    public string GetGoal()
+    {
+        return JsonSerializer.Serialize(Dao.GetGoal());
     }
 
     public void DeleteLogFood(string idDeleteJson)
