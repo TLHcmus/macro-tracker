@@ -71,7 +71,8 @@
             x:Name="LogsListView"
             Grid.Row="2"
             Margin="20 5 20 20"
-            ItemsSource="{x:Bind ViewModel.LogList, Mode=OneWay}">
+            ItemsSource="{x:Bind ViewModel.LogList, Mode=OneWay}"
+            Loaded="LogsListView_Loaded">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:LogDate">
                     <usrctl:LogDateItem LogDate="{x:Bind Mode=OneWay}" 

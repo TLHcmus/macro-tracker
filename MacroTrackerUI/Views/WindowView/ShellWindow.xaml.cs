@@ -11,7 +11,7 @@ namespace MacroTrackerUI.Views.WindowView
         public ShellWindow()
         {
             this.InitializeComponent();
-            MainFrame.Navigate(typeof(LoginPageShell));
+            MainFrame.Navigate(typeof(MainPage));
         }
     }
 }

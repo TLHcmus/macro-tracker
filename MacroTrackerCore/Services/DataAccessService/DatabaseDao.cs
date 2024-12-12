@@ -50,4 +50,5 @@ public class DatabaseDao : IDao
 
     public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();
 
+    public List<LogDate> GetLogDateWithPagination(int pageOffset, DateTime endDate) => throw new NotImplementedException();
 }

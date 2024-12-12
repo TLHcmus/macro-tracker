@@ -125,10 +125,19 @@ public class DaoSender
         );
     }
 
-    internal void DeleteLogExercise(int logDateID, int logID)
+    public void DeleteLogExercise(int logDateID, int logID)
     {
         Receiver.DeleteLogExercise(
             JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    public List<LogDate> GetLogDateWithPagination(int numberItemOffset, DateTime endDate)
+    {
+        return JsonSerializer.Deserialize<List<LogDate>>(
+            Receiver.GetLogDateWithPagination(
+                JsonSerializer.Serialize((numberItemOffset, endDate), Options)
+            )
         );
     }
 }

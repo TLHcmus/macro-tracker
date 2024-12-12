@@ -64,4 +64,6 @@ public interface IDao
     void DeleteLogFood(int idLogDate, int idLog);
 
     void DeleteLogExercise(int idLogDate, int idLog);
+
+    List<LogDate> GetLogDateWithPagination(int numberItemOffset, DateTime endDate);
 }

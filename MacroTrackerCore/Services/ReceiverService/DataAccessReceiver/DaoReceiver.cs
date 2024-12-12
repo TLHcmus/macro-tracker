@@ -148,4 +148,10 @@ public class DaoReceiver
         (int idLogDate, int idLog) = JsonSerializer.Deserialize<(int, int)>(idDeleteJson, Options);
         Dao.DeleteLogExercise(idLogDate, idLog);
     }
+
+    public string GetLogDateWithPagination(string pageOffsetJson)
+    {
+        (int numberItemOffset, DateTime endDate) = JsonSerializer.Deserialize<(int, DateTime)>(pageOffsetJson, Options);
+        return JsonSerializer.Serialize(Dao.GetLogDateWithPagination(numberItemOffset, endDate));
+    }
 }

@@ -2,8 +2,10 @@ using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -17,7 +19,7 @@ public sealed partial class LogPage : Page
     public LogPage()
     {
         this.InitializeComponent();
-        ViewModel.GetAllLogs();
+        ViewModel.GetNextLogsPage();
     }
 
     private void AddLogDateButton_Click(object sender, RoutedEventArgs e)
@@ -42,5 +44,32 @@ public sealed partial class LogPage : Page
     private void DeleteLogExercise(int logDateID, int logID)
     {
         ViewModel.DeleteLogExercise(logDateID, logID);
+    }
+
+    private void LogsListView_Loaded(object sender, RoutedEventArgs e)
+    {
+        Border border = VisualTreeHelper.GetChild(LogsListView, 0) as Border;
+        ScrollViewer scrollViewer = VisualTreeHelper.GetChild(border, 0) as ScrollViewer;
+
+        if (scrollViewer != null)
+        {
+            scrollViewer.ViewChanged += ScrollViewer_ViewChanged;
+        }
+    }
+
+    private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    {
+        var scrollViewer = sender as ScrollViewer;
+        if (scrollViewer != null && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+        {
+            OnScrollToEnd();
+        }
+    }
+
+    private void OnScrollToEnd()
+    {
+        // Trigger the event or perform the action when scrolled to the end
+        Debug.WriteLine("Scrolled to the end of the list.");
+        ViewModel.GetNextLogsPage();
     }
 }
