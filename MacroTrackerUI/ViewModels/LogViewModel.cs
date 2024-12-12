@@ -34,9 +34,25 @@ class LogViewModel
         LogList.Insert(0, Sender.AddDefaultLogDate());
     }
 
-    public void DeleteLogDate(int Id)
+    public void DeleteLogDate(int iD)
     {
-        Sender.DeleteLogDate(Id);
-        LogList.Remove(LogList.First(log => log.ID == Id));
+        Sender.DeleteLogDate(iD);
+        LogList.Remove(LogList.First(log => log.ID == iD));
+    }
+
+    public void DeleteLogFood(int logDateID, int logID)
+    {
+        Sender.DeleteLogFood(logDateID, logID);
+
+        LogDate logDate = LogList.First(logDate => logDate.ID == logDateID);
+        logDate.LogFood.Remove(logDate.LogFood.First(log => log.ID == logID));
+    }
+
+    internal void DeleteLogExercise(int logDateID, int logID)
+    {
+        Sender.DeleteLogExercise(logDateID, logID);
+
+        LogDate logDate = LogList.First(logDate => logDate.ID == logDateID);
+        logDate.LogExercise.Remove(logDate.LogExercise.First(log => log.ID == logID));
     }
 }

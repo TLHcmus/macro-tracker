@@ -128,4 +128,16 @@ public class DaoReceiver
     {
         Dao.DeleteLogDate(JsonSerializer.Deserialize<int>(idJson));
     }
+
+    public void DeleteLogFood(string idDeleteJson)
+    {
+        (int idLogDate, int idLog) = JsonSerializer.Deserialize<(int, int)>(idDeleteJson, Options);
+        Dao.DeleteLogFood(idLogDate, idLog);
+    }
+
+    public void DeleteLogExercise(string idDeleteJson)
+    {
+        (int idLogDate, int idLog) = JsonSerializer.Deserialize<(int, int)>(idDeleteJson, Options);
+        Dao.DeleteLogExercise(idLogDate, idLog);
+    }
 }

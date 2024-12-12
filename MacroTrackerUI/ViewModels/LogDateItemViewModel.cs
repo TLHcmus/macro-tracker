@@ -1,4 +1,5 @@
 ﻿using MacroTrackerUI.Models;
+using System;
 using System.ComponentModel;
 using System.Linq;
 
@@ -12,9 +13,10 @@ public class LogDateItemViewModel : INotifyPropertyChanged
 
     public float UpdateTotalCalories(LogDate logDate)
     {
-        TotalCalories = logDate.LogFood.Sum(food => food.Calories) + 
-                        logDate.LogExercise.Sum(exercise => exercise.Calories);
+        float updatedCalories = (float)Math.Round(logDate.LogFood.Sum(food => food.Calories) +
+                                                  logDate.LogExercise.Sum(exercise => exercise.Calories), 1);
+        TotalCalories = updatedCalories;
 
-        return TotalCalories;
+        return updatedCalories;
     }
 }

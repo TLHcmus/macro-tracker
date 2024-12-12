@@ -2,6 +2,7 @@
 using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
+using System.Diagnostics;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 public class MockDao : IDao
@@ -318,5 +319,17 @@ public class MockDao : IDao
     public void DeleteLogDate(int Id)
     {
         DateLogs.Remove(DateLogs.First(log => log.ID == Id));
+    }
+
+    public void DeleteLogFood(int idLogDate, int idLog)
+    {
+        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
+        logDate.LogFood.Remove(logDate.LogFood.First(log => log.ID == idLog));
+    }
+
+    public void DeleteLogExercise(int idLogDate, int idLog)
+    {
+        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
+        logDate.LogExercise.Remove(logDate.LogExercise.First(log => log.ID == idLog));
     }
 }

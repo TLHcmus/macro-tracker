@@ -10,7 +10,11 @@ public sealed partial class LogDateItem : UserControl, INotifyPropertyChanged
 {
     private LogDateItemViewModel ViewModel { get; set; } = new LogDateItemViewModel();
     public delegate void DeleteLogDateEventHandler(int ID);
+    public delegate void DeleteLogEventHandler(int logDateID, int logID);
+
     public event DeleteLogDateEventHandler DeleteLogDate;
+    public event DeleteLogEventHandler DeleteLogFood;
+    public event DeleteLogEventHandler DeleteLogExercise;
 
     public static readonly DependencyProperty LogDateProperty = DependencyProperty.Register(
             "LogDate",
@@ -38,7 +42,12 @@ public sealed partial class LogDateItem : UserControl, INotifyPropertyChanged
 
     private void DeleteLogFoodButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        int? tag = (sender as Button).Tag as int?;
+        if (tag == null)
+            throw new System.Exception("Tag is null.");
+
+        DeleteLogFood?.Invoke(LogDate.ID, (int) tag);
+        ViewModel.UpdateTotalCalories(LogDate);
     }
 
     private void AddLogFoodButton_Click(object sender, RoutedEventArgs e)
@@ -48,7 +57,12 @@ public sealed partial class LogDateItem : UserControl, INotifyPropertyChanged
 
     private void DeleteLogExerciseButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        int? tag = (sender as Button).Tag as int?;
+        if (tag == null)
+            throw new System.Exception("Tag is null.");
+
+        DeleteLogExercise?.Invoke(LogDate.ID, (int)tag);
+        ViewModel.UpdateTotalCalories(LogDate);
     }
 
     private void AddLogExerciseButton_Click(object sender, RoutedEventArgs e)

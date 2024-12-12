@@ -110,4 +110,18 @@ public class DaoSender
             JsonSerializer.Serialize(id)
         );
     }
+
+    public void DeleteLogFood(int logDateID, int logID)
+    {
+        Receiver.DeleteLogFood(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    internal void DeleteLogExercise(int logDateID, int logID)
+    {
+        Receiver.DeleteLogExercise(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
 }

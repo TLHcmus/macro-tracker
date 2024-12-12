@@ -33,4 +33,14 @@ public sealed partial class LogPage : Page
     {
         ViewModel.DeleteLogDate(ID);
     }
+
+    private void DeleteLogFood(int logDateID, int logID)
+    {
+        ViewModel.DeleteLogFood(logDateID, logID);
+    }
+
+    private void DeleteLogExercise(int logDateID, int logID)
+    {
+        ViewModel.DeleteLogExercise(logDateID, logID);
+    }
 }

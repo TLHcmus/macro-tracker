@@ -76,7 +76,9 @@
                 <DataTemplate x:DataType="model:LogDate">
                     <usrctl:LogDateItem LogDate="{x:Bind Mode=OneWay}" 
                                         Margin="0 10 0 0"
-                                        DeleteLogDate="DeleteLogDate"/>
+                                        DeleteLogDate="DeleteLogDate"
+                                        DeleteLogFood="DeleteLogFood"
+                                        DeleteLogExercise="DeleteLogExercise"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
