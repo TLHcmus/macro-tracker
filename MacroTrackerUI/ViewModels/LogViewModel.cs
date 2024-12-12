@@ -15,9 +15,23 @@ class LogViewModel
     private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
     private int NumberItem { get; set; } = 0;
 
+    private DateTime _endDate = DateTime.Now.Date;
+
+    public DateTime EndDate
+    {
+        get { return _endDate; }
+        set
+        {
+            _endDate = value;
+            NumberItem = 0;
+            LogList.Clear();
+            GetNextLogsPage();
+        }
+    }
+
     public void GetNextLogsPage()
     {
-        var logs = Sender.GetLogDateWithPagination(NumberItem, DateTime.Now);
+        var logs = Sender.GetLogDateWithPagination(NumberItem, EndDate);
         foreach (LogDate log in logs)
         {
             LogList.Add(log);

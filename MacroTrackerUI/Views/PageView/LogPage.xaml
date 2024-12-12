@@ -57,8 +57,9 @@
                     VerticalAlignment="Center"/>
 
                 <Button.Flyout>
-                    <Flyout>
-                        <CalendarView/>
+                    <Flyout
+                        x:Name="CalendarFlyout">
+                        <CalendarView SelectedDatesChanged="CalenderViewFlyout_SelectedDatesChanged"/>
                     </Flyout>
                 </Button.Flyout>
             </Button>

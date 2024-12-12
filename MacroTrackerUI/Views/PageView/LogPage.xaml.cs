@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -69,7 +70,15 @@ public sealed partial class LogPage : Page
     private void OnScrollToEnd()
     {
         // Trigger the event or perform the action when scrolled to the end
-        Debug.WriteLine("Scrolled to the end of the list.");
         ViewModel.GetNextLogsPage();
+    }
+
+    private void CalenderViewFlyout_SelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
+    {
+        if (args.AddedDates.Count == 1)
+        {
+            ViewModel.EndDate = args.AddedDates[0].DateTime;
+            CalendarFlyout.Hide();
+        }
     }
 }
