@@ -332,4 +332,16 @@ public class MockDao : IDao
             Fat = 69
         };
     }
+
+    public void DeleteLogFood(int idLogDate, int idLog)
+    {
+        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
+        logDate.LogFood.Remove(logDate.LogFood.First(log => log.ID == idLog));
+    }
+
+    public void DeleteLogExercise(int idLogDate, int idLog)
+    {
+        LogDate logDate = DateLogs.First(logDate => logDate.ID == idLogDate);
+        logDate.LogExercise.Remove(logDate.LogExercise.First(log => log.ID == idLog));
+    }
 }

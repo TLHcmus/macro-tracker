@@ -46,4 +46,8 @@ public class DatabaseDao : IDao
 
     public void DeleteLogDate(int id) => throw new NotImplementedException();
 
+    public void DeleteLogFood(int logDateID, int logID) => throw new NotImplementedException();
+
+    public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();
+
 }
