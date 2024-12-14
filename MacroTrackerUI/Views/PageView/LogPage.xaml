@@ -59,7 +59,21 @@
                 <Button.Flyout>
                     <Flyout
                         x:Name="CalendarFlyout">
-                        <CalendarView SelectedDatesChanged="CalenderViewFlyout_SelectedDatesChanged"/>
+                        <StackPanel
+                            Orientation="Vertical">
+
+                            <Button x:Name="TodayButton" 
+                                    Content="Today" 
+                                    Margin="5 5 5 10" 
+                                    HorizontalAlignment="Center"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2"
+                                    Click="TodayButton_Click" />
+                            <CalendarView x:Name="Calendar" 
+                                          SelectedDatesChanged="CalenderViewFlyout_SelectedDatesChanged"/>
+
+                        </StackPanel>
+                        
                     </Flyout>
                 </Button.Flyout>
             </Button>

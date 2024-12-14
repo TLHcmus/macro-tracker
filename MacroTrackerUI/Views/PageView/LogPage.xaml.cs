@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -26,6 +27,13 @@ public sealed partial class LogPage : Page
     private void AddLogDateButton_Click(object sender, RoutedEventArgs e)
     {
         DateTime date = DateTime.Now;
+        ViewModel.EndDate = date;
+
+        TodayButton.BorderThickness = new Thickness(2);
+        Calendar.SelectedDates.Clear();
+        Calendar.SelectedDates.Add(date);
+        Calendar.SetDisplayDate(date);
+
         if (ViewModel.DoesContainDate(date))
             return;
 
@@ -73,12 +81,32 @@ public sealed partial class LogPage : Page
         ViewModel.GetNextLogsPage();
     }
 
-    private void CalenderViewFlyout_SelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
+    private void CalenderViewFlyout_SelectedDatesChanged(
+        CalendarView sender, 
+        CalendarViewSelectedDatesChangedEventArgs args)
     {
         if (args.AddedDates.Count == 1)
         {
+            DateTime date = args.AddedDates[0].DateTime;
+
+            if (date.Date == DateTime.Now.Date)
+                TodayButton.BorderThickness = new Thickness(2);
+            else
+                TodayButton.BorderThickness = new Thickness(0.5);
             ViewModel.EndDate = args.AddedDates[0].DateTime;
             CalendarFlyout.Hide();
         }
+    }
+
+    private void TodayButton_Click(object sender, RoutedEventArgs e)
+    {
+        DateTime date = DateTime.Now;
+        ViewModel.EndDate = date;
+        Calendar.SelectedDates.Clear();
+        Calendar.SelectedDates.Add(date);
+        Calendar.SetDisplayDate(date);
+        CalendarFlyout.Hide();
+
+        TodayButton.BorderThickness = new Thickness(2);
     }
 }
