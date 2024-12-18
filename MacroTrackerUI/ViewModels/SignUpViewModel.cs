@@ -128,6 +128,9 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// </summary>
     public void AddUser()
     {
+        // Ma hoa mat khau
+        string encryptedPassword = PasswordEncryptionHandle.EncryptPasswordToDatabase(Password);
+
         Dao.AddUser((Username, Password));
     }
 }

@@ -31,6 +31,12 @@ public class DaoReceiver
         return JsonSerializer.Serialize(Dao.GetExercises());
     }
 
+    // Get Goal
+    public string GetGoal()
+    {
+        return JsonSerializer.Serialize(Dao.GetGoal());
+    }
+
     /// <summary>
     /// Retrieves a list of users.
     /// </summary>
@@ -101,39 +107,35 @@ public class DaoReceiver
         );
     }
 
-    public string GetAllLogDates()
+    public string GetLogs()
     {
         return JsonSerializer.Serialize(
-            Dao.GetAllLogs(),
+            Dao.GetLogs(),
             Options
         );
     }
 
-    public void AddLogDate(string logDateJson)
+    public void AddLog(string logJson)
     {
-        LogDate? logDate = JsonSerializer.Deserialize<LogDate>(logDateJson);
-        if (logDate == null)
+        Log? log = JsonSerializer.Deserialize<Log>(logJson);
+        if (log == null)
         {
             throw new ArgumentNullException();
         }
-        Dao.AddLogDate(logDate);
+        Dao.AddLog(log);
     }
 
-    public string AddDefaultLogDate()
-    {
-        return JsonSerializer.Serialize(Dao.AddDefaultLogDate());
-    }
+    //public string AddDefaultLogDate()
+    //{
+    //    return JsonSerializer.Serialize(Dao.AddDefaultLogDate());
+    //}
 
-    public void DeleteLogDate(string idJson)
+    public void DeleteLog(string logIdJson)
     {
-        Dao.DeleteLogDate(JsonSerializer.Deserialize<int>(idJson));
+        Dao.DeleteLog(JsonSerializer.Deserialize<int>(logIdJson));
         
     }
 
  
-    // Get Goal
-    public string GetGoal()
-    {
-        return JsonSerializer.Serialize(Dao.GetGoal());
-    }
+
 }

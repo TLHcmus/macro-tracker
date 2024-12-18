@@ -7,17 +7,34 @@ using MacroTrackerCore.Entities;
 namespace MacroTrackerCore.Services.DataAccessService;
 public interface IDao
 {
+
+    // Food
+
     /// <summary>
     /// Retrieves a list of foods.
     /// </summary>
     /// <returns>A list of <see cref="Food"/> objects.</returns>
-    ObservableCollection<Food> GetFoods();
+    List<Food> GetFoods();
+
+    // Exercise
 
     /// <summary>
     /// Retrieves a collection of exercises.
     /// </summary>
     /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     List<Exercise> GetExercises();
+
+    
+
+    // Goal
+
+    // Get goal
+    Goal GetGoal();
+
+
+
+
+    // User
 
     /// <summary>
     /// Retrieves a list of users.
@@ -50,14 +67,23 @@ public interface IDao
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
 
-    // Get Goal
-    Goal GetGoal();
+    // Log
 
-    LogDate AddDefaultLogDate();
+    // Get Logs
+    List<Log> GetLogs();
+    
 
-    List<LogDate> GetAllLogs();
+    // Add log
+    void AddLog(Log log);
+    // Delete log
+    void DeleteLog(int logId);
 
-    void AddLogDate(LogDate logDate);
 
-    void DeleteLogDate(int id);
+    //LogDate AddDefaultLogDate();
+
+    //List<LogDate> GetAllLogs();
+
+    //void AddLogDate(LogDate logDate);
+
+    //void DeleteLogDate(int id);
 }

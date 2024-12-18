@@ -7,6 +7,17 @@ using System.Collections.ObjectModel;
 namespace MacroTrackerCore.Services.DataAccessService;
 public class MockDao : IDao
 {
+
+    // Food 
+
+    /// <summary>  
+    /// Throws a NotImplementedException  
+    /// </summary>  
+    /// <returns>Throws NotImplementedException</returns>  
+    public List<Food> GetFoods() => throw new NotImplementedException();
+
+    // Exercise
+
     /// <summary>  
     /// Collection of mock exercises  
     /// </summary>  
@@ -88,11 +99,19 @@ public class MockDao : IDao
         return Exercises;
     }
 
-    /// <summary>  
-    /// Throws a NotImplementedException  
-    /// </summary>  
-    /// <returns>Throws NotImplementedException</returns>  
-    public ObservableCollection<Food> GetFoods() => throw new NotImplementedException();
+    // Goal
+
+    // Get Goal
+    public Goal GetGoal()
+    {
+        return new Goal()
+        {
+            Calories = 2500,
+            Protein = 156,
+            Carbs = 313,
+            Fat = 69
+        };
+    }
 
     private List<User> UserList { get; set; } =
     [
@@ -105,6 +124,8 @@ public class MockDao : IDao
                             .EncryptPasswordToDatabase("123")
         },
     ];
+
+    // User
 
     /// <summary>  
     /// Mock method to get a list of users  
@@ -177,159 +198,167 @@ public class MockDao : IDao
         UserList.Add(user);
     }
 
-    private List<LogDate> DateLogs = new()
-    {
-        new LogDate
-        {
-            Date = new(2024, 5, 5),
-            LogFood = [
-                new LogFood() {
-                    Time = new(2023, 10, 5, 1, 2, 4),
-                    Food = new Food() {
-                        Name = "Apple",
-                        CaloriesPer100g = 95,
-                        ProteinPer100g = 5,
-                        CarbsPer100g = 25,
-                        FatPer100g = 3,
-                    },
-                    Calories = 13.2f,
-                    Quantity = 1,
-                },
-                new LogFood() {
-                    Time = new(2023, 10, 5, 2, 4, 5),
-                    Food = new Food() {
-                        Name = "Banana",
-                        CaloriesPer100g = 105,
-                        ProteinPer100g = 13,
-                        CarbsPer100g = 27,
-                        FatPer100g = 4,
-                    },
-                    Calories = 15.2f,
-                    Quantity = 2,
-                }
-            ],
-            LogExercise = []
-        },
-        new LogDate
-        {
-            Date = new(2024, 4, 2),
-            LogExercise = [
-                new LogExercise() {
-                    Time = new(2024,4, 2, 2, 1,3),
-                    Exercise = new Exercise {
-                        IconFileName = "basketball.png",
-                        Name = "Basketball",
-                    },
-                    Calories = -24.2f,
-                    Minutes = 15,
-                }
-            ],
-            LogFood = [
-                new LogFood() {
-                    Time = new(2024,4,2,2, 3,45),
-                    Food = new Food {
-                        Name = "Coconut",
-                        CaloriesPer100g = 15,
-                        ProteinPer100g = 131,
-                        CarbsPer100g = 273,
-                        FatPer100g = 44,
-                    },
-                    Calories = 55f,
-                    Quantity = 2,
-                }
-            ]
-        },
-        new LogDate
-        {
-            Date = new(2024, 4, 2),
-            LogExercise = [
-                new LogExercise() {
-                    Time = new(2024,4, 2, 2, 1,3),
-                    Exercise = new Exercise {
-                        IconFileName = "yoga.png",
-                        Name = "Yoga",
-                    },
-                    Calories = -14.4f,
-                    Minutes = 30,
-                }
-            ],
-            LogFood = [
-                new LogFood() {
-                    Time = new(2024,4,2,2, 3,45),
-                    Food = new Food {
-                        Name = "Meme",
-                        CaloriesPer100g = 15,
-                        ProteinPer100g = 131,
-                        CarbsPer100g = 273,
-                        FatPer100g = 44,
-                    },
-                    Calories = 65f,
-                    Quantity = 4,
-                },
-                new LogFood() {
-                    Time = new(2024,4,2, 1, 2, 4),
-                    Food = new Food() {
-                        Name = "Pepsi",
-                        CaloriesPer100g = 95,
-                        ProteinPer100g = 5,
-                        CarbsPer100g = 25,
-                        FatPer100g = 3,
-                    },
-                    Calories = 44f,
-                    Quantity = 1,
-                },
-                new LogFood() {
-                    Time = new(2024,4,2, 2, 4, 5),
-                    Food = new Food() {
-                        Name = "Cacoa",
-                        CaloriesPer100g = 105,
-                        ProteinPer100g = 13,
-                        CarbsPer100g = 27,
-                        FatPer100g = 4,
-                    },
-                    Calories = 55.2f,
-                    Quantity = 1,
-                }
-            ]
-        }
-    };
 
-    public List<LogDate> GetAllLogs()
+    // Log
+
+    public List<Log> GetLogs()
     {
-        return DateLogs;
+        throw new NotImplementedException();
     }
 
-    public void AddLogDate(LogDate date)
+    public void AddLog(Log log)
     {
-        DateLogs.Insert(0, date);
+        throw new NotImplementedException();
     }
 
-    public LogDate AddDefaultLogDate()
+    public void DeleteLog(int logId)
     {
-        LogDate date = new()
-        {
-            Date = DateTime.Now,
-            LogExercise = [],
-            LogFood = []
-        };
-        DateLogs.Insert(0, date);
-        return date;
+        throw new NotImplementedException();
     }
 
-    public void DeleteLogDate(int Id)
-    {
-        DateLogs.Remove(DateLogs.First(log => log.ID == Id));
-    }
+    //private List<LogDate> DateLogs = new()
+    //{
+    //    new LogDate
+    //    {
+    //        Date = new(2024, 5, 5),
+    //        LogFood = [
+    //            new LogFood() {
+    //                Time = new(2023, 10, 5, 1, 2, 4),
+    //                Food = new Food() {
+    //                    Name = "Apple",
+    //                    CaloriesPer100g = 95,
+    //                    ProteinPer100g = 5,
+    //                    CarbsPer100g = 25,
+    //                    FatPer100g = 3,
+    //                },
+    //                Calories = 13.2f,
+    //                Quantity = 1,
+    //            },
+    //            new LogFood() {
+    //                Time = new(2023, 10, 5, 2, 4, 5),
+    //                Food = new Food() {
+    //                    Name = "Banana",
+    //                    CaloriesPer100g = 105,
+    //                    ProteinPer100g = 13,
+    //                    CarbsPer100g = 27,
+    //                    FatPer100g = 4,
+    //                },
+    //                Calories = 15.2f,
+    //                Quantity = 2,
+    //            }
+    //        ],
+    //        LogExercise = []
+    //    },
+    //    new LogDate
+    //    {
+    //        Date = new(2024, 4, 2),
+    //        LogExercise = [
+    //            new LogExercise() {
+    //                Time = new(2024,4, 2, 2, 1,3),
+    //                Exercise = new Exercise {
+    //                    IconFileName = "basketball.png",
+    //                    Name = "Basketball",
+    //                },
+    //                Calories = -24.2f,
+    //                Minutes = 15,
+    //            }
+    //        ],
+    //        LogFood = [
+    //            new LogFood() {
+    //                Time = new(2024,4,2,2, 3,45),
+    //                Food = new Food {
+    //                    Name = "Coconut",
+    //                    CaloriesPer100g = 15,
+    //                    ProteinPer100g = 131,
+    //                    CarbsPer100g = 273,
+    //                    FatPer100g = 44,
+    //                },
+    //                Calories = 55f,
+    //                Quantity = 2,
+    //            }
+    //        ]
+    //    },
+    //    new LogDate
+    //    {
+    //        Date = new(2024, 4, 2),
+    //        LogExercise = [
+    //            new LogExercise() {
+    //                Time = new(2024,4, 2, 2, 1,3),
+    //                Exercise = new Exercise {
+    //                    IconFileName = "yoga.png",
+    //                    Name = "Yoga",
+    //                },
+    //                Calories = -14.4f,
+    //                Minutes = 30,
+    //            }
+    //        ],
+    //        LogFood = [
+    //            new LogFood() {
+    //                Time = new(2024,4,2,2, 3,45),
+    //                Food = new Food {
+    //                    Name = "Meme",
+    //                    CaloriesPer100g = 15,
+    //                    ProteinPer100g = 131,
+    //                    CarbsPer100g = 273,
+    //                    FatPer100g = 44,
+    //                },
+    //                Calories = 65f,
+    //                Quantity = 4,
+    //            },
+    //            new LogFood() {
+    //                Time = new(2024,4,2, 1, 2, 4),
+    //                Food = new Food() {
+    //                    Name = "Pepsi",
+    //                    CaloriesPer100g = 95,
+    //                    ProteinPer100g = 5,
+    //                    CarbsPer100g = 25,
+    //                    FatPer100g = 3,
+    //                },
+    //                Calories = 44f,
+    //                Quantity = 1,
+    //            },
+    //            new LogFood() {
+    //                Time = new(2024,4,2, 2, 4, 5),
+    //                Food = new Food() {
+    //                    Name = "Cacoa",
+    //                    CaloriesPer100g = 105,
+    //                    ProteinPer100g = 13,
+    //                    CarbsPer100g = 27,
+    //                    FatPer100g = 4,
+    //                },
+    //                Calories = 55.2f,
+    //                Quantity = 1,
+    //            }
+    //        ]
+    //    }
+    //};
 
-    // Get Goal
-    public Goal GetGoal()
-    {
-        return new Goal()
-        {
-            Calories = 2500,
-            Protein = 156,
-            Carbs = 313,
-            Fat = 69
-        };
-    }
+    //public List<LogDate> GetAllLogs()
+    //{
+    //    return DateLogs;
+    //}
+
+    //public void AddLogDate(LogDate date)
+    //{
+    //    DateLogs.Insert(0, date);
+    //}
+
+    //public LogDate AddDefaultLogDate()
+    //{
+    //    LogDate date = new()
+    //    {
+    //        Date = DateTime.Now,
+    //        LogExercise = [],
+    //        LogFood = []
+    //    };
+    //    DateLogs.Insert(0, date);
+    //    return date;
+    //}
+
+    //public void DeleteLogDate(int Id)
+    //{
+    //    DateLogs.Remove(DateLogs.First(log => log.ID == Id));
+    //}
+
+
 }

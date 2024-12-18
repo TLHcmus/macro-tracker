@@ -82,4 +82,15 @@ public class PasswordEncryptionReceiver
             Encryptor.DecryptPasswordFromLocalStorage(encryptedPasswordInBase64, entropyInBase64)
         );
     }
+
+    // Encrypt Password to Database
+    public string EncryptPasswordToDatabase(string rawPassword)
+    {
+        if (rawPassword == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        return Encryptor.EncryptPasswordToDatabase(rawPassword);
+    }
 }
