@@ -49,4 +49,12 @@ public class PasswordEncryptionSender
         };
         return JsonSerializer.Deserialize<(string, string)>(jsonResult, options);
     }
+
+    // Encrypt Password to Database
+    public string EncryptPasswordToDatabase(string rawPassword)
+    {
+        return Receiver.EncryptPasswordToDatabase(rawPassword);
+    }
+
+
 }

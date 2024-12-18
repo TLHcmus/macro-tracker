@@ -33,6 +33,12 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
 
+    // Get Goal
+    public Goal GetGoal()
+    {
+        return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
+    }
+
     /// <summary>
     /// Retrieves a list of users.
     /// </summary>
@@ -85,36 +91,32 @@ public class DaoSender
         );
     }
 
-    public List<LogDate> GetAllLogDates()
+    public List<Log> GetLogs()
     {
-        return JsonSerializer.Deserialize<List<LogDate>>(
-            Receiver.GetAllLogDates()
+        return JsonSerializer.Deserialize<List<Log>>(
+            Receiver.GetLogs()
         );
     }
 
-    public void AddLogDate(LogDate logDate)
+    public void AddLog(Log log)
     {
-        Receiver.AddLogDate(JsonSerializer.Serialize(logDate));
+        Receiver.AddLog(JsonSerializer.Serialize(log));
     }
 
-    public LogDate AddDefaultLogDate()
-    {
-        return JsonSerializer.Deserialize<LogDate>(
-            Receiver.AddDefaultLogDate()
-        );
-    }
+    //public LogDate AddDefaultLogDate()
+    //{
+    //    return JsonSerializer.Deserialize<LogDate>(
+    //        Receiver.AddDefaultLogDate()
+    //    );
+    //}
 
-    public void DeleteLogDate(int id)
+    public void DeleteLog(int logId)
     {
-        Receiver.DeleteLogDate(
-            JsonSerializer.Serialize(id)
+        Receiver.DeleteLog(
+            JsonSerializer.Serialize(logId)
         );
         
     }
 
-    // Get Goal
-    public Goal GetGoal()
-    {
-        return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
-    }
+    
 }

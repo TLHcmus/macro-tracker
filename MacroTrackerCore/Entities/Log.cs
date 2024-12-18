@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MacroTrackerCore.Entities;
 
-public class Log
+public partial class Log
 {
-    private static int IDCount { get; set; } = 0;
-    public int ID { get; private set; }
-    public DateTime Time { get; set; }
+    public int LogId { get; set; }
 
-    public Log()
-    {
-        IDCount++;
-        ID = IDCount;
-    }
+    public DateOnly? LogDate { get; set; }
+
+    public double? TotalCalories { get; set; }
+
+    public virtual ICollection<LogExerciseItem> LogExerciseItems { get; set; } = new List<LogExerciseItem>();
+
+    public virtual ICollection<LogFoodItem> LogFoodItems { get; set; } = new List<LogFoodItem>();
 }

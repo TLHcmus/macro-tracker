@@ -10,7 +10,7 @@ namespace MacroTrackerCore.Services.DataAccessService;
 
 public class DatabaseDao : IDao
 {
-    // Use Entity Framework to get exercises from the database
+
     private readonly MacroTrackerContext _context;
 
     public DatabaseDao()
@@ -18,32 +18,118 @@ public class DatabaseDao : IDao
         _context = new MacroTrackerContext();
     }
 
+    // Food
+    public List<Food> GetFoods()
+    {
+        return _context.Foods.ToList();
+    }
+
+    // Exercise
     public List<Exercise> GetExercises()
     {
-        return new List<Exercise>(_context.Exercises);
+        return _context.Exercises.ToList();
     }
 
-    public ObservableCollection<Food> GetFoods()
+    
+    // Goal
+    public Goal GetGoal()
     {
-        return new ObservableCollection<Food>(_context.Foods);
+        return _context.Goals.FirstOrDefault();
     }
 
-    public bool DoesUserMatchPassword(string username, string password) => throw new NotImplementedException();
 
-    public bool DoesUsernameExist(string username) => throw new NotImplementedException();
+    // User
+    public List<User> GetUsers()
+    {
+        var users = _context.Users.ToList();
 
-    public void AddUser(User user) => throw new NotImplementedException();
+        // Ma hoa mat khau
+        foreach (var user in users)
+        {
+            user.EncryptedPassword =
+                ProviderCore.GetServiceProvider()
+                            .GetRequiredService<IPasswordEncryption>()
+                            .EncryptPasswordToDatabase(user.EncryptedPassword);
+        }
 
-    public List<User> GetUsers() => throw new NotImplementedException();
+        return users;
+    }
 
-    public Goal GetGoal() => throw new NotImplementedException();
+    // Check user match password
+    static int FindUsernameIndex(List<User> users, string userName)
+    {
+        for (int i = 0; i < users.Count; i++)
+        {
+            if (users[i].Username.Equals(userName)) // Case-sensitive comparison  
+            {
+                return i; // Return the index if found  
+            }
+        }
+        return -1; // Return -1 if not found  
+    }
 
-    public LogDate AddDefaultLogDate() => throw new NotImplementedException();
+    public bool DoesUserMatchPassword(string username, string password)
+    {
+        var users = GetUsers();
 
-    public List<LogDate> GetAllLogs() => throw new NotImplementedException();
+        int indexUsername = FindUsernameIndex(users, username);
+        if (indexUsername == -1)
+            return false;
 
-    public void AddLogDate(LogDate logDate) => throw new NotImplementedException();
+        IPasswordEncryption passwordEncryption =
+            ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
 
-    public void DeleteLogDate(int id) => throw new NotImplementedException();
+        if (users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password))
+            return true;
+        return false;
+    }
+
+    public bool DoesUsernameExist(string username)
+    {
+        var users = GetUsers();
+        return FindUsernameIndex(users, username) != -1;
+    }
+
+    public void AddUser(User user)
+    {
+        _context.Users.Add(user);
+
+        _context.SaveChanges();
+    }
+
+    // Log
+    public List<Log> GetLogs()
+    {
+        return _context.Logs.ToList();
+    }
+
+    public void AddLog(Log log)
+    {
+        _context.Logs.Add(log);
+
+        _context.SaveChanges();
+    }
+    
+    public void DeleteLog(int logId)
+    {
+        var log = _context.Logs.Find(logId);
+
+        if (log == null)
+        {
+            throw new Exception("Log not found");
+        }
+
+        _context.Logs.Remove(log);
+
+        _context.SaveChanges();
+    }
+
+    //public LogDate AddDefaultLogDate() => throw new NotImplementedException();
+
+    //public List<LogDate> GetAllLogs() => throw new NotImplementedException();
+
+    //public void AddLogDate(LogDate logDate) => throw new NotImplementedException();
+
+    //public void DeleteLogDate(int id) => throw new NotImplementedException();
 
 }

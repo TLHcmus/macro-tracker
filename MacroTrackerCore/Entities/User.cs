@@ -7,5 +7,5 @@ public partial class User
 {
     public string Username { get; set; } = null!;
 
-    public string EncryptedPassword { get; set; } = null!;
+    public string? EncryptedPassword { get; set; }
 }
