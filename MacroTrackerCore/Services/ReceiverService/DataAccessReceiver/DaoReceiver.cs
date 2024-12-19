@@ -19,7 +19,7 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Food"/> objects.</returns>
     public string GetFoods()
     {
-        return JsonSerializer.Serialize(Dao.GetFoods());
+        return JsonSerializer.Serialize(Dao.GetFoods(), Options);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class DaoReceiver
     /// <returns>A JSON string representing an <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     public string GetExercises()
     {
-        return JsonSerializer.Serialize(Dao.GetExercises());
+        return JsonSerializer.Serialize(Dao.GetExercises(), Options);
     }
 
     /// <summary>

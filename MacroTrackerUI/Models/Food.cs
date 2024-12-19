@@ -2,9 +2,8 @@
 
 namespace MacroTrackerUI.Models;
 
-public class Food : INotifyPropertyChanged
+public class Food : Item, INotifyPropertyChanged
 {
-    required public string Name { get; set; }
     required public double CaloriesPer100g { get; set; }
     required public double ProteinPer100g { get; set; }
     required public double CarbsPer100g { get; set; }

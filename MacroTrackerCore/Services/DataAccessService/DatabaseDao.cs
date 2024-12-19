@@ -23,9 +23,9 @@ public class DatabaseDao : IDao
         return new List<Exercise>(_context.Exercises);
     }
 
-    public ObservableCollection<Food> GetFoods()
+    public List<Food> GetFoods()
     {
-        return new ObservableCollection<Food>(_context.Foods);
+        return new List<Food>(_context.Foods);
     }
 
     public bool DoesUserMatchPassword(string username, string password) => throw new NotImplementedException();

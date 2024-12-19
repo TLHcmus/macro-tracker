@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace MacroTrackerCore.Entities;
 
-public partial class Food
+public partial class Food : Item
 {
-    public string Name { get; set; } = null!;
-
     public double CaloriesPer100g { get; set; }
 
     public double ProteinPer100g { get; set; }

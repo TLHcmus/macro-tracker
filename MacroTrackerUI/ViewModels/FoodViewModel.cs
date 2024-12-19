@@ -7,16 +7,16 @@ using System.ComponentModel;
 
 namespace MacroTrackerUI.ViewModels;
 
-public class ExerciseViewModel : INotifyPropertyChanged
+public class FoodViewModel : INotifyPropertyChanged
 {
-    private ObservableCollection<Exercise> _exercises;
-    public ObservableCollection<Exercise> Exercises 
+    private ObservableCollection<Food> _foods;
+    public ObservableCollection<Food> Foods
     {
-        get => _exercises;
+        get => _foods;
         set
         {
-            _exercises = value;
-            Items = new ObservableCollection<Item>(Dao.GetExercises());
+            _foods = value;
+            Items = new ObservableCollection<Item>(Dao.GetFoods());
         }
     }
     public ObservableCollection<Item> Items { get; set; }
@@ -24,9 +24,9 @@ public class ExerciseViewModel : INotifyPropertyChanged
     private DaoSender Dao { get; } =
         ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
-    public ExerciseViewModel()
+    public FoodViewModel()
     {
-        Exercises = new ObservableCollection<Exercise>(Dao.GetExercises());
+        Foods = new ObservableCollection<Food>(Dao.GetFoods());
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

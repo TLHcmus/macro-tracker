@@ -10,89 +10,334 @@ public class MockDao : IDao
     /// <summary>  
     /// Collection of mock exercises  
     /// </summary>  
-    public List<Exercise> Exercises =
-    [
+    public List<Exercise> Exercises = new()
+    {
         new Exercise
         {
-            IconFileName = "basketball.png",
-            Name = "Basketball",
+            IconFile = "ExerciseIcons/basketball.png",
+            Title = "Basketball",
         },
         new Exercise
         {
-            IconFileName = "climbing.png",
-            Name = "Climbing",
+            IconFile = "ExerciseIcons/climbing.png",
+            Title = "Climbing",
         },
         new Exercise
         {
-            IconFileName = "martialarts.png",
-            Name = "Martial Arts",
+            IconFile = "ExerciseIcons/martialarts.png",
+            Title = "Martial Arts",
         },
         new Exercise
         {
-            IconFileName = "running.png",
-            Name = "Running",
+            IconFile = "ExerciseIcons/running.png",
+            Title = "Running",
         },
         new Exercise
         {
-            IconFileName = "swimming.png",
-            Name = "Swimming",
+            IconFile = "ExerciseIcons/swimming.png",
+            Title = "Swimming",
         },
         new Exercise
         {
-            IconFileName = "pickleball.png",
-            Name = "Pickle Ball",
+            IconFile = "ExerciseIcons/pickleball.png",
+            Title = "Pickle Ball",
         },
         new Exercise
         {
-            IconFileName = "tennis.png",
-            Name = "Tennis",
+            IconFile = "ExerciseIcons/tennis.png",
+            Title = "Tennis",
         },
         new Exercise
         {
-            IconFileName = "volleyball.png",
-            Name = "Volleyball",
+            IconFile = "ExerciseIcons/volleyball.png",
+            Title = "Volleyball",
         },
         new Exercise
         {
-            IconFileName = "walking.png",
-            Name = "Walking",
+            IconFile = "ExerciseIcons/walking.png",
+            Title = "Walking",
         },
         new Exercise
         {
-            IconFileName = "weightlifting.png",
-            Name = "Weight Lifting",
+            IconFile = "ExerciseIcons/weightlifting.png",
+            Title = "Weight Lifting",
         },
         new Exercise
         {
-            IconFileName = "yoga.png",
-            Name = "Yoga",
+            IconFile = "ExerciseIcons/yoga.png",
+            Title = "Yoga",
         },
         new Exercise
         {
-            IconFileName = "pilates.png",
-            Name = "Pilates",
+            IconFile = "ExerciseIcons/pilates.png",
+            Title = "Pilates",
         },
         new Exercise
         {
-            IconFileName = "baseball.png",
-            Name = "Baseball",
+            IconFile = "ExerciseIcons/baseball.png",
+            Title = "Baseball",
+        }
+    };
+
+    public List<Food> Foods = new()
+    {
+        new Food
+        {
+            IconFile = "FoodImages/apple.png",
+            Title = "Apple",
+            CaloriesPer100g = 52,
+            ProteinPer100g = 0.3,
+            CarbsPer100g = 14,
+            FatPer100g = 0.2,
         },
-    ];
+        new Food
+        {
+            IconFile = "FoodImages/banana.png",
+            Title = "Banana",
+            CaloriesPer100g = 89,
+            ProteinPer100g = 1.1,
+            CarbsPer100g = 23,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/banhmi.png",
+            Title = "Banh Mi",
+            CaloriesPer100g = 250,
+            ProteinPer100g = 8,
+            CarbsPer100g = 45,
+            FatPer100g = 5,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/beer.png",
+            Title = "Beer",
+            CaloriesPer100g = 43,
+            ProteinPer100g = 0.5,
+            CarbsPer100g = 3.6,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/cabbage.png",
+            Title = "Cabbage",
+            CaloriesPer100g = 25,
+            ProteinPer100g = 1.3,
+            CarbsPer100g = 6,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/cake.png",
+            Title = "Cake",
+            CaloriesPer100g = 350,
+            ProteinPer100g = 4,
+            CarbsPer100g = 50,
+            FatPer100g = 15,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/carrot.png",
+            Title = "Carrot",
+            CaloriesPer100g = 35,
+            ProteinPer100g = 1,
+            CarbsPer100g = 5,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/cheese.png",
+            Title = "Cheese",
+            CaloriesPer100g = 400,
+            ProteinPer100g = 25,
+            CarbsPer100g = 1,
+            FatPer100g = 33,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/chocolate.png",
+            Title = "Chocolate",
+            CaloriesPer100g = 546,
+            ProteinPer100g = 7.6,
+            CarbsPer100g = 61,
+            FatPer100g = 31,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/coca.png",
+            Title = "Coca",
+            CaloriesPer100g = 42,
+            ProteinPer100g = 0,
+            CarbsPer100g = 10.6,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/coconut.png",
+            Title = "Coconut",
+            CaloriesPer100g = 354,
+            ProteinPer100g = 3.3,
+            CarbsPer100g = 15,
+            FatPer100g = 33,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/dumpling.png",
+            Title = "Dumpling",
+            CaloriesPer100g = 155,
+            ProteinPer100g = 6,
+            CarbsPer100g = 23,
+            FatPer100g = 3,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/egg.png",
+            Title = "Egg",
+            CaloriesPer100g = 155,
+            ProteinPer100g = 13,
+            CarbsPer100g = 1.1,
+            FatPer100g = 11,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/hotdog.png",
+            Title = "Hot Dog",
+            CaloriesPer100g = 290,
+            ProteinPer100g = 10,
+            CarbsPer100g = 23,
+            FatPer100g = 19,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/milk.png",
+            Title = "Milk",
+            CaloriesPer100g = 42,
+            ProteinPer100g = 3.4,
+            CarbsPer100g = 5,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/orange.png",
+            Title = "Orange",
+            CaloriesPer100g = 47,
+            ProteinPer100g = 0.9,
+            CarbsPer100g = 12,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/pho.png",
+            Title = "Pho",
+            CaloriesPer100g = 45,
+            ProteinPer100g = 2,
+            CarbsPer100g = 8,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/pineapple.png",
+            Title = "Pineapple",
+            CaloriesPer100g = 50,
+            ProteinPer100g = 0.5,
+            CarbsPer100g = 13,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/pizza.png",
+            Title = "Pizza",
+            CaloriesPer100g = 266,
+            ProteinPer100g = 11,
+            CarbsPer100g = 33,
+            FatPer100g = 10,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/potato.png",
+            Title = "Potato",
+            CaloriesPer100g = 77,
+            ProteinPer100g = 2,
+            CarbsPer100g = 17,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/rice.png",
+            Title = "Rice",
+            CaloriesPer100g = 130,
+            ProteinPer100g = 2.7,
+            CarbsPer100g = 28,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/skewer.png",
+            Title = "Skewer",
+            CaloriesPer100g = 180,
+            ProteinPer100g = 10,
+            CarbsPer100g = 5,
+            FatPer100g = 14,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/spaghetti.png",
+            Title = "Spaghetti",
+            CaloriesPer100g = 158,
+            ProteinPer100g = 5.8,
+            CarbsPer100g = 31,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/steak.png",
+            Title = "Steak",
+            CaloriesPer100g = 271,
+            ProteinPer100g = 25,
+            CarbsPer100g = 0,
+            FatPer100g = 19,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/strawberry.png",
+            Title = "Strawberry",
+            CaloriesPer100g = 33,
+            ProteinPer100g = 0.7,
+            CarbsPer100g = 8,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/tea.png",
+            Title = "Tea",
+            CaloriesPer100g = 1,
+            ProteinPer100g = 0,
+            CarbsPer100g = 0.3,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFile = "FoodImages/tomato.png",
+            Title = "Tomato",
+            CaloriesPer100g = 18,
+            ProteinPer100g = 0.9,
+            CarbsPer100g = 3.9,
+            FatPer100g = 0.2,
+        },
+    };
+
 
     /// <summary>  
     /// Gets the collection of exercises  
     /// </summary>  
     /// <returns>Collection of exercises</returns>  
-    public List<Exercise> GetExercises()
-    {
-        return Exercises;
-    }
+    public List<Exercise> GetExercises() => Exercises;
 
     /// <summary>  
     /// Throws a NotImplementedException  
     /// </summary>  
     /// <returns>Throws NotImplementedException</returns>  
-    public ObservableCollection<Food> GetFoods() => throw new NotImplementedException();
+    public List<Food> GetFoods() => Foods;
 
     private List<User> UserList { get; set; } =
     [
@@ -185,7 +430,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2023, 10, 5, 1, 2, 4),
                     Food = new Food() {
-                        Name = "Apple",
+                        Title = "Apple",
                         CaloriesPer100g = 95,
                         ProteinPer100g = 5,
                         CarbsPer100g = 25,
@@ -197,7 +442,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2023, 10, 5, 2, 4, 5),
                     Food = new Food() {
-                        Name = "Banana",
+                        Title = "Banana",
                         CaloriesPer100g = 105,
                         ProteinPer100g = 13,
                         CarbsPer100g = 27,
@@ -215,8 +460,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 4, 2, 2, 1, 3),
                     Exercise = new Exercise {
-                        IconFileName = "basketball.png",
-                        Name = "Basketball",
+                        IconFile = "basketball.png",
+                        Title = "Basketball",
                     },
                     Calories = -24.2f,
                     Minutes = 15,
@@ -226,7 +471,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 4, 2, 2, 3, 45),
                     Food = new Food {
-                        Name = "Coconut",
+                        Title = "Coconut",
                         CaloriesPer100g = 15,
                         ProteinPer100g = 131,
                         CarbsPer100g = 273,
@@ -243,8 +488,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 4, 2, 2, 1, 3),
                     Exercise = new Exercise {
-                        IconFileName = "yoga.png",
-                        Name = "Yoga",
+                        IconFile = "yoga.png",
+                        Title = "Yoga",
                     },
                     Calories = -14.4f,
                     Minutes = 30,
@@ -254,7 +499,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 4, 2, 2, 3, 45),
                     Food = new Food {
-                        Name = "Meme",
+                        Title = "Meme",
                         CaloriesPer100g = 15,
                         ProteinPer100g = 131,
                         CarbsPer100g = 273,
@@ -266,7 +511,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 4, 2, 1, 2, 4),
                     Food = new Food() {
-                        Name = "Pepsi",
+                        Title = "Pepsi",
                         CaloriesPer100g = 95,
                         ProteinPer100g = 5,
                         CarbsPer100g = 25,
@@ -278,7 +523,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 4, 2, 2, 4, 5),
                     Food = new Food() {
-                        Name = "Cacao",
+                        Title = "Cacao",
                         CaloriesPer100g = 105,
                         ProteinPer100g = 13,
                         CarbsPer100g = 27,
@@ -295,7 +540,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 6, 10, 8, 15, 0),
                     Food = new Food() {
-                        Name = "Oatmeal",
+                        Title = "Oatmeal",
                         CaloriesPer100g = 68,
                         ProteinPer100g = 2.4,
                         CarbsPer100g = 12,
@@ -307,7 +552,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 6, 10, 12, 30, 0),
                     Food = new Food() {
-                        Name = "Grilled Chicken Breast",
+                        Title = "Grilled Chicken Breast",
                         CaloriesPer100g = 165,
                         ProteinPer100g = 31,
                         CarbsPer100g = 0,
@@ -319,7 +564,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 6, 10, 19, 0, 0),
                     Food = new Food() {
-                        Name = "Mixed Vegetables",
+                        Title = "Mixed Vegetables",
                         CaloriesPer100g = 45,
                         ProteinPer100g = 3,
                         CarbsPer100g = 8,
@@ -333,8 +578,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 6, 10, 9, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "running.png",
-                        Name = "Running",
+                        IconFile = "running.png",
+                        Title = "Running",
                     },
                     Calories = -300f,
                     Minutes = 30,
@@ -342,8 +587,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 6, 10, 18, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "weightlifting.png",
-                        Name = "Weightlifting",
+                        IconFile = "weightlifting.png",
+                        Title = "Weightlifting",
                     },
                     Calories = -100f,
                     Minutes = 45,
@@ -356,7 +601,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 7, 0, 0),
                     Food = new Food() {
-                        Name = "Greek Yogurt",
+                        Title = "Greek Yogurt",
                         CaloriesPer100g = 59,
                         ProteinPer100g = 10,
                         CarbsPer100g = 3.6,
@@ -368,7 +613,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 13, 0, 0),
                     Food = new Food() {
-                        Name = "Turkey Sandwich",
+                        Title = "Turkey Sandwich",
                         CaloriesPer100g = 200,
                         ProteinPer100g = 18,
                         CarbsPer100g = 30,
@@ -380,7 +625,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 20, 0, 0),
                     Food = new Food() {
-                        Name = "Dark Chocolate",
+                        Title = "Dark Chocolate",
                         CaloriesPer100g = 600,
                         ProteinPer100g = 7.8,
                         CarbsPer100g = 45,
@@ -394,8 +639,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 7, 15, 6, 30, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "cycling.png",
-                        Name = "Cycling",
+                        IconFile = "cycling.png",
+                        Title = "Cycling",
                     },
                     Calories = -250f,
                     Minutes = 40,
@@ -403,62 +648,66 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 7, 15, 17, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "cycling.png",
-                        Name = "Cycling",
-                    },
-                    Calories = -20f,
-                    Minutes = 5,
-                }
-            ]
-        },
-        new LogDate {
-            Date = new(2024, 5, 5),
-            LogFood = [
-                new LogFood() {
-                    Time = new(2023, 10, 5, 1, 2, 4),
-                    Food = new Food() {
-                        Name = "Apple",
-                        CaloriesPer100g = 95,
-                        ProteinPer100g = 5,
-                        CarbsPer100g = 25,
-                        FatPer100g = 3,
-                    },
-                    Calories = 13.2f,
-                    Quantity = 1,
-                },
-                new LogFood() {
-                    Time = new(2023, 10, 5, 2, 4, 5),
-                    Food = new Food() {
-                        Name = "Banana",
-                        CaloriesPer100g = 105,
-                        ProteinPer100g = 13,
-                        CarbsPer100g = 27,
-                        FatPer100g = 4,
-                    },
-                    Calories = 15.2f,
-                    Quantity = 2,
+                        IconFile = "cycling.png",
+                        Title = "Cycling",
+                    }
                 }
             ],
-            LogExercise = []
         },
         new LogDate {
-            Date = new(2024, 4, 1),
+            Date = new(2024, 4, 2),
             LogExercise = [
                 new LogExercise() {
                     Time = new(2024, 4, 2, 2, 1, 3),
                     Exercise = new Exercise {
-                        IconFileName = "basketball.png",
-                        Name = "Basketball",
+                        IconFile = "yoga.png",
+                        Title = "Yoga",
                     },
-                    Calories = -24.2f,
-                    Minutes = 15,
+                    Calories = -14.4f,
+                    Minutes = 30,
                 }
             ],
             LogFood = [
                 new LogFood() {
                     Time = new(2024, 4, 2, 2, 3, 45),
                     Food = new Food {
-                        Name = "Coconut",
+                        Title = "Meme",
+                        CaloriesPer100g = 15,
+                        ProteinPer100g = 131,
+                        CarbsPer100g = 273,
+                        FatPer100g = 44,
+                    },
+                    Calories = 65f,
+                    Quantity = 4,
+                },
+                new LogFood() {
+                    Time = new(2024, 4, 2, 1, 2, 4),
+                    Food = new Food() {
+                        Title = "Pepsi",
+                        CaloriesPer100g = 95,
+                        ProteinPer100g = 5,
+                        CarbsPer100g = 25,
+                        FatPer100g = 3,
+                    },
+                    Calories = 44f,
+                    Quantity = 1,
+                },
+                new LogFood() {
+                    Time = new(2024, 4, 2, 2, 4, 5),
+                    Food = new Food() {
+                        Title = "Cacao",
+                        CaloriesPer100g = 105,
+                        ProteinPer100g = 13,
+                        CarbsPer100g = 27,
+                        FatPer100g = 4,
+                    },
+                    Calories = 55.2f,
+                    Quantity = 1,
+                },
+                new LogFood() {
+                    Time = new(2024, 4, 2, 2, 3, 45),
+                    Food = new Food {
+                        Title = "Coconut",
                         CaloriesPer100g = 15,
                         ProteinPer100g = 131,
                         CarbsPer100g = 273,
@@ -470,64 +719,12 @@ public class MockDao : IDao
             ]
         },
         new LogDate {
-            Date = new(2024, 4, 2),
-            LogExercise = [
-                new LogExercise() {
-                    Time = new(2024, 4, 2, 2, 1, 3),
-                    Exercise = new Exercise {
-                        IconFileName = "yoga.png",
-                        Name = "Yoga",
-                    },
-                    Calories = -14.4f,
-                    Minutes = 30,
-                }
-            ],
-            LogFood = [
-                new LogFood() {
-                    Time = new(2024, 4, 2, 2, 3, 45),
-                    Food = new Food {
-                        Name = "Meme",
-                        CaloriesPer100g = 15,
-                        ProteinPer100g = 131,
-                        CarbsPer100g = 273,
-                        FatPer100g = 44,
-                    },
-                    Calories = 65f,
-                    Quantity = 4,
-                },
-                new LogFood() {
-                    Time = new(2024, 4, 2, 1, 2, 4),
-                    Food = new Food() {
-                        Name = "Pepsi",
-                        CaloriesPer100g = 95,
-                        ProteinPer100g = 5,
-                        CarbsPer100g = 25,
-                        FatPer100g = 3,
-                    },
-                    Calories = 44f,
-                    Quantity = 1,
-                },
-                new LogFood() {
-                    Time = new(2024, 4, 2, 2, 4, 5),
-                    Food = new Food() {
-                        Name = "Cacao",
-                        CaloriesPer100g = 105,
-                        ProteinPer100g = 13,
-                        CarbsPer100g = 27,
-                        FatPer100g = 4,
-                    },
-                    Calories = 55.2f,
-                    Quantity = 1,
-                }
-            ]
-        },
-        new LogDate {
             Date = new(2024, 6, 10),
             LogFood = [
                 new LogFood() {
                     Time = new(2024, 6, 10, 8, 15, 0),
                     Food = new Food() {
-                        Name = "Oatmeal",
+                        Title = "Oatmeal",
                         CaloriesPer100g = 68,
                         ProteinPer100g = 2.4,
                         CarbsPer100g = 12,
@@ -539,7 +736,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 6, 10, 12, 30, 0),
                     Food = new Food() {
-                        Name = "Grilled Chicken Breast",
+                        Title = "Grilled Chicken Breast",
                         CaloriesPer100g = 165,
                         ProteinPer100g = 31,
                         CarbsPer100g = 0,
@@ -551,7 +748,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 6, 10, 19, 0, 0),
                     Food = new Food() {
-                        Name = "Mixed Vegetables",
+                        Title = "Mixed Vegetables",
                         CaloriesPer100g = 45,
                         ProteinPer100g = 3,
                         CarbsPer100g = 8,
@@ -565,8 +762,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 6, 10, 9, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "running.png",
-                        Name = "Running",
+                        IconFile = "running.png",
+                        Title = "Running",
                     },
                     Calories = -300f,
                     Minutes = 30,
@@ -574,8 +771,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 6, 10, 18, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "weightlifting.png",
-                        Name = "Weightlifting",
+                        IconFile = "weightlifting.png",
+                        Title = "Weightlifting",
                     },
                     Calories = -100f,
                     Minutes = 45,
@@ -588,7 +785,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 7, 0, 0),
                     Food = new Food() {
-                        Name = "Greek Yogurt",
+                        Title = "Greek Yogurt",
                         CaloriesPer100g = 59,
                         ProteinPer100g = 10,
                         CarbsPer100g = 3.6,
@@ -600,7 +797,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 13, 0, 0),
                     Food = new Food() {
-                        Name = "Turkey Sandwich",
+                        Title = "Turkey Sandwich",
                         CaloriesPer100g = 200,
                         ProteinPer100g = 18,
                         CarbsPer100g = 30,
@@ -612,7 +809,7 @@ public class MockDao : IDao
                 new LogFood() {
                     Time = new(2024, 7, 15, 20, 0, 0),
                     Food = new Food() {
-                        Name = "Dark Chocolate",
+                        Title = "Dark Chocolate",
                         CaloriesPer100g = 600,
                         ProteinPer100g = 7.8,
                         CarbsPer100g = 45,
@@ -626,8 +823,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 7, 15, 6, 30, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "cycling.png",
-                        Name = "Cycling",
+                        IconFile = "cycling.png",
+                        Title = "Cycling",
                     },
                     Calories = -250f,
                     Minutes = 40,
@@ -635,8 +832,8 @@ public class MockDao : IDao
                 new LogExercise() {
                     Time = new(2024, 7, 15, 17, 0, 0),
                     Exercise = new Exercise() {
-                        IconFileName = "cycling.png",
-                        Name = "Cycling",
+                        IconFile = "cycling.png",
+                        Title = "Cycling",
                     },
                     Calories = -20f,
                     Minutes = 5,

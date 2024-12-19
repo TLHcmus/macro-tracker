@@ -11,7 +11,7 @@ public interface IDao
     /// Retrieves a list of foods.
     /// </summary>
     /// <returns>A list of <see cref="Food"/> objects.</returns>
-    ObservableCollection<Food> GetFoods();
+    List<Food> GetFoods();
 
     /// <summary>
     /// Retrieves a collection of exercises.

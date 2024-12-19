@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
 namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 
@@ -21,7 +20,7 @@ public class DaoSender
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     public List<Food> GetFoods()
     {
-        return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods());
+        return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods(), Options);
     }
 
     /// <summary>
@@ -30,7 +29,7 @@ public class DaoSender
     /// <returns>A list of <see cref="Exercise"/> objects.</returns>
     public List<Exercise> GetExercises()
     {
-        return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
+        return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises(), Options);
     }
 
     /// <summary>

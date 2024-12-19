@@ -26,30 +26,30 @@ public partial class MacroTrackerContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
-        modelBuilder.Entity<Exercise>(entity =>
-        {
-            entity.HasKey(e => e.Name).HasName("PRIMARY");
+        //modelBuilder.Entity<Exercise>(entity =>
+        //{
+        //    entity.HasKey(e => e.Name).HasName("PRIMARY");
 
-            entity.ToTable("exercises");
+        //    entity.ToTable("exercises");
 
-            entity.Property(e => e.Name)
-                .HasColumnName("name")
-                .UseCollation("utf8mb3_general_ci")
-                .HasCharSet("utf8mb3");
-            entity.Property(e => e.IconFileName)
-                .HasMaxLength(255)
-                .HasColumnName("icon_file_name")
-                .UseCollation("utf8mb3_general_ci")
-                .HasCharSet("utf8mb3");
-        });
+        //    entity.Property(e => e.Name)
+        //        .HasColumnName("name")
+        //        .UseCollation("utf8mb3_general_ci")
+        //        .HasCharSet("utf8mb3");
+        //    entity.Property(e => e.IconFileName)
+        //        .HasMaxLength(255)
+        //        .HasColumnName("icon_file_name")
+        //        .UseCollation("utf8mb3_general_ci")
+        //        .HasCharSet("utf8mb3");
+        //});
 
         modelBuilder.Entity<Food>(entity =>
         {
-            entity.HasKey(e => e.Name).HasName("PRIMARY");
+            entity.HasKey(e => e.Title).HasName("PRIMARY");
 
             entity.ToTable("foods");
 
-            entity.Property(e => e.Name)
+            entity.Property(e => e.Title)
                 .HasColumnName("name")
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
