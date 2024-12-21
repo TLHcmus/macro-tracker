@@ -109,4 +109,27 @@ public class DaoSender
             JsonSerializer.Serialize(logId)
         );
     }
+
+    public void DeleteLogFood(int logDateID, int logID)
+    {
+        Receiver.DeleteLogFood(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    public void DeleteLogExercise(int logDateID, int logID)
+    {
+        Receiver.DeleteLogExercise(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    public List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate)
+    {
+        return JsonSerializer.Deserialize<List<Log>>(
+            Receiver.GetLogDateWithPagination(
+                JsonSerializer.Serialize((numberItemOffset, endDate), Options)
+            )
+        );
+    }
 }

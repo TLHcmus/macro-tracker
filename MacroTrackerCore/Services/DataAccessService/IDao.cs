@@ -69,10 +69,14 @@ public interface IDao
 
     // Get Logs
     List<Log> GetLogs();
-    
-
     // Add log
     void AddLog(Log log);
     // Delete log
     void DeleteLog(int logId);
+
+    void DeleteLogFood(int idLogDate, int idLog);
+
+    void DeleteLogExercise(int idLogDate, int idLog);
+
+    List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate);
 }

@@ -125,7 +125,8 @@
                         <Button
                             Grid.Column="3"
                             x:Name="DeleteLogExerciseButton"
-                            Click="DeleteLogExerciseButton_Click">
+                            Click="DeleteLogExerciseButton_Click"
+                            Tag="{x:Bind LogExerciseId}">
 
                             <SymbolIcon
                                 Symbol="Delete"
@@ -179,7 +180,8 @@
                         <Button
                             Grid.Column="3"
                             x:Name="DeleteLogFoodButton"
-                            Click="DeleteLogFoodButton_Click">
+                            Click="DeleteLogFoodButton_Click"
+                            Tag="{x:Bind LogFoodId}">
 
                             <SymbolIcon
                                 Symbol="Delete"

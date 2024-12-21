@@ -332,4 +332,25 @@ public class MockDao : IDao
             TotalCalories = 0
         }
     };
+
+    public void DeleteLogFood(int idLogDate, int idLog)
+    {
+        Log logDate = Logs.First(logDate => logDate.LogId == idLogDate);
+        logDate.LogFoodItems.Remove(logDate.LogFoodItems.First(log => log.LogId == idLog));
+    }
+
+    public void DeleteLogExercise(int idLogDate, int idLog)
+    {
+        Log logDate = Logs.First(logDate => logDate.LogId == idLogDate);
+        logDate.LogExerciseItems.Remove(logDate.LogExerciseItems.First(log => log.LogId == idLog));
+    }
+
+    public List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate)
+    {
+        return Logs.OrderByDescending(log => log.LogDate)
+                   .Where(log => log.LogDate <= endDate)
+                   .Skip(numberItemOffset)
+                   .Take(Configuration.PAGINATION_NUMBER)
+                   .ToList();
+    }
 }
