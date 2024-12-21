@@ -123,13 +123,4 @@ public class DatabaseDao : IDao
 
         _context.SaveChanges();
     }
-
-    //public LogDate AddDefaultLogDate() => throw new NotImplementedException();
-
-    //public List<LogDate> GetAllLogs() => throw new NotImplementedException();
-
-    //public void AddLogDate(LogDate logDate) => throw new NotImplementedException();
-
-    //public void DeleteLogDate(int id) => throw new NotImplementedException();
-
 }

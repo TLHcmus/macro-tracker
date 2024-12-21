@@ -20,17 +20,26 @@ public sealed partial class LogPage : Page
         ViewModel.GetAllLogs();
     }
 
-    private void AddLogDateButton_Click(object sender, RoutedEventArgs e)
+    private void AddLogButton_Click(object sender, RoutedEventArgs e)
     {
-        DateTime date = DateTime.Now;
+        DateOnly date = DateOnly.FromDateTime(DateTime.Now);
         if (ViewModel.DoesContainDate(date))
             return;
 
-        ViewModel.AddDefaultLogDate();
+        ViewModel.AddLog(
+            new Log
+            {
+                LogDate = date,
+                LogFoodItems = [],
+                LogExerciseItems = []
+            }
+        );
+        return;
     }
 
-    private void DeleteLogDate(int ID)
+    private void DeleteLog(int ID)
     {
-        ViewModel.DeleteLogDate(ID);
+        ViewModel.DeleteLog(ID);
+        return;
     }
 }

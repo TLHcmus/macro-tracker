@@ -8,35 +8,30 @@ using System.Linq;
 
 namespace MacroTrackerUI.ViewModels;
 
-class LogViewModel
+public class LogViewModel
 {
-    public ObservableCollection<LogDate> LogList { get; set; }
+    public ObservableCollection<Log> LogList { get; set; }
     private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
 
     public void GetAllLogs()
     {
-        LogList = new(Sender.GetAllLogDates());
+        LogList = new(Sender.GetLogs());
     }
 
-    public void AddLogDate(LogDate log)
+    public void AddLog(Log log)
     {
-        Sender.AddLogDate(log);
+        Sender.AddLog(log);
         LogList.Insert(0, log);
     }
 
-    public bool DoesContainDate(DateTime date)
+    public bool DoesContainDate(DateOnly date)
     {
-        return LogList.Any(log => log.Date.Date == date.Date);
+        return LogList.Any(log => log.LogDate.HasValue && log.LogDate == date);
     }
 
-    public void AddDefaultLogDate()
+    public void DeleteLog(int Id)
     {
-        LogList.Insert(0, Sender.AddDefaultLogDate());
-    }
-
-    public void DeleteLogDate(int Id)
-    {
-        Sender.DeleteLogDate(Id);
-        LogList.Remove(LogList.First(log => log.ID == Id));
+        Sender.DeleteLog(Id);
+        LogList.Remove(LogList.First(log => log.LogId == Id));
     }
 }

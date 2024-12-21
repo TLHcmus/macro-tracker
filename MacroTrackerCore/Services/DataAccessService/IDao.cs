@@ -67,8 +67,6 @@ public interface IDao
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
 
-    // Log
-
     // Get Logs
     List<Log> GetLogs();
     
@@ -77,13 +75,4 @@ public interface IDao
     void AddLog(Log log);
     // Delete log
     void DeleteLog(int logId);
-
-
-    //LogDate AddDefaultLogDate();
-
-    //List<LogDate> GetAllLogs();
-
-    //void AddLogDate(LogDate logDate);
-
-    //void DeleteLogDate(int id);
 }

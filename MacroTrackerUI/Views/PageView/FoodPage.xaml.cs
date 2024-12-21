@@ -8,7 +8,6 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class FoodPage : Page
 {
-
     public FoodPage()
     {
         this.InitializeComponent();

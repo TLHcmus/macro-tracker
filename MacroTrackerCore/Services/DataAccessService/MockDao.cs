@@ -27,66 +27,79 @@ public class MockDao : IDao
         {
             IconFileName = "basketball.png",
             Name = "Basketball",
+            CaloriesPerMinute = 7.5,
         },
         new Exercise
         {
             IconFileName = "climbing.png",
             Name = "Climbing",
+            CaloriesPerMinute = 8.0,
         },
         new Exercise
         {
             IconFileName = "martialarts.png",
             Name = "Martial Arts",
+            CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
             IconFileName = "running.png",
             Name = "Running",
+            CaloriesPerMinute = 11.0,
         },
         new Exercise
         {
             IconFileName = "swimming.png",
             Name = "Swimming",
+            CaloriesPerMinute = 9.0,
         },
         new Exercise
         {
             IconFileName = "pickleball.png",
             Name = "Pickle Ball",
+            CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
             IconFileName = "tennis.png",
             Name = "Tennis",
+            CaloriesPerMinute = 7.0,
         },
         new Exercise
         {
             IconFileName = "volleyball.png",
             Name = "Volleyball",
+            CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
             IconFileName = "walking.png",
             Name = "Walking",
+            CaloriesPerMinute = 4.0,
         },
         new Exercise
         {
             IconFileName = "weightlifting.png",
             Name = "Weight Lifting",
+            CaloriesPerMinute = 5.0,
         },
         new Exercise
         {
             IconFileName = "yoga.png",
             Name = "Yoga",
+            CaloriesPerMinute = 3.0,
         },
         new Exercise
         {
             IconFileName = "pilates.png",
             Name = "Pilates",
+            CaloriesPerMinute = 3.0,
         },
         new Exercise
         {
             IconFileName = "baseball.png",
             Name = "Baseball",
+            CaloriesPerMinute = 5.0,
         },
     ];
 
@@ -198,167 +211,125 @@ public class MockDao : IDao
         UserList.Add(user);
     }
 
-
-    // Log
-
     public List<Log> GetLogs()
     {
-        throw new NotImplementedException();
+        UpdateTotalCalories();
+        return Logs;
+    }
+
+    private void UpdateTotalCalories()
+    {
+        foreach (var log in Logs)
+        {
+            double totalCalories = 0;
+            foreach (var food in log.LogFoodItems)
+            {
+                totalCalories += food.TotalCalories ?? 0;
+            }
+            foreach (var exercise in log.LogExerciseItems)
+            {
+                totalCalories += exercise.TotalCalories ?? 0;
+            }
+            log.TotalCalories = totalCalories;
+        }
     }
 
     public void AddLog(Log log)
     {
-        throw new NotImplementedException();
+        Logs.Add(log);
     }
 
     public void DeleteLog(int logId)
     {
-        throw new NotImplementedException();
+        Logs.Remove(Logs.First(log => log.LogId == logId));
     }
 
-    //private List<LogDate> DateLogs = new()
-    //{
-    //    new LogDate
-    //    {
-    //        Date = new(2024, 5, 5),
-    //        LogFood = [
-    //            new LogFood() {
-    //                Time = new(2023, 10, 5, 1, 2, 4),
-    //                Food = new Food() {
-    //                    Name = "Apple",
-    //                    CaloriesPer100g = 95,
-    //                    ProteinPer100g = 5,
-    //                    CarbsPer100g = 25,
-    //                    FatPer100g = 3,
-    //                },
-    //                Calories = 13.2f,
-    //                Quantity = 1,
-    //            },
-    //            new LogFood() {
-    //                Time = new(2023, 10, 5, 2, 4, 5),
-    //                Food = new Food() {
-    //                    Name = "Banana",
-    //                    CaloriesPer100g = 105,
-    //                    ProteinPer100g = 13,
-    //                    CarbsPer100g = 27,
-    //                    FatPer100g = 4,
-    //                },
-    //                Calories = 15.2f,
-    //                Quantity = 2,
-    //            }
-    //        ],
-    //        LogExercise = []
-    //    },
-    //    new LogDate
-    //    {
-    //        Date = new(2024, 4, 2),
-    //        LogExercise = [
-    //            new LogExercise() {
-    //                Time = new(2024,4, 2, 2, 1,3),
-    //                Exercise = new Exercise {
-    //                    IconFileName = "basketball.png",
-    //                    Name = "Basketball",
-    //                },
-    //                Calories = -24.2f,
-    //                Minutes = 15,
-    //            }
-    //        ],
-    //        LogFood = [
-    //            new LogFood() {
-    //                Time = new(2024,4,2,2, 3,45),
-    //                Food = new Food {
-    //                    Name = "Coconut",
-    //                    CaloriesPer100g = 15,
-    //                    ProteinPer100g = 131,
-    //                    CarbsPer100g = 273,
-    //                    FatPer100g = 44,
-    //                },
-    //                Calories = 55f,
-    //                Quantity = 2,
-    //            }
-    //        ]
-    //    },
-    //    new LogDate
-    //    {
-    //        Date = new(2024, 4, 2),
-    //        LogExercise = [
-    //            new LogExercise() {
-    //                Time = new(2024,4, 2, 2, 1,3),
-    //                Exercise = new Exercise {
-    //                    IconFileName = "yoga.png",
-    //                    Name = "Yoga",
-    //                },
-    //                Calories = -14.4f,
-    //                Minutes = 30,
-    //            }
-    //        ],
-    //        LogFood = [
-    //            new LogFood() {
-    //                Time = new(2024,4,2,2, 3,45),
-    //                Food = new Food {
-    //                    Name = "Meme",
-    //                    CaloriesPer100g = 15,
-    //                    ProteinPer100g = 131,
-    //                    CarbsPer100g = 273,
-    //                    FatPer100g = 44,
-    //                },
-    //                Calories = 65f,
-    //                Quantity = 4,
-    //            },
-    //            new LogFood() {
-    //                Time = new(2024,4,2, 1, 2, 4),
-    //                Food = new Food() {
-    //                    Name = "Pepsi",
-    //                    CaloriesPer100g = 95,
-    //                    ProteinPer100g = 5,
-    //                    CarbsPer100g = 25,
-    //                    FatPer100g = 3,
-    //                },
-    //                Calories = 44f,
-    //                Quantity = 1,
-    //            },
-    //            new LogFood() {
-    //                Time = new(2024,4,2, 2, 4, 5),
-    //                Food = new Food() {
-    //                    Name = "Cacoa",
-    //                    CaloriesPer100g = 105,
-    //                    ProteinPer100g = 13,
-    //                    CarbsPer100g = 27,
-    //                    FatPer100g = 4,
-    //                },
-    //                Calories = 55.2f,
-    //                Quantity = 1,
-    //            }
-    //        ]
-    //    }
-    //};
-
-    //public List<LogDate> GetAllLogs()
-    //{
-    //    return DateLogs;
-    //}
-
-    //public void AddLogDate(LogDate date)
-    //{
-    //    DateLogs.Insert(0, date);
-    //}
-
-    //public LogDate AddDefaultLogDate()
-    //{
-    //    LogDate date = new()
-    //    {
-    //        Date = DateTime.Now,
-    //        LogExercise = [],
-    //        LogFood = []
-    //    };
-    //    DateLogs.Insert(0, date);
-    //    return date;
-    //}
-
-    //public void DeleteLogDate(int Id)
-    //{
-    //    DateLogs.Remove(DateLogs.First(log => log.ID == Id));
-    //}
-
-
+    private List<Log> Logs = new()
+    {
+        new Log
+        {
+            LogId = 1,
+            LogDate = new(2024, 5, 5),
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 1,
+                    LogFoodId = 1,
+                    FoodName = "Apple",
+                    NumberOfServings = 2,
+                    TotalCalories = 24
+                },
+                new LogFoodItem() {
+                    LogId = 1,
+                    LogFoodId = 2,
+                    FoodName = "Banana",
+                    NumberOfServings = 3,
+                    TotalCalories = 48
+                },
+            ],
+            LogExerciseItems = [],
+            TotalCalories = 0
+        },
+        new Log
+        {
+            LogId = 2,
+            LogDate = new(2024, 4, 2),
+            LogExerciseItems = [
+                new LogExerciseItem() {
+                    LogId = 2,
+                    LogExerciseId = 1,
+                    ExerciseName = "Basketball",
+                    Duration = 15,
+                    TotalCalories = -23,
+                }
+            ],
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 2,
+                    LogFoodId = 1,
+                    FoodName = "Coconut",
+                    NumberOfServings = 2,
+                    TotalCalories = 40
+                }
+            ],
+            TotalCalories = 0
+        },
+        new Log
+        {
+            LogId = 3,
+            LogDate = new(2024, 4, 2),
+            LogExerciseItems = [
+                new LogExerciseItem() {
+                    LogId = 3,
+                    LogExerciseId = 1,
+                    ExerciseName = "Yoga",
+                    Duration = 30,
+                    TotalCalories = -14.4f,
+                }
+            ],
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 1,
+                    FoodName = "Meme",
+                    NumberOfServings = 10,
+                    TotalCalories = 100
+                },
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 2,
+                    FoodName = "Coke",
+                    NumberOfServings = 3,
+                    TotalCalories = 300
+                },
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 3,
+                    FoodName = "Pasta",
+                    NumberOfServings = 1,
+                    TotalCalories = 150
+                }
+            ],
+            TotalCalories = 0
+        }
+    };
 }

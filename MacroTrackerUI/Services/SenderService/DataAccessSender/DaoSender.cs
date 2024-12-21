@@ -103,20 +103,10 @@ public class DaoSender
         Receiver.AddLog(JsonSerializer.Serialize(log));
     }
 
-    //public LogDate AddDefaultLogDate()
-    //{
-    //    return JsonSerializer.Deserialize<LogDate>(
-    //        Receiver.AddDefaultLogDate()
-    //    );
-    //}
-
     public void DeleteLog(int logId)
     {
         Receiver.DeleteLog(
             JsonSerializer.Serialize(logId)
         );
-        
     }
-
-    
 }

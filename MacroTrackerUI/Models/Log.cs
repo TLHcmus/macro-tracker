@@ -10,7 +10,7 @@ public class Log : INotifyPropertyChanged
 
     public DateOnly? LogDate { get; set; }
 
-    public double? TotalCalories { get; set; }
+    public double TotalCalories { get; set; }
 
     public List<LogExerciseItem> LogExerciseItems { get; set; }
 
