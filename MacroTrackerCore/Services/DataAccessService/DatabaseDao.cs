@@ -5,6 +5,7 @@ using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using System.Reflection.Metadata;
+using Microsoft.EntityFrameworkCore;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 
@@ -100,7 +101,10 @@ public class DatabaseDao : IDao
     // Log
     public List<Log> GetLogs()
     {
-        return _context.Logs.ToList();
+        return _context.Logs
+        .Include(log => log.LogExerciseItems)
+        .Include(log => log.LogFoodItems)
+        .ToList();
     }
 
     public void AddLog(Log log)
