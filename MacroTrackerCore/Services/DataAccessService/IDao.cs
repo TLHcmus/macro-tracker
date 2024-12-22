@@ -67,23 +67,18 @@ public interface IDao
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
 
-    // Log
-
     // Get Logs
     List<Log> GetLogs();
-    
-
     // Add log
     void AddLog(Log log);
     // Delete log
     void DeleteLog(int logId);
 
+    void DeleteLogFood(int idLogDate, int idLog);
 
-    //LogDate AddDefaultLogDate();
+    void DeleteLogExercise(int idLogDate, int idLog);
 
-    //List<LogDate> GetAllLogs();
-
-    //void AddLogDate(LogDate logDate);
-
-    //void DeleteLogDate(int id);
+    List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate);
+    List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate);
+    void UpdateTotalCalories(int logId, double totalCalories);
 }

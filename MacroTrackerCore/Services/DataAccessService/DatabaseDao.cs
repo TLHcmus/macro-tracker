@@ -127,13 +127,11 @@ public class DatabaseDao : IDao
 
         _context.SaveChanges();
     }
+    public void DeleteLogFood(int logDateID, int logID) => throw new NotImplementedException();
 
-    //public LogDate AddDefaultLogDate() => throw new NotImplementedException();
+    public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();
 
-    //public List<LogDate> GetAllLogs() => throw new NotImplementedException();
-
-    //public void AddLogDate(LogDate logDate) => throw new NotImplementedException();
-
-    //public void DeleteLogDate(int id) => throw new NotImplementedException();
-
+    public List<Log> GetLogWithPagination(int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public List<Log> GetLogWithPagination(int n, int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public void UpdateTotalCalories(int logId, double totalCalories) => throw new NotImplementedException();
 }

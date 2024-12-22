@@ -125,17 +125,39 @@ public class DaoReceiver
         Dao.AddLog(log);
     }
 
-    //public string AddDefaultLogDate()
-    //{
-    //    return JsonSerializer.Serialize(Dao.AddDefaultLogDate());
-    //}
-
     public void DeleteLog(string logIdJson)
     {
         Dao.DeleteLog(JsonSerializer.Deserialize<int>(logIdJson));
-        
     }
 
- 
+    public void DeleteLogFood(string idDeleteJson)
+    {
+        (int idLogDate, int idLog) = JsonSerializer.Deserialize<(int, int)>(idDeleteJson, Options);
+        Dao.DeleteLogFood(idLogDate, idLog);
+    }
 
+    public void DeleteLogExercise(string idDeleteJson)
+    {
+        (int idLogDate, int idLog) = JsonSerializer.Deserialize<(int, int)>(idDeleteJson, Options);
+        Dao.DeleteLogExercise(idLogDate, idLog);
+    }
+
+    public string GetLogWithPagination(string pageOffsetJson)
+    {
+        (int numberItemOffset, DateOnly endDate) = JsonSerializer.Deserialize<(int, DateOnly)>(pageOffsetJson, Options);
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(numberItemOffset, endDate));
+    }
+
+    public string GetNLogWithPagination(string pageOffsetJson)
+    {
+        (int n, int numberItemOffset, DateOnly endDate) =
+            JsonSerializer.Deserialize<(int, int, DateOnly)>(pageOffsetJson, Options);
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(n, numberItemOffset, endDate));
+    }
+
+    public void UpdateTotalCalories(string logIdJson)
+    {
+        (int logId, double totalCalories) = JsonSerializer.Deserialize<(int, double)>(logIdJson, Options);
+        Dao.UpdateTotalCalories(logId, totalCalories);
+    }
 }

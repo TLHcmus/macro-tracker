@@ -103,18 +103,49 @@ public class DaoSender
         Receiver.AddLog(JsonSerializer.Serialize(log));
     }
 
-    //public LogDate AddDefaultLogDate()
-    //{
-    //    return JsonSerializer.Deserialize<LogDate>(
-    //        Receiver.AddDefaultLogDate()
-    //    );
-    //}
-
     public void DeleteLog(int logId)
     {
         Receiver.DeleteLog(
             JsonSerializer.Serialize(logId)
         );
-        
+    }
+
+    public void DeleteLogFood(int logDateID, int logID)
+    {
+        Receiver.DeleteLogFood(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    public void DeleteLogExercise(int logDateID, int logID)
+    {
+        Receiver.DeleteLogExercise(
+            JsonSerializer.Serialize((logDateID, logID), Options)
+        );
+    }
+
+    public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
+    {
+        return JsonSerializer.Deserialize<List<Log>>(
+            Receiver.GetLogWithPagination(
+                JsonSerializer.Serialize((numberItemOffset, endDate), Options)
+            )
+        );
+    }
+
+    public List<Log> GetNLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
+    {
+        return JsonSerializer.Deserialize<List<Log>>(
+            Receiver.GetNLogWithPagination(
+                JsonSerializer.Serialize((n, numberItemOffset, endDate), Options)
+            )
+        );
+    }
+
+    public void UpdateTotalCalories(int logId, double totalCalories)
+    {
+        Receiver.UpdateTotalCalories(
+            JsonSerializer.Serialize((logId, totalCalories), Options)
+        );
     }
 }

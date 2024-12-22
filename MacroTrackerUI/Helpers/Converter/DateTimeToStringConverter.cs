@@ -7,17 +7,17 @@ class DateTimeToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        if (value is DateTime dateTime)
+        if (value is DateOnly date)
         {
-            if (dateTime.Date == DateTime.Today)
+            if (date == DateOnly.FromDateTime(DateTime.Now))
             {
                 return "Today";
             }
-            else if (dateTime.Date == DateTime.Today.AddDays(-1))
+            else if (date == DateOnly.FromDateTime(DateTime.Today.AddDays(-1)))
             {
                 return "Yesterday";
             }
-            return dateTime.ToString("MMMM dd, yyyy");
+            return date.ToString("MMMM dd, yyyy");
         }
         throw new Exception("Value is not a DateTime object.");
     }

@@ -8,35 +8,79 @@ using System.Linq;
 
 namespace MacroTrackerUI.ViewModels;
 
-class LogViewModel
+public class LogViewModel
 {
-    public ObservableCollection<LogDate> LogList { get; set; }
+    public ObservableCollection<Log> LogList { get; set; } = [];
     private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    public int PagingSize { get; set; }
 
-    public void GetAllLogs()
+    private DateTime _endDate = DateTime.Now.Date;
+
+    public DateTime EndDate
     {
-        LogList = new(Sender.GetAllLogDates());
+        get { return _endDate; }
+        set
+        {
+            _endDate = value;
+            LogList.Clear();
+            GetNextLogsPage();
+        }
     }
 
-    public void AddLogDate(LogDate log)
+    public void GetNextLogsPage()
     {
-        Sender.AddLogDate(log);
+        var logs = Sender.GetLogWithPagination(LogList.Count, DateOnly.FromDateTime(EndDate));
+        
+        if (logs.Count == 0)
+            return;
+        
+        foreach (Log log in logs)
+            LogList.Add(log);
+    }
+
+    public void GetNextLogsItem(int numItem)
+    {
+        var logs = Sender.GetNLogWithPagination(numItem, numItem, DateOnly.FromDateTime(EndDate));
+
+        if (logs.Count == 0)
+            return;
+
+        foreach (Log log in logs)
+            LogList.Add(log);
+    }
+
+    public void AddLog(Log log)
+    {
+        Sender.AddLog(log);
         LogList.Insert(0, log);
     }
 
-    public bool DoesContainDate(DateTime date)
+    public bool DoesContainDate(DateOnly date)
     {
-        return LogList.Any(log => log.Date.Date == date.Date);
+        return LogList.Any(log => log.LogDate.HasValue && log.LogDate == date);
     }
 
-    public void AddDefaultLogDate()
+    public void DeleteLog(int iD)
     {
-        LogList.Insert(0, Sender.AddDefaultLogDate());
+        Sender.DeleteLog(iD);
+        LogList.Remove(LogList.First(log => log.LogId == iD));
     }
 
-    public void DeleteLogDate(int Id)
+    public void DeleteLogFood(int logID, int logFoodID)
     {
-        Sender.DeleteLogDate(Id);
-        LogList.Remove(LogList.First(log => log.ID == Id));
+        Sender.DeleteLogFood(logID, logFoodID);
+
+        Log log = LogList.First(log => log.LogId == logID);
+        log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == logFoodID));
+    }
+
+    public void DeleteLogExercise(int logID, int logFoodID)
+    {
+        Sender.DeleteLogExercise(logID, logFoodID);
+
+        Log log = LogList.First(logDate => logDate.LogId == logID);
+        log.LogExerciseItems.Remove(log.LogExerciseItems.First(
+            logExercise => logExercise.LogExerciseId == logFoodID)
+        );
     }
 }
