@@ -6,10 +6,16 @@
     xmlns:local="using:MacroTrackerUI.Views.PageView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="ReportPage" />
+        <StackPanel>
+            <TextBlock Text="Total Calories by Date" 
+                   FontSize="20" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,10,0,20" />
+            <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Height="700"  />
+        </StackPanel>
     </Grid>
 </Page>

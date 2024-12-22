@@ -1,6 +1,6 @@
+using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-
 namespace MacroTrackerUI.Views.PageView;
 
 /// <summary>
@@ -11,5 +11,6 @@ public sealed partial class ReportPage : Page
     public ReportPage()
     {
         this.InitializeComponent();
+        this.DataContext = new ReportViewModel();
     }
 }
