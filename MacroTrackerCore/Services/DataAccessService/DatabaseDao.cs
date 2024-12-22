@@ -5,6 +5,7 @@ using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using System.Reflection.Metadata;
+using System.Diagnostics;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 
