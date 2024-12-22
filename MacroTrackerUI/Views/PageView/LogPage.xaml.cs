@@ -22,6 +22,9 @@ public sealed partial class LogPage : Page
     {
         this.InitializeComponent();
         ViewModel.GetNextLogsPage();
+
+        // Deduce the paging size on the first load
+        ViewModel.PagingSize = ViewModel.LogList.Count;
     }
 
     private void AddLogButton_Click(object sender, RoutedEventArgs e)
@@ -51,18 +54,20 @@ public sealed partial class LogPage : Page
 
     private void DeleteLog(int ID)
     {
-      //  ViewModel.DeleteLog(ID);
-        return;
+        ViewModel.DeleteLog(ID);
+
+        if (ViewModel.LogList.Count < ViewModel.PagingSize)
+            ViewModel.GetNextLogsItem(ViewModel.PagingSize - ViewModel.LogList.Count);
     }
 
     private void DeleteLogFood(int logDateID, int logID)
     {
-       // ViewModel.DeleteLogFood(logDateID, logID);
+        ViewModel.DeleteLogFood(logDateID, logID);
     }
 
     private void DeleteLogExercise(int logDateID, int logID)
     {
-        //ViewModel.DeleteLogExercise(logDateID, logID);
+        ViewModel.DeleteLogExercise(logDateID, logID);
     }
 
     private void LogsListView_Loaded(object sender, RoutedEventArgs e)

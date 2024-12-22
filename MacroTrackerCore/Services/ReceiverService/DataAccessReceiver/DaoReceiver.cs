@@ -142,9 +142,22 @@ public class DaoReceiver
         Dao.DeleteLogExercise(idLogDate, idLog);
     }
 
-    public string GetLogDateWithPagination(string pageOffsetJson)
+    public string GetLogWithPagination(string pageOffsetJson)
     {
         (int numberItemOffset, DateOnly endDate) = JsonSerializer.Deserialize<(int, DateOnly)>(pageOffsetJson, Options);
-        return JsonSerializer.Serialize(Dao.GetLogDateWithPagination(numberItemOffset, endDate));
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(numberItemOffset, endDate));
+    }
+
+    public string GetNLogWithPagination(string pageOffsetJson)
+    {
+        (int n, int numberItemOffset, DateOnly endDate) =
+            JsonSerializer.Deserialize<(int, int, DateOnly)>(pageOffsetJson, Options);
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(n, numberItemOffset, endDate));
+    }
+
+    public void UpdateTotalCalories(string logIdJson)
+    {
+        (int logId, double totalCalories) = JsonSerializer.Deserialize<(int, double)>(logIdJson, Options);
+        Dao.UpdateTotalCalories(logId, totalCalories);
     }
 }

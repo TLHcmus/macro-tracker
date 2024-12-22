@@ -124,12 +124,28 @@ public class DaoSender
         );
     }
 
-    public List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate)
+    public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
     {
         return JsonSerializer.Deserialize<List<Log>>(
-            Receiver.GetLogDateWithPagination(
+            Receiver.GetLogWithPagination(
                 JsonSerializer.Serialize((numberItemOffset, endDate), Options)
             )
+        );
+    }
+
+    public List<Log> GetNLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
+    {
+        return JsonSerializer.Deserialize<List<Log>>(
+            Receiver.GetNLogWithPagination(
+                JsonSerializer.Serialize((n, numberItemOffset, endDate), Options)
+            )
+        );
+    }
+
+    public void UpdateTotalCalories(int logId, double totalCalories)
+    {
+        Receiver.UpdateTotalCalories(
+            JsonSerializer.Serialize((logId, totalCalories), Options)
         );
     }
 }

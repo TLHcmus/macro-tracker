@@ -1,4 +1,7 @@
 ﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.Services.ProviderService;
+using MacroTrackerUI.Services.SenderService.DataAccessSender;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -9,14 +12,13 @@ public class LogItemViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public float TotalCalories { get; set; }
+    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
 
-    public float UpdateTotalCalories(Log logDate)
+    public void UpdateTotalCalories(Log log)
     {
-        float updatedCalories = (float)Math.Round(logDate.LogFoodItems.Sum(food => food.TotalCalories) +
-                                                  logDate.LogExerciseItems.Sum(exercise => exercise.TotalCalories), 1);
-        TotalCalories = updatedCalories;
-
-        return updatedCalories;
+        double updatedCalories = (float)Math.Round(log.LogFoodItems.Sum(food => food.TotalCalories) +
+                                                  log.LogExerciseItems.Sum(exercise => exercise.TotalCalories), 1);
+        Sender.UpdateTotalCalories(log.LogId, updatedCalories);
+        log.TotalCalories = updatedCalories;
     }
 }

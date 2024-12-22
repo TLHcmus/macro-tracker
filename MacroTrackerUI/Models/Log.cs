@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace MacroTrackerUI.Models;
@@ -12,9 +13,9 @@ public class Log : INotifyPropertyChanged
 
     public double TotalCalories { get; set; }
 
-    public List<LogExerciseItem> LogExerciseItems { get; set; }
+    public ObservableCollection<LogExerciseItem> LogExerciseItems { get; set; }
 
-    public List<LogFoodItem> LogFoodItems { get; set; } 
+    public ObservableCollection<LogFoodItem> LogFoodItems { get; set; } 
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

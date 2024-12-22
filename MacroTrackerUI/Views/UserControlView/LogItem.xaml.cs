@@ -43,8 +43,8 @@ public sealed partial class LogItem : UserControl, INotifyPropertyChanged
         if (tag == null)
             throw new System.Exception("Tag is null.");
 
-       // DeleteLogFood?.Invoke(LogDate.ID, (int)tag);
-       // ViewModel.UpdateTotalCalories(LogDate);
+        DeleteLogFood?.Invoke(Log.LogId, (int)tag);
+        ViewModel.UpdateTotalCalories(Log);
     }
 
     private void AddLogFoodButton_Click(object sender, RoutedEventArgs e)
@@ -58,8 +58,8 @@ public sealed partial class LogItem : UserControl, INotifyPropertyChanged
         if (tag == null)
             throw new System.Exception("Tag is null.");
 
-      //  DeleteLogExercise?.Invoke(LogDate.ID, (int)tag);
-        //ViewModel.UpdateTotalCalories(LogDate);
+        DeleteLogExercise?.Invoke(Log.LogId, (int)tag);
+        ViewModel.UpdateTotalCalories(Log);
     }
 
     private void AddLogExerciseButton_Click(object sender, RoutedEventArgs e)

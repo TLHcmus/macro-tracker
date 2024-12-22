@@ -78,5 +78,7 @@ public interface IDao
 
     void DeleteLogExercise(int idLogDate, int idLog);
 
-    List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate);
+    List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate);
+    List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate);
+    void UpdateTotalCalories(int logId, double totalCalories);
 }

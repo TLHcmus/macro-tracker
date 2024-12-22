@@ -127,5 +127,7 @@ public class DatabaseDao : IDao
 
     public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();
 
-    public List<Log> GetLogDateWithPagination(int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public List<Log> GetLogWithPagination(int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public List<Log> GetLogWithPagination(int n, int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public void UpdateTotalCalories(int logId, double totalCalories) => throw new NotImplementedException();
 }

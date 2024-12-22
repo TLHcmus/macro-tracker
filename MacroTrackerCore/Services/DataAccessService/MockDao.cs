@@ -7,6 +7,23 @@ using System.Collections.ObjectModel;
 namespace MacroTrackerCore.Services.DataAccessService;
 public class MockDao : IDao
 {
+    public MockDao()
+    {
+        Logs.Sort((a, b) => b.LogDate.Value.CompareTo(a.LogDate.Value));
+        foreach (var log in Logs)
+        {
+            double totalCalories = 0;
+            foreach (var food in log.LogFoodItems)
+            {
+                totalCalories += food.TotalCalories ?? 0;
+            }
+            foreach (var exercise in log.LogExerciseItems)
+            {
+                totalCalories += exercise.TotalCalories ?? 0;
+            }
+            log.TotalCalories = totalCalories;
+        }
+    }
 
     // Food 
 
@@ -296,7 +313,92 @@ public class MockDao : IDao
         new Log
         {
             LogId = 3,
-            LogDate = new(2024, 4, 2),
+            LogDate = new(2024, 4, 1),
+            LogExerciseItems = [
+                new LogExerciseItem() {
+                    LogId = 3,
+                    LogExerciseId = 1,
+                    ExerciseName = "Yoga",
+                    Duration = 30,
+                    TotalCalories = -14.4f,
+                }
+            ],
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 1,
+                    FoodName = "Meme",
+                    NumberOfServings = 10,
+                    TotalCalories = 100
+                },
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 2,
+                    FoodName = "Coke",
+                    NumberOfServings = 3,
+                    TotalCalories = 300
+                },
+                new LogFoodItem() {
+                    LogId = 3,
+                    LogFoodId = 3,
+                    FoodName = "Pasta",
+                    NumberOfServings = 1,
+                    TotalCalories = 150
+                }
+            ],
+            TotalCalories = 0
+        },
+        new Log
+        {
+            LogId = 4,
+            LogDate = new(2024, 12, 5),
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 1,
+                    LogFoodId = 1,
+                    FoodName = "Apple",
+                    NumberOfServings = 2,
+                    TotalCalories = 24
+                },
+                new LogFoodItem() {
+                    LogId = 1,
+                    LogFoodId = 2,
+                    FoodName = "Banana",
+                    NumberOfServings = 3,
+                    TotalCalories = 48
+                },
+            ],
+            LogExerciseItems = [],
+            TotalCalories = 0
+        },
+        new Log
+        {
+            LogId = 5,
+            LogDate = new(2024, 8, 2),
+            LogExerciseItems = [
+                new LogExerciseItem() {
+                    LogId = 2,
+                    LogExerciseId = 1,
+                    ExerciseName = "Basketball",
+                    Duration = 15,
+                    TotalCalories = -23,
+                }
+            ],
+            LogFoodItems = [
+                new LogFoodItem() {
+                    LogId = 2,
+                    LogFoodId = 1,
+                    FoodName = "Coconut",
+                    NumberOfServings = 2,
+                    TotalCalories = 40
+                }
+            ],
+            TotalCalories = 0
+        },
+        new Log
+        {
+            LogId = 6,
+            LogDate = new(2024, 6, 1),
             LogExerciseItems = [
                 new LogExerciseItem() {
                     LogId = 3,
@@ -333,24 +435,36 @@ public class MockDao : IDao
         }
     };
 
-    public void DeleteLogFood(int idLogDate, int idLog)
+    public void DeleteLogFood(int idLog, int idLogFood)
     {
-        Log logDate = Logs.First(logDate => logDate.LogId == idLogDate);
-        logDate.LogFoodItems.Remove(logDate.LogFoodItems.First(log => log.LogId == idLog));
+        Log log = Logs.First(log => log.LogId == idLog);
+        log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == idLogFood));
     }
 
-    public void DeleteLogExercise(int idLogDate, int idLog)
+    public void DeleteLogExercise(int idLog, int idLogExercise)
     {
-        Log logDate = Logs.First(logDate => logDate.LogId == idLogDate);
-        logDate.LogExerciseItems.Remove(logDate.LogExerciseItems.First(log => log.LogId == idLog));
+        Log log = Logs.First(log => log.LogId == idLog);
+        log.LogExerciseItems.Remove(log.LogExerciseItems.First(
+            logExercise => logExercise.LogExerciseId == idLogExercise)
+        );
     }
 
-    public List<Log> GetLogDateWithPagination(int numberItemOffset, DateOnly endDate)
+    public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
+    {
+        return GetLogWithPagination(Configuration.PAGINATION_NUMBER, numberItemOffset, endDate);
+    }
+
+    public List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
     {
         return Logs.OrderByDescending(log => log.LogDate)
                    .Where(log => log.LogDate <= endDate)
                    .Skip(numberItemOffset)
-                   .Take(Configuration.PAGINATION_NUMBER)
+                   .Take(n)
                    .ToList();
+    }
+
+    public void UpdateTotalCalories(int logId, double totalCalories)
+    {
+        Logs.First(log => log.LogId == logId).TotalCalories = totalCalories;
     }
 }
