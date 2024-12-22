@@ -101,10 +101,11 @@ public class DatabaseDao : IDao
     // Log
     public List<Log> GetLogs()
     {
-        return _context.Logs
-        .Include(log => log.LogExerciseItems)
-        .Include(log => log.LogFoodItems)
-        .ToList();
+        //return _context.Logs
+        //.Include(log => log.LogExerciseItems)
+        //.Include(log => log.LogFoodItems)
+        //.ToList();
+        return _context.Logs.ToList();
     }
 
     public void AddLog(Log log)
@@ -131,7 +132,18 @@ public class DatabaseDao : IDao
 
     public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();
 
-    public List<Log> GetLogWithPagination(int pageOffset, DateOnly endDate) => throw new NotImplementedException();
-    public List<Log> GetLogWithPagination(int n, int pageOffset, DateOnly endDate) => throw new NotImplementedException();
+    public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
+    {
+        return GetLogWithPagination(Configuration.PAGINATION_NUMBER, numberItemOffset, endDate);
+    }
+
+    public List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
+    {
+        return _context.Logs.OrderByDescending(log => log.LogDate)
+                   .Where(log => log.LogDate <= endDate)
+                   .Skip(numberItemOffset)
+                   .Take(n)
+                   .ToList();
+    }
     public void UpdateTotalCalories(int logId, double totalCalories) => throw new NotImplementedException();
 }
