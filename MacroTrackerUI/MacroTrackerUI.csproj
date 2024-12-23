@@ -34,6 +34,7 @@
     <None Remove="Views\ReportPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\SignUp.xaml" />
+    <None Remove="Views\UserControlView\OptionSelection.xaml" />
     <None Remove="Views\WindowView\ShellWindow.xaml" />
   </ItemGroup>
 
@@ -166,9 +167,122 @@
     <PRIResource Remove="Views\Page\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Assets\FoodImages\apple.png" />
+    <Content Remove="Assets\FoodImages\banana.png" />
+    <Content Remove="Assets\FoodImages\banhmi.png" />
+    <Content Remove="Assets\FoodImages\beer.png" />
+    <Content Remove="Assets\FoodImages\cabbage.png" />
+    <Content Remove="Assets\FoodImages\cake.png" />
+    <Content Remove="Assets\FoodImages\carrot.png" />
+    <Content Remove="Assets\FoodImages\cheese.png" />
+    <Content Remove="Assets\FoodImages\chocolate.png" />
+    <Content Remove="Assets\FoodImages\coca.png" />
+    <Content Remove="Assets\FoodImages\coconut.png" />
+    <Content Remove="Assets\FoodImages\dumpling.png" />
+    <Content Remove="Assets\FoodImages\egg.png" />
+    <Content Remove="Assets\FoodImages\hotdog.png" />
+    <Content Remove="Assets\FoodImages\milk.png" />
+    <Content Remove="Assets\FoodImages\orange.png" />
+    <Content Remove="Assets\FoodImages\pho.png" />
+    <Content Remove="Assets\FoodImages\pineapple.png" />
+    <Content Remove="Assets\FoodImages\pizza.png" />
+    <Content Remove="Assets\FoodImages\potato.png" />
+    <Content Remove="Assets\FoodImages\rice.png" />
+    <Content Remove="Assets\FoodImages\skewer.png" />
+    <Content Remove="Assets\FoodImages\spaghetti.png" />
+    <Content Remove="Assets\FoodImages\steak.png" />
+    <Content Remove="Assets\FoodImages\strawberry.png" />
+    <Content Remove="Assets\FoodImages\tea.png" />
+    <Content Remove="Assets\FoodImages\tomato.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Assets\FoodImages\apple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\banana.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\banhmi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\beer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\cabbage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\cake.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\carrot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\cheese.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\chocolate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\coca.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\coconut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\dumpling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\egg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\hotdog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\milk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\orange.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\pho.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\pineapple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\pizza.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\potato.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\rice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\skewer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\spaghetti.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\steak.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\strawberry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\tea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\FoodImages\tomato.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Page Update="Views\UserControlView\OptionSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\PageView\EditGoalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

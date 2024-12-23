@@ -28,7 +28,7 @@ public sealed partial class MainPage : Page
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingsPage));
-                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent; ;
+                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent;
                 return;
             }
 
@@ -41,7 +41,7 @@ public sealed partial class MainPage : Page
             }
             catch (Exception)
             {
-                ContentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
+                ContentFrame.Navigate(typeof(LogPage)); // Default page if there is an error
             }
         }
     }

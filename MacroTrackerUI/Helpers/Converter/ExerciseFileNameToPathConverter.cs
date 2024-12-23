@@ -20,7 +20,7 @@ class ExerciseFileNameToPathConverter : IValueConverter
     /// <returns>A BitmapImage object representing the exercise icon.</returns>
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        string path = AssetsPathRegistry.RegisteredAssetsPath["ExerciseIcon"];
+        string path = "ms-appx:///Assets";
         try
         {
             string iconFileName = value as string;
@@ -28,7 +28,7 @@ class ExerciseFileNameToPathConverter : IValueConverter
         }
         catch (Exception)
         {
-            return new BitmapImage(new Uri($"{path}/default.png"));
+            return new BitmapImage(new Uri($"{path}/StoreLogo.png"));
         }
     }
 

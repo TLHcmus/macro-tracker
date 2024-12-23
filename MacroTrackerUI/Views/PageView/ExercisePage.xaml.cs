@@ -1,8 +1,7 @@
+using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml.Controls;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -15,5 +14,15 @@ public sealed partial class ExercisePage : Page
     public ExercisePage()
     {
         this.InitializeComponent();
+    }
+
+    public void Item_Click(Item item, Type type)
+    {
+        DetailItem.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+    }
+
+    private void BackButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+
     }
 }

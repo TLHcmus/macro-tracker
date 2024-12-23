@@ -6,88 +6,62 @@
     xmlns:local="using:MacroTrackerUI.Views.PageView"
     xmlns:model="using:MacroTrackerUI.Models"
     xmlns:helper="using:MacroTrackerUI.Helpers.Converter"
+    xmlns:usrcontrol="using:MacroTrackerUI.Views.UserControlView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <helper:ExerciseFileNameToPathConverter x:Key="ExerciseFileNameToPathConverter"/>
-    </Page.Resources>
-
     <Grid 
         Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel
-            Grid.Column="0"
-            Background="#20808080"
-            Margin="10"
-            CornerRadius="10">
-            
-            <TextBlock 
-                Text="Exercise"
-                FontSize="24"
-                Margin="20 10 0 0"/>
-            
-        </StackPanel>
+        <Grid
+            Grid.Column="0">
+
+            <usrcontrol:OptionSelection Title="Exercises"
+                                        ItemList="{x:Bind ViewModel.Items}"
+                                        ItemClickEventHandler="Item_Click"/>
+
+        </Grid>
 
         <Grid
+            x:Name="DetailItem"
             Grid.Column="1"
-            Background="#30909090"
+            Background="#20808080"
             Margin="10"
-            CornerRadius="10">
+            CornerRadius="10"
+            Visibility="Visible">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock
+            <Button
                 Grid.Row="0"
-                Text="Exercises"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Padding="8"
+                Click="BackButton_Click">
+
+                    <FontIcon Glyph="&#xE001;"
+                              FontSize="20"/>
+
+            </Button>
+
+            <TextBlock 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Text="Detail"
                 FontSize="30"
                 Margin="20 10 0 0"/>
-
-            <ScrollViewer
-                Grid.Row="1">
-                
-                    <ListBox
-                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                        Background="#00909090"
-                        ItemsSource="{x:Bind ViewModel.Exercises,
-                                             Mode=OneWay}"
-                        Height="Auto">
-
-                        <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="model:Exercise">
-                                <StackPanel
-                                    Margin="20"
-                                    Orientation="Horizontal">
-
-                                    <Image
-                                        Source="{x:Bind IconFileName,
-                                                        Mode=OneWay,
-                                                        Converter={StaticResource ExerciseFileNameToPathConverter}}"
-                                        Width="40"
-                                        Height="40"
-                                        Margin="0 0 20 0"
-                                        VerticalAlignment="Center"/>
-
-                                    <TextBlock
-                                        Text="{x:Bind Name}"
-                                        FontSize="20"
-                                        Margin="0 0 0 0"
-                                        VerticalAlignment="Center"/>
-
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-            </ScrollViewer>
 
         </Grid>
 

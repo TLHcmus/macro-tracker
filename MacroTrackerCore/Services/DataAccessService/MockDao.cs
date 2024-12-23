@@ -27,108 +27,351 @@ public class MockDao : IDao
 
     // Food 
 
-    /// <summary>  
-    /// Throws a NotImplementedException  
-    /// </summary>  
-    /// <returns>Throws NotImplementedException</returns>  
-    public List<Food> GetFoods() => throw new NotImplementedException();
-
     // Exercise
 
     /// <summary>  
     /// Collection of mock exercises  
     /// </summary>  
-    public List<Exercise> Exercises =
-    [
+    public List<Exercise> Exercises = new()
+    {
         new Exercise
         {
-            IconFileName = "basketball.png",
+            IconFileName = "ExerciseIcons/basketball.png",
             Name = "Basketball",
             CaloriesPerMinute = 7.5,
         },
         new Exercise
         {
-            IconFileName = "climbing.png",
+            IconFileName = "ExerciseIcons/climbing.png",
             Name = "Climbing",
             CaloriesPerMinute = 8.0,
         },
         new Exercise
         {
-            IconFileName = "martialarts.png",
+            IconFileName = "ExerciseIcons/martialarts.png",
             Name = "Martial Arts",
             CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
-            IconFileName = "running.png",
+            IconFileName = "ExerciseIcons/running.png",
             Name = "Running",
             CaloriesPerMinute = 11.0,
         },
         new Exercise
         {
-            IconFileName = "swimming.png",
+            IconFileName = "ExerciseIcons/swimming.png",
             Name = "Swimming",
             CaloriesPerMinute = 9.0,
         },
         new Exercise
         {
-            IconFileName = "pickleball.png",
+            IconFileName = "ExerciseIcons/pickleball.png",
             Name = "Pickle Ball",
             CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
-            IconFileName = "tennis.png",
+            IconFileName = "ExerciseIcons/tennis.png",
             Name = "Tennis",
             CaloriesPerMinute = 7.0,
         },
         new Exercise
         {
-            IconFileName = "volleyball.png",
+            IconFileName = "ExerciseIcons/volleyball.png",
             Name = "Volleyball",
             CaloriesPerMinute = 6.0,
         },
         new Exercise
         {
-            IconFileName = "walking.png",
+            IconFileName = "ExerciseIcons/walking.png",
             Name = "Walking",
             CaloriesPerMinute = 4.0,
         },
         new Exercise
         {
-            IconFileName = "weightlifting.png",
+            IconFileName = "ExerciseIcons/weightlifting.png",
             Name = "Weight Lifting",
             CaloriesPerMinute = 5.0,
         },
         new Exercise
         {
-            IconFileName = "yoga.png",
+            IconFileName = "ExerciseIcons/yoga.png",
             Name = "Yoga",
             CaloriesPerMinute = 3.0,
         },
         new Exercise
         {
-            IconFileName = "pilates.png",
+            IconFileName = "ExerciseIcons/pilates.png",
             Name = "Pilates",
             CaloriesPerMinute = 3.0,
         },
         new Exercise
         {
-            IconFileName = "baseball.png",
+            IconFileName = "ExerciseIcons/baseball.png",
             Name = "Baseball",
-            CaloriesPerMinute = 5.0,
+        }
+    };
+
+    public List<Food> Foods = new()
+    {
+        new Food
+        {
+            IconFileName = "FoodImages/apple.png",
+            Name = "Apple",
+            CaloriesPer100g = 52,
+            ProteinPer100g = 0.3,
+            CarbsPer100g = 14,
+            FatPer100g = 0.2,
         },
-    ];
+        new Food
+        {
+            IconFileName = "FoodImages/banana.png",
+            Name = "Banana",
+            CaloriesPer100g = 89,
+            ProteinPer100g = 1.1,
+            CarbsPer100g = 23,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/banhmi.png",
+            Name = "Banh Mi",
+            CaloriesPer100g = 250,
+            ProteinPer100g = 8,
+            CarbsPer100g = 45,
+            FatPer100g = 5,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/beer.png",
+            Name = "Beer",
+            CaloriesPer100g = 43,
+            ProteinPer100g = 0.5,
+            CarbsPer100g = 3.6,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/cabbage.png",
+            Name = "Cabbage",
+            CaloriesPer100g = 25,
+            ProteinPer100g = 1.3,
+            CarbsPer100g = 6,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/cake.png",
+            Name = "Cake",
+            CaloriesPer100g = 350,
+            ProteinPer100g = 4,
+            CarbsPer100g = 50,
+            FatPer100g = 15,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/carrot.png",
+            Name = "Carrot",
+            CaloriesPer100g = 35,
+            ProteinPer100g = 1,
+            CarbsPer100g = 5,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/cheese.png",
+            Name = "Cheese",
+            CaloriesPer100g = 400,
+            ProteinPer100g = 25,
+            CarbsPer100g = 1,
+            FatPer100g = 33,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/chocolate.png",
+            Name = "Chocolate",
+            CaloriesPer100g = 546,
+            ProteinPer100g = 7.6,
+            CarbsPer100g = 61,
+            FatPer100g = 31,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/coca.png",
+            Name = "Coca",
+            CaloriesPer100g = 42,
+            ProteinPer100g = 0,
+            CarbsPer100g = 10.6,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/coconut.png",
+            Name = "Coconut",
+            CaloriesPer100g = 354,
+            ProteinPer100g = 3.3,
+            CarbsPer100g = 15,
+            FatPer100g = 33,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/dumpling.png",
+            Name = "Dumpling",
+            CaloriesPer100g = 155,
+            ProteinPer100g = 6,
+            CarbsPer100g = 23,
+            FatPer100g = 3,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/egg.png",
+            Name = "Egg",
+            CaloriesPer100g = 155,
+            ProteinPer100g = 13,
+            CarbsPer100g = 1.1,
+            FatPer100g = 11,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/hotdog.png",
+            Name = "Hot Dog",
+            CaloriesPer100g = 290,
+            ProteinPer100g = 10,
+            CarbsPer100g = 23,
+            FatPer100g = 19,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/milk.png",
+            Name = "Milk",
+            CaloriesPer100g = 42,
+            ProteinPer100g = 3.4,
+            CarbsPer100g = 5,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/orange.png",
+            Name = "Orange",
+            CaloriesPer100g = 47,
+            ProteinPer100g = 0.9,
+            CarbsPer100g = 12,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/pho.png",
+            Name = "Pho",
+            CaloriesPer100g = 45,
+            ProteinPer100g = 2,
+            CarbsPer100g = 8,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/pineapple.png",
+            Name = "Pineapple",
+            CaloriesPer100g = 50,
+            ProteinPer100g = 0.5,
+            CarbsPer100g = 13,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/pizza.png",
+            Name = "Pizza",
+            CaloriesPer100g = 266,
+            ProteinPer100g = 11,
+            CarbsPer100g = 33,
+            FatPer100g = 10,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/potato.png",
+            Name = "Potato",
+            CaloriesPer100g = 77,
+            ProteinPer100g = 2,
+            CarbsPer100g = 17,
+            FatPer100g = 0.1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/rice.png",
+            Name = "Rice",
+            CaloriesPer100g = 130,
+            ProteinPer100g = 2.7,
+            CarbsPer100g = 28,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/skewer.png",
+            Name = "Skewer",
+            CaloriesPer100g = 180,
+            ProteinPer100g = 10,
+            CarbsPer100g = 5,
+            FatPer100g = 14,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/spaghetti.png",
+            Name = "Spaghetti",
+            CaloriesPer100g = 158,
+            ProteinPer100g = 5.8,
+            CarbsPer100g = 31,
+            FatPer100g = 1,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/steak.png",
+            Name = "Steak",
+            CaloriesPer100g = 271,
+            ProteinPer100g = 25,
+            CarbsPer100g = 0,
+            FatPer100g = 19,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/strawberry.png",
+            Name = "Strawberry",
+            CaloriesPer100g = 33,
+            ProteinPer100g = 0.7,
+            CarbsPer100g = 8,
+            FatPer100g = 0.3,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/tea.png",
+            Name = "Tea",
+            CaloriesPer100g = 1,
+            ProteinPer100g = 0,
+            CarbsPer100g = 0.3,
+            FatPer100g = 0,
+        },
+        new Food
+        {
+            IconFileName = "FoodImages/tomato.png",
+            Name = "Tomato",
+            CaloriesPer100g = 18,
+            ProteinPer100g = 0.9,
+            CarbsPer100g = 3.9,
+            FatPer100g = 0.2,
+        },
+    };
+
 
     /// <summary>  
     /// Gets the collection of exercises  
     /// </summary>  
     /// <returns>Collection of exercises</returns>  
-    public List<Exercise> GetExercises()
-    {
-        return Exercises;
-    }
+    public List<Exercise> GetExercises() => Exercises;
 
+    /// <summary>  
+    /// Throws a NotImplementedException  
+    /// </summary>  
+    /// <returns>Throws NotImplementedException</returns>  
+    public List<Food> GetFoods() => Foods;
     // Goal
 
     // Get Goal
@@ -431,9 +674,232 @@ public class MockDao : IDao
                     TotalCalories = 150
                 }
             ],
-            TotalCalories = 0
+            TotalCalories = 0,
         }
     };
+
+//    new LogDate {
+//            Date = new (2024, 5, 5),
+//            LogFood = [
+//                new LogFood()
+//    {
+//        Time = new(2023, 10, 5, 1, 2, 4),
+//                    Food = new Food()
+//                    {
+//                        Title = "Apple",
+//                        CaloriesPer100g = 95,
+//                        ProteinPer100g = 5,
+//                        CarbsPer100g = 25,
+//                        FatPer100g = 3,
+//                    },
+//                    Calories = 13.2f,
+//                    Quantity = 1,
+//                },
+//                new LogFood()
+//    {
+//        Time = new(2023, 10, 5, 2, 4, 5),
+//                    Food = new Food()
+//                    {
+//                        Title = "Banana",
+//                        CaloriesPer100g = 105,
+//                        ProteinPer100g = 13,
+//                        CarbsPer100g = 27,
+//                        FatPer100g = 4,
+//                    },
+//                    Calories = 15.2f,
+//                    Quantity = 2,
+//                }
+//            ],
+//            LogExercise = []
+//},
+//        new LogDate {
+//            Date = new (2024, 4, 1),
+//            LogExercise = [
+//                new LogExercise()
+//{
+//    Time = new(2024, 4, 2, 2, 1, 3),
+//                    Exercise = new Exercise
+//                    {
+//                        IconFile = "basketball.png",
+//                        Title = "Basketball",
+//                    },
+//                    Calories = -24.2f,
+//                    Minutes = 15,
+//                }
+//            ],
+//            LogFood = [
+//                new LogFood()
+//{
+//    Time = new(2024, 4, 2, 2, 3, 45),
+//                    Food = new Food
+//                    {
+//                        Title = "Coconut",
+//                        CaloriesPer100g = 15,
+//                        ProteinPer100g = 131,
+//                        CarbsPer100g = 273,
+//                        FatPer100g = 44,
+//                    },
+//                    Calories = 55f,
+//                    Quantity = 2,
+//                }
+//            ]
+//        },
+//        new LogDate
+//        {
+//            Date = new(2024, 4, 2),
+//            LogExercise = [
+//                new LogExercise() {
+//                    Time = new(2024, 4, 2, 2, 1, 3),
+//                    Exercise = new Exercise {
+//                        IconFile = "yoga.png",
+//                        Title = "Yoga",
+//                    },
+//                    Calories = -14.4f,
+//                    Minutes = 30,
+//                }
+//            ],
+//            LogFood = [
+//                new LogFood() {
+//                    Time = new(2024, 4, 2, 2, 3, 45),
+//                    Food = new Food {
+//                        Title = "Meme",
+//                        CaloriesPer100g = 15,
+//                        ProteinPer100g = 131,
+//                        CarbsPer100g = 273,
+//                        FatPer100g = 44,
+//                    },
+//                    Calories = 65f,
+//                    Quantity = 4,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 4, 2, 1, 2, 4),
+//                    Food = new Food() {
+//                        Title = "Pepsi",
+//                        CaloriesPer100g = 95,
+//                        ProteinPer100g = 5,
+//                        CarbsPer100g = 25,
+//                        FatPer100g = 3,
+//                    },
+//                    Calories = 44f,
+//                    Quantity = 1,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 4, 2, 2, 4, 5),
+//                    Food = new Food() {
+//                        Title = "Cacao",
+//                        CaloriesPer100g = 105,
+//                        ProteinPer100g = 13,
+//                        CarbsPer100g = 27,
+//                        FatPer100g = 4,
+//                    },
+//                    Calories = 55.2f,
+//                    Quantity = 1,
+//                }
+//            ]
+//        },
+//        new LogDate
+//        {
+//            Date = new(2024, 6, 10),
+//            LogFood = [
+//                new LogFood() {
+//                    Time = new(2024, 6, 10, 8, 15, 0),
+//                    Food = new Food() {
+//                        Title = "Oatmeal",
+//                        CaloriesPer100g = 68,
+//                        ProteinPer100g = 2.4,
+//                        CarbsPer100g = 12,
+//                        FatPer100g = 1.4,
+//                    },
+//                    Calories = 204f,
+//                    Quantity = 3,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 6, 10, 12, 30, 0),
+//                    Food = new Food() {
+//                        Title = "Grilled Chicken Breast",
+//                        CaloriesPer100g = 165,
+//                        ProteinPer100g = 31,
+//                        CarbsPer100g = 0,
+//                        FatPer100g = 3.6,
+//                    },
+//                    Calories = 330f,
+//                    Quantity = 2,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 6, 10, 19, 0, 0),
+//                    Food = new Food() {
+//                        Title = "Mixed Vegetables",
+//                        CaloriesPer100g = 45,
+//                        ProteinPer100g = 3,
+//                        CarbsPer100g = 8,
+//                        FatPer100g = 1,
+//                    },
+//                    Calories = 90f,
+//                    Quantity = 2,
+//                }
+//            ],
+//            LogExercise = [
+//                new LogExercise() {
+//                    Time = new(2024, 6, 10, 9, 0, 0),
+//                    Exercise = new Exercise() {
+//                        IconFile = "running.png",
+//                        Title = "Running",
+//                    },
+//                    Calories = -300f,
+//                    Minutes = 30,
+//                },
+//                new LogExercise() {
+//                    Time = new(2024, 6, 10, 18, 0, 0),
+//                    Exercise = new Exercise() {
+//                        IconFile = "weightlifting.png",
+//                        Title = "Weightlifting",
+//                    },
+//                    Calories = -100f,
+//                    Minutes = 45,
+//                }
+//            ]
+//        },
+//        new LogDate
+//        {
+//            Date = new(2024, 7, 15),
+//            LogFood = [
+//                new LogFood() {
+//                    Time = new(2024, 7, 15, 7, 0, 0),
+//                    Food = new Food() {
+//                        Title = "Greek Yogurt",
+//                        CaloriesPer100g = 59,
+//                        ProteinPer100g = 10,
+//                        CarbsPer100g = 3.6,
+//                        FatPer100g = 0.4,
+//                    },
+//                    Calories = 118f,
+//                    Quantity = 2,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 7, 15, 13, 0, 0),
+//                    Food = new Food() {
+//                        Title = "Turkey Sandwich",
+//                        CaloriesPer100g = 200,
+//                        ProteinPer100g = 18,
+//                        CarbsPer100g = 30,
+//                        FatPer100g = 4,
+//                    },
+//                    Calories = 400f,
+//                    Quantity = 2,
+//                },
+//                new LogFood() {
+//                    Time = new(2024, 7, 15, 20, 0, 0),
+//                    Food = new Food() {
+//                        Title = "Dark Chocolate",
+//                        CaloriesPer100g = 600,
+//                        ProteinPer100g = 7.8,
+//                        CarbsPer100g = 45,
+//                        FatPer100g = 42,
+//                    },
+//                    Calories = 120f,
+//                    Quantity = 4,
+//                }
+//            ],
 
     public void DeleteLogFood(int idLog, int idLogFood)
     {

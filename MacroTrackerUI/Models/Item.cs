@@ -2,9 +2,11 @@
 
 namespace MacroTrackerUI.Models;
 
-public class Exercise : Item, INotifyPropertyChanged
+public class Item : INotifyPropertyChanged
 {
-    public double? CaloriesPerMinute { get; set; }
+    public string IconFileName { get; set; }
+
+    public string Name { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }
