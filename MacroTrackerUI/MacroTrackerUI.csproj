@@ -34,6 +34,7 @@
     <None Remove="Views\ReportPage.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\SignUp.xaml" />
+    <None Remove="Views\UserControlView\ChatBot.xaml" />
     <None Remove="Views\WindowView\ShellWindow.xaml" />
   </ItemGroup>
 
@@ -170,6 +171,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\UserControlView\ChatBot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\PageView\EditGoalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

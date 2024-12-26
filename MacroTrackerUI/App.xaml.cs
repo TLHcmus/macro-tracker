@@ -1,7 +1,10 @@
-﻿using MacroTrackerUI.Views.WindowView;
+﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.Views.WindowView;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace MacroTrackerUI;
 
@@ -10,6 +13,7 @@ namespace MacroTrackerUI;
 /// </summary>
 public partial class App : Application
 {
+    public static ObservableCollection<Message> ChatBotConversation { get; private set; } = [];
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().

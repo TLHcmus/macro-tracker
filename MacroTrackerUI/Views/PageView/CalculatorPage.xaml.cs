@@ -13,10 +13,7 @@ public sealed partial class CalculatorPage : Page
     /// <summary>
     /// Gets or sets the view model for the CalculatorPage.
     /// </summary>
-    public CalculatorViewModel ViewModel
-    {
-        get; set;
-    }
+    public CalculatorViewModel ViewModel { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CalculatorPage"/> class.
@@ -25,6 +22,7 @@ public sealed partial class CalculatorPage : Page
     {
         this.InitializeComponent();
         ViewModel = new CalculatorViewModel();
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
     /// <summary>

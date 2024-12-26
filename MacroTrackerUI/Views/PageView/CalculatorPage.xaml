@@ -4,52 +4,62 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MacroTrackerUI.Views.PageView"
+    xmlns:usrctl="using:MacroTrackerUI.Views.UserControlView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="TDEE Calculator" FontSize="24" Margin="0,0,0,20"/>
+    <RelativePanel>
+        <Grid RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True"
+              RelativePanel.AlignTopWithPanel="True">
+            <StackPanel>
+                <TextBlock Text="TDEE Calculator" FontSize="24" Margin="0,0,0,20"/>
 
-            <TextBlock Text="Weight (kg):"/>
-            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Weight, Mode=TwoWay}"/>
+                <TextBlock Text="Weight (kg):"/>
+                <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Weight, Mode=TwoWay}"/>
 
-            <TextBlock Text="Height (cm):"/>
-            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Height, Mode=TwoWay}"/>
+                <TextBlock Text="Height (cm):"/>
+                <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Height, Mode=TwoWay}"/>
 
-            <TextBlock Text="Age:"/>
-            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Age, Mode=TwoWay}"/>
+                <TextBlock Text="Age:"/>
+                <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Age, Mode=TwoWay}"/>
 
-            <TextBlock Text="Gender:"/>
-            <ComboBox x:Name="GenderComboBox" Margin="0,0,0,10" 
-                        SelectedValue="{x:Bind ViewModel.HealthInfo.Gender, Mode=TwoWay}" 
-                        SelectedValuePath="Content">
-                <ComboBoxItem Content="Male"/>
-                <ComboBoxItem Content="Female"/>
-            </ComboBox>
+                <TextBlock Text="Gender:"/>
+                <ComboBox x:Name="GenderComboBox" Margin="0,0,0,10" 
+                            SelectedValue="{x:Bind ViewModel.HealthInfo.Gender, Mode=TwoWay}" 
+                            SelectedValuePath="Content">
+                    <ComboBoxItem Content="Male"/>
+                    <ComboBoxItem Content="Female"/>
+                </ComboBox>
 
-            <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <RadioButton Content="Male" GroupName="GenderGroup" 
-                     IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
-                <RadioButton Content="Female" GroupName="GenderGroup" 
-                     IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
-            </StackPanel>-->
+                <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <RadioButton Content="Male" GroupName="GenderGroup" 
+                         IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
+                    <RadioButton Content="Female" GroupName="GenderGroup" 
+                         IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
+                </StackPanel>-->
 
                 <TextBlock Text="Activity Level:"/>
-            <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,20" 
-                        SelectedValue="{x:Bind ViewModel.HealthInfo.ActivityLevel, Mode=TwoWay}" 
-                        SelectedValuePath="Tag">
-                <ComboBoxItem Content="Sedentary: little or no exercise" Tag="Sedentary"/>
-                <ComboBoxItem Content="Lightly Active: exercise 1-3 times/week" Tag="Lightly Active"/>
-                <ComboBoxItem Content="Moderately Active: exercise 4-5 times/week" Tag="Moderately Active"/>
-                <ComboBoxItem Content="Very Active: exercise 6-7 times/week" Tag="Very Active"/>
-                <ComboBoxItem Content="Super Active: very intense exercise daily" Tag="Super Active"/>
-            </ComboBox>
+                <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,20" 
+                            SelectedValue="{x:Bind ViewModel.HealthInfo.ActivityLevel, Mode=TwoWay}" 
+                            SelectedValuePath="Tag">
+                    <ComboBoxItem Content="Sedentary: little or no exercise" Tag="Sedentary"/>
+                    <ComboBoxItem Content="Lightly Active: exercise 1-3 times/week" Tag="Lightly Active"/>
+                    <ComboBoxItem Content="Moderately Active: exercise 4-5 times/week" Tag="Moderately Active"/>
+                    <ComboBoxItem Content="Very Active: exercise 6-7 times/week" Tag="Very Active"/>
+                    <ComboBoxItem Content="Super Active: very intense exercise daily" Tag="Super Active"/>
+                </ComboBox>
 
-            <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
-            <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
-        </StackPanel>
-    </Grid>
+                <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
+                <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <usrctl:ChatBot x:Name="ChatBot"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"/>
+    </RelativePanel>
 </Page>

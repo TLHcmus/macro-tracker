@@ -8,95 +8,103 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <RelativePanel>
+        <Grid RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True"
+              RelativePanel.AlignTopWithPanel="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" 
+                       Margin="20"   
+                       Text="Logs"
+                       FontSize="45"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
 
-        <TextBlock Grid.Row="0" 
-                   Margin="20"   
-                   Text="Logs"
-                   FontSize="45"
-                   FontWeight="Bold"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+            <!-- Top Header Row -->
+            <Grid Grid.Row="1" Margin="0 0 20 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-        <!-- Top Header Row -->
-        <Grid Grid.Row="1" Margin="0 0 20 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+                <!-- Spacer to push buttons to the right -->
+                <Grid Grid.Column="0"/>
 
-            <!-- Spacer to push buttons to the right -->
-            <Grid Grid.Column="0"/>
+                <!-- Add Log Button -->
+                <Button 
+                    x:Name="AddLogButton"
+                    Grid.Column="1"
+                    Click="AddLogButton_Click">
 
-            <!-- Add Log Button -->
-            <Button 
-                x:Name="AddLogButton"
-                Grid.Column="1"
-                Click="AddLogButton_Click">
+                    <FontIcon
+                        Glyph="&#xE109;"
+                        VerticalAlignment="Center"/>
+                </Button>
 
-                <FontIcon
-                    Glyph="&#xE109;"
-                    VerticalAlignment="Center"/>
-            </Button>
-            
-            <!-- Calendar Button -->
-            <Button 
-                x:Name="CalendarButton"
-                Grid.Column="2" 
-                Margin="10,0,0,0">
-                
-                <FontIcon 
-                    Glyph="&#xE787;"
-                    VerticalAlignment="Center"/>
+                <!-- Calendar Button -->
+                <Button 
+                    x:Name="CalendarButton"
+                    Grid.Column="2" 
+                    Margin="10,0,0,0">
 
-                <Button.Flyout>
-                    <Flyout
-                        x:Name="CalendarFlyout">
-                        <StackPanel
-                            Orientation="Vertical">
+                    <FontIcon 
+                        Glyph="&#xE787;"
+                        VerticalAlignment="Center"/>
 
-                            <Button x:Name="TodayButton" 
-                                    Content="Today" 
-                                    Margin="5 5 5 10" 
-                                    HorizontalAlignment="Center"
-                                    BorderBrush="Gray"
-                                    BorderThickness="2"
-                                    Click="TodayButton_Click" />
-                            <CalendarView x:Name="Calendar" 
-                                          SelectedDatesChanged="CalenderViewFlyout_SelectedDatesChanged"/>
+                    <Button.Flyout>
+                        <Flyout
+                            x:Name="CalendarFlyout">
+                            <StackPanel
+                                Orientation="Vertical">
 
-                        </StackPanel>
-                        
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
+                                <Button x:Name="TodayButton" 
+                                        Content="Today" 
+                                        Margin="5 5 5 10" 
+                                        HorizontalAlignment="Center"
+                                        BorderBrush="Gray"
+                                        BorderThickness="2"
+                                        Click="TodayButton_Click" />
+                                <CalendarView x:Name="Calendar" 
+                                              SelectedDatesChanged="CalenderViewFlyout_SelectedDatesChanged"/>
 
+                            </StackPanel>
+
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+            </Grid>
+
+            <!-- Logs ListView -->
+            <ListView 
+                SelectionMode="None"
+                x:Name="LogsListView"
+                Grid.Row="2"
+                Margin="20 5 20 20"
+                ItemsSource="{x:Bind ViewModel.LogList, Mode=OneWay}"
+                Loaded="LogsListView_Loaded">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Log">
+                        <usrctl:LogItem Log="{x:Bind Mode=OneWay}" 
+                                        Margin="0 10 0 0"
+                                        DeleteLog="DeleteLog"
+                                        DeleteLogFood="DeleteLogFood"
+                                        DeleteLogExercise="DeleteLogExercise"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
 
-        <!-- Logs ListView -->
-        <ListView 
-            SelectionMode="None"
-            x:Name="LogsListView"
-            Grid.Row="2"
-            Margin="20 5 20 20"
-            ItemsSource="{x:Bind ViewModel.LogList, Mode=OneWay}"
-            Loaded="LogsListView_Loaded">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Log">
-                    <usrctl:LogItem Log="{x:Bind Mode=OneWay}" 
-                                    Margin="0 10 0 0"
-                                    DeleteLog="DeleteLog"
-                                    DeleteLogFood="DeleteLogFood"
-                                    DeleteLogExercise="DeleteLogExercise"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+        <usrctl:ChatBot x:Name="ChatBot"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"/>
+    </RelativePanel>
 </Page>

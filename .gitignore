@@ -364,6 +364,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/MacroTrackerCore/appsettings.json
-*.json
-*.env
+.env

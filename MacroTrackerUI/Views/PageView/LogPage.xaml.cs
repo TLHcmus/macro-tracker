@@ -25,6 +25,7 @@ public sealed partial class LogPage : Page
 
         // Deduce the paging size on the first load
         ViewModel.PagingSize = ViewModel.LogList.Count;
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
     private void AddLogButton_Click(object sender, RoutedEventArgs e)

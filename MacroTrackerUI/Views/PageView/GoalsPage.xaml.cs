@@ -20,6 +20,7 @@ public sealed partial class GoalsPage : Page
     {
         this.InitializeComponent();
         ViewModel = new GoalsViewModel();
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
     // Edit goal click event handler

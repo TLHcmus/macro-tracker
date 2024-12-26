@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MacroTrackerUI.Views.PageView"
     xmlns:model="using:MacroTrackerUI.Models"
+    xmlns:usrctl="using:MacroTrackerUI.Views.UserControlView"
     xmlns:helper="using:MacroTrackerUI.Helpers.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,46 +16,51 @@
         <helper:ExerciseFileNameToPathConverter x:Key="ExerciseFileNameToPathConverter"/>
     </Page.Resources>
 
-    <Grid 
-        Margin="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+    <RelativePanel>
+        <Grid 
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True"
+            Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel
+            <StackPanel
             Grid.Column="0"
             Background="#20808080"
             Margin="10"
             CornerRadius="10">
-            
-            <TextBlock 
+
+                <TextBlock 
                 Text="Exercise"
                 FontSize="24"
                 Margin="20 10 0 0"/>
-            
-        </StackPanel>
 
-        <Grid
+            </StackPanel>
+
+            <Grid
             Grid.Column="1"
             Background="#30909090"
             Margin="10"
             CornerRadius="10">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <TextBlock
+                <TextBlock
                 Grid.Row="0"
                 Text="Exercises"
                 FontSize="30"
                 Margin="20 10 0 0"/>
 
-            <ScrollViewer
+                <ScrollViewer
                 Grid.Row="1">
-                
+
                     <ListBox
                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
                         Background="#00909090"
@@ -87,9 +93,13 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-            </ScrollViewer>
+                </ScrollViewer>
 
+            </Grid>
         </Grid>
 
-    </Grid>
+        <usrctl:ChatBot x:Name="ChatBot"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"/>
+    </RelativePanel>
 </Page>
