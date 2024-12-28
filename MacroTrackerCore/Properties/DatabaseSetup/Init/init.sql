@@ -87,7 +87,7 @@ values (2500, 156, 313, 69);
 
 -- Them data vao bang user
 insert into users (username, encrypted_password)
-values ('admin', '123' );
+values ('admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3' );
 
 -- Them data vao cac logs
 -- Thêm dữ liệu vào bảng logs
