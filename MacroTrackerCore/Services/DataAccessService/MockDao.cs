@@ -3,6 +3,7 @@ using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using System.Collections.ObjectModel;
+using MacroTrackerCore.Services.ConfigurationService;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 public class MockDao : IDao

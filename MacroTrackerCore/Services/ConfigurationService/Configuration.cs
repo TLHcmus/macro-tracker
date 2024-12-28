@@ -1,4 +1,4 @@
-﻿namespace MacroTrackerCore;
+﻿namespace MacroTrackerCore.Services.ConfigurationService;
 
 public static class Configuration
 {

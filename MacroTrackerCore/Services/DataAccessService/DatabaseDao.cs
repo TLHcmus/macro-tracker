@@ -6,6 +6,7 @@ using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
+using MacroTrackerCore.Services.ConfigurationService;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 

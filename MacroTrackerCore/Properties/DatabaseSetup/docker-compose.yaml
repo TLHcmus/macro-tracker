@@ -1,0 +1,21 @@
+﻿services:
+  mysql:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "33006:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+

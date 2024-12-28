@@ -42,9 +42,7 @@ public sealed partial class Login : Page
             await contentDialog.ShowAsync();
             return;
         }
-
-        // Check if the user matches the password
-        if (ViewModel.DoesUserMatchPassword())
+        else if (ViewModel.DoesUserMatchPassword()) // Check if the user matches the password
         {
             if (RememberMeBox.IsChecked == true)
                 StoreLoginInfoInLocalStorage();
