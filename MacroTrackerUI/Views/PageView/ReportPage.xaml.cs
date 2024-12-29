@@ -12,5 +12,6 @@ public sealed partial class ReportPage : Page
     {
         this.InitializeComponent();
         this.DataContext = new ReportViewModel();
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 }

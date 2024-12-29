@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using DotEnv.Core;
+using MacroTrackerCore.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace MacroTrackerCore.Data
 {
@@ -11,14 +12,17 @@ namespace MacroTrackerCore.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
+                new EnvLoader().Load();
+                var envVars = new EnvReader();
 
-                var configuration = new ConfigurationBuilder()
-                                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)  
-                                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                                    .Build();
+                string connectionString = $"""
+                    server={envVars["DB_HOST"]};
+                    port={envVars["DB_PORT"]};
+                    database={envVars["DB_NAME"]};
+                    user={envVars["DB_USER"]};
+                    password={envVars["DB_PASSWORD"]};
+                 """;
 
-                string connectionString = configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)));
             }
         }

@@ -15,5 +15,6 @@ public sealed partial class ExercisePage : Page
     public ExercisePage()
     {
         this.InitializeComponent();
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 }

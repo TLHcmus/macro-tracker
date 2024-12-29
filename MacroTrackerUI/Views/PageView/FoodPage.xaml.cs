@@ -11,5 +11,6 @@ public sealed partial class FoodPage : Page
     public FoodPage()
     {
         this.InitializeComponent();
+        ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 }

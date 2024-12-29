@@ -7,15 +7,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    xmlns:usrctl="using:MacroTrackerUI.Views.UserControlView"
     mc:Ignorable="d">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="Total Calories by Date" 
-                   FontSize="20" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,10,0,20" />
-            <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Height="700"  />
-        </StackPanel>
-    </Grid>
+    <RelativePanel>
+        <Grid RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True"
+              RelativePanel.AlignTopWithPanel="True">
+            <StackPanel>
+                <TextBlock Text="Total Calories by Date" 
+                       FontSize="20" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,10,0,20" />
+                <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Height="700"  />
+            </StackPanel>
+        </Grid>
+
+        <usrctl:ChatBot x:Name="ChatBot"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"/>
+    </RelativePanel>
 </Page>
