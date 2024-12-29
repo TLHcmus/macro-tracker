@@ -6,41 +6,31 @@ using System.Collections.ObjectModel;
 using MacroTrackerCore.Services.ConfigurationService;
 
 namespace MacroTrackerCore.Services.DataAccessService;
+/// <summary>
+/// Mock data access object for testing purposes.
+/// </summary>
 public class MockDao : IDao
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MockDao"/> class.
+    /// </summary>
     public MockDao()
     {
         Logs.Sort((a, b) => b.LogDate.Value.CompareTo(a.LogDate.Value));
-        foreach (var log in Logs)
-        {
-            double totalCalories = 0;
-            foreach (var food in log.LogFoodItems)
-            {
-                totalCalories += food.TotalCalories ?? 0;
-            }
-            foreach (var exercise in log.LogExerciseItems)
-            {
-                totalCalories += exercise.TotalCalories ?? 0;
-            }
-            log.TotalCalories = totalCalories;
-        }
+        UpdateTotalCalories();
     }
 
-    // Food 
-
     /// <summary>  
-    /// Throws a NotImplementedException  
+    /// Throws a NotImplementedException.  
     /// </summary>  
     /// <returns>Throws NotImplementedException</returns>  
     public List<Food> GetFoods() => throw new NotImplementedException();
 
-    // Exercise
-
     /// <summary>  
-    /// Collection of mock exercises  
+    /// Collection of mock exercises.  
     /// </summary>  
-    public List<Exercise> Exercises =
-    [
+    public List<Exercise> Exercises = new()
+    {
         new Exercise
         {
             IconFileName = "basketball.png",
@@ -119,10 +109,10 @@ public class MockDao : IDao
             Name = "Baseball",
             CaloriesPerMinute = 5.0,
         },
-    ];
+    };
 
     /// <summary>  
-    /// Gets the collection of exercises  
+    /// Gets the collection of exercises.  
     /// </summary>  
     /// <returns>Collection of exercises</returns>  
     public List<Exercise> GetExercises()
@@ -130,9 +120,10 @@ public class MockDao : IDao
         return Exercises;
     }
 
-    // Goal
-
-    // Get Goal
+    /// <summary>
+    /// Gets the goal.
+    /// </summary>
+    /// <returns>A <see cref="Goal"/> object.</returns>
     public Goal GetGoal()
     {
         return new Goal()
@@ -144,8 +135,11 @@ public class MockDao : IDao
         };
     }
 
-    private List<User> UserList { get; set; } =
-    [
+    /// <summary>
+    /// Collection of mock users.
+    /// </summary>
+    private List<User> UserList { get; set; } = new()
+    {
         new User
         {
             Username = "admin",
@@ -154,12 +148,10 @@ public class MockDao : IDao
                             .GetRequiredService<IPasswordEncryption>()
                             .EncryptPasswordToDatabase("123")
         },
-    ];
-
-    // User
+    };
 
     /// <summary>  
-    /// Mock method to get a list of users  
+    /// Mock method to get a list of users.  
     /// </summary>  
     /// <returns>Return a list of mock users</returns>  
     public List<User> GetUsers()
@@ -168,17 +160,17 @@ public class MockDao : IDao
     }
 
     /// <summary>  
-    /// Mock method to check if username and password match  
+    /// Mock method to check if username and password match.  
     /// Username: admin  
     /// Password: 123  
     /// </summary>  
     /// <param name="username">The username to check</param>  
-    /// <param name="endcryptedPassword">The encrypted password to check</param>  
+    /// <param name="password">The password to check</param>  
     /// <returns>True if the username and password match, otherwise false</returns>  
     public bool DoesUserMatchPassword(string username, string password)
     {
         var users = GetUsers();
-         
+
         int indexUsername = FindUsernameIndex(users, username);
         if (indexUsername == -1)
             return false;
@@ -186,13 +178,11 @@ public class MockDao : IDao
         IPasswordEncryption passwordEncryption =
             ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
 
-        if (users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password))
-            return true;
-        return false;
+        return users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password);
     }
 
     /// <summary>  
-    /// Find the index of a username in a list of users  
+    /// Find the index of a username in a list of users.  
     /// </summary>  
     /// <param name="users">The list of users</param>  
     /// <param name="userName">The username to find</param>  
@@ -210,7 +200,7 @@ public class MockDao : IDao
     }
 
     /// <summary>  
-    /// Checks if a username exists in the list of users  
+    /// Checks if a username exists in the list of users.  
     /// </summary>  
     /// <param name="username">The username to check</param>  
     /// <returns>True if the username exists, otherwise false</returns>  
@@ -221,7 +211,7 @@ public class MockDao : IDao
     }
 
     /// <summary>  
-    /// Add a user to the list of mock users  
+    /// Add a user to the list of mock users.  
     /// </summary>  
     /// <param name="user">The user to add</param>  
     public void AddUser(User user)
@@ -229,12 +219,19 @@ public class MockDao : IDao
         UserList.Add(user);
     }
 
+    /// <summary>
+    /// Gets the list of logs.
+    /// </summary>
+    /// <returns>A list of logs.</returns>
     public List<Log> GetLogs()
     {
         UpdateTotalCalories();
         return Logs;
     }
 
+    /// <summary>
+    /// Updates the total calories for each log.
+    /// </summary>
     private void UpdateTotalCalories()
     {
         foreach (var log in Logs)
@@ -252,23 +249,35 @@ public class MockDao : IDao
         }
     }
 
+    /// <summary>
+    /// Adds a new log.
+    /// </summary>
+    /// <param name="log">The log to add.</param>
     public void AddLog(Log log)
     {
         Logs.Add(log);
     }
 
+    /// <summary>
+    /// Deletes a log by its ID.
+    /// </summary>
+    /// <param name="logId">The ID of the log to delete.</param>
     public void DeleteLog(int logId)
     {
         Logs.Remove(Logs.First(log => log.LogId == logId));
     }
 
-    private List<Log> Logs = new()
-    {
+    /// <summary>
+    /// Collection of mock logs.
+    /// </summary>
+    private List<Log> Logs =
+    [
         new Log
         {
             LogId = 1,
             LogDate = new(2024, 5, 5),
-            LogFoodItems = [
+            LogFoodItems = 
+            [
                 new LogFoodItem() {
                     LogId = 1,
                     LogFoodId = 1,
@@ -291,7 +300,8 @@ public class MockDao : IDao
         {
             LogId = 2,
             LogDate = new(2024, 4, 2),
-            LogExerciseItems = [
+            LogExerciseItems =
+            [
                 new LogExerciseItem() {
                     LogId = 2,
                     LogExerciseId = 1,
@@ -300,7 +310,8 @@ public class MockDao : IDao
                     TotalCalories = -23,
                 }
             ],
-            LogFoodItems = [
+            LogFoodItems =
+            [
                 new LogFoodItem() {
                     LogId = 2,
                     LogFoodId = 1,
@@ -315,7 +326,8 @@ public class MockDao : IDao
         {
             LogId = 3,
             LogDate = new(2024, 4, 1),
-            LogExerciseItems = [
+            LogExerciseItems =
+            [
                 new LogExerciseItem() {
                     LogId = 3,
                     LogExerciseId = 1,
@@ -324,7 +336,8 @@ public class MockDao : IDao
                     TotalCalories = -14.4f,
                 }
             ],
-            LogFoodItems = [
+            LogFoodItems =
+            [
                 new LogFoodItem() {
                     LogId = 3,
                     LogFoodId = 1,
@@ -353,7 +366,8 @@ public class MockDao : IDao
         {
             LogId = 4,
             LogDate = new(2024, 12, 5),
-            LogFoodItems = [
+            LogFoodItems =
+            [
                 new LogFoodItem() {
                     LogId = 1,
                     LogFoodId = 1,
@@ -376,7 +390,8 @@ public class MockDao : IDao
         {
             LogId = 5,
             LogDate = new(2024, 8, 2),
-            LogExerciseItems = [
+            LogExerciseItems =
+            [
                 new LogExerciseItem() {
                     LogId = 2,
                     LogExerciseId = 1,
@@ -385,7 +400,8 @@ public class MockDao : IDao
                     TotalCalories = -23,
                 }
             ],
-            LogFoodItems = [
+            LogFoodItems =
+            [
                 new LogFoodItem() {
                     LogId = 2,
                     LogFoodId = 1,
@@ -400,7 +416,8 @@ public class MockDao : IDao
         {
             LogId = 6,
             LogDate = new(2024, 6, 1),
-            LogExerciseItems = [
+            LogExerciseItems =
+            [
                 new LogExerciseItem() {
                     LogId = 3,
                     LogExerciseId = 1,
@@ -409,7 +426,8 @@ public class MockDao : IDao
                     TotalCalories = -14.4f,
                 }
             ],
-            LogFoodItems = [
+            LogFoodItems =
+            [
                 new LogFoodItem() {
                     LogId = 3,
                     LogFoodId = 1,
@@ -434,14 +452,24 @@ public class MockDao : IDao
             ],
             TotalCalories = 0
         }
-    };
+    ];
 
+    /// <summary>
+    /// Deletes a log food item by log ID and log food ID.
+    /// </summary>
+    /// <param name="idLog">The log ID.</param>
+    /// <param name="idLogFood">The log food ID.</param>
     public void DeleteLogFood(int idLog, int idLogFood)
     {
         Log log = Logs.First(log => log.LogId == idLog);
         log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == idLogFood));
     }
 
+    /// <summary>
+    /// Deletes a log exercise item by log ID and log exercise ID.
+    /// </summary>
+    /// <param name="idLog">The log ID.</param>
+    /// <param name="idLogExercise">The log exercise ID.</param>
     public void DeleteLogExercise(int idLog, int idLogExercise)
     {
         Log log = Logs.First(log => log.LogId == idLog);
@@ -450,11 +478,24 @@ public class MockDao : IDao
         );
     }
 
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of logs.</returns>
     public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
     {
         return GetLogWithPagination(Configuration.PAGINATION_NUMBER, numberItemOffset, endDate);
     }
 
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="n">The number of items to retrieve.</param>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of logs.</returns>
     public List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
     {
         return Logs.OrderByDescending(log => log.LogDate)
@@ -464,6 +505,11 @@ public class MockDao : IDao
                    .ToList();
     }
 
+    /// <summary>
+    /// Updates the total calories for a log.
+    /// </summary>
+    /// <param name="logId">The ID of the log to update.</param>
+    /// <param name="totalCalories">The new total calories.</param>
     public void UpdateTotalCalories(int logId, double totalCalories)
     {
         Logs.First(log => log.LogId == logId).TotalCalories = totalCalories;
