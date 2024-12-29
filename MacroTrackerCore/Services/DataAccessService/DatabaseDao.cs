@@ -45,13 +45,13 @@ public class DatabaseDao : IDao
         var users = _context.Users.ToList();
 
         // Ma hoa mat khau
-        foreach (var user in users)
-        {
-            user.EncryptedPassword =
-                ProviderCore.GetServiceProvider()
-                            .GetRequiredService<IPasswordEncryption>()
-                            .EncryptPasswordToDatabase(user.EncryptedPassword);
-        }
+        //foreach (var user in users)
+        //{
+        //    user.EncryptedPassword =
+        //        ProviderCore.GetServiceProvider()
+        //                    .GetRequiredService<IPasswordEncryption>()
+        //                    .EncryptPasswordToDatabase(user.EncryptedPassword);
+        //}
 
         return users;
     }
