@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="MacroTrackerUI.Views.PageView.FoodPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +8,144 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="FoodPage" />
+
+    
+
+    <Grid Padding="20">
+        <!-- Define rows: one for the title, the rest for content -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock 
+            Grid.Row="0" 
+            Text="Food page" 
+            FontSize="26" 
+            FontWeight="Bold" 
+            Padding="0,40,0,36"/>           
+
+        <!-- Content Grid -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Food List -->
+            <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0, 0, 1, 0" Padding="0 0 10 0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <TextBox 
+                            x:Name="SearchBar" 
+                            PlaceholderText="Search for a food..." 
+                            Margin="0,0,0,20" 
+                            FontSize="16" 
+                            Padding="10" 
+                            TextChanged="SearchBar_TextChanged"/>
+                    </StackPanel>
+
+                    <ListView 
+                        Grid.Row="1" 
+                        x:Name="FoodList" 
+                        Margin="0,0,0,20" 
+                        ItemsSource="{x:Bind ViewModel.Foods}" 
+                        SelectionChanged="FoodList_SelectionChanged">
+                        <ListView.Header>
+                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0" 
+                                           Text="List of Foods" 
+                                           FontSize="18" 
+                                           Margin="10,0,10,0" 
+                                           VerticalAlignment="Center" />
+                                <Button Grid.Column="1" 
+                                        Content="Add Food" 
+                                        Margin="0,0,10,0" 
+                                        VerticalAlignment="Center" 
+                                        Click="AddFoodButton_Click"/>
+                            </Grid>
+                        </ListView.Header>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <!--Context menu for delete Food-->
+                                    <Grid.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Remove" Click="ContactRemoveMenuItem_Click"/>
+                                        </MenuFlyout>
+                                    </Grid.ContextFlyout>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Image Grid.Column="0" Source="{Binding IconFileName}" Width="40" Height="40" Margin="0,0,10,0"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+
+            <!-- Food Detail -->
+            <StackPanel Grid.Column="1" Margin="20 20 0 20">
+                <!--If no food item is selected-->
+                <TextBlock x:Name="NoFoodSelectedMessage" Text="Please select a food" FontSize="16"/>
+                <!-- Display food name and image -->
+                <StackPanel x:Name="FoodDetail" Visibility="Collapsed">
+                    <TextBlock x:Name="FoodName" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                    <!--Food image-->
+                    <StackPanel Background="Gray" Margin="0 10 0 20">
+                        <Image x:Name="FoodImage" Width="200" Height="200" Margin="0,0,0,20" />
+                    </StackPanel>
+                    <!-- Input for number of servings -->
+                    <TextBlock Text="Number of Servings (gram):" FontSize="16"/>
+                    <TextBox x:Name="ServingInput" PlaceholderText="Enter number of servings" Margin="0,10,0,10" FontSize="16" />
+
+                    <!-- Display nutritional information based on servings -->
+                    <TextBlock Text="Nutrition fact:" FontSize="18" FontWeight="SemiBold" Margin="0,10,0,10" />
+                    <!--Nutrition Grid-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Left column: Nutrition names -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Calories" FontSize="20"  Margin="10,5" FontWeight="Medium"/>
+                            <TextBlock Text="Protein" FontSize="16" Margin="10,5" />
+                            <TextBlock Text="Carbs" FontSize="16"  Margin="10,5" />
+                            <TextBlock Text="Fat" FontSize="16"  Margin="10,5" />
+                        </StackPanel>
+                        <!-- Right column: Nutrition values -->
+                        <StackPanel Grid.Column="1">
+                            <TextBlock x:Name="Calories" FontSize="20"  Margin="10,5" HorizontalAlignment="Right" FontWeight="Medium"/>
+                            <TextBlock x:Name="Protein" FontSize="16"  Margin="10,5" HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="Carbs" FontSize="16"  Margin="10,5" HorizontalAlignment="Right"/>
+                            <TextBlock x:Name="Fat" FontSize="16"  Margin="10,5" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Success Message-->
+                    <TextBlock x:Name="SucessLogMessage" FontSize="16" Visibility="Collapsed"/>
+
+                    <Button Content="Log Food" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0" Click="LogFoodButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -14,17 +14,17 @@
             <TextBlock Text="TDEE Calculator" FontSize="24" Margin="0,0,0,20"/>
 
             <TextBlock Text="Weight (kg):"/>
-            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Weight, Mode=TwoWay}"/>
+            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter weight"/>
 
             <TextBlock Text="Height (cm):"/>
-            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Height, Mode=TwoWay}"/>
+            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter heigth"/>
 
             <TextBlock Text="Age:"/>
-            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" Text="{x:Bind ViewModel.HealthInfo.Age, Mode=TwoWay}"/>
+            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter Age"/>
 
             <TextBlock Text="Gender:"/>
             <ComboBox x:Name="GenderComboBox" Margin="0,0,0,10" 
-                        SelectedValue="{x:Bind ViewModel.HealthInfo.Gender, Mode=TwoWay}" 
+                        SelectedValue="{x:Bind ViewModel.Gender, Mode=TwoWay}" 
                         SelectedValuePath="Content">
                 <ComboBoxItem Content="Male"/>
                 <ComboBoxItem Content="Female"/>
@@ -39,7 +39,7 @@
 
                 <TextBlock Text="Activity Level:"/>
             <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,20" 
-                        SelectedValue="{x:Bind ViewModel.HealthInfo.ActivityLevel, Mode=TwoWay}" 
+                        SelectedValue="{x:Bind ViewModel.ActivityLevel, Mode=TwoWay}" 
                         SelectedValuePath="Tag">
                 <ComboBoxItem Content="Sedentary: little or no exercise" Tag="Sedentary"/>
                 <ComboBoxItem Content="Lightly Active: exercise 1-3 times/week" Tag="Lightly Active"/>

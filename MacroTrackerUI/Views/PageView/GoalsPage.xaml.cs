@@ -1,5 +1,6 @@
 using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
+using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -23,18 +24,22 @@ public sealed partial class GoalsPage : Page
     }
 
     // Edit goal click event handler
-    private void EditGoal_Click(object sender, RoutedEventArgs e)
+    private async void EditGoal_Click(object sender, RoutedEventArgs e)
     {
-        Frame.Navigate(typeof(EditGoalPage), ViewModel.CurrentGoal);
-    }
-
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-
-        if (e.Parameter is Goal goal)
+        var editGoalDialog = new EditGoalDialog()
         {
-            ViewModel.CurrentGoal = goal;
-        }
+            XamlRoot = this.XamlRoot
+        };
+        // Hien thi diaglog
+        var result = await editGoalDialog.ShowAsync();
+        if(result == ContentDialogResult.Primary) // Neu nhan nut Confirm
+        {
+            var goal = editGoalDialog.GetGoalFromInput();
+
+            if (goal != null)
+            {
+                ViewModel.UpdateGoal(goal);
+            }
     }
+        }
 }

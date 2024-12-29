@@ -24,6 +24,18 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods());
     }
 
+    // Add food
+    public void AddFood(Food food)
+    {
+        Receiver.AddFood(JsonSerializer.Serialize(food));
+    }
+
+    // Remove food
+    public void RemoveFood(string foodName)
+    {
+        Receiver.RemoveFood(JsonSerializer.Serialize(foodName));
+    }
+
     /// <summary>
     /// Retrieves a collection of exercises.
     /// </summary>
@@ -32,11 +44,26 @@ public class DaoSender
     {
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
+    // Add exercise
+    public void AddExercise(Exercise exercise)
+    {
+        Receiver.AddExercise(JsonSerializer.Serialize(exercise));
+    }
+    // Remove exercise
+    public void RemoveExercise(string exerciseName)
+    {
+        Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseName));
+    }
 
     // Get Goal
     public Goal GetGoal()
     {
         return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
+    }
+    // Update goal
+    public void UpdateGoal(Goal goal)
+    {
+        Receiver.UpdateGoal(JsonSerializer.Serialize(goal));
     }
 
     /// <summary>
@@ -96,6 +123,7 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Log>>(
             Receiver.GetLogs()
         );
+        //return (List<Log>)Receiver.GetLogs();
     }
 
     public void AddLog(Log log)

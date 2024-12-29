@@ -23,6 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\CalculatorPage.xaml" />
+    <None Remove="Views\DialogView\AddExerciseDialog.xaml" />
+    <None Remove="Views\DialogView\AddFoodDialog.xaml" />
+    <None Remove="Views\DialogView\EditGoalDialog.xaml" />
     <None Remove="Views\ExercisePage.xaml" />
     <None Remove="Views\FoodPage.xaml" />
     <None Remove="Views\GoalsPage.xaml" />
@@ -170,6 +173,15 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\DialogView\AddExerciseDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\DialogView\EditGoalDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\DialogView\AddFoodDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\PageView\EditGoalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

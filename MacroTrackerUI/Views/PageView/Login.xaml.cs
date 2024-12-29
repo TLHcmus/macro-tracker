@@ -32,10 +32,6 @@ public sealed partial class Login : Page
     private async void LoginButton_Click(object sender, RoutedEventArgs e)
     {
 
-        // Debug log
-        Debug.WriteLine(ViewModel.Username);
-        Debug.WriteLine(ViewModel.Password);
-
         if (ViewModel.LoginInfoNull())
         {
             var contentDialog = new ContentDialog

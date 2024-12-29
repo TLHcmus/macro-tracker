@@ -11,16 +11,24 @@ namespace MacroTrackerUI.ViewModels;
 
 public class GoalsViewModel : INotifyPropertyChanged
 {
-    public Goal CurrentGoal;
+    public Goal CurrentGoal { get; set; }
 
-    private DaoSender Dao { get; } =
+
+    private DaoSender Sender { get; } =
         ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
     public GoalsViewModel()
     {
-        CurrentGoal = Dao.GetGoal();
+        CurrentGoal = Sender.GetGoal();
     }
 
+    public void UpdateGoal(Goal goal)
+    {
+        Sender.UpdateGoal(goal);
+
+        CurrentGoal = goal;
+        Debug.WriteLine($"CurrentGoal is changed, Calories: {CurrentGoal.Calories}");
+    }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

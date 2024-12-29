@@ -6,6 +6,7 @@ using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 
@@ -25,17 +26,80 @@ public class DatabaseDao : IDao
         return _context.Foods.ToList();
     }
 
+    // Add food
+    public void AddFood(Food food)
+    {
+        _context.Foods.Add(food);
+
+        _context.SaveChanges();
+    }
+
+    // Remove food
+    public void RemoveFood(string foodName)
+    {
+        var food = _context.Foods.Find(foodName);
+
+        if (food == null)
+        {
+            throw new Exception("Food not found");
+        }
+
+        _context.Foods.Remove(food);
+
+        _context.SaveChanges();
+    }
+
     // Exercise
     public List<Exercise> GetExercises()
     {
         return _context.Exercises.ToList();
     }
 
-    
+    // Add exercise
+    public void AddExercise(Exercise exercise)
+    {
+        _context.Exercises.Add(exercise);
+
+        _context.SaveChanges();
+    }
+
+    // Remove exercise
+    public void RemoveExercise(string exerciseName)
+    {
+        var exercise = _context.Exercises.Find(exerciseName);
+
+        if (exercise == null)
+        {
+            throw new Exception("Exercise not found");
+        }
+
+        _context.Exercises.Remove(exercise);
+
+        _context.SaveChanges();
+    }
+
     // Goal
     public Goal GetGoal()
     {
         return _context.Goals.FirstOrDefault();
+    }
+    // Update goal
+    public void UpdateGoal(Goal goal)
+    {
+        var existingGoal = _context.Goals.FirstOrDefault();
+        
+        if (existingGoal == null)
+        {
+            _context.Goals.Add(goal);
+            return;
+        }
+
+        existingGoal.Calories = goal.Calories;
+        existingGoal.Protein = goal.Protein;
+        existingGoal.Carbs = goal.Carbs;
+        existingGoal.Fat = goal.Fat;
+
+        _context.SaveChanges();
     }
 
 
@@ -45,13 +109,13 @@ public class DatabaseDao : IDao
         var users = _context.Users.ToList();
 
         // Ma hoa mat khau
-        foreach (var user in users)
-        {
-            user.EncryptedPassword =
-                ProviderCore.GetServiceProvider()
-                            .GetRequiredService<IPasswordEncryption>()
-                            .EncryptPasswordToDatabase(user.EncryptedPassword);
-        }
+        //foreach (var user in users)
+        //{
+        //    user.EncryptedPassword =
+        //        ProviderCore.GetServiceProvider()
+        //                    .GetRequiredService<IPasswordEncryption>()
+        //                    .EncryptPasswordToDatabase(user.EncryptedPassword);
+        //}
 
         return users;
     }
@@ -101,11 +165,11 @@ public class DatabaseDao : IDao
     // Log
     public List<Log> GetLogs()
     {
-        //return _context.Logs
-        //.Include(log => log.LogExerciseItems)
-        //.Include(log => log.LogFoodItems)
-        //.ToList();
-        return _context.Logs.ToList();
+        return _context.Logs
+        .Include(log => log.LogExerciseItems)
+        .Include(log => log.LogFoodItems)
+        .ToList();
+        //return _context.Logs.ToList();
     }
 
     public void AddLog(Log log)

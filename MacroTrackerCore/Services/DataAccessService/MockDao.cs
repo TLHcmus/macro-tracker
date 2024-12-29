@@ -33,6 +33,18 @@ public class MockDao : IDao
     /// <returns>Throws NotImplementedException</returns>  
     public List<Food> GetFoods() => throw new NotImplementedException();
 
+    // Add food
+    public void AddFood(Food food)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Remove food
+    public void RemoveFood(string foodName)
+    {
+        throw new NotImplementedException();
+    }
+
     // Exercise
 
     /// <summary>  
@@ -129,6 +141,17 @@ public class MockDao : IDao
         return Exercises;
     }
 
+    // Add exercise
+    public void AddExercise(Exercise exercise)
+    {
+        throw new NotImplementedException();
+    }
+    // Remove exercise
+    public void RemoveExercise(string exerciseName)
+    {
+        throw new NotImplementedException();
+    }
+
     // Goal
 
     // Get Goal
@@ -141,6 +164,11 @@ public class MockDao : IDao
             Carbs = 313,
             Fat = 69
         };
+    }
+    // Update goal
+    public void UpdateGoal(Goal goal)
+    {
+        throw new NotImplementedException();
     }
 
     private List<User> UserList { get; set; } =

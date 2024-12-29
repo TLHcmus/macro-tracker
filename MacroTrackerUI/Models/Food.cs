@@ -19,7 +19,7 @@ public class Food : INotifyPropertyChanged
     public (double Calories, double Protein, double Carbs, double Fat) GetNutrition(double grams)
     {
         double factor = grams / 100;
-        return (CaloriesPer100g * grams, ProteinPer100g * grams, CarbsPer100g * grams, FatPer100g * grams);
+        return (CaloriesPer100g * factor, ProteinPer100g * factor, CarbsPer100g * factor, FatPer100g * factor);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
