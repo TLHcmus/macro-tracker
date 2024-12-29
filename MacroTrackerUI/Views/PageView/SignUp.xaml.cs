@@ -90,7 +90,7 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void Username_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (ViewModel.Username is null | ViewModel.Username == "")
+        if (string.IsNullOrEmpty(ViewModel.Username))
         {
             UsernamePrompt.Text = "Username cannot be empty!";
             UsernamePrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
@@ -118,7 +118,7 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void Password_TextChanged(object sender, RoutedEventArgs e)
     {
-        if (ViewModel.Password is null | ViewModel.Password == "")
+        if (string.IsNullOrEmpty(ViewModel.Password))
         {
             PasswordPrompt.Text = "Password cannot be empty!";
             PasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
@@ -146,7 +146,7 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void ReenteredPassword_PasswordChanged(object sender, RoutedEventArgs e)
     {
-        if (ViewModel.ReenteredPassword is null | ViewModel.ReenteredPassword == "")
+        if (string.IsNullOrEmpty(ViewModel.ReenteredPassword))
         {
             ReenteredPasswordPrompt.Text = "Reentered password cannot be empty!";
             ReenteredPasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);

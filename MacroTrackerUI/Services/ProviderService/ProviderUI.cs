@@ -11,6 +11,9 @@ namespace MacroTrackerUI.Services.ProviderService
     /// </summary>
     public static class ProviderUI
     {
+        /// <summary>
+        /// The configured service provider.
+        /// </summary>
         private static readonly ServiceProvider serviceProvider = SetUpDependencyInjection();
 
         /// <summary>

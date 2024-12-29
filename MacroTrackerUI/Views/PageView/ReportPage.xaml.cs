@@ -8,6 +8,9 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class ReportPage : Page
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ReportPage"/> class.
+    /// </summary>
     public ReportPage()
     {
         this.InitializeComponent();

@@ -7,17 +7,31 @@ using System.ComponentModel;
 
 namespace MacroTrackerUI.ViewModels;
 
+/// <summary>
+/// ViewModel for managing exercises.
+/// </summary>
 public class ExerciseViewModel : INotifyPropertyChanged
 {
+    /// <summary>
+    /// Gets or sets the collection of exercises.
+    /// </summary>
     public ObservableCollection<Exercise> Exercises { get; set; }
 
-    private DaoSender Dao { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    /// <summary>
+    /// Gets the data access object for sending data.
+    /// </summary>
+    private DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExerciseViewModel"/> class.
+    /// </summary>
     public ExerciseViewModel()
     {
         Exercises = new ObservableCollection<Exercise>(Dao.GetExercises());
     }
 
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 }

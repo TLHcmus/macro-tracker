@@ -55,7 +55,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// </returns>
     public bool? IsSignUpValid(out string promptMessage)
     {
-        if (Username == "" || Username == null)
+        if (string.IsNullOrEmpty(Username))
         {
             promptMessage = null;
             return null;
@@ -90,9 +90,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the password is strong; otherwise, false.</returns>
     public bool IsPasswordStrong()
     {
-        if (Password == null || Password.Length < 8)
-            return false;
-        return true;
+        return Password != null && Password.Length >= 8;
     }
 
     /// <summary>
@@ -101,9 +99,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the username exists; otherwise, false.</returns>
     public bool DoesUsernameExist()
     {
-        if (Username == null || Username == "" || Dao.DoesUsernameExist(Username))
-            return true;
-        return false;
+        return string.IsNullOrEmpty(Username) || Dao.DoesUsernameExist(Username);
     }
 
     /// <summary>
@@ -112,9 +108,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the passwords match; otherwise, false.</returns>
     public bool DoPasswordsMatch()
     {
-        if (Password == ReenteredPassword)
-            return true;
-        return false;
+        return Password == ReenteredPassword;
     }
 
     /// <summary>
@@ -128,9 +122,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// </summary>
     public void AddUser()
     {
-        // Ma hoa mat khau
         string encryptedPassword = PasswordEncryptionHandle.EncryptPasswordToDatabase(Password);
-
-        Dao.AddUser((Username, Password));
+        Dao.AddUser((Username, encryptedPassword));
     }
 }

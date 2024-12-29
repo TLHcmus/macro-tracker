@@ -24,15 +24,25 @@ namespace MacroTrackerUI.Views.PageView
     /// </summary>
     public sealed partial class EditGoalPage : Page
     {
+        /// <summary>
+        /// Gets or sets the current goal being edited.
+        /// </summary>
         public Goal CurrentGoal { get; set; }
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditGoalPage"/> class.
+        /// </summary>
         public EditGoalPage()
         {
             this.InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Handles the click event of the Confirm button.
+        /// Updates the current goal with the input values and navigates to the goals page.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         public void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentGoal.Calories = int.Parse(CaloriesInput.Text);
@@ -48,6 +58,10 @@ namespace MacroTrackerUI.Views.PageView
             Frame.Navigate(typeof(GoalsPage), CurrentGoal);
         }
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

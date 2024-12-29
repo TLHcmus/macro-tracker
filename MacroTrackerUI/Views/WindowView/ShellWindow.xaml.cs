@@ -4,10 +4,13 @@ using Microsoft.UI.Xaml;
 namespace MacroTrackerUI.Views.WindowView
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// Represents the main window of the application.
     /// </summary>
     public sealed partial class ShellWindow : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShellWindow"/> class.
+        /// </summary>
         public ShellWindow()
         {
             this.InitializeComponent();

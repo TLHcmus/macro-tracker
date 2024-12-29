@@ -13,15 +13,14 @@ public class PasswordEncryptionReceiver
     /// <summary>
     /// Gets or sets the password encryption service.
     /// </summary>
-    IPasswordEncryption Encryptor { get; set; }
+    private IPasswordEncryption Encryptor { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PasswordEncryptionReceiver"/> class.
     /// </summary>
     public PasswordEncryptionReceiver()
     {
-        Encryptor =
-            ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
+        Encryptor = ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
     }
 
     /// <summary>
@@ -29,22 +28,24 @@ public class PasswordEncryptionReceiver
     /// </summary>
     /// <param name="service">The password encryption service.</param>
     public PasswordEncryptionReceiver(IPasswordEncryption service)
-        => Encryptor = service;
+    {
+        Encryptor = service;
+    }
 
     /// <summary>
     /// Encrypts the password using DataProtection API for local storage.
     /// </summary>
-    /// <param name="rawPassword">The raw password to encrypt.</param>
+    /// <param name="rawPasswordJson">The raw password in JSON format to encrypt.</param>
     /// <returns>
     /// A JSON string containing a pair of strings: the first string is the encrypted password in base64 and the second string is the entropy in base64.
     /// </returns>
-    /// <exception cref="PlatformNotSupportedException">Thrown when the platform is not Windows.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the raw password is null.</exception>
     public string EncryptPasswordToLocalStorage(string rawPasswordJson)
     {
-        string rawPassword = JsonSerializer.Deserialize<string>(rawPasswordJson); 
+        string rawPassword = JsonSerializer.Deserialize<string>(rawPasswordJson);
         if (rawPassword == null)
         {
-            throw new ArgumentNullException();
+            throw new ArgumentNullException(nameof(rawPassword));
         }
 
         JsonSerializerOptions options = new()
@@ -63,14 +64,14 @@ public class PasswordEncryptionReceiver
     /// </summary>
     /// <param name="passwordJson">The JSON string containing the encrypted password and entropy in base64.</param>
     /// <returns>A JSON string containing the raw password.</returns>
-    /// <exception cref="PlatformNotSupportedException">Thrown when the platform is not Windows.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the encrypted password or entropy is null.</exception>
     public string DecryptPasswordFromLocalStorage(string passwordJson)
     {
         JsonSerializerOptions options = new()
         {
             IncludeFields = true // Enables serialization of fields
         };
-        (string encryptedPasswordInBase64, string entropyInBase64) = 
+        (string encryptedPasswordInBase64, string entropyInBase64) =
             JsonSerializer.Deserialize<(string, string)>(passwordJson, options);
 
         if (encryptedPasswordInBase64 == null || entropyInBase64 == null)
@@ -83,12 +84,17 @@ public class PasswordEncryptionReceiver
         );
     }
 
-    // Encrypt Password to Database
+    /// <summary>
+    /// Encrypts the password for database storage.
+    /// </summary>
+    /// <param name="rawPassword">The raw password to encrypt.</param>
+    /// <returns>The encrypted password in a format suitable for database storage.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the raw password is null.</exception>
     public string EncryptPasswordToDatabase(string rawPassword)
     {
         if (rawPassword == null)
         {
-            throw new ArgumentNullException();
+            throw new ArgumentNullException(nameof(rawPassword));
         }
 
         return Encryptor.EncryptPasswordToDatabase(rawPassword);

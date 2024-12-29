@@ -3,7 +3,7 @@
 namespace MacroTrackerUI.Services.PathService;
 
 /// <summary>
-/// This class is used to register important assets path
+/// This class is used to register important assets path.
 /// </summary>
 public class AssetsPathRegistry
 {

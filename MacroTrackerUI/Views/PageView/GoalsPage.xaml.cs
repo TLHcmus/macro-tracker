@@ -12,10 +12,14 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class GoalsPage : Page
 {
-    public GoalsViewModel ViewModel
-    {
-        get; set;
-    }
+    /// <summary>
+    /// Gets or sets the ViewModel for managing goals.
+    /// </summary>
+    public GoalsViewModel ViewModel { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GoalsPage"/> class.
+    /// </summary>
     public GoalsPage()
     {
         this.InitializeComponent();
@@ -23,12 +27,20 @@ public sealed partial class GoalsPage : Page
         ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
-    // Edit goal click event handler
+    /// <summary>
+    /// Handles the click event for editing a goal.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void EditGoal_Click(object sender, RoutedEventArgs e)
     {
         Frame.Navigate(typeof(EditGoalPage), ViewModel.CurrentGoal);
     }
 
+    /// <summary>
+    /// Called when the page is navigated to.
+    /// </summary>
+    /// <param name="e">The event data that contains the navigation parameter.</param>
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);

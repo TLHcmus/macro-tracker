@@ -9,18 +9,31 @@ using System.Diagnostics;
 
 namespace MacroTrackerUI.ViewModels;
 
+/// <summary>
+/// ViewModel for managing goals.
+/// </summary>
 public class GoalsViewModel : INotifyPropertyChanged
 {
-    public Goal CurrentGoal;
+    /// <summary>
+    /// Gets or sets the current goal.
+    /// </summary>
+    public Goal CurrentGoal { get; set; }
 
-    private DaoSender Dao { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    /// <summary>
+    /// Gets the data access object sender.
+    /// </summary>
+    private DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GoalsViewModel"/> class.
+    /// </summary>
     public GoalsViewModel()
     {
         CurrentGoal = Dao.GetGoal();
     }
 
-
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 }

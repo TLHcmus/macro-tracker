@@ -5,27 +5,59 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MacroTrackerCore.Data;
 
+/// <summary>
+/// Represents the database context for the MacroTracker application.
+/// </summary>
 public partial class MacroTrackerContext : DbContext
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MacroTrackerContext"/> class.
+    /// </summary>
+    /// <param name="options">The options to be used by a <see cref="DbContext"/>.</param>
     public MacroTrackerContext(DbContextOptions<MacroTrackerContext> options)
         : base(options)
     {
     }
 
+    /// <summary>
+    /// Gets or sets the Exercises DbSet.
+    /// </summary>
     public virtual DbSet<Exercise> Exercises { get; set; }
 
+    /// <summary>
+    /// Gets or sets the Foods DbSet.
+    /// </summary>
     public virtual DbSet<Food> Foods { get; set; }
 
+    /// <summary>
+    /// Gets or sets the Goals DbSet.
+    /// </summary>
     public virtual DbSet<Goal> Goals { get; set; }
 
+    /// <summary>
+    /// Gets or sets the Logs DbSet.
+    /// </summary>
     public virtual DbSet<Log> Logs { get; set; }
 
+    /// <summary>
+    /// Gets or sets the LogExerciseItems DbSet.
+    /// </summary>
     public virtual DbSet<LogExerciseItem> LogExerciseItems { get; set; }
 
+    /// <summary>
+    /// Gets or sets the LogFoodItems DbSet.
+    /// </summary>
     public virtual DbSet<LogFoodItem> LogFoodItems { get; set; }
 
+    /// <summary>
+    /// Gets or sets the Users DbSet.
+    /// </summary>
     public virtual DbSet<User> Users { get; set; }
 
+    /// <summary>
+    /// Configures the schema needed for the context.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -176,5 +208,9 @@ public partial class MacroTrackerContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    /// <summary>
+    /// A partial method that can be used to configure the model further.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

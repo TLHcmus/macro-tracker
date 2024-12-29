@@ -5,9 +5,20 @@ using System.Diagnostics;
 
 namespace MacroTrackerCore.Data;
 
+/// <summary>
+/// Represents the database context for the MacroTracker application.
+/// </summary>
 public partial class MacroTrackerContext : DbContext
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MacroTrackerContext"/> class.
+    /// </summary>
     public MacroTrackerContext() { }
+
+    /// <summary>
+    /// Configures the database context options.
+    /// </summary>
+    /// <param name="optionsBuilder">The options builder to be configured.</param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)

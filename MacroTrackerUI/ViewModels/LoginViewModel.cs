@@ -25,14 +25,12 @@ public class LoginViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object sender.
     /// </summary>
-    public DaoSender Dao { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    public DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
     /// <summary>
     /// Gets the password encryption sender.
     /// </summary>
-    public PasswordEncryptionSender EncryptionSender { get; } =
-        ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
+    public PasswordEncryptionSender EncryptionSender { get; } = ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
 
     /// <summary>
     /// Occurs when a property value changes.
@@ -47,9 +45,7 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </returns>
     public bool DoesUserMatchPassword()
     {
-        if (Dao.DoesUserMatchPassword(Username, Password))
-            return true;
-        return false;
+        return Dao.DoesUserMatchPassword(Username, Password);
     }
 
     /// <summary>
@@ -60,8 +56,6 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </returns>
     public bool LoginInfoNull()
     {
-        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
-            return true;
-        return false;
+        return string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password);
     }
 }

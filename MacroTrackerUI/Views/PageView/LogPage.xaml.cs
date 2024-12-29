@@ -16,8 +16,14 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class LogPage : Page
 {
+    /// <summary>
+    /// Gets or sets the ViewModel for managing logs.
+    /// </summary>
     private LogViewModel ViewModel { get; set; } = new LogViewModel();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogPage"/> class.
+    /// </summary>
     public LogPage()
     {
         this.InitializeComponent();
@@ -28,6 +34,11 @@ public sealed partial class LogPage : Page
         ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
+    /// <summary>
+    /// Handles the click event of the AddLogButton.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void AddLogButton_Click(object sender, RoutedEventArgs e)
     {
         DateTime date = DateTime.Now;
@@ -50,9 +61,12 @@ public sealed partial class LogPage : Page
                 LogExerciseItems = []
             }
         );
-        return;
     }
 
+    /// <summary>
+    /// Deletes a log by its ID.
+    /// </summary>
+    /// <param name="ID">The ID of the log to delete.</param>
     private void DeleteLog(int ID)
     {
         ViewModel.DeleteLog(ID);
@@ -61,16 +75,31 @@ public sealed partial class LogPage : Page
             ViewModel.GetNextLogsItem(ViewModel.PagingSize - ViewModel.LogList.Count);
     }
 
+    /// <summary>
+    /// Deletes a log food item by log date ID and log ID.
+    /// </summary>
+    /// <param name="logDateID">The log date ID.</param>
+    /// <param name="logID">The log ID.</param>
     private void DeleteLogFood(int logDateID, int logID)
     {
         ViewModel.DeleteLogFood(logDateID, logID);
     }
 
+    /// <summary>
+    /// Deletes a log exercise item by log date ID and log ID.
+    /// </summary>
+    /// <param name="logDateID">The log date ID.</param>
+    /// <param name="logID">The log ID.</param>
     private void DeleteLogExercise(int logDateID, int logID)
     {
         ViewModel.DeleteLogExercise(logDateID, logID);
     }
 
+    /// <summary>
+    /// Handles the Loaded event of the LogsListView.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void LogsListView_Loaded(object sender, RoutedEventArgs e)
     {
         Border border = VisualTreeHelper.GetChild(LogsListView, 0) as Border;
@@ -82,6 +111,11 @@ public sealed partial class LogPage : Page
         }
     }
 
+    /// <summary>
+    /// Handles the ViewChanged event of the ScrollViewer.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
     {
         var scrollViewer = sender as ScrollViewer;
@@ -91,15 +125,20 @@ public sealed partial class LogPage : Page
         }
     }
 
+    /// <summary>
+    /// Called when scrolled to the end.
+    /// </summary>
     private void OnScrollToEnd()
     {
-        // Trigger the event or perform the action when scrolled to the end
         ViewModel.GetNextLogsPage();
     }
 
-    private void CalenderViewFlyout_SelectedDatesChanged(
-        CalendarView sender, 
-        CalendarViewSelectedDatesChangedEventArgs args)
+    /// <summary>
+    /// Handles the SelectedDatesChanged event of the CalendarViewFlyout.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="args">The event data.</param>
+    private void CalenderViewFlyout_SelectedDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
     {
         if (args.AddedDates.Count == 1)
         {
@@ -114,6 +153,11 @@ public sealed partial class LogPage : Page
         }
     }
 
+    /// <summary>
+    /// Handles the click event of the TodayButton.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private void TodayButton_Click(object sender, RoutedEventArgs e)
     {
         DateTime date = DateTime.Now;

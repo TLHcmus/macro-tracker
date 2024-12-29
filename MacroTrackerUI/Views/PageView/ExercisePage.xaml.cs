@@ -11,7 +11,14 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class ExercisePage : Page
 {
+    /// <summary>
+    /// Gets or sets the ViewModel for managing exercises.
+    /// </summary>
     private ExerciseViewModel ViewModel { get; set; } = new ExerciseViewModel();
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExercisePage"/> class.
+    /// </summary>
     public ExercisePage()
     {
         this.InitializeComponent();

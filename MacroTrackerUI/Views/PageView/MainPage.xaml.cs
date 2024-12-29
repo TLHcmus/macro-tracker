@@ -8,6 +8,9 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class MainPage : Page
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainPage"/> class.
+    /// </summary>
     public MainPage()
     {
         this.InitializeComponent();
@@ -16,10 +19,10 @@ public sealed partial class MainPage : Page
     }
 
     /// <summary>
-    /// Event handler for when the navigation view selection changes
+    /// Event handler for when the navigation view selection changes.
     /// </summary>
-    /// <param name="sender"></param> 
-    /// <param name="args"></param>
+    /// <param name="sender">The sender object.</param>
+    /// <param name="args">The event arguments.</param>
     private void Nv_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItemContainer != null)
@@ -28,7 +31,7 @@ public sealed partial class MainPage : Page
             if (args.IsSettingsSelected)
             {
                 ContentFrame.Navigate(typeof(SettingsPage));
-                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent; ;
+                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent;
                 return;
             }
 
@@ -46,6 +49,9 @@ public sealed partial class MainPage : Page
         }
     }
 
+    /// <summary>
+    /// Event handler for the logout click event in the settings page.
+    /// </summary>
     private void Setting_LogOutClickEvent()
     {
         while (Frame.CanGoBack)

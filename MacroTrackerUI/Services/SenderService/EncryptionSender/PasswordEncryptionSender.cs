@@ -10,8 +10,15 @@ namespace MacroTrackerUI.Services.SenderService.EncryptionSender;
 /// </summary>
 public class PasswordEncryptionSender
 {
-    private PasswordEncryptionReceiver Receiver =
-        ProviderUI.GetServiceProvider().GetRequiredService<PasswordEncryptionReceiver>();
+    private readonly PasswordEncryptionReceiver _receiver;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PasswordEncryptionSender"/> class.
+    /// </summary>
+    public PasswordEncryptionSender()
+    {
+        _receiver = ProviderUI.GetServiceProvider().GetRequiredService<PasswordEncryptionReceiver>();
+    }
 
     /// <summary>
     /// Decrypts the password from local storage.
@@ -30,7 +37,7 @@ public class PasswordEncryptionSender
             options
         );
 
-        string jsonResult = Receiver.DecryptPasswordFromLocalStorage(passwordJsonSend);
+        string jsonResult = _receiver.DecryptPasswordFromLocalStorage(passwordJsonSend);
         return JsonSerializer.Deserialize<string>(jsonResult);
     }
 
@@ -41,7 +48,7 @@ public class PasswordEncryptionSender
     /// <returns>A tuple containing the encrypted password and entropy, both in base64 format.</returns>
     public (string, string) EncryptPasswordToLocalStorage(string rawPassword)
     {
-        string jsonResult = Receiver.EncryptPasswordToLocalStorage(JsonSerializer.Serialize(rawPassword));
+        string jsonResult = _receiver.EncryptPasswordToLocalStorage(JsonSerializer.Serialize(rawPassword));
 
         JsonSerializerOptions options = new()
         {
@@ -50,11 +57,13 @@ public class PasswordEncryptionSender
         return JsonSerializer.Deserialize<(string, string)>(jsonResult, options);
     }
 
-    // Encrypt Password to Database
+    /// <summary>
+    /// Encrypts the password for database storage.
+    /// </summary>
+    /// <param name="rawPassword">The raw password to encrypt.</param>
+    /// <returns>The encrypted password in a format suitable for database storage.</returns>
     public string EncryptPasswordToDatabase(string rawPassword)
     {
-        return Receiver.EncryptPasswordToDatabase(rawPassword);
+        return _receiver.EncryptPasswordToDatabase(rawPassword);
     }
-
-
 }
