@@ -12,7 +12,7 @@
         <!--Error message-->
         <TextBlock x:Name="NameErrorTextBlock" FontSize="12" Visibility="Collapsed" Margin="0,-10,0,5" Foreground="Red" FontStyle="Italic"/>
 
-        <TextBlock Text="Calories burned" />
+        <TextBlock Text="Calories burned per minute" />
         <TextBox x:Name="CaloriesTextBox" PlaceholderText="Enter calories" Margin="0,5,0,16"/>
         <!--Error message-->
         <TextBlock x:Name="CaloriesErrorTextBlock" FontSize="12" Visibility="Collapsed" Margin="0,-10,0,5" Foreground="Red" FontStyle="Italic"/>

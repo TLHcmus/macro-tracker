@@ -16,45 +16,47 @@
               RelativePanel.AlignBottomWithPanel="True"
               RelativePanel.AlignTopWithPanel="True">
             <StackPanel>
-                <TextBlock Text="TDEE Calculator" FontSize="24" Margin="0,0,0,20"/>
+                <TextBlock Text="TDEE Calculator" FontSize="26" FontWeight="Bold" Padding="36,40,0,20"/>
 
-            <TextBlock Text="Weight (kg):"/>
-            <TextBox x:Name="WeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter weight"/>
+                <StackPanel Padding="36,0,0,0">
+                    <TextBlock Text="Weight (kg):" Margin="0,0,0,5"/>
+                    <TextBox x:Name="WeightTextBox" Margin="0,0,0,16" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter weight"/>
 
-            <TextBlock Text="Height (cm):"/>
-            <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter heigth"/>
+                    <TextBlock Text="Height (cm):" Margin="0,0,0,5"/>
+                    <TextBox x:Name="HeightTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter heigth"/>
 
-            <TextBlock Text="Age:"/>
-            <TextBox x:Name="AgeTextBox" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter Age"/>
+                    <TextBlock Text="Age:" Margin="0,0,0,5"/>
+                    <TextBox x:Name="AgeTextBox" Margin="0,0,0,16" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter Age"/>
 
-            <TextBlock Text="Gender:"/>
-            <ComboBox x:Name="GenderComboBox" Margin="0,0,0,10" 
-                        SelectedValue="{x:Bind ViewModel.Gender, Mode=TwoWay}" 
-                        SelectedValuePath="Content">
-                <ComboBoxItem Content="Male"/>
-                <ComboBoxItem Content="Female"/>
-            </ComboBox>
+                    <TextBlock Text="Gender:" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="GenderComboBox" Margin="0,0,0,16" 
+                                SelectedValue="{x:Bind ViewModel.Gender, Mode=TwoWay}" 
+                                SelectedValuePath="Content">
+                        <ComboBoxItem Content="Male"/>
+                        <ComboBoxItem Content="Female"/>
+                    </ComboBox>
 
-                <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <RadioButton Content="Male" GroupName="GenderGroup" 
-                         IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
-                    <RadioButton Content="Female" GroupName="GenderGroup" 
-                         IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
-                </StackPanel>-->
+                    <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <RadioButton Content="Male" GroupName="GenderGroup" 
+                             IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
+                        <RadioButton Content="Female" GroupName="GenderGroup" 
+                             IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
+                    </StackPanel>-->
 
-                <TextBlock Text="Activity Level:"/>
-            <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,20" 
-                        SelectedValue="{x:Bind ViewModel.ActivityLevel, Mode=TwoWay}" 
-                        SelectedValuePath="Tag">
-                <ComboBoxItem Content="Sedentary: little or no exercise" Tag="Sedentary"/>
-                <ComboBoxItem Content="Lightly Active: exercise 1-3 times/week" Tag="Lightly Active"/>
-                <ComboBoxItem Content="Moderately Active: exercise 4-5 times/week" Tag="Moderately Active"/>
-                <ComboBoxItem Content="Very Active: exercise 6-7 times/week" Tag="Very Active"/>
-                <ComboBoxItem Content="Super Active: very intense exercise daily" Tag="Super Active"/>
-            </ComboBox>
+                    <TextBlock Text="Activity Level:" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,16" 
+                                SelectedValue="{x:Bind ViewModel.ActivityLevel, Mode=TwoWay}" 
+                                SelectedValuePath="Tag">
+                        <ComboBoxItem Content="Sedentary: little or no exercise" Tag="Sedentary"/>
+                        <ComboBoxItem Content="Lightly Active: exercise 1-3 times/week" Tag="Lightly Active"/>
+                        <ComboBoxItem Content="Moderately Active: exercise 4-5 times/week" Tag="Moderately Active"/>
+                        <ComboBoxItem Content="Very Active: exercise 6-7 times/week" Tag="Very Active"/>
+                        <ComboBoxItem Content="Super Active: very intense exercise daily" Tag="Super Active"/>
+                    </ComboBox>
 
-                <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
-                <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
+                    <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
+                    <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
 
