@@ -6,30 +6,42 @@ namespace MacroTrackerUI.ViewModels;
 
 public partial class CalculatorViewModel
 {
-        public HealthInfo HealthInfo { get; set; }
+    // Health Info
+    public int Age
+    {
+        get; set;
+    }
+    public int Weight
+    {
+        get; set;
+    }
+    public int Height
+    {
+        get; set;
+    }
+    public string ActivityLevel
+    {
+        get; set;
+    }
+    public string Gender { get; set; }
 
-        public CalculatorViewModel()
-        {
-            HealthInfo = new HealthInfo();
-        }
-
-        // TDEE Calculation
-        public double CalculateTDEE()
-        {
+    // TDEE Calculation
+    public double CalculateTDEE()
+    {
             double tdee = 0;
             double bmr = 0;
 
-            if (HealthInfo.Gender == "Male")
+            if (Gender == "Male")
             {
-                bmr = 10 * HealthInfo.Weight + 6.25 * HealthInfo.Height - 5 * HealthInfo.Age + 5;
+                bmr = 10 * Weight + 6.25 * Height - 5 * Age + 5;
             }
-            else
+            else 
             {
-                bmr = 10 * HealthInfo.Weight + 6.25 * HealthInfo.Height - 5 * HealthInfo.Age - 161;
+                bmr = 10 * Weight + 6.25 * Height - 5 * Age - 161;
             }
 
             double activityMultiplier = 1.2; // Default value for sedentary
-            switch (HealthInfo.ActivityLevel)
+            switch (ActivityLevel)
             {
                 case "Lightly Active":
                     activityMultiplier = 1.375;
@@ -47,6 +59,6 @@ public partial class CalculatorViewModel
 
             tdee = bmr * activityMultiplier;
             return tdee;
-        }
+    }
     
 }

@@ -1,0 +1,34 @@
+<ContentDialog x:Class="MacroTrackerUI.Views.DialogView.EditGoalDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="using:MacroTrackerUI.Views.DialogView"
+               Title="Edit your goal"
+               PrimaryButtonText="Confirm"
+               CloseButtonText="Cancel"
+               CornerRadius="{StaticResource OverlayCornerRadius}">
+
+    <StackPanel>
+        <TextBlock Text="Calories:" FontWeight="Bold" />
+        <TextBox Name="CaloriesTextBox" PlaceholderText="Enter calories" Margin="0,5"/>
+        <!--Error Message-->
+        <TextBlock x:Name="CaloriesErrorTextBlock" FontSize="12" Visibility="Collapsed" Foreground="Red" FontStyle="Italic"/>
+        
+        <TextBlock Text="Macronutrients Percentage (Optional):" FontWeight="Bold" Margin="0,5,0,10"/>
+        
+        <TextBlock Text="Protein (%):" />
+        <TextBox Name="ProteinTextBox" PlaceholderText="Enter protein percentage" Margin="0, 5"/>
+        <!--Error Message-->
+        <TextBlock x:Name="ProteinErrorTextBlock" FontSize="12" Visibility="Collapsed" Margin="0,0,0,5" Foreground="Red" FontStyle="Italic"/>
+        
+        <TextBlock Text="Carbs (%):" />
+        <TextBox Name="CarbsTextBox" PlaceholderText="Enter carbs percentage" Margin="0, 5"/>
+        <!--Error Message-->
+        <TextBlock x:Name="CarbsErrorTextBlock" FontSize="12" Visibility="Collapsed" Margin="0,0,0,5" Foreground="Red" FontStyle="Italic"/>
+        
+        <TextBlock Text="Fat (%):" />
+        <TextBox Name="FatTextBox" PlaceholderText="Enter fat percentage" Margin="0, 5"/>
+        <!--Error Message-->
+        <TextBlock x:Name="FatErrorTextBlock" FontSize="12" Visibility="Collapsed" Margin="0,0,0,5" Foreground="Red" FontStyle="Italic"/>
+ 
+    </StackPanel>
+</ContentDialog>

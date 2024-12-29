@@ -2,6 +2,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using System;
+using Windows.Gaming.Input.ForceFeedback;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -31,9 +33,47 @@ public sealed partial class CalculatorPage : Page
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event data.</param>
-    private void CalculateButton_Click(object sender, RoutedEventArgs e)
+    private async void CalculateButton_Click(object sender, RoutedEventArgs e)
     {
-        int tdee = (int)ViewModel.CalculateTDEE();
-        ResultTextBlock.Text = $"Your Maintenance Calories is {tdee} calories per day";
+        // Missing value
+        if (string.IsNullOrWhiteSpace(WeightTextBox.Text) ||
+            string.IsNullOrWhiteSpace(HeightTextBox.Text) ||
+            string.IsNullOrWhiteSpace(AgeTextBox.Text) || 
+            ActivityLevelComboBox.SelectedItem == null ||
+            GenderComboBox.SelectedItem == null)
+        {
+            // Tao va hien thi thong bao loi
+            ContentDialog errorDialog = new ContentDialog
+            {
+                Title = "Missing Information",
+                Content = "Please enter all values.",
+                CloseButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
+            await errorDialog.ShowAsync();
+        }
+        // Valid
+        else if (int.TryParse(WeightTextBox.Text, out int weight) && int.TryParse(HeightTextBox.Text, out int height) && int.TryParse(AgeTextBox.Text, out int age)) 
+        {
+            ViewModel.Weight = weight;
+            ViewModel.Height = height;
+            ViewModel.Age = age;
+
+            int tdee = (int)ViewModel.CalculateTDEE();
+            ResultTextBlock.Text = $"Your Maintaince Calories is {tdee} calories.";
+        }
+        // Invalid value
+        else
+        {
+            // Tao va hien thi thong bao loi
+            ContentDialog errorDialog = new ContentDialog
+            {
+                Title = "Invalid Information",
+                Content = "Please enter valid values.",
+                CloseButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
+            await errorDialog.ShowAsync();
+        }
     }
 }

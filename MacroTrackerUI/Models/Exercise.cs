@@ -10,5 +10,11 @@ public class Exercise : INotifyPropertyChanged
 
     public string IconFileName { get; set; }
 
+    // Get calories burned
+    public double GetCaloriesBurned(double duration)
+    {
+        return CaloriesPerMinute * duration;
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 }

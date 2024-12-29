@@ -2,15 +2,15 @@
 public class HealthInfo
 {
     // Health Info
-    public int Age
+    public int? Age
     {
         get; set;
     }
-    public int Weight
+    public int? Weight
     {
         get; set;
     }
-    public int Height
+    public int? Height
     {
         get; set;
     }

@@ -16,6 +16,12 @@ public interface IDao
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     List<Food> GetFoods();
 
+    // Add food
+    void AddFood(Food food);
+
+    // Remove food
+    void RemoveFood(string foodName);
+
     // Exercise
 
     /// <summary>
@@ -23,14 +29,19 @@ public interface IDao
     /// </summary>
     /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     List<Exercise> GetExercises();
-
     
+    // Add exercise
+    void AddExercise(Exercise exercise);
+    // Remove exercise
+    void RemoveExercise(string exerciseName);
+
 
     // Goal
 
     // Get goal
     Goal GetGoal();
-
+    // Update goal
+    void UpdateGoal(Goal goal);
 
 
 
