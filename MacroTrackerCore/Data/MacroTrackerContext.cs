@@ -105,7 +105,7 @@ public partial class MacroTrackerContext : DbContext
 
             entity.ToTable("goal");
 
-            entity.Property(e => e.GoalId).HasColumnName("goal_id");
+            entity.Property(e => e.GoalId).HasColumnName("goal_id").ValueGeneratedOnAdd();
             entity.Property(e => e.Calories).HasColumnName("calories");
             entity.Property(e => e.Carbs).HasColumnName("carbs");
             entity.Property(e => e.Fat).HasColumnName("fat");
@@ -118,7 +118,7 @@ public partial class MacroTrackerContext : DbContext
 
             entity.ToTable("logs");
 
-            entity.Property(e => e.LogId).HasColumnName("log_id");
+            entity.Property(e => e.LogId).HasColumnName("log_id").ValueGeneratedOnAdd();
             entity.Property(e => e.LogDate).HasColumnName("log_date");
             entity.Property(e => e.TotalCalories)
                 .HasDefaultValueSql("'0'")
@@ -135,7 +135,7 @@ public partial class MacroTrackerContext : DbContext
 
             entity.HasIndex(e => e.LogId, "log_id");
 
-            entity.Property(e => e.LogExerciseId).HasColumnName("log_exercise_id");
+            entity.Property(e => e.LogExerciseId).HasColumnName("log_exercise_id").ValueGeneratedOnAdd();
             entity.Property(e => e.Duration).HasColumnName("duration");
             entity.Property(e => e.ExerciseName)
                 .HasColumnName("exercise_name")
@@ -164,7 +164,7 @@ public partial class MacroTrackerContext : DbContext
 
             entity.HasIndex(e => e.LogId, "log_id");
 
-            entity.Property(e => e.LogFoodId).HasColumnName("log_food_id");
+            entity.Property(e => e.LogFoodId).HasColumnName("log_food_id").ValueGeneratedOnAdd();
             entity.Property(e => e.FoodName)
                 .HasColumnName("food_name")
                 .HasCharSet("utf8mb3");

@@ -29,7 +29,7 @@ public class ChatBot
     /// <summary>
     /// Gets the chat history of the chatbot.
     /// </summary>
-    public ChatHistory History { get; private set; } = new ChatHistory();
+    public ChatHistory History { get; private set; } = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ChatBot"/> class.

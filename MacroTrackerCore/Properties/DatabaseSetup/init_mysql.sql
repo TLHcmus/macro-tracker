@@ -23,6 +23,7 @@ create table users (
 
 -- Tao bang goal
 create table goal (
+    goal_id int auto_increment primary key,
 	calories int,
     protein int, 
     carbs int,
@@ -57,8 +58,6 @@ create table log_exercise_items (
     foreign key (log_id) references logs(log_id) on delete cascade,
     foreign key (exercise_name) references exercises(name) on delete cascade
 );
-
-
 
 -- Them data vao bang exercises
 insert into exercises (name, calories_per_minute, icon_file_name)

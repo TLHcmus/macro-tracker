@@ -1,12 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
-using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using MacroTrackerCore.Services.ConfigurationService;
 
 namespace MacroTrackerCore.Services.DataAccessService;
@@ -17,14 +14,33 @@ namespace MacroTrackerCore.Services.DataAccessService;
 public class DatabaseDao : IDao
 {
     private readonly MacroTrackerContext _context;
+    public IPasswordEncryption PasswordEncryption { get; set; } = 
+        ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DatabaseDao"/> class.
     /// </summary>
     public DatabaseDao()
     {
-
         _context = new MacroTrackerContext();
+    }
+
+    public DatabaseDao(bool isTest)
+    {
+        if (!isTest)
+        {
+            _context = new MacroTrackerContext();
+            return;
+        }
+
+        _context = new MacroTrackerContext("test");
+        _context.Database.EnsureCreated();
+        _context.InitSqliteForTest();
+    }
+
+    ~DatabaseDao()
+    {
+        _context.DisposeSqliteForTest(_context.Database.GetDbConnection()); 
     }
 
     /// <summary>
@@ -33,7 +49,7 @@ public class DatabaseDao : IDao
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     public List<Food> GetFoods()
     {
-        return _context.Foods.ToList();
+        return [.. _context.Foods];
     }
 
     // Add food
@@ -65,7 +81,7 @@ public class DatabaseDao : IDao
     /// <returns>A list of <see cref="Exercise"/> objects.</returns>
     public List<Exercise> GetExercises()
     {
-        return _context.Exercises.ToList();
+        return [.. _context.Exercises];
     }
 
     // Add exercise
@@ -79,13 +95,8 @@ public class DatabaseDao : IDao
     // Remove exercise
     public void RemoveExercise(string exerciseName)
     {
-        var exercise = _context.Exercises.Find(exerciseName);
-
-        if (exercise == null)
-        {
+        var exercise = _context.Exercises.Find(exerciseName) ?? 
             throw new Exception("Exercise not found");
-        }
-
         _context.Exercises.Remove(exercise);
 
         _context.SaveChanges();
@@ -100,7 +111,6 @@ public class DatabaseDao : IDao
         return _context.Goals.FirstOrDefault();
     }
 
-    // Update goal
     public void UpdateGoal(Goal goal)
     {
         var existingGoal = _context.Goals.FirstOrDefault();
@@ -119,16 +129,13 @@ public class DatabaseDao : IDao
         _context.SaveChanges();
     }
 
-
-    // User
-
     /// <summary>
     /// Retrieves a list of users.
     /// </summary>
     /// <returns>A list of <see cref="User"/> objects.</returns>
     public List<User> GetUsers()
     {
-        return _context.Users.ToList();
+        return [.. _context.Users];
     }
 
     /// <summary>
@@ -162,10 +169,7 @@ public class DatabaseDao : IDao
         if (indexUsername == -1)
             return false;
 
-        IPasswordEncryption passwordEncryption =
-            ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
-
-        return users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password);
+        return users[indexUsername].EncryptedPassword == PasswordEncryption.EncryptPasswordToDatabase(password);
     }
 
     /// <summary>
@@ -195,11 +199,9 @@ public class DatabaseDao : IDao
     /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetLogs()
     {
-        return _context.Logs
-        .Include(log => log.LogExerciseItems)
-        .Include(log => log.LogFoodItems)
-        .ToList();
-        //return _context.Logs.ToList();
+        return [.. _context.Logs
+                    .Include(log => log.LogExerciseItems)
+                    .Include(log => log.LogFoodItems)];
     }
 
     /// <summary>
@@ -262,11 +264,10 @@ public class DatabaseDao : IDao
     /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
     {
-        return _context.Logs.OrderByDescending(log => log.LogDate)
+        return [.. _context.Logs.OrderByDescending(log => log.LogDate)
                    .Where(log => log.LogDate <= endDate)
                    .Skip(numberItemOffset)
-                   .Take(n)
-                   .ToList();
+                   .Take(n)];
     }
 
     /// <summary>

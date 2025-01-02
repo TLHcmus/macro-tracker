@@ -10,6 +10,8 @@ namespace MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 /// </summary>
 public class PasswordEncryptionReceiver
 {
+    public ServiceProvider ServiceProvider { get; set; }
+
     /// <summary>
     /// Gets or sets the password encryption service.
     /// </summary>
@@ -20,7 +22,14 @@ public class PasswordEncryptionReceiver
     /// </summary>
     public PasswordEncryptionReceiver()
     {
-        Encryptor = ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
+        ServiceProvider = ProviderCore.GetServiceProvider();
+        Encryptor = ServiceProvider.GetRequiredService<IPasswordEncryption>();
+    }
+
+    public PasswordEncryptionReceiver(ServiceProvider serviceProvider)
+    {
+        ServiceProvider = serviceProvider;
+        Encryptor = serviceProvider.GetRequiredService<IPasswordEncryption>();
     }
 
     /// <summary>

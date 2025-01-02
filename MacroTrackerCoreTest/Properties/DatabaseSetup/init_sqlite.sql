@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Table: goal
 CREATE TABLE IF NOT EXISTS goal (
+    goal_id INTEGER PRIMARY KEY AUTOINCREMENT,
     calories INTEGER,
     protein INTEGER, 
     carbs INTEGER,

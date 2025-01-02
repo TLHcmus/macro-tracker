@@ -1,5 +1,6 @@
 ﻿using DotEnv.Core;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
 
@@ -97,6 +98,9 @@ public partial class MacroTrackerContext : DbContext
 
     public void DisposeSqliteForTest(DbConnection connection)
     {
-        connection.Close();
+        if (connection != null && connection.State != ConnectionState.Closed)
+        {
+            connection.Close();
+        }
     }
 }

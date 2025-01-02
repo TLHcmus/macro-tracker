@@ -37,7 +37,7 @@ public interface IDao
     /// </summary>
     /// <returns>A <see cref="Goal"/> object.</returns>
     Goal GetGoal();
-    // Update goal
+
     void UpdateGoal(Goal goal);
 
     /// <summary>
