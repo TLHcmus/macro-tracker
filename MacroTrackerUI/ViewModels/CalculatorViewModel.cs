@@ -9,18 +9,24 @@ namespace MacroTrackerUI.ViewModels;
 /// </summary>
 public partial class CalculatorViewModel
 {
-    /// <summary>
-    /// Gets or sets the health information of the individual.
-    /// </summary>
-    public HealthInfo HealthInfo { get; set; }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CalculatorViewModel"/> class.
-    /// </summary>
-    public CalculatorViewModel()
+    // Health Info
+    public int Age
     {
-        HealthInfo = new HealthInfo();
+        get; set;
     }
+    public int Weight
+    {
+        get; set;
+    }
+    public int Height
+    {
+        get; set;
+    }
+    public string ActivityLevel
+    {
+        get; set;
+    }
+    public string Gender { get; set; }
 
     /// <summary>
     /// Calculates the Total Daily Energy Expenditure (TDEE) based on the individual's health information.
@@ -31,33 +37,34 @@ public partial class CalculatorViewModel
         double tdee = 0;
         double bmr = 0;
 
-        if (HealthInfo.Gender == "Male")
-        {
-            bmr = 10 * HealthInfo.Weight + 6.25 * HealthInfo.Height - 5 * HealthInfo.Age + 5;
-        }
-        else
-        {
-            bmr = 10 * HealthInfo.Weight + 6.25 * HealthInfo.Height - 5 * HealthInfo.Age - 161;
-        }
+            if (Gender == "Male")
+            {
+                bmr = 10 * Weight + 6.25 * Height - 5 * Age + 5;
+            }
+            else 
+            {
+                bmr = 10 * Weight + 6.25 * Height - 5 * Age - 161;
+            }
 
-        double activityMultiplier = 1.2; // Default value for sedentary
-        switch (HealthInfo.ActivityLevel)
-        {
-            case "Lightly Active":
-                activityMultiplier = 1.375;
-                break;
-            case "Moderately Active":
-                activityMultiplier = 1.55;
-                break;
-            case "Very Active":
-                activityMultiplier = 1.725;
-                break;
-            case "Super Active":
-                activityMultiplier = 1.9;
-                break;
-        }
+            double activityMultiplier = 1.2; // Default value for sedentary
+            switch (ActivityLevel)
+            {
+                case "Lightly Active":
+                    activityMultiplier = 1.375;
+                    break;
+                case "Moderately Active":
+                    activityMultiplier = 1.55;
+                    break;
+                case "Very Active":
+                    activityMultiplier = 1.725;
+                    break;
+                case "Super Active":
+                    activityMultiplier = 1.9;
+                    break;
+            }
 
-        tdee = bmr * activityMultiplier;
-        return tdee;
+            tdee = bmr * activityMultiplier;
+            return tdee;
     }
+    
 }

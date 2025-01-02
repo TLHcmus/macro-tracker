@@ -21,4 +21,12 @@ public class Exercise
     /// Gets or sets the file name of the icon representing the exercise.
     /// </summary>
     public string IconFileName { get; set; }
+
+    // Get calories burned
+    public double GetCaloriesBurned(double duration)
+    {
+        return CaloriesPerMinute * duration;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 }

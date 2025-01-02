@@ -5,6 +5,7 @@ using MacroTrackerCore.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MacroTrackerCore.Services.ReceiverService.DataAccessReceiver;
 
@@ -14,7 +15,11 @@ namespace MacroTrackerCore.Services.ReceiverService.DataAccessReceiver;
 public class DaoReceiver
 {
     private IDao Dao { get; } = ProviderCore.GetServiceProvider().GetRequiredService<IDao>();
-    private JsonSerializerOptions Options { get; } = new() { IncludeFields = true };
+    private JsonSerializerOptions Options { get; } = new() 
+    { 
+        IncludeFields = true,
+        
+    };
 
     /// <summary>
     /// Retrieves a list of foods.
@@ -22,8 +27,37 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Food"/> objects.</returns>
     public string GetFoods()
     {
-        return JsonSerializer.Serialize(Dao.GetFoods());
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+
+        return JsonSerializer.Serialize(Dao.GetFoods(), options);
     }
+    // Add food
+    public void AddFood(string foodJson)
+    {
+        Food? food = JsonSerializer.Deserialize<Food>(foodJson);
+        if (food == null)
+        {
+            throw new ArgumentNullException();
+        }
+        Dao.AddFood(food);
+    }
+
+    // Remove food
+    public void RemoveFood(string foodNameJson)
+    {
+        string? foodName = JsonSerializer.Deserialize<string>(foodNameJson);
+        if (foodName == null)
+        {
+            throw new ArgumentNullException();
+        }
+        Dao.RemoveFood(foodName);
+    }
+
 
     /// <summary>
     /// Retrieves a collection of exercises.
@@ -31,7 +65,34 @@ public class DaoReceiver
     /// <returns>A JSON string representing an <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     public string GetExercises()
     {
-        return JsonSerializer.Serialize(Dao.GetExercises());
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+
+        return JsonSerializer.Serialize(Dao.GetExercises(), options);
+    }
+    // Add exercise
+    public void AddExercise(string exerciseJson)
+    {
+        Exercise? exercise = JsonSerializer.Deserialize<Exercise>(exerciseJson);
+        if (exercise == null)
+        {
+            throw new ArgumentNullException();
+        }
+        Dao.AddExercise(exercise);
+    }
+    // Remove exercise
+    public void RemoveExercise(string exerciseNameJson)
+    {
+        string? exerciseName = JsonSerializer.Deserialize<string>(exerciseNameJson);
+        if (exerciseName == null)
+        {
+            throw new ArgumentNullException();
+        }
+        Dao.RemoveExercise(exerciseName);
     }
 
     /// <summary>
@@ -41,6 +102,17 @@ public class DaoReceiver
     public string GetGoal()
     {
         return JsonSerializer.Serialize(Dao.GetGoal());
+    }
+    // Update goal
+    public void UpdateGoal (string goalJson)
+    {
+        Goal? goal = JsonSerializer.Deserialize<Goal>(goalJson);
+        if (goal == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        Dao.UpdateGoal(goal);
     }
 
     /// <summary>
@@ -114,7 +186,16 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Log"/> objects.</returns>
     public string GetLogs()
     {
-        return JsonSerializer.Serialize(Dao.GetLogs(), Options);
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+        return JsonSerializer.Serialize(
+            Dao.GetLogs(),
+            options
+        );
     }
 
     /// <summary>
@@ -168,8 +249,15 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Log"/> objects.</returns>
     public string GetLogWithPagination(string pageOffsetJson)
     {
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+
         (int numberItemOffset, DateOnly endDate) = JsonSerializer.Deserialize<(int, DateOnly)>(pageOffsetJson, Options);
-        return JsonSerializer.Serialize(Dao.GetLogWithPagination(numberItemOffset, endDate));
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(numberItemOffset, endDate), options);
     }
 
     /// <summary>
@@ -179,8 +267,16 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Log"/> objects.</returns>
     public string GetNLogWithPagination(string pageOffsetJson)
     {
-        (int n, int numberItemOffset, DateOnly endDate) = JsonSerializer.Deserialize<(int, int, DateOnly)>(pageOffsetJson, Options);
-        return JsonSerializer.Serialize(Dao.GetLogWithPagination(n, numberItemOffset, endDate));
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+
+        (int n, int numberItemOffset, DateOnly endDate) =
+            JsonSerializer.Deserialize<(int, int, DateOnly)>(pageOffsetJson, Options);
+        return JsonSerializer.Serialize(Dao.GetLogWithPagination(n, numberItemOffset, endDate), options);
     }
 
     /// <summary>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="MacroTrackerUI.Views.PageView.ReportPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,21 +10,39 @@
     mc:Ignorable="d">
 
     <RelativePanel>
-        <Grid RelativePanel.AlignLeftWithPanel="True"
+        <ScrollViewer RelativePanel.AlignLeftWithPanel="True"
               RelativePanel.AlignRightWithPanel="True"
               RelativePanel.AlignBottomWithPanel="True"
               RelativePanel.AlignTopWithPanel="True">
-            <StackPanel>
-                <TextBlock Text="Total Calories by Date" 
-                       FontSize="20" 
-                       HorizontalAlignment="Center" 
-                       Margin="0,10,0,20" />
-                <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Height="700"  />
-            </StackPanel>
-        </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <TextBlock Text="Report" FontSize="26" Padding="36,40,0,36"   FontWeight="Bold"/>
 
+                <StackPanel Grid.Row="1" Padding="36,0,0,0">
+                    <TextBlock Text="Calories" 
+                               FontSize="20" />
+                    <lvc:CartesianChart Series="{Binding CaloriesSeries}" XAxes="{Binding XAxes}"  Height="300" />
+
+                    <TextBlock Text="Protein" 
+                               FontSize="20" />
+                    <lvc:CartesianChart Series="{Binding ProteinSeries}" XAxes="{Binding XAxes}"  Height="300" />
+
+                    <TextBlock Text="Carbs" 
+                               FontSize="20" />
+                    <lvc:CartesianChart Series="{Binding CarbsSeries}" XAxes="{Binding XAxes}"  Height="300" />
+
+                    <TextBlock Text="Fat" 
+                               FontSize="20"/>
+                    <lvc:CartesianChart Series="{Binding FatSeries}" XAxes="{Binding XAxes}"  Height="300" />
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
         <usrctl:ChatBot x:Name="ChatBot"
-                        RelativePanel.AlignBottomWithPanel="True"
-                        RelativePanel.AlignRightWithPanel="True"/>
+                RelativePanel.AlignBottomWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"/>
     </RelativePanel>
 </Page>

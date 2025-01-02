@@ -1,8 +1,8 @@
 using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
+using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 
 namespace MacroTrackerUI.Views.PageView;
@@ -32,22 +32,22 @@ public sealed partial class GoalsPage : Page
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event data.</param>
-    private void EditGoal_Click(object sender, RoutedEventArgs e)
+    private async void EditGoal_Click(object sender, RoutedEventArgs e)
     {
-        Frame.Navigate(typeof(EditGoalPage), ViewModel.CurrentGoal);
-    }
-
-    /// <summary>
-    /// Called when the page is navigated to.
-    /// </summary>
-    /// <param name="e">The event data that contains the navigation parameter.</param>
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
-        base.OnNavigatedTo(e);
-
-        if (e.Parameter is Goal goal)
+        var editGoalDialog = new EditGoalDialog()
         {
-            ViewModel.CurrentGoal = goal;
-        }
+            XamlRoot = this.XamlRoot
+        };
+        // Hien thi diaglog
+        var result = await editGoalDialog.ShowAsync();
+        if(result == ContentDialogResult.Primary) // Neu nhan nut Confirm
+        {
+            var goal = editGoalDialog.GetGoalFromInput();
+
+            if (goal != null)
+            {
+                ViewModel.UpdateGoal(goal);
+            }
     }
+        }
 }

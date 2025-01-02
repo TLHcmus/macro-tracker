@@ -8,6 +8,8 @@ namespace MacroTrackerCore.Entities;
 /// </summary>
 public partial class Goal
 {
+    public int GoalId { get; set; }
+
     /// <summary>
     /// Gets or sets the target number of calories.
     /// </summary>

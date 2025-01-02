@@ -101,10 +101,11 @@ public partial class MacroTrackerContext : DbContext
 
         modelBuilder.Entity<Goal>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("goal");
+            entity.HasKey(e => e.GoalId).HasName("PRIMARY");
 
+            entity.ToTable("goal");
+
+            entity.Property(e => e.GoalId).HasColumnName("goal_id");
             entity.Property(e => e.Calories).HasColumnName("calories");
             entity.Property(e => e.Carbs).HasColumnName("carbs");
             entity.Property(e => e.Fat).HasColumnName("fat");

@@ -19,21 +19,25 @@ public class GoalsViewModel : INotifyPropertyChanged
     /// </summary>
     public Goal CurrentGoal { get; set; }
 
-    /// <summary>
-    /// Gets the data access object sender.
-    /// </summary>
-    private DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
+
+    private DaoSender Sender { get; } =
+        ProviderUI.GetServiceProvider().GetService<DaoSender>();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GoalsViewModel"/> class.
     /// </summary>
     public GoalsViewModel()
     {
-        CurrentGoal = Dao.GetGoal();
+        CurrentGoal = Sender.GetGoal();
     }
 
-    /// <summary>
-    /// Occurs when a property value changes.
-    /// </summary>
+    public void UpdateGoal(Goal goal)
+    {
+        Sender.UpdateGoal(goal);
+
+        CurrentGoal = goal;
+        Debug.WriteLine($"CurrentGoal is changed, Calories: {CurrentGoal.Calories}");
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 }

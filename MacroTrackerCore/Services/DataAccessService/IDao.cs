@@ -13,17 +13,32 @@ public interface IDao
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     List<Food> GetFoods();
 
+    // Add food
+    void AddFood(Food food);
+
+    // Remove food
+    void RemoveFood(string foodName);
+
+    // Exercise
+
     /// <summary>
     /// Retrieves a collection of exercises.
     /// </summary>
     /// <returns>A list of <see cref="Exercise"/> objects.</returns>
     List<Exercise> GetExercises();
     
+    // Add exercise
+    void AddExercise(Exercise exercise);
+    // Remove exercise
+    void RemoveExercise(string exerciseName);
+    
     /// <summary>
     /// Retrieves the goal.
     /// </summary>
     /// <returns>A <see cref="Goal"/> object.</returns>
     Goal GetGoal();
+    // Update goal
+    void UpdateGoal(Goal goal);
 
     /// <summary>
     /// Retrieves a list of users.
