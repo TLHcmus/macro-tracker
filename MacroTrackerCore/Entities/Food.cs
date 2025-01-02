@@ -41,5 +41,5 @@ public partial class Food
     /// <summary>
     /// Gets or sets the collection of log food items associated with the food.
     /// </summary>
-    public virtual ICollection<LogFoodItem> LogFoodItems { get; set; } = new List<LogFoodItem>();
+    public virtual ICollection<LogFoodItem> LogFoodItems { get; set; } = [];
 }

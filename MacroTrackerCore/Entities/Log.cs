@@ -26,10 +26,10 @@ public partial class Log
     /// <summary>
     /// Gets or sets the collection of log exercise items associated with the log.
     /// </summary>
-    public virtual ICollection<LogExerciseItem> LogExerciseItems { get; set; } = new List<LogExerciseItem>();
+    public virtual ICollection<LogExerciseItem> LogExerciseItems { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the collection of log food items associated with the log.
     /// </summary>
-    public virtual ICollection<LogFoodItem> LogFoodItems { get; set; } = new List<LogFoodItem>();
+    public virtual ICollection<LogFoodItem> LogFoodItems { get; set; } = [];
 }

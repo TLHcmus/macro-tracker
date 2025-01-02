@@ -26,5 +26,5 @@ public partial class Exercise
     /// <summary>
     /// Gets or sets the collection of log exercise items associated with the exercise.
     /// </summary>
-    public virtual ICollection<LogExerciseItem> LogExerciseItems { get; set; } = new List<LogExerciseItem>();
+    public virtual ICollection<LogExerciseItem> LogExerciseItems { get; set; } = [];
 }

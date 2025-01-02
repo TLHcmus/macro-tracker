@@ -1,6 +1,6 @@
 ﻿using DotEnv.Core;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 using System.Diagnostics;
 
 namespace MacroTrackerCore.Data;
@@ -10,12 +10,19 @@ namespace MacroTrackerCore.Data;
 /// </summary>
 public partial class MacroTrackerContext : DbContext
 {
-    public string InitPath { get; private set; } = "..\\Properties\\DatabaseSetup\\Init\\init_sqlite.sql";
+    public string InitPathForTest { get; private set; } = "Properties\\DatabaseSetup\\init_sqlite.sql";
+
+    public String Env { get; private set; } = "dev";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MacroTrackerContext"/> class.
     /// </summary>
     public MacroTrackerContext() { }
+
+    public MacroTrackerContext(String env)
+    {
+        Env = env;
+    }
 
     /// <summary>
     /// Configures the database context options.
@@ -36,30 +43,37 @@ public partial class MacroTrackerContext : DbContext
                 password={envVars["DB_PASSWORD"]};
              """;
 
-            if (envVars["ENV"] == "development")
+            if (Env == "dev")
             {
                 Debug.WriteLine($"Development Database.");
                 optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)));
             }
-            else if (envVars["ENV"] == "testing")
+            else if (Env == "test")
             {
                 Debug.WriteLine("Testing Database.");
-                optionsBuilder.UseSqlite("Data Source=:memory:").LogTo(message => Debug.WriteLine(message), Microsoft.Extensions.Logging.LogLevel.Information);
+                optionsBuilder.UseSqlite("Data Source=:memory:");
             }
         }
     }
 
-    public void GenerateSchemaFromFileForTest(Action testMethod)
+    public string GetInitSqlitePathForTest()
     {
         Database.EnsureCreated();
 
-        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, InitPath);
+        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, InitPathForTest);
 
         // Check if the file exists
         if (!File.Exists(path))
         {
             throw new FileNotFoundException($"Schema SQL file not found: {path}");
         }
+
+        return path;
+    }
+
+    public DbConnection InitSqliteForTest()
+    {
+        var path = GetInitSqlitePathForTest();
 
         // Read SQL commands
         var sqlCommands = File.ReadAllText(path);
@@ -78,10 +92,11 @@ public partial class MacroTrackerContext : DbContext
             transaction.Commit();
         }
 
-        // Run the test method
-        testMethod();
+        return connection;
+    }
 
-        // Clean up
+    public void DisposeSqliteForTest(DbConnection connection)
+    {
         connection.Close();
     }
 }

@@ -22,6 +22,7 @@ public class DatabaseDao : IDao
     /// </summary>
     public DatabaseDao()
     {
+
         _context = new MacroTrackerContext();
     }
 
