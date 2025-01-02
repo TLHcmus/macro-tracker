@@ -1,6 +1,3 @@
-create database macro_tracker;
-
-use macro_tracker;
 -- Tao bang foods
 create table foods (
 	name nvarchar(255) primary key,

@@ -36,12 +36,13 @@
     <None Update=".env.example">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Properties\DatabaseSetup\Init\init_sqlite.sql">
+    <None Update="Properties\DatabaseSetup\init_mysql.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Properties\DatabaseSetup\Init\init_mysql.sql">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\DatabaseSetup\Init\" />
   </ItemGroup>
 
 </Project>
