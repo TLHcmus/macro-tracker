@@ -14,7 +14,6 @@
         /// A tuple containing the encrypted password in Base64 format and the entropy used for encryption in Base64 format.
         /// </returns>
         (string EncryptedPassword, string Entropy) EncryptPasswordToLocalStorage(string rawPassword);
-
         /// <summary>
         /// Decrypts the encrypted password from local storage.
         /// </summary>
@@ -22,7 +21,6 @@
         /// <param name="entropyInBase64">The entropy used for encryption in Base64 format.</param>
         /// <returns>The decrypted raw password.</returns>
         string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64);
-
         /// <summary>
         /// Encrypts the raw password for database storage.
         /// </summary>

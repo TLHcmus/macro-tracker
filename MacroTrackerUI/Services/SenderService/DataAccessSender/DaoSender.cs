@@ -11,10 +11,23 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 /// <summary>
 /// Provides methods to interact with the data access layer and perform various operations.
 /// </summary>
-public class DaoSender
+public class DaoSender : IDaoSender
 {
-    private DaoReceiver Receiver { get; } = ProviderUI.GetServiceProvider().GetService<DaoReceiver>();
+    public ServiceProvider ProviderUI { get; } 
+    private IDaoReceiver Receiver { get; } 
     private JsonSerializerOptions Options { get; } = new() { IncludeFields = true };
+
+    public DaoSender()
+    {
+        ProviderUI = ProviderService.ProviderUI.GetServiceProvider();
+        Receiver = ProviderUI.GetRequiredService<IDaoReceiver>();
+    }
+
+    public DaoSender(ServiceProvider providerUI)
+    {
+        ProviderUI = providerUI;
+        Receiver = ProviderUI.GetService<IDaoReceiver>();
+    }
 
     /// <summary>
     /// Retrieves a list of foods.
@@ -64,7 +77,7 @@ public class DaoSender
     {
         return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
     }
-    // Update goal
+
     public void UpdateGoal(Goal goal)
     {
         Receiver.UpdateGoal(JsonSerializer.Serialize(goal));

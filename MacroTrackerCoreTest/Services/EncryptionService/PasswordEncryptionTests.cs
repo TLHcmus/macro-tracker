@@ -1,6 +1,6 @@
 using MacroTrackerCore.Services.EncryptionService;
 
-namespace MacroTrackerCoreTest;
+namespace MacroTrackerCoreTest.Services.EncryptionService;
 
 [TestClass]
 public class PasswordEncryptionTests

@@ -23,10 +23,10 @@ namespace MacroTrackerUI.Services.ProviderService
         private static ServiceProvider SetUpDependencyInjection()
         {
             ServiceCollection services = new();
-            services.AddSingleton<PasswordEncryptionReceiver>()
-                    .AddSingleton<DaoReceiver>()
-                    .AddSingleton<PasswordEncryptionSender>()
-                    .AddSingleton<DaoSender>();
+            services.AddSingleton<IPasswordEncryptionReceiver, PasswordEncryptionReceiver>()
+                    .AddSingleton<IDaoReceiver, DaoReceiver>()
+                    .AddSingleton<IPasswordEncryptionSender, PasswordEncryptionSender>()
+                    .AddSingleton<IDaoSender, DaoSender>();
             return services.BuildServiceProvider();
         }
 

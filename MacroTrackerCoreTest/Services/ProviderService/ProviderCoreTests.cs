@@ -1,6 +1,7 @@
 using MacroTrackerCore.Services.DataAccessService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Services.ProviderService;
+using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MacroTrackerCoreTest.Services.ProviderService;

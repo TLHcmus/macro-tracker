@@ -4,6 +4,7 @@ using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using System.Collections.ObjectModel;
 using MacroTrackerCore.Services.ConfigurationService;
+using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 /// <summary>

@@ -8,7 +8,7 @@ namespace MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 /// <summary>
 /// Service for handling password encryption and decryption.
 /// </summary>
-public class PasswordEncryptionReceiver
+public class PasswordEncryptionReceiver : IPasswordEncryptionReceiver
 {
     public ServiceProvider ServiceProvider { get; set; }
 
@@ -30,15 +30,6 @@ public class PasswordEncryptionReceiver
     {
         ServiceProvider = serviceProvider;
         Encryptor = serviceProvider.GetRequiredService<IPasswordEncryption>();
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="PasswordEncryptionReceiver"/> class with a specified encryption service.
-    /// </summary>
-    /// <param name="service">The password encryption service.</param>
-    public PasswordEncryptionReceiver(IPasswordEncryption service)
-    {
-        Encryptor = service;
     }
 
     /// <summary>

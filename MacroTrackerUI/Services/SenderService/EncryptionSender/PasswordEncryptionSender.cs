@@ -8,16 +8,23 @@ namespace MacroTrackerUI.Services.SenderService.EncryptionSender;
 /// <summary>
 /// Service for handling password encryption and decryption.
 /// </summary>
-public class PasswordEncryptionSender
+public class PasswordEncryptionSender : IPasswordEncryptionSender
 {
-    private readonly PasswordEncryptionReceiver _receiver;
+    public ServiceProvider ProviderUI { get; } = ProviderService.ProviderUI.GetServiceProvider();
+    private readonly IPasswordEncryptionReceiver _receiver;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="PasswordEncryptionSender"/> class.
+    /// Initializes a new instance of the <see cref="IPasswordEncryptionSender"/> class.
     /// </summary>
     public PasswordEncryptionSender()
     {
-        _receiver = ProviderUI.GetServiceProvider().GetRequiredService<PasswordEncryptionReceiver>();
+        _receiver = ProviderUI.GetRequiredService<IPasswordEncryptionReceiver>();
+    }
+
+    public PasswordEncryptionSender(ServiceProvider providerUI)
+    {
+        ProviderUI = providerUI;
+        _receiver = ProviderUI.GetRequiredService<IPasswordEncryptionReceiver>();
     }
 
     /// <summary>

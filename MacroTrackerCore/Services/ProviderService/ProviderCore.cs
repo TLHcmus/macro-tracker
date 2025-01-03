@@ -1,5 +1,6 @@
 ﻿using MacroTrackerCore.Services.DataAccessService;
 using MacroTrackerCore.Services.EncryptionService;
+using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MacroTrackerCore.Services.ProviderService;
@@ -18,8 +19,8 @@ public static class ProviderCore
     private static ServiceProvider SetUpDependencyInjection()
     {
         ServiceCollection services = new();
-        services.AddSingleton<IDao, DatabaseDao>();
-        services.AddSingleton<IPasswordEncryption, PasswordEncryption>();
+        services.AddSingleton<IDao, DatabaseDao>()
+                .AddSingleton<IPasswordEncryption, PasswordEncryption>();
 
         return services.BuildServiceProvider();
     }

@@ -5,6 +5,7 @@ using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using Microsoft.EntityFrameworkCore;
 using MacroTrackerCore.Services.ConfigurationService;
+using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 

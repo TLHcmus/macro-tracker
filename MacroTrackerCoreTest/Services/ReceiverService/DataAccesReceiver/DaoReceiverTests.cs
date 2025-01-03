@@ -2,6 +2,7 @@ using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.DataAccessService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Services.ReceiverService.DataAccessReceiver;
+using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Text.Json;
@@ -195,7 +196,7 @@ public class DaoReceiverTests
     [TestMethod]
     public void GetLogs_WhenCalled_ShouldReturnJsonString()
     {
-        var logs = new List<Log> { new Log { LogId = 1 } };
+        var logs = new List<Log> { new() { LogId = 1 } };
         _mockDao.Setup(d => d.GetLogs()).Returns(logs);
 
         var result = _daoReceiver.GetLogs();

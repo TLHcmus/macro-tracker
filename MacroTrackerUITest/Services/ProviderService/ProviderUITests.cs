@@ -5,11 +5,6 @@ using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using MacroTrackerUI.Services.SenderService.EncryptionSender;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MacroTrackerUITest.Services.ProviderService;
 
@@ -33,7 +28,7 @@ public class ProviderUITests
         var serviceProvider = ProviderUI.GetServiceProvider();
 
         // Act
-        var service = serviceProvider.GetRequiredService<PasswordEncryptionReceiver>();
+        var service = serviceProvider.GetRequiredService<IPasswordEncryptionReceiver>();
 
         // Assert
         Assert.IsNotNull(service);
@@ -46,7 +41,7 @@ public class ProviderUITests
         var serviceProvider = ProviderUI.GetServiceProvider();
 
         // Act
-        var service = serviceProvider.GetService<DaoReceiver>();
+        var service = serviceProvider.GetService<IDaoReceiver>();
 
         // Assert
         Assert.IsNotNull(service);
@@ -59,7 +54,7 @@ public class ProviderUITests
         var serviceProvider = ProviderUI.GetServiceProvider();
 
         // Act
-        var service = serviceProvider.GetRequiredService<PasswordEncryptionSender>();
+        var service = serviceProvider.GetRequiredService<IPasswordEncryptionSender>();
 
         // Assert
         Assert.IsNotNull(service);
@@ -72,7 +67,7 @@ public class ProviderUITests
         var serviceProvider = ProviderUI.GetServiceProvider();
 
         // Act
-        var service = serviceProvider.GetRequiredService<DaoSender>();
+        var service = serviceProvider.GetRequiredService<IDaoSender>();
 
         // Assert
         Assert.IsNotNull(service);
