@@ -1,4 +1,5 @@
 ﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.Services.PathService;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
@@ -150,5 +151,11 @@ public sealed partial class ExercisePage : Page
     private void LogExerciseButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         return;
+    }
+
+    private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+    {
+        string exerciseIconDir = AssetsPathRegistry.RegisteredAssetsPath["ExerciseIcons"];
+        (sender as Image).Source = new BitmapImage(new Uri($"{exerciseIconDir}/default.png"));
     }
 }

@@ -100,7 +100,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Source="{Binding IconFileName, Converter={StaticResource ExerciseFileNameToPath}}" Width="40" Height="40" Margin="0,0,10,0"/>
+                                    <Image Grid.Column="0" Source="{Binding IconFileName, Converter={StaticResource ExerciseFileNameToPath}}" Width="40" Height="40" Margin="0,0,10,0" ImageFailed="Image_ImageFailed"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>
@@ -117,7 +117,7 @@
                 <StackPanel x:Name="ExerciseDetail" Visibility="Collapsed">
                     <TextBlock x:Name="ExerciseName" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                     <!--Exercise image-->
-                    <Image x:Name="ExerciseImage" Width="200" Height="200" Margin="0,0,0,20" />
+                    <Image x:Name="ExerciseImage" Width="200" Height="200" Margin="0,0,0,20" ImageFailed="Image_ImageFailed"/>
                     <!-- Input for duration -->
                     <TextBlock Text="Duration (minute):" FontSize="16"/>
                     <TextBox x:Name="DurationInput" PlaceholderText="Enter duration" Margin="0,10,0,10" FontSize="16" />
