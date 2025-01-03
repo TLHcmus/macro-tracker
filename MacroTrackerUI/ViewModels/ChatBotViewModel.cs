@@ -48,7 +48,7 @@ public class ChatBotViewModel : INotifyPropertyChanged
 
         try
         {
-            string response = await ChatBot.GetResponse(PromptContent);
+            string response = await RunWithTimeout(ChatBot.GetResponse(PromptContent), TimeSpan.FromSeconds(6));
 
             App.ChatBotConversation.RemoveAt(App.ChatBotConversation.Count - 1);
 
@@ -68,5 +68,25 @@ public class ChatBotViewModel : INotifyPropertyChanged
                 Role = Message.RoleType.AssistantError
             });
         }
+    }
+
+    private static async Task<string> RunWithTimeout(Task<string> task, TimeSpan timeout)
+    {
+        if (await Task.WhenAny(task, Task.Delay(timeout)) == task)
+        {
+            // Task completed within the timeout
+            return await task; // Await the original task to propagate any exceptions
+        }
+        else
+        {
+            // Task timed out
+            throw new TimeoutException();
+        }
+    }
+
+    public static async Task SomeAsyncOperation()
+    {
+        // Simulate a long-running task
+        await Task.Delay(5000); // 5 seconds delay
     }
 }

@@ -6,7 +6,7 @@ namespace MacroTrackerUI.Helpers.Converter;
 /// <summary>
 /// Converts a <see cref="DateOnly"/> object to a string representation.
 /// </summary>
-class DateTimeToStringConverter : IValueConverter
+public class DateTimeToStringConverter : IValueConverter
 {
     /// <summary>
     /// Converts a <see cref="DateOnly"/> object to a string.

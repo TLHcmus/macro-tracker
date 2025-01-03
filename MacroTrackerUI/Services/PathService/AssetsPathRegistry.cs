@@ -20,7 +20,7 @@ public class AssetsPathRegistry
     {
         var registeredAssetsPath = new Dictionary<string, string>
         {
-            { "ExerciseIcon", "ms-appx:///Assets/ExerciseIcons" }
+            { "ExerciseIcons", "ms-appx:///Assets/ExerciseIcons" }
         };
 
         return registeredAssetsPath;

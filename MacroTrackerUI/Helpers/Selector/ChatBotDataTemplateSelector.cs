@@ -39,19 +39,25 @@ public class ChatBotDataTemplateSelector : DataTemplateSelector
     {
         if (item is Message message)
         {
-            switch (message.Role)
-            {
-                case Message.RoleType.User:
-                    return UserTemplate;
-                case Message.RoleType.UserError:
-                    return UserErrorTemplate;
-                case Message.RoleType.Assistant:
-                    return BotTemplate;
-                case Message.RoleType.AssistantError:
-                    return AssistantErrorTemplate;
-            }
+            DataTemplate dataTemplate = SelectTemplateChatBot(message);
+            if (dataTemplate == null)
+                return base.SelectTemplateCore(item, container);
+
+            return SelectTemplateChatBot(message);
         }
 
         return base.SelectTemplateCore(item, container);
+    }
+
+    public DataTemplate SelectTemplateChatBot(Message message)
+    {
+        return message.Role switch
+        {
+            Message.RoleType.User => UserTemplate,
+            Message.RoleType.UserError => UserErrorTemplate,
+            Message.RoleType.Assistant => BotTemplate,
+            Message.RoleType.AssistantError => AssistantErrorTemplate,
+            _ => null,
+        };
     }
 }

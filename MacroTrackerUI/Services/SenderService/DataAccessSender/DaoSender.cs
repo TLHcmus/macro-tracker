@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
 namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 
@@ -121,7 +120,6 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Log>>(
             Receiver.GetLogs()
         );
-        //return (List<Log>)Receiver.GetLogs();
     }
 
     /// <summary>
