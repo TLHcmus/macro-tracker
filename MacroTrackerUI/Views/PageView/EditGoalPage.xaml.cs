@@ -17,45 +17,85 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace MacroTrackerUI.Views.PageView
+namespace MacroTrackerUI.Views.PageView;
+
+/// <summary>
+/// An empty page that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class EditGoalPage : Page
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Gets or sets the current goal being edited.
     /// </summary>
-    public sealed partial class EditGoalPage : Page
+    public Goal CurrentGoal { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EditGoalPage"/> class.
+    /// </summary>
+    public EditGoalPage()
     {
-        public Goal CurrentGoal { get; set; }
+        this.InitializeComponent();
+    }
 
-
-        public EditGoalPage()
+    /// <summary>
+    /// Handles the click event of the Confirm button.
+    /// Updates the current goal with the input values and navigates to the goals page.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
+    public void ConfirmButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (int.TryParse(CaloriesInput.Text, out int calories) &&
+            int.TryParse(ProteinInput.Text, out int proteinPercentage) &&
+            int.TryParse(FatInput.Text, out int fatPercentage) &&
+            int.TryParse(CarbsInput.Text, out int carbsPercentage))
         {
-            this.InitializeComponent();
-        }
-
-
-        public void ConfirmButton_Click(object sender, RoutedEventArgs e)
-        {
-            CurrentGoal.Calories = int.Parse(CaloriesInput.Text);
-            int proteinPercentage = int.Parse(ProteinInput.Text);
-            int fatPercentage = int.Parse(FatInput.Text);
-            int carbsPercentage = int.Parse(CarbsInput.Text);
-
-            CurrentGoal.Protein = (int)(CurrentGoal.Calories * proteinPercentage / 100 / 4);
-            CurrentGoal.Fat = (int)(CurrentGoal.Calories * fatPercentage / 100 / 9);
-            CurrentGoal.Carbs = (int)(CurrentGoal.Calories * carbsPercentage / 100 / 4);
+            CurrentGoal.Calories = calories;
+            CurrentGoal.Protein = CalculateMacronutrient(calories, proteinPercentage, 4);
+            CurrentGoal.Fat = CalculateMacronutrient(calories, fatPercentage, 9);
+            CurrentGoal.Carbs = CalculateMacronutrient(calories, carbsPercentage, 4);
 
             // Navigate to the goals page
             Frame.Navigate(typeof(GoalsPage), CurrentGoal);
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        else
         {
-            base.OnNavigatedTo(e);
+            // Handle invalid input
+            DisplayInvalidInputMessage();
+        }
+    }
 
-            if (e.Parameter is Goal goal)
-            {
-                CurrentGoal = goal;
-            }
+    /// <summary>
+    /// Calculates the macronutrient amount based on calories and percentage.
+    /// </summary>
+    /// <param name="calories">The total calories.</param>
+    /// <param name="percentage">The percentage of the macronutrient.</param>
+    /// <param name="caloriesPerGram">The calories per gram of the macronutrient.</param>
+    /// <returns>The calculated macronutrient amount in grams.</returns>
+    private int CalculateMacronutrient(int calories, int percentage, int caloriesPerGram)
+    {
+        return (int)(calories * percentage / 100.0 / caloriesPerGram);
+    }
+
+    /// <summary>
+    /// Displays a message indicating that the input is invalid.
+    /// </summary>
+    private void DisplayInvalidInputMessage()
+    {
+        // Implementation for displaying an invalid input message
+    }
+
+    /// <summary>
+    /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+    /// </summary>
+    /// <param name="e">Event data that can be examined by overriding code.</param>
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+
+        if (e.Parameter is Goal goal)
+        {
+            CurrentGoal = goal;
         }
     }
 }

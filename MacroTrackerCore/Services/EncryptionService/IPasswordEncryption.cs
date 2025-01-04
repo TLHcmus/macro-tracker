@@ -10,8 +10,10 @@
         /// Encrypts the raw password for local storage.
         /// </summary>
         /// <param name="rawPassword">The raw password to encrypt.</param>
-        /// <returns>A tuple containing the encrypted password in Base64 format and the entropy used for encryption in Base64 format.</returns>
-        public (string, string) EncryptPasswordToLocalStorage(string rawPassword);
+        /// <returns>
+        /// A tuple containing the encrypted password in Base64 format and the entropy used for encryption in Base64 format.
+        /// </returns>
+        (string EncryptedPassword, string Entropy) EncryptPasswordToLocalStorage(string rawPassword);
 
         /// <summary>
         /// Decrypts the encrypted password from local storage.
@@ -19,13 +21,13 @@
         /// <param name="encryptedPasswordInBase64">The encrypted password in Base64 format.</param>
         /// <param name="entropyInBase64">The entropy used for encryption in Base64 format.</param>
         /// <returns>The decrypted raw password.</returns>
-        public string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64);
+        string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64);
 
         /// <summary>
         /// Encrypts the raw password for database storage.
         /// </summary>
         /// <param name="rawPassword">The raw password to encrypt.</param>
         /// <returns>The encrypted password in a format suitable for database storage.</returns>
-        public string EncryptPasswordToDatabase(string rawPassword);
+        string EncryptPasswordToDatabase(string rawPassword);
     }
 }

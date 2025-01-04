@@ -14,12 +14,36 @@ using SkiaSharp;
 
 namespace MacroTrackerUI.ViewModels;
 
+/// <summary>
+/// ViewModel for generating reports based on logs.
+/// </summary>
 public class ReportViewModel : INotifyPropertyChanged
 {
+    /// <summary>
+    /// Gets or sets the collection of logs.
+    /// </summary>
     public ObservableCollection<Log> LogList { get; set; }
 
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    /// <summary>
+    /// Gets the data access sender.
+    /// </summary>
+    private IDaoSender Sender { get; }
 
+    private IServiceProvider Provider { get; }
+
+    public ReportViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
+
+    public ReportViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
 
     public ObservableCollection<ISeries> CaloriesSeries { get; set; }
     public ObservableCollection<ISeries> ProteinSeries { get; set; }
@@ -32,67 +56,32 @@ public class ReportViewModel : INotifyPropertyChanged
     public ObservableCollection<Axis> CarbsYAxes { get; set; }
     public ObservableCollection<Axis> FatYAxes { get; set; }
 
-
-    public ReportViewModel()
+    /// <summary>
+    /// Sets up the diagrams for displaying nutritional data.
+    /// </summary>
+    public void SetUpDiagrams()
     {
-        //LogList = new ObservableCollection<Log>(Sender.GetLogs());
+        var foods = Sender.GetFoods();
+        var foodDict = foods.ToDictionary(food => food.Name, food => food);
 
-        //var caloriesByDate = LogList
-        //   .GroupBy(log => log.LogDate)
-        //   .Select(group => new { Date = group.Key, TotalCalories = group.Sum(log => log.TotalCalories) })
-        //   .OrderBy(x => x.Date)
-        //   .ToList();
-
-        //Series = new ObservableCollection<ISeries>
-        //{
-        //    new LineSeries<double>
-        //    {
-        //        Values = caloriesByDate.Select(x => x.TotalCalories).ToList()
-        //    }
-        //};
-
-        //XAxes = new ObservableCollection<Axis>
-        //{
-        //    new Axis
-        //    {
-        //        Labels = caloriesByDate.Select(x => x.Date?.ToString("MM/dd/yyyy")).ToList(),
-        //        Name = "Date"
-        //    }
-        //};
-        //YAxes = new ObservableCollection<Axis>
-        //{
-        //    new Axis
-        //    {
-        //        Name = "Total Calories"
-        //    }
-        //};
-
-
-        // Lấy danh sách tất cả các món ăn từ database
-        var foods = Sender.GetFoods(); // Lấy danh sách foods (có thông tin dinh dưỡng)
-        var foodDict = foods.ToDictionary(food => food.Name, food => food); // Tạo dictionary để tra cứu 
-
-        // Lấy danh sách các log
         LogList = new ObservableCollection<Log>(Sender.GetLogs());
 
-        // Tính tổng dinh dưỡng theo ngày
         var nutrientsByDate = LogList
             .GroupBy(log => log.LogDate)
             .Select(group => new
             {
-                // Note: Serving size = 100 gram.
                 Date = group.Key,
                 TotalCalories = group.Sum(log => log.TotalCalories),
                 TotalProtein = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.ProteinPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodName, out var food) ? food.ProteinPer100g * item.NumberOfServings : 0)),
                 TotalCarbs = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.CarbsPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodName, out var food) ? food.CarbsPer100g * item.NumberOfServings : 0)),
                 TotalFat = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.FatPer100g * (item.NumberOfServings) : 0))
+                    foodDict.TryGetValue(item.FoodName, out var food) ? food.FatPer100g * item.NumberOfServings : 0))
             })
             .OrderBy(x => x.Date)
             .ToList();
-        // Tao cac bieu do
+
         CaloriesSeries = new ObservableCollection<ISeries>
         {
             new LineSeries<double>
@@ -100,7 +89,7 @@ public class ReportViewModel : INotifyPropertyChanged
                 Values = nutrientsByDate.Select(x => x.TotalCalories).ToList(),
                 Name = "Total Calories",
                 LineSmoothness = 0,
-                Stroke = new SolidColorPaint(new SKColor(0, 0, 255)) {StrokeThickness = 2},
+                Stroke = new SolidColorPaint(new SKColor(0, 0, 255)) { StrokeThickness = 2 },
                 Fill = null,
                 GeometryFill = null,
                 GeometryStroke = null
@@ -114,7 +103,7 @@ public class ReportViewModel : INotifyPropertyChanged
                 Values = nutrientsByDate.Select(x => x.TotalProtein).ToList(),
                 Name = "Total Protein",
                 LineSmoothness = 0,
-                Stroke = new SolidColorPaint(new SKColor(255, 0, 0)) {StrokeThickness = 2},
+                Stroke = new SolidColorPaint(new SKColor(255, 0, 0)) { StrokeThickness = 2 },
                 Fill = null,
                 GeometryFill = null,
                 GeometryStroke = null
@@ -128,7 +117,7 @@ public class ReportViewModel : INotifyPropertyChanged
                 Values = nutrientsByDate.Select(x => x.TotalCarbs).ToList(),
                 Name = "Total Carbs",
                 LineSmoothness = 0,
-                Stroke = new SolidColorPaint(new SKColor(0, 255, 0)) {StrokeThickness = 2},
+                Stroke = new SolidColorPaint(new SKColor(0, 255, 0)) { StrokeThickness = 2 },
                 Fill = null,
                 GeometryFill = null,
                 GeometryStroke = null
@@ -142,23 +131,22 @@ public class ReportViewModel : INotifyPropertyChanged
                 Values = nutrientsByDate.Select(x => x.TotalFat).ToList(),
                 Name = "Total Fat",
                 LineSmoothness = 0,
-                Stroke = new SolidColorPaint(new SKColor(255, 170, 29)) {StrokeThickness = 2},
+                Stroke = new SolidColorPaint(new SKColor(255, 170, 29)) { StrokeThickness = 2 },
                 Fill = null,
                 GeometryFill = null,
                 GeometryStroke = null
             }
         };
 
-        // XAxes dung chung hien thi ngay
         XAxes = new ObservableCollection<Axis>
         {
             new Axis
-            { 
+            {
                 Labels = nutrientsByDate.Select(x => x.Date?.ToString("MM/dd/yyyy")).ToList(),
                 Name = "Date"
             }
         };
-        // Tao cac YAxes khac nhau
+
         CaloriesYAxes = new ObservableCollection<Axis>
         {
             new Axis { Name = "Total Calories" }
@@ -178,8 +166,10 @@ public class ReportViewModel : INotifyPropertyChanged
         {
             new Axis { Name = "Total Fat" }
         };
-
     }
 
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 }

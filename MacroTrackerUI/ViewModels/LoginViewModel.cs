@@ -25,14 +25,38 @@ public class LoginViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object sender.
     /// </summary>
-    public DaoSender Dao { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    public IDaoSender Dao { get; }
+
+    /// <summary>
+    /// Gets the service provider.
+    /// </summary>
+    public IServiceProvider Provider { get; }
 
     /// <summary>
     /// Gets the password encryption sender.
     /// </summary>
-    public PasswordEncryptionSender EncryptionSender { get; } =
-        ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
+    public IPasswordEncryptionSender EncryptionSender { get; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LoginViewModel"/> class.
+    /// </summary>
+    public LoginViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Dao = Provider.GetService<IDaoSender>();
+        EncryptionSender = Provider.GetService<IPasswordEncryptionSender>();
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LoginViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
+    public LoginViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Dao = Provider.GetService<IDaoSender>();
+        EncryptionSender = Provider.GetService<IPasswordEncryptionSender>();
+    }
 
     /// <summary>
     /// Occurs when a property value changes.
@@ -47,9 +71,7 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </returns>
     public bool DoesUserMatchPassword()
     {
-        if (Dao.DoesUserMatchPassword(Username, Password))
-            return true;
-        return false;
+        return Dao.DoesUserMatchPassword(Username, Password);
     }
 
     /// <summary>
@@ -60,8 +82,6 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </returns>
     public bool LoginInfoNull()
     {
-        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
-            return true;
-        return false;
+        return string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password);
     }
 }
