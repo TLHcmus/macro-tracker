@@ -15,7 +15,7 @@ namespace MacroTrackerCore.Services.DataAccessService;
 public class DatabaseDao : IDao
 {
     private readonly MacroTrackerContext _context;
-    public IPasswordEncryption PasswordEncryption { get; set; } = 
+    public IPasswordEncryption PasswordEncryption { get; set; } =
         ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
 
     /// <summary>
@@ -26,6 +26,10 @@ public class DatabaseDao : IDao
         _context = new MacroTrackerContext();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DatabaseDao"/> class for testing.
+    /// </summary>
+    /// <param name="isTest">Indicates if the instance is for testing.</param>
     public DatabaseDao(bool isTest)
     {
         if (!isTest)
@@ -41,7 +45,7 @@ public class DatabaseDao : IDao
 
     ~DatabaseDao()
     {
-        _context.DisposeSqliteForTest(_context.Database.GetDbConnection()); 
+        _context.DisposeSqliteForTest(_context.Database.GetDbConnection());
     }
 
     /// <summary>
@@ -53,26 +57,26 @@ public class DatabaseDao : IDao
         return [.. _context.Foods];
     }
 
-    // Add food
+    /// <summary>
+    /// Adds a new food.
+    /// </summary>
+    /// <param name="food">The food to add.</param>
     public void AddFood(Food food)
     {
         _context.Foods.Add(food);
-
         _context.SaveChanges();
     }
 
-    // Remove food
+    /// <summary>
+    /// Removes a food by name.
+    /// </summary>
+    /// <param name="foodName">The name of the food to remove.</param>
+    /// <exception cref="Exception">Thrown when the food is not found.</exception>
     public void RemoveFood(string foodName)
     {
-        var food = _context.Foods.Find(foodName);
-
-        if (food == null)
-        {
-            throw new Exception("Food not found");
-        }
-
+        var food = _context.Foods.Find(foodName) 
+            ?? throw new Exception("Food not found");
         _context.Foods.Remove(food);
-
         _context.SaveChanges();
     }
 
@@ -85,21 +89,26 @@ public class DatabaseDao : IDao
         return [.. _context.Exercises];
     }
 
-    // Add exercise
+    /// <summary>
+    /// Adds a new exercise.
+    /// </summary>
+    /// <param name="exercise">The exercise to add.</param>
     public void AddExercise(Exercise exercise)
     {
         _context.Exercises.Add(exercise);
-
         _context.SaveChanges();
     }
 
-    // Remove exercise
+    /// <summary>
+    /// Removes an exercise by name.
+    /// </summary>
+    /// <param name="exerciseName">The name of the exercise to remove.</param>
+    /// <exception cref="Exception">Thrown when the exercise is not found.</exception>
     public void RemoveExercise(string exerciseName)
     {
-        var exercise = _context.Exercises.Find(exerciseName) ?? 
-            throw new Exception("Exercise not found");
+        var exercise = _context.Exercises.Find(exerciseName) 
+            ?? throw new Exception("Exercise not found");
         _context.Exercises.Remove(exercise);
-
         _context.SaveChanges();
     }
 
@@ -112,21 +121,24 @@ public class DatabaseDao : IDao
         return _context.Goals.FirstOrDefault();
     }
 
+    /// <summary>
+    /// Updates the goal.
+    /// </summary>
+    /// <param name="goal">The goal to update.</param>
     public void UpdateGoal(Goal goal)
     {
         var existingGoal = _context.Goals.FirstOrDefault();
-        
         if (existingGoal == null)
         {
             _context.Goals.Add(goal);
-            return;
         }
-
-        existingGoal.Calories = goal.Calories;
-        existingGoal.Protein = goal.Protein;
-        existingGoal.Carbs = goal.Carbs;
-        existingGoal.Fat = goal.Fat;
-
+        else
+        {
+            existingGoal.Calories = goal.Calories;
+            existingGoal.Protein = goal.Protein;
+            existingGoal.Carbs = goal.Carbs;
+            existingGoal.Fat = goal.Fat;
+        }
         _context.SaveChanges();
     }
 
@@ -145,16 +157,16 @@ public class DatabaseDao : IDao
     /// <param name="users">The list of users.</param>
     /// <param name="userName">The username to find.</param>
     /// <returns>The index of the username if found; otherwise, -1.</returns>
-    static int FindUsernameIndex(List<User> users, string userName)
+    private static int FindUsernameIndex(List<User> users, string userName)
     {
         for (int i = 0; i < users.Count; i++)
         {
-            if (users[i].Username.Equals(userName)) // Case-sensitive comparison  
+            if (users[i].Username.Equals(userName))
             {
-                return i; // Return the index if found  
+                return i;
             }
         }
-        return -1; // Return -1 if not found  
+        return -1;
     }
 
     /// <summary>
@@ -222,11 +234,8 @@ public class DatabaseDao : IDao
     /// <exception cref="Exception">Thrown when the log is not found.</exception>
     public void DeleteLog(int logId)
     {
-        var log = _context.Logs.Find(logId);
-        if (log == null)
-        {
-            throw new Exception("Log not found");
-        }
+        var log = _context.Logs.Find(logId) 
+            ?? throw new Exception("Log not found");
         _context.Logs.Remove(log);
         _context.SaveChanges();
     }

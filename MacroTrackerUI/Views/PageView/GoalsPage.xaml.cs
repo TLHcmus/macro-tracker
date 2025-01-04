@@ -34,20 +34,19 @@ public sealed partial class GoalsPage : Page
     /// <param name="e">The event data.</param>
     private async void EditGoal_Click(object sender, RoutedEventArgs e)
     {
-        var editGoalDialog = new EditGoalDialog()
+        var editGoalDialog = new EditGoalDialog
         {
             XamlRoot = this.XamlRoot
         };
-        // Hien thi diaglog
+
         var result = await editGoalDialog.ShowAsync();
-        if(result == ContentDialogResult.Primary) // Neu nhan nut Confirm
+        if (result == ContentDialogResult.Primary)
         {
             var goal = editGoalDialog.GetGoalFromInput();
-
             if (goal != null)
             {
                 ViewModel.UpdateGoal(goal);
             }
-    }
         }
+    }
 }

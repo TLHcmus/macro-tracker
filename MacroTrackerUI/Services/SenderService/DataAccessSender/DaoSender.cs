@@ -13,8 +13,8 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 /// </summary>
 public class DaoSender : IDaoSender
 {
-    public IServiceProvider ProviderUI { get; } 
-    private IDaoReceiver Receiver { get; } 
+    public IServiceProvider ProviderUI { get; }
+    private IDaoReceiver Receiver { get; }
     private JsonSerializerOptions Options { get; } = new() { IncludeFields = true };
 
     public DaoSender()
@@ -38,13 +38,19 @@ public class DaoSender : IDaoSender
         return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods());
     }
 
-    // Add food
+    /// <summary>
+    /// Adds a new food.
+    /// </summary>
+    /// <param name="food">The food to add.</param>
     public void AddFood(Food food)
     {
         Receiver.AddFood(JsonSerializer.Serialize(food));
     }
 
-    // Remove food
+    /// <summary>
+    /// Removes a food by name.
+    /// </summary>
+    /// <param name="foodName">The name of the food to remove.</param>
     public void RemoveFood(string foodName)
     {
         Receiver.RemoveFood(JsonSerializer.Serialize(foodName));
@@ -58,12 +64,20 @@ public class DaoSender : IDaoSender
     {
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
-    // Add exercise
+
+    /// <summary>
+    /// Adds a new exercise.
+    /// </summary>
+    /// <param name="exercise">The exercise to add.</param>
     public void AddExercise(Exercise exercise)
     {
         Receiver.AddExercise(JsonSerializer.Serialize(exercise));
     }
-    // Remove exercise
+
+    /// <summary>
+    /// Removes an exercise by name.
+    /// </summary>
+    /// <param name="exerciseName">The name of the exercise to remove.</param>
     public void RemoveExercise(string exerciseName)
     {
         Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseName));
@@ -78,6 +92,10 @@ public class DaoSender : IDaoSender
         return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
     }
 
+    /// <summary>
+    /// Updates the goal.
+    /// </summary>
+    /// <param name="goal">The goal to update.</param>
     public void UpdateGoal(Goal goal)
     {
         Receiver.UpdateGoal(JsonSerializer.Serialize(goal));
@@ -130,9 +148,7 @@ public class DaoSender : IDaoSender
     /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetLogs()
     {
-        return JsonSerializer.Deserialize<List<Log>>(
-            Receiver.GetLogs()
-        );
+        return JsonSerializer.Deserialize<List<Log>>(Receiver.GetLogs());
     }
 
     /// <summary>

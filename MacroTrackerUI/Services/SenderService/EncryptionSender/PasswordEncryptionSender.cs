@@ -11,17 +11,22 @@ namespace MacroTrackerUI.Services.SenderService.EncryptionSender;
 /// </summary>
 public class PasswordEncryptionSender : IPasswordEncryptionSender
 {
-    public IServiceProvider ProviderUI { get; } = ProviderService.ProviderUI.GetServiceProvider();
+    public IServiceProvider ProviderUI { get; }
     private readonly IPasswordEncryptionReceiver _receiver;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="IPasswordEncryptionSender"/> class.
+    /// Initializes a new instance of the <see cref="PasswordEncryptionSender"/> class.
     /// </summary>
     public PasswordEncryptionSender()
     {
+        ProviderUI = ProviderService.ProviderUI.GetServiceProvider();
         _receiver = ProviderUI.GetRequiredService<IPasswordEncryptionReceiver>();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PasswordEncryptionSender"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="providerUI">The service provider.</param>
     public PasswordEncryptionSender(ServiceProvider providerUI)
     {
         ProviderUI = providerUI;
@@ -36,16 +41,9 @@ public class PasswordEncryptionSender : IPasswordEncryptionSender
     /// <returns>The decrypted raw password.</returns>
     public string DecryptPasswordFromLocalStorage(string encryptedPasswordInBase64, string entropyInBase64)
     {
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true
-        };
-        string passwordJsonSend = JsonSerializer.Serialize(
-            (encryptedPasswordInBase64, entropyInBase64),
-            options
-        );
-
-        string jsonResult = _receiver.DecryptPasswordFromLocalStorage(passwordJsonSend);
+        var options = new JsonSerializerOptions { IncludeFields = true };
+        var passwordJsonSend = JsonSerializer.Serialize((encryptedPasswordInBase64, entropyInBase64), options);
+        var jsonResult = _receiver.DecryptPasswordFromLocalStorage(passwordJsonSend);
         return JsonSerializer.Deserialize<string>(jsonResult);
     }
 
@@ -56,12 +54,8 @@ public class PasswordEncryptionSender : IPasswordEncryptionSender
     /// <returns>A tuple containing the encrypted password and entropy, both in base64 format.</returns>
     public (string, string) EncryptPasswordToLocalStorage(string rawPassword)
     {
-        string jsonResult = _receiver.EncryptPasswordToLocalStorage(JsonSerializer.Serialize(rawPassword));
-
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true
-        };
+        var jsonResult = _receiver.EncryptPasswordToLocalStorage(JsonSerializer.Serialize(rawPassword));
+        var options = new JsonSerializerOptions { IncludeFields = true };
         return JsonSerializer.Deserialize<(string, string)>(jsonResult, options);
     }
 

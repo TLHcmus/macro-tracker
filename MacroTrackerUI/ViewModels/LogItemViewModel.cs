@@ -22,14 +22,25 @@ public class LogItemViewModel : INotifyPropertyChanged
     /// Gets the data access sender service.
     /// </summary>
     private IDaoSender Sender { get; }
+
+    /// <summary>
+    /// Gets the service provider.
+    /// </summary>
     public IServiceProvider Provider { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogItemViewModel"/> class.
+    /// </summary>
     public LogItemViewModel()
     {
         Provider = ProviderUI.GetServiceProvider();
         Sender = Provider.GetService<IDaoSender>();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogItemViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
     public LogItemViewModel(IServiceProvider provider)
     {
         Provider = provider;
@@ -42,8 +53,8 @@ public class LogItemViewModel : INotifyPropertyChanged
     /// <param name="log">The log to update.</param>
     public void UpdateTotalCalories(Log log)
     {
-        double updatedCalories = (float)Math.Round(log.LogFoodItems.Sum(food => food.TotalCalories) +
-                                                  log.LogExerciseItems.Sum(exercise => exercise.TotalCalories), 1);
+        double updatedCalories = Math.Round(log.LogFoodItems.Sum(food => food.TotalCalories) +
+                                            log.LogExerciseItems.Sum(exercise => exercise.TotalCalories), 1);
         Sender.UpdateTotalCalories(log.LogId, updatedCalories);
         log.TotalCalories = updatedCalories;
     }

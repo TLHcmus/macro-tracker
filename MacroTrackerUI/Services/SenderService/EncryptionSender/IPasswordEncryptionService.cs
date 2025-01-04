@@ -19,7 +19,7 @@ public interface IPasswordEncryptionSender
     /// </summary>
     /// <param name="rawPassword">The raw password to encrypt.</param>
     /// <returns>A tuple containing the encrypted password and entropy, both in base64 format.</returns>
-    (string, string) EncryptPasswordToLocalStorage(string rawPassword);
+    (string EncryptedPassword, string Entropy) EncryptPasswordToLocalStorage(string rawPassword);
 
     /// <summary>
     /// Encrypts the password for database storage.

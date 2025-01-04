@@ -14,8 +14,7 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         this.InitializeComponent();
-        ContentFrame.Navigate(typeof(LogPage));
-        //ContentFrame.BackStack.Clear();
+        NavigateToPage(typeof(LogPage));
     }
 
     /// <summary>
@@ -27,25 +26,44 @@ public sealed partial class MainPage : Page
     {
         if (args.SelectedItemContainer != null)
         {
-            // Check if the settings item is selected   
             if (args.IsSettingsSelected)
             {
-                ContentFrame.Navigate(typeof(SettingsPage));
-                (ContentFrame.Content as SettingsPage).LogOutClickEvent += Setting_LogOutClickEvent;
+                NavigateToPage(typeof(SettingsPage));
+                if (ContentFrame.Content is SettingsPage settingsPage)
+                {
+                    settingsPage.LogOutClickEvent += Setting_LogOutClickEvent;
+                }
                 return;
             }
 
-            // Get the other selected items
-            var selectedItem = args.SelectedItemContainer.Tag.ToString(); // Get the tag of the selected item
-            try
-            {
-                Type pageType = Type.GetType(this.GetType().Namespace + "." + selectedItem); // MacroTrackerUI.View + selectedItem
-                ContentFrame.Navigate(pageType);
-            }
-            catch (Exception)
-            {
-                ContentFrame.Navigate(typeof(FoodPage)); // Default page if there is an error
-            }
+            var selectedItem = args.SelectedItemContainer.Tag.ToString();
+            NavigateToPageByName(selectedItem);
+        }
+    }
+
+    /// <summary>
+    /// Navigates to a page by its type.
+    /// </summary>
+    /// <param name="pageType">The type of the page to navigate to.</param>
+    private void NavigateToPage(Type pageType)
+    {
+        ContentFrame.Navigate(pageType);
+    }
+
+    /// <summary>
+    /// Navigates to a page by its name.
+    /// </summary>
+    /// <param name="pageName">The name of the page to navigate to.</param>
+    private void NavigateToPageByName(string pageName)
+    {
+        try
+        {
+            Type pageType = Type.GetType($"{this.GetType().Namespace}.{pageName}");
+            NavigateToPage(pageType);
+        }
+        catch (Exception)
+        {
+            NavigateToPage(typeof(FoodPage));
         }
     }
 

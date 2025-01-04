@@ -27,6 +27,9 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </summary>
     public IDaoSender Dao { get; }
 
+    /// <summary>
+    /// Gets the service provider.
+    /// </summary>
     public IServiceProvider Provider { get; }
 
     /// <summary>
@@ -34,6 +37,9 @@ public class LoginViewModel : INotifyPropertyChanged
     /// </summary>
     public IPasswordEncryptionSender EncryptionSender { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LoginViewModel"/> class.
+    /// </summary>
     public LoginViewModel()
     {
         Provider = ProviderUI.GetServiceProvider();
@@ -41,6 +47,10 @@ public class LoginViewModel : INotifyPropertyChanged
         EncryptionSender = Provider.GetService<IPasswordEncryptionSender>();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LoginViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
     public LoginViewModel(IServiceProvider provider)
     {
         Provider = provider;

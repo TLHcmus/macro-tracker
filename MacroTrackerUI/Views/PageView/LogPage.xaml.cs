@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -49,18 +50,16 @@ public sealed partial class LogPage : Page
         Calendar.SelectedDates.Add(date);
         Calendar.SetDisplayDate(date);
 
-        DateOnly dateOnly = DateOnly.FromDateTime(DateTime.Now);
+        DateOnly dateOnly = DateOnly.FromDateTime(date);
         if (ViewModel.DoesContainDate(dateOnly))
             return;
 
-        ViewModel.AddLog(
-            new Log
-            {
-                LogDate = dateOnly,
-                LogFoodItems = [],
-                LogExerciseItems = []
-            }
-        );
+        ViewModel.AddLog(new Log
+        {
+            LogDate = dateOnly,
+            LogFoodItems = [],
+            LogExerciseItems = []
+        });
     }
 
     /// <summary>
@@ -102,10 +101,8 @@ public sealed partial class LogPage : Page
     /// <param name="e">The event data.</param>
     private void LogsListView_Loaded(object sender, RoutedEventArgs e)
     {
-        Border border = VisualTreeHelper.GetChild(LogsListView, 0) as Border;
-        ScrollViewer scrollViewer = VisualTreeHelper.GetChild(border, 0) as ScrollViewer;
-
-        if (scrollViewer != null)
+        if (VisualTreeHelper.GetChild(LogsListView, 0) is Border border &&
+            VisualTreeHelper.GetChild(border, 0) is ScrollViewer scrollViewer)
         {
             scrollViewer.ViewChanged += ScrollViewer_ViewChanged;
         }
@@ -118,8 +115,7 @@ public sealed partial class LogPage : Page
     /// <param name="e">The event data.</param>
     private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
     {
-        var scrollViewer = sender as ScrollViewer;
-        if (scrollViewer != null && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+        if (sender is ScrollViewer scrollViewer && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
         {
             OnScrollToEnd();
         }
@@ -144,11 +140,8 @@ public sealed partial class LogPage : Page
         {
             DateTime date = args.AddedDates[0].DateTime;
 
-            if (date.Date == DateTime.Now.Date)
-                TodayButton.BorderThickness = new Thickness(2);
-            else
-                TodayButton.BorderThickness = new Thickness(0.5);
-            ViewModel.EndDate = args.AddedDates[0].DateTime;
+            TodayButton.BorderThickness = date.Date == DateTime.Now.Date ? new Thickness(2) : new Thickness(0.5);
+            ViewModel.EndDate = date;
             CalendarFlyout.Hide();
         }
     }

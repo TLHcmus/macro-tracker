@@ -11,15 +11,14 @@ public interface IPasswordEncryptionReceiver
     /// </summary>
     /// <param name="rawPassword">The raw password to encrypt.</param>
     /// <returns>
-    /// A tuple containing the encrypted password in Base64 format and the entropy used for encryption in Base64 format.
+    /// A string containing the encrypted password in Base64 format.
     /// </returns>
     string EncryptPasswordToLocalStorage(string rawPassword);
 
     /// <summary>
     /// Decrypts the encrypted password from local storage.
     /// </summary>
-    /// <param name="encryptedPasswordInBase64">The encrypted password in Base64 format.</param>
-    /// <param name="entropyInBase64">The entropy used for encryption in Base64 format.</param>
+    /// <param name="passwordJson">The JSON string containing the encrypted password and entropy in Base64 format.</param>
     /// <returns>The decrypted raw password.</returns>
     string DecryptPasswordFromLocalStorage(string passwordJson);
 

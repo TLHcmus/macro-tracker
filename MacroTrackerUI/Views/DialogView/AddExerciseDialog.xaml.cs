@@ -8,59 +8,81 @@ using Microsoft.UI.Xaml.Controls;
 namespace MacroTrackerUI.Views.DialogView
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// A dialog for adding a new exercise.
     /// </summary>
     public sealed partial class AddExerciseDialog : ContentDialog
     {
         public AddExerciseDialog()
         {
-            this.InitializeComponent();
-            this.PrimaryButtonClick += AddExerciseDialog_PrimaryButtonClick;
-            this.DefaultButton = ContentDialogButton.Primary;
+            InitializeComponent();
+            PrimaryButtonClick += AddExerciseDialog_PrimaryButtonClick;
+            DefaultButton = ContentDialogButton.Primary;
         }
 
-        public void AddExerciseDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        /// <summary>
+        /// Handles the primary button click event to validate input and add the exercise.
+        /// </summary>
+        /// <param name="sender">The content dialog.</param>
+        /// <param name="args">The event arguments.</param>
+        private void AddExerciseDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            NameErrorTextBlock.Visibility = Visibility.Collapsed;
-            CaloriesErrorTextBlock.Visibility = Visibility.Collapsed;
+            ResetErrorMessages();
 
-            bool validInputs = true;
+            bool validInputs = ValidateInputs();
 
-            // Check for missing input
-            if (string.IsNullOrWhiteSpace(ExerciseNameTextBox.Text))
-            {
-                NameErrorTextBlock.Text = "Please enter name.";
-                NameErrorTextBlock.Visibility = Visibility.Visible;
-
-                validInputs = false;
-            }
-            if (string.IsNullOrWhiteSpace(CaloriesTextBox.Text))
-            {
-                CaloriesErrorTextBlock.Text = "Please enter calories.";
-                CaloriesErrorTextBlock.Visibility = Visibility.Visible;
-
-                validInputs = false;
-            }
-            // Check for invalid input
-            if ((!int.TryParse(CaloriesTextBox.Text, out int calories) || calories <= 0) && CaloriesErrorTextBlock.Visibility == Visibility.Collapsed)
-            {
-                CaloriesErrorTextBlock.Text = "Calories must be a positive integer.";
-                CaloriesErrorTextBlock.Visibility = Visibility.Visible;
-
-                validInputs = false;
-            }
-
-            // Huy hanh dong dong dialog neu co loi nhap lieu
             if (!validInputs)
             {
                 args.Cancel = true;
             }
         }
 
+        /// <summary>
+        /// Resets the visibility of error messages.
+        /// </summary>
+        private void ResetErrorMessages()
+        {
+            NameErrorTextBlock.Visibility = Visibility.Collapsed;
+            CaloriesErrorTextBlock.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Validates the user inputs for exercise name and calories.
+        /// </summary>
+        /// <returns>True if inputs are valid, otherwise false.</returns>
+        private bool ValidateInputs()
+        {
+            bool validInputs = true;
+
+            if (string.IsNullOrWhiteSpace(ExerciseNameTextBox.Text))
+            {
+                NameErrorTextBlock.Text = "Please enter name.";
+                NameErrorTextBlock.Visibility = Visibility.Visible;
+                validInputs = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(CaloriesTextBox.Text))
+            {
+                CaloriesErrorTextBlock.Text = "Please enter calories.";
+                CaloriesErrorTextBlock.Visibility = Visibility.Visible;
+                validInputs = false;
+            }
+            else if (!int.TryParse(CaloriesTextBox.Text, out int calories) || calories <= 0)
+            {
+                CaloriesErrorTextBlock.Text = "Calories must be a positive integer.";
+                CaloriesErrorTextBlock.Visibility = Visibility.Visible;
+                validInputs = false;
+            }
+
+            return validInputs;
+        }
+
+        /// <summary>
+        /// Gets the exercise from the user input if there are no validation errors.
+        /// </summary>
+        /// <returns>An Exercise object if inputs are valid, otherwise null.</returns>
         public Exercise GetExerciseFromInput()
         {
-            // Chỉ trả về Exercise nếu không có lỗi
-            if (NameErrorTextBlock.Visibility == Visibility.Collapsed ||
+            if (NameErrorTextBlock.Visibility == Visibility.Collapsed &&
                 CaloriesErrorTextBlock.Visibility == Visibility.Collapsed)
             {
                 return new Exercise

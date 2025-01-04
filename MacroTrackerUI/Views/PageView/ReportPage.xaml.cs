@@ -9,15 +9,19 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class ReportPage : Page
 {
-    private ReportViewModel ViewModel { get; set; }
+    /// <summary>
+    /// Gets the ViewModel for the ReportPage.
+    /// </summary>
+    private ReportViewModel ViewModel { get; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ReportPage"/> class.
     /// </summary>
     public ReportPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
         ViewModel = new ReportViewModel();
-        this.DataContext = ViewModel;
+        DataContext = ViewModel;
         ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 }

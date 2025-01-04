@@ -13,31 +13,46 @@ public interface IDao
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     List<Food> GetFoods();
 
-    // Add food
+    /// <summary>
+    /// Adds a new food item.
+    /// </summary>
+    /// <param name="food">The food item to add.</param>
     void AddFood(Food food);
 
-    // Remove food
+    /// <summary>
+    /// Removes a food item by name.
+    /// </summary>
+    /// <param name="foodName">The name of the food item to remove.</param>
     void RemoveFood(string foodName);
-
-    // Exercise
 
     /// <summary>
     /// Retrieves a collection of exercises.
     /// </summary>
     /// <returns>A list of <see cref="Exercise"/> objects.</returns>
     List<Exercise> GetExercises();
-    
-    // Add exercise
+
+    /// <summary>
+    /// Adds a new exercise.
+    /// </summary>
+    /// <param name="exercise">The exercise to add.</param>
     void AddExercise(Exercise exercise);
-    // Remove exercise
+
+    /// <summary>
+    /// Removes an exercise by name.
+    /// </summary>
+    /// <param name="exerciseName">The name of the exercise to remove.</param>
     void RemoveExercise(string exerciseName);
-    
+
     /// <summary>
     /// Retrieves the goal.
     /// </summary>
     /// <returns>A <see cref="Goal"/> object.</returns>
     Goal GetGoal();
 
+    /// <summary>
+    /// Updates the goal.
+    /// </summary>
+    /// <param name="goal">The goal to update.</param>
     void UpdateGoal(Goal goal);
 
     /// <summary>
@@ -51,18 +66,14 @@ public interface IDao
     /// </summary>
     /// <param name="username">The username to check.</param>
     /// <param name="password">The password to check.</param>
-    /// <returns>
-    /// <c>true</c> if the username and password match; otherwise, <c>false</c>.
-    /// </returns>
+    /// <returns><c>true</c> if the username and password match; otherwise, <c>false</c>.</returns>
     bool DoesUserMatchPassword(string username, string password);
 
     /// <summary>
     /// Checks if the provided username exists.
     /// </summary>
     /// <param name="username">The username to check.</param>
-    /// <returns>
-    /// <c>true</c> if the username exists; otherwise, <c>false</c>.
-    /// </returns>
+    /// <returns><c>true</c> if the username exists; otherwise, <c>false</c>.</returns>
     bool DoesUsernameExist(string username);
 
     /// <summary>

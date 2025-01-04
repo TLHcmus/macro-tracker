@@ -33,6 +33,6 @@ public interface IChatBot
     /// Gets the response from the chatbot for a given prompt.
     /// </summary>
     /// <param name="prompt">The user prompt.</param>
-    /// <returns>The chatbot's response.</returns>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the chatbot's response.</returns>
     Task<string> GetResponse(string prompt);
 }

@@ -12,15 +12,18 @@ namespace MacroTrackerCore.Data;
 public partial class MacroTrackerContext : DbContext
 {
     public string InitPathForTest { get; private set; } = "Properties\\DatabaseSetup\\init_sqlite.sql";
-
-    public String Env { get; private set; } = "dev";
+    public string Env { get; private set; } = "dev";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MacroTrackerContext"/> class.
     /// </summary>
     public MacroTrackerContext() { }
 
-    public MacroTrackerContext(String env)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MacroTrackerContext"/> class with a specified environment.
+    /// </summary>
+    /// <param name="env">The environment to be used.</param>
+    public MacroTrackerContext(string env)
     {
         Env = env;
     }
@@ -46,7 +49,7 @@ public partial class MacroTrackerContext : DbContext
 
             if (Env == "dev")
             {
-                Debug.WriteLine($"Development Database.");
+                Debug.WriteLine("Development Database.");
                 optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)));
             }
             else if (Env == "test")
@@ -57,13 +60,16 @@ public partial class MacroTrackerContext : DbContext
         }
     }
 
+    /// <summary>
+    /// Gets the initialization path for the SQLite database used in testing.
+    /// </summary>
+    /// <returns>The path to the initialization SQL file.</returns>
+    /// <exception cref="FileNotFoundException">Thrown when the schema SQL file is not found.</exception>
     public string GetInitSqlitePathForTest()
     {
         Database.EnsureCreated();
-
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, InitPathForTest);
 
-        // Check if the file exists
         if (!File.Exists(path))
         {
             throw new FileNotFoundException($"Schema SQL file not found: {path}");
@@ -72,15 +78,16 @@ public partial class MacroTrackerContext : DbContext
         return path;
     }
 
+    /// <summary>
+    /// Initializes the SQLite database for testing.
+    /// </summary>
+    /// <returns>The database connection.</returns>
     public DbConnection InitSqliteForTest()
     {
         var path = GetInitSqlitePathForTest();
-
-        // Read SQL commands
         var sqlCommands = File.ReadAllText(path);
 
-        // Execute SQL commands
-        var connection = this.Database.GetDbConnection();
+        var connection = Database.GetDbConnection();
         connection.Open();
         using (var transaction = connection.BeginTransaction())
         {
@@ -96,6 +103,10 @@ public partial class MacroTrackerContext : DbContext
         return connection;
     }
 
+    /// <summary>
+    /// Disposes the SQLite database connection used in testing.
+    /// </summary>
+    /// <param name="connection">The database connection to be disposed.</param>
     public void DisposeSqliteForTest(DbConnection connection)
     {
         if (connection != null && connection.State != ConnectionState.Closed)

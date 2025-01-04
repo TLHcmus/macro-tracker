@@ -39,16 +39,17 @@ public class ChatBotDataTemplateSelector : DataTemplateSelector
     {
         if (item is Message message)
         {
-            DataTemplate dataTemplate = SelectTemplateChatBot(message);
-            if (dataTemplate == null)
-                return base.SelectTemplateCore(item, container);
-
-            return SelectTemplateChatBot(message);
+            return SelectTemplateChatBot(message) ?? base.SelectTemplateCore(item, container);
         }
 
         return base.SelectTemplateCore(item, container);
     }
 
+    /// <summary>
+    /// Selects the appropriate DataTemplate based on the role of the message.
+    /// </summary>
+    /// <param name="message">The message object containing the role type.</param>
+    /// <returns>The selected DataTemplate or null if no match is found.</returns>
     public DataTemplate SelectTemplateChatBot(Message message)
     {
         return message.Role switch

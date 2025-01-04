@@ -28,16 +28,28 @@ public class ChatBot : IChatBot
     /// <summary>
     /// Gets the chat history of the chatbot.
     /// </summary>
-    public ChatHistory History { get; private set; } = [];
+    public ChatHistory History { get; private set; } = new ChatHistory();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ChatBot"/> class.
     /// </summary>
     public ChatBot()
     {
-        new EnvLoader().Load();
-        var envVars = new EnvReader();
+        InitializeEnvironment();
+        InitializeKernel();
+    }
 
+    /// <summary>
+    /// Initializes environment variables.
+    /// </summary>
+    private void InitializeEnvironment() => new EnvLoader().Load();
+
+    /// <summary>
+    /// Initializes the Kernel and related services.
+    /// </summary>
+    private void InitializeKernel()
+    {
+        var envVars = new EnvReader();
 #pragma warning disable SKEXP0070 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         var builder = Kernel.CreateBuilder().AddHuggingFaceChatCompletion(
             model: "Qwen/QwQ-32B-Preview",
@@ -46,8 +58,7 @@ public class ChatBot : IChatBot
 
         Kernel = builder.Build();
         ChatCompletionService = Kernel.GetRequiredService<IChatCompletionService>();
-
-        PromptExecutionSettings = new HuggingFacePromptExecutionSettings()
+        PromptExecutionSettings = new HuggingFacePromptExecutionSettings
         {
             FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
             MaxTokens = 500
@@ -62,28 +73,34 @@ public class ChatBot : IChatBot
     /// <returns>The chatbot's response.</returns>
     public async Task<string> GetResponse(string prompt)
     {
-        // Add system message
+        AddSystemMessage();
+        History.AddUserMessage(prompt);
+
+        try
+        {
+            var response = await ChatCompletionService.GetChatMessageContentAsync(History, PromptExecutionSettings);
+            if (response.Content != null)
+            {
+                History.AddMessage(response.Role, response.Content);
+            }
+            return response.Content ?? string.Empty;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// Adds the system message to the chat history.
+    /// </summary>
+    private void AddSystemMessage()
+    {
         History.AddSystemMessage("""
             You are a professional macro tracker.
             You only answer the questions related to nutritions, calories, food, health and fitness.
             You can have some fun and casual conversations with the user, but you must always stay professional.
             And you must deny all unrelated questions at all costs.
         """);
-
-        History.AddUserMessage(prompt);
-
-        try
-        {
-            ChatMessageContent response = await ChatCompletionService.GetChatMessageContentAsync(History, PromptExecutionSettings);
-            if (response.Content != null)
-            {
-                History.AddMessage(response.Role, response.Content);
-            }
-            return response.Content ?? "";
-        }
-        catch (Exception)
-        {
-            throw;
-        }
     }
 }

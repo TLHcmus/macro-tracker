@@ -5,6 +5,9 @@
 /// </summary>
 public partial class Goal
 {
+    /// <summary>
+    /// Gets or sets the unique identifier for the goal.
+    /// </summary>
     public int GoalId { get; set; }
 
     /// <summary>

@@ -64,6 +64,23 @@ public partial class MacroTrackerContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
+        ConfigureExerciseEntity(modelBuilder);
+        ConfigureFoodEntity(modelBuilder);
+        ConfigureGoalEntity(modelBuilder);
+        ConfigureLogEntity(modelBuilder);
+        ConfigureLogExerciseItemEntity(modelBuilder);
+        ConfigureLogFoodItemEntity(modelBuilder);
+        ConfigureUserEntity(modelBuilder);
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    /// <summary>
+    /// Configures the Exercise entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureExerciseEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Exercise>(entity =>
         {
             entity.HasKey(e => e.Name).HasName("PRIMARY");
@@ -79,7 +96,14 @@ public partial class MacroTrackerContext : DbContext
                 .HasColumnName("icon_file_name")
                 .HasCharSet("utf8mb3");
         });
+    }
 
+    /// <summary>
+    /// Configures the Food entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureFoodEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Food>(entity =>
         {
             entity.HasKey(e => e.Name).HasName("PRIMARY");
@@ -98,7 +122,14 @@ public partial class MacroTrackerContext : DbContext
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.ProteinPer100g).HasColumnName("protein_per_100g");
         });
+    }
 
+    /// <summary>
+    /// Configures the Goal entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureGoalEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Goal>(entity =>
         {
             entity.HasKey(e => e.GoalId).HasName("PRIMARY");
@@ -111,7 +142,14 @@ public partial class MacroTrackerContext : DbContext
             entity.Property(e => e.Fat).HasColumnName("fat");
             entity.Property(e => e.Protein).HasColumnName("protein");
         });
+    }
 
+    /// <summary>
+    /// Configures the Log entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureLogEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Log>(entity =>
         {
             entity.HasKey(e => e.LogId).HasName("PRIMARY");
@@ -124,7 +162,14 @@ public partial class MacroTrackerContext : DbContext
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("total_calories");
         });
+    }
 
+    /// <summary>
+    /// Configures the LogExerciseItem entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureLogExerciseItemEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<LogExerciseItem>(entity =>
         {
             entity.HasKey(e => e.LogExerciseId).HasName("PRIMARY");
@@ -132,7 +177,6 @@ public partial class MacroTrackerContext : DbContext
             entity.ToTable("log_exercise_items");
 
             entity.HasIndex(e => e.ExerciseName, "exercise_name");
-
             entity.HasIndex(e => e.LogId, "log_id");
 
             entity.Property(e => e.LogExerciseId).HasColumnName("log_exercise_id").ValueGeneratedOnAdd();
@@ -153,7 +197,14 @@ public partial class MacroTrackerContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("log_exercise_items_ibfk_1");
         });
+    }
 
+    /// <summary>
+    /// Configures the LogFoodItem entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureLogFoodItemEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<LogFoodItem>(entity =>
         {
             entity.HasKey(e => e.LogFoodId).HasName("PRIMARY");
@@ -161,7 +212,6 @@ public partial class MacroTrackerContext : DbContext
             entity.ToTable("log_food_items");
 
             entity.HasIndex(e => e.FoodName, "food_name");
-
             entity.HasIndex(e => e.LogId, "log_id");
 
             entity.Property(e => e.LogFoodId).HasColumnName("log_food_id").ValueGeneratedOnAdd();
@@ -182,7 +232,14 @@ public partial class MacroTrackerContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("log_food_items_ibfk_1");
         });
+    }
 
+    /// <summary>
+    /// Configures the User entity.
+    /// </summary>
+    /// <param name="modelBuilder">The builder being used to construct the model for this context.</param>
+    private static void ConfigureUserEntity(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Username).HasName("PRIMARY");
@@ -197,8 +254,6 @@ public partial class MacroTrackerContext : DbContext
                 .HasColumnName("encrypted_password")
                 .HasCharSet("utf8mb3");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
 
     /// <summary>

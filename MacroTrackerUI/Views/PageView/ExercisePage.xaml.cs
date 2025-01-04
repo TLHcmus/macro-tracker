@@ -33,96 +33,88 @@ public sealed partial class ExercisePage : Page
         ViewModel = new ExerciseViewModel();
     }
 
+    /// <summary>
+    /// Handles the selection changed event for the exercise list.
+    /// </summary>
     private void ExerciseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        // Lay mon an duoc chon
-        var selectedExercise = (Exercise)ExerciseList.SelectedItem;         
+        var selectedExercise = (Exercise)ExerciseList.SelectedItem;
 
         if (selectedExercise != null)
         {
-            ExerciseImage.Source = new BitmapImage(new Uri($"ms-appx:///Assets/ExerciseIcons/{selectedExercise.IconFileName}"));
-
-            ExerciseDetail.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
-            NoExerciseSelectedMessage.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-
-            ExerciseName.Text = selectedExercise.Name;
-
-            // Calories burned mac dinh
-            DurationInput.Text = "";
-
-            Calories.Text = "0";
-     
-            // Dinh luong mon an thay doi
-            DurationInput.TextChanged += (s, e) =>
-            {
-                if (double.TryParse(DurationInput.Text, out double duration))
-                {
-                    var caloriesBurned = selectedExercise.GetCaloriesBurned(duration);
-                    Calories.Text = ((int)caloriesBurned).ToString();
-                }
-                else
-                {
-                    Calories.Text = "0";
-                }
-            };
+            UpdateExerciseDetails(selectedExercise);
         }
     }
 
+    /// <summary>
+    /// Updates the exercise details UI with the selected exercise.
+    /// </summary>
+    private void UpdateExerciseDetails(Exercise selectedExercise)
+    {
+        ExerciseImage.Source = new BitmapImage(new Uri($"ms-appx:///Assets/ExerciseIcons/{selectedExercise.IconFileName}"));
+        ExerciseDetail.Visibility = Visibility.Visible;
+        NoExerciseSelectedMessage.Visibility = Visibility.Collapsed;
+        ExerciseName.Text = selectedExercise.Name;
+        DurationInput.Text = "";
+        Calories.Text = "0";
+
+        DurationInput.TextChanged += (s, e) =>
+        {
+            if (double.TryParse(DurationInput.Text, out double duration))
+            {
+                var caloriesBurned = selectedExercise.GetCaloriesBurned(duration);
+                Calories.Text = ((int)caloriesBurned).ToString();
+            }
+            else
+            {
+                Calories.Text = "0";
+            }
+        };
+    }
+
+    /// <summary>
+    /// Handles the text changed event for the search bar.
+    /// </summary>
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         var searchText = SearchBar.Text.ToLower();
-        // Loc danh sach 
-        if (string.IsNullOrWhiteSpace(searchText))
-        {
-            ExerciseList.ItemsSource = ViewModel.Exercises;
-        }
-        else
-        {
-            ExerciseList.ItemsSource = ViewModel.Exercises
-                .Where(food => food.Name.ToLower().Contains(searchText))
-                .ToList();
-        }
+        ExerciseList.ItemsSource = string.IsNullOrWhiteSpace(searchText)
+            ? ViewModel.Exercises
+            : ViewModel.Exercises.Where(exercise => exercise.Name.ToLower().Contains(searchText)).ToList();
     }
 
+    /// <summary>
+    /// Handles the click event for the add exercise button.
+    /// </summary>
     private async void AddExerciseButton_Click(object sender, RoutedEventArgs e)
     {
-        // Tạo một đối tượng Food mới
-        var addExerciseDialog = new AddExerciseDialog()
-        {
-            XamlRoot = this.XamlRoot
-        };
-
-        // Hiển thị dialog
+        var addExerciseDialog = new AddExerciseDialog { XamlRoot = this.XamlRoot };
         var result = await addExerciseDialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary) // Nếu nhấn "Add"
+        if (result == ContentDialogResult.Primary)
         {
             var exercise = addExerciseDialog.GetExerciseFromInput();
-
-            // Nếu exercise là null, tức là có lỗi trong quá trình nhập liệu
             if (exercise != null)
             {
-                // Gọi phương thức AddFood của ViewModel để thêm món ăn
                 ViewModel.AddExercise(exercise);
             }
         }
     }
 
+    /// <summary>
+    /// Handles the click event for the remove exercise menu item.
+    /// </summary>
     private async void ContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        // Lấy đối tượng exercise được liên kết với item
         var menuFlyoutItem = sender as MenuFlyoutItem;
-        var exerciseToDelete = (menuFlyoutItem?.DataContext as Exercise);
+        var exerciseToDelete = menuFlyoutItem?.DataContext as Exercise;
 
         if (exerciseToDelete == null)
         {
             return;
         }
 
-        // Lưu lại bài tập hiện tại nếu nó đang được chọn
         var selectedExercise = (Exercise)ExerciseList.SelectedItem;
-
-        // Hop thoai xac nhan hanh dong xoa
         var confirmDialog = new ContentDialog
         {
             Title = "Confirm Removal",
@@ -137,7 +129,6 @@ public sealed partial class ExercisePage : Page
 
         if (result == ContentDialogResult.Primary)
         {
-            // Nếu bài tập bị xóa là món ăn đang được chọn, ẩn phần chi tiết
             if (selectedExercise != null && selectedExercise.Name == exerciseToDelete.Name)
             {
                 ExerciseDetail.Visibility = Visibility.Collapsed;
@@ -148,11 +139,17 @@ public sealed partial class ExercisePage : Page
         }
     }
 
-    private void LogExerciseButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    /// <summary>
+    /// Handles the click event for the log exercise button.
+    /// </summary>
+    private void LogExerciseButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        // Implementation for logging exercise
     }
 
+    /// <summary>
+    /// Handles the image failed event for the exercise image.
+    /// </summary>
     private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
     {
         string exerciseIconDir = AssetsPathRegistry.RegisteredAssetsPath["ExerciseIcons"];

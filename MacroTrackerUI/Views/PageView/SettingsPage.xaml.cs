@@ -22,7 +22,7 @@ public sealed partial class SettingsPage : Page
     /// </summary>
     public SettingsPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     /// <summary>

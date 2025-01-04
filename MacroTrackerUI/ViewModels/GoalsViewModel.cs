@@ -18,31 +18,37 @@ public class GoalsViewModel : INotifyPropertyChanged
     /// </summary>
     public Goal CurrentGoal { get; set; }
 
-    private IServiceProvider Provider { get; } 
+    private IServiceProvider Provider { get; }
 
-    private IDaoSender Sender { get; } 
+    private IDaoSender Sender { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GoalsViewModel"/> class.
     /// </summary>
-    public GoalsViewModel()
+    public GoalsViewModel() : this(ProviderUI.GetServiceProvider())
     {
-        Provider = ProviderUI.GetServiceProvider();
-        Sender = Provider.GetService<IDaoSender>();
-        CurrentGoal = Sender.GetGoal();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GoalsViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider to use.</param>
     public GoalsViewModel(IServiceProvider provider)
     {
-        Provider = provider;
-        Sender = Provider.GetService<IDaoSender>();
+        Provider = provider ?? throw new ArgumentNullException(nameof(provider));
+        Sender = Provider.GetService<IDaoSender>() ?? throw new InvalidOperationException("IDaoSender service not found.");
         CurrentGoal = Sender.GetGoal();
     }
 
+    /// <summary>
+    /// Updates the current goal.
+    /// </summary>
+    /// <param name="goal">The new goal to set.</param>
     public void UpdateGoal(Goal goal)
     {
-        Sender.UpdateGoal(goal);
+        if (goal == null) throw new ArgumentNullException(nameof(goal));
 
+        Sender.UpdateGoal(goal);
         CurrentGoal = goal;
         Debug.WriteLine($"CurrentGoal is changed, Calories: {CurrentGoal.Calories}");
     }

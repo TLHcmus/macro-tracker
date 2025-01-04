@@ -31,10 +31,18 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object for sending data.
     /// </summary>
-    private IDaoSender Sender { get; } 
+    private IDaoSender Sender { get; }
+
+    /// <summary>
+    /// Gets the password encryption handler.
+    /// </summary>
+    public IPasswordEncryptionSender PasswordEncryptionHandle { get; }
 
     private IServiceProvider Provider { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpViewModel"/> class.
+    /// </summary>
     public SignUpViewModel()
     {
         Provider = ProviderUI.GetServiceProvider();
@@ -42,6 +50,10 @@ public class SignUpViewModel : INotifyPropertyChanged
         PasswordEncryptionHandle = Provider.GetService<IPasswordEncryptionSender>();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
     public SignUpViewModel(IServiceProvider provider)
     {
         Provider = provider;
@@ -127,11 +139,6 @@ public class SignUpViewModel : INotifyPropertyChanged
     {
         return Password == ReenteredPassword;
     }
-
-    /// <summary>
-    /// Gets the password encryption handler.
-    /// </summary>
-    public IPasswordEncryptionSender PasswordEncryptionHandle { get; }
 
     /// <summary>
     /// Adds a user to the database.

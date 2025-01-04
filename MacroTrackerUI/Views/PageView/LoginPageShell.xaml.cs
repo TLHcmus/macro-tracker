@@ -24,6 +24,14 @@ public sealed partial class LoginPageShell : Page
     /// </summary>
     private void InitializeLoginPage()
     {
+        NavigateToLoginPage();
+    }
+
+    /// <summary>
+    /// Navigates to the Login page and sets up event handlers.
+    /// </summary>
+    private void NavigateToLoginPage()
+    {
         LoginMode.Navigate(typeof(Login));
         if (LoginMode.Content is Login currentContent)
         {
@@ -38,6 +46,14 @@ public sealed partial class LoginPageShell : Page
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The event data.</param>
     private void SignUpLink_Click(object sender, RoutedEventArgs e)
+    {
+        NavigateToSignUpPage();
+    }
+
+    /// <summary>
+    /// Navigates to the SignUp page and sets up event handlers.
+    /// </summary>
+    private void NavigateToSignUpPage()
     {
         LoginMode.Navigate(typeof(SignUp), null, new SlideNavigationTransitionInfo
         {
@@ -58,6 +74,14 @@ public sealed partial class LoginPageShell : Page
     /// <param name="e">The event data.</param>
     private void LoginLink_Click(object sender, RoutedEventArgs e)
     {
+        NavigateBackToLoginPage();
+    }
+
+    /// <summary>
+    /// Navigates back to the Login page and sets up event handlers.
+    /// </summary>
+    private void NavigateBackToLoginPage()
+    {
         LoginMode.GoBack();
         if (LoginMode.Content is Login currentContent)
         {
@@ -73,12 +97,7 @@ public sealed partial class LoginPageShell : Page
     /// <param name="e">The event data.</param>
     private void SignUp_Click(object sender, RoutedEventArgs e)
     {
-        LoginMode.GoBack();
-        if (LoginMode.Content is Login currentContent)
-        {
-            currentContent.SignUpLinkClickEvent += SignUpLink_Click;
-            currentContent.LogInClickEvent += Login_Click;
-        }
+        NavigateBackToLoginPage();
     }
 
     /// <summary>

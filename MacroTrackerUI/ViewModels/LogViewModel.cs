@@ -16,21 +16,28 @@ public class LogViewModel
     /// <summary>
     /// Gets or sets the list of logs.
     /// </summary>
-    public ObservableCollection<Log> LogList { get; set; } = [];
+    public ObservableCollection<Log> LogList { get; set; } = new();
 
     /// <summary>
     /// Gets the data access sender.
     /// </summary>
-    private IDaoSender Sender { get; } 
+    private IDaoSender Sender { get; }
 
     private IServiceProvider Provider { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogViewModel"/> class.
+    /// </summary>
     public LogViewModel()
     {
         Provider = ProviderUI.GetServiceProvider();
         Sender = Provider.GetService<IDaoSender>();
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
     public LogViewModel(IServiceProvider provider)
     {
         Provider = provider;
@@ -49,7 +56,7 @@ public class LogViewModel
     /// </summary>
     public DateTime EndDate
     {
-        get { return _endDate; }
+        get => _endDate;
         set
         {
             _endDate = value;
@@ -68,7 +75,7 @@ public class LogViewModel
         if (logs.Count == 0)
             return;
 
-        foreach (Log log in logs)
+        foreach (var log in logs)
             LogList.Add(log);
     }
 
@@ -83,7 +90,7 @@ public class LogViewModel
         if (logs.Count == 0)
             return;
 
-        foreach (Log log in logs)
+        foreach (var log in logs)
             LogList.Add(log);
     }
 
@@ -110,38 +117,36 @@ public class LogViewModel
     /// <summary>
     /// Deletes a log by its ID.
     /// </summary>
-    /// <param name="iD">The ID of the log to delete.</param>
-    public void DeleteLog(int iD)
+    /// <param name="id">The ID of the log to delete.</param>
+    public void DeleteLog(int id)
     {
-        Sender.DeleteLog(iD);
-        LogList.Remove(LogList.First(log => log.LogId == iD));
+        Sender.DeleteLog(id);
+        LogList.Remove(LogList.First(log => log.LogId == id));
     }
 
     /// <summary>
     /// Deletes a log food item by log ID and log food ID.
     /// </summary>
-    /// <param name="logID">The log ID.</param>
-    /// <param name="logFoodID">The log food ID.</param>
-    public void DeleteLogFood(int logID, int logFoodID)
+    /// <param name="logId">The log ID.</param>
+    /// <param name="logFoodId">The log food ID.</param>
+    public void DeleteLogFood(int logId, int logFoodId)
     {
-        Sender.DeleteLogFood(logID, logFoodID);
+        Sender.DeleteLogFood(logId, logFoodId);
 
-        Log log = LogList.First(log => log.LogId == logID);
-        log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == logFoodID));
+        var log = LogList.First(log => log.LogId == logId);
+        log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == logFoodId));
     }
 
     /// <summary>
     /// Deletes a log exercise item by log ID and log exercise ID.
     /// </summary>
-    /// <param name="logID">The log ID.</param>
-    /// <param name="logExerciseID">The log exercise ID.</param>
-    public void DeleteLogExercise(int logID, int logExerciseID)
+    /// <param name="logId">The log ID.</param>
+    /// <param name="logExerciseId">The log exercise ID.</param>
+    public void DeleteLogExercise(int logId, int logExerciseId)
     {
-        Sender.DeleteLogExercise(logID, logExerciseID);
+        Sender.DeleteLogExercise(logId, logExerciseId);
 
-        Log log = LogList.First(logDate => logDate.LogId == logID);
-        log.LogExerciseItems.Remove(log.LogExerciseItems.First(
-            logExercise => logExercise.LogExerciseId == logExerciseID)
-        );
+        var log = LogList.First(log => log.LogId == logId);
+        log.LogExerciseItems.Remove(log.LogExerciseItems.First(logExercise => logExercise.LogExerciseId == logExerciseId));
     }
 }
