@@ -65,7 +65,7 @@ public class ChatBotViewModel : INotifyPropertyChanged
 
         try
         {
-            string response = await RunWithTimeout(ChatBot.GetResponse(PromptContent), TimeSpan.FromSeconds(10));
+            string response = await RunWithTimeout(ChatBot.GetResponse(PromptContent), TimeSpan.FromSeconds(30));
             ReplaceLastAssistantMessage(response);
         }
         catch (Exception)

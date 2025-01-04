@@ -80,7 +80,7 @@ public class ChatBotViewModelTests
         // Arrange
         _chatBotMock.Setup(cb => cb.GetResponse(It.IsAny<string>())).Returns(async () =>
         {
-            await Task.Delay(12000); // Simulate long response time
+            await Task.Delay(32000); // Simulate long response time
             return "Response from ChatBot";
         });
         var viewModel = new ChatBotViewModel(_serviceProvider)
@@ -91,7 +91,7 @@ public class ChatBotViewModelTests
 
         // Act
         viewModel.SendPrompt();
-        await Task.Delay(12000); // Allow some time for async operation
+        await Task.Delay(32000); // Allow some time for async operation
 
         // Assert
         Assert.AreEqual(2, App.ChatBotConversation.Count);
