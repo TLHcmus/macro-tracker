@@ -70,7 +70,7 @@ public class ReportViewModel : INotifyPropertyChanged
 
         // Lấy danh sách tất cả các món ăn từ database
         var foods = Sender.GetFoods(); // Lấy danh sách foods (có thông tin dinh dưỡng)
-        var foodDict = foods.ToDictionary(food => food.Name, food => food); // Tạo dictionary để tra cứu 
+        var foodDict = foods.ToDictionary(food => food.FoodId, food => food); // Tạo dictionary để tra cứu 
 
         // Lấy danh sách các log
         LogList = new ObservableCollection<Log>(Sender.GetLogs());
@@ -80,15 +80,15 @@ public class ReportViewModel : INotifyPropertyChanged
             .GroupBy(log => log.LogDate)
             .Select(group => new
             {
-                // Note: Serving size = 100 gram.
+                // Note: Serving size = 1 gram
                 Date = group.Key,
                 TotalCalories = group.Sum(log => log.TotalCalories),
                 TotalProtein = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.ProteinPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.ProteinPer100g * (item.NumberOfServings) : 0)),
                 TotalCarbs = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.CarbsPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.CarbsPer100g * (item.NumberOfServings) : 0)),
                 TotalFat = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodName, out var food) ? food.FatPer100g * (item.NumberOfServings) : 0))
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.FatPer100g * (item.NumberOfServings) : 0))
             })
             .OrderBy(x => x.Date)
             .ToList();

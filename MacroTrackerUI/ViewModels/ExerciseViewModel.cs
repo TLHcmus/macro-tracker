@@ -26,11 +26,11 @@ public class ExerciseViewModel : INotifyPropertyChanged
         Exercises.Add(exercise);
     }
 
-    public void RemoveExercise(string exerciseName)
+    public void RemoveExercise(int exerciseId)
     {
-        Sender.RemoveExercise(exerciseName);
+        Sender.RemoveExercise(exerciseId);
 
-        var exerciseToRemove = Exercises.FirstOrDefault(exercise => exercise.Name.Equals(exerciseName, StringComparison.OrdinalIgnoreCase));
+        var exerciseToRemove = Exercises.FirstOrDefault(exercise => exercise.ExerciseId == exerciseId);
 
         if (exerciseToRemove != null)
         {

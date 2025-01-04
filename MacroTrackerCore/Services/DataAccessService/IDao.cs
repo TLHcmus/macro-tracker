@@ -20,7 +20,7 @@ public interface IDao
     void AddFood(Food food);
 
     // Remove food
-    void RemoveFood(string foodName);
+    void RemoveFood(int foodId);
 
     // Exercise
 
@@ -33,7 +33,7 @@ public interface IDao
     // Add exercise
     void AddExercise(Exercise exercise);
     // Remove exercise
-    void RemoveExercise(string exerciseName);
+    void RemoveExercise(int exerciseId);
 
 
     // Goal

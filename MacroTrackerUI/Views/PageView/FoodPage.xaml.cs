@@ -1,4 +1,5 @@
-﻿using MacroTrackerUI.Models;
+﻿using MacroTrackerUI.Helpers;
+using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
@@ -32,6 +33,10 @@ public sealed partial class FoodPage : Page
 
         if(selectedFood != null)
         {
+            // Chuyen doi byte[] sang Image
+            var image = ImageHelper.ConvertByteArrayToImage(selectedFood.Image);
+            FoodImage.Source = image;
+
             FoodDetail.Visibility = Visibility.Visible;
             NoFoodSelectedMessage.Visibility = Visibility.Collapsed;
 
@@ -137,13 +142,13 @@ public sealed partial class FoodPage : Page
         if (result == ContentDialogResult.Primary)
         {
             // Nếu món ăn bị xóa là món ăn đang được chọn, ẩn phần chi tiết
-            if (selectedFood != null && selectedFood.Name == foodToDelete.Name)
+            if (selectedFood != null && selectedFood.FoodId == foodToDelete.FoodId)
             {
                 FoodDetail.Visibility = Visibility.Collapsed;
                 NoFoodSelectedMessage.Visibility = Visibility.Visible;
             }
 
-            ViewModel.RemoveFood(foodToDelete.Name);
+            ViewModel.RemoveFood(foodToDelete.FoodId);
         }
     }
 

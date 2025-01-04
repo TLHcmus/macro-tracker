@@ -1,7 +1,9 @@
 ﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.PageView;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System.Linq;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -14,11 +16,14 @@ namespace MacroTrackerUI.Views.DialogView
     /// </summary>
     public sealed partial class AddFoodDialog : ContentDialog
     {
+        FoodViewModel ViewModel { get; set; }
         public AddFoodDialog()
         {
             this.InitializeComponent();
             this.PrimaryButtonClick += AddFoodDialog_PrimaryButtonClick;
             this.DefaultButton = ContentDialogButton.Primary;
+
+            ViewModel = new FoodViewModel();
         }
 
         public void AddFoodDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -67,6 +72,15 @@ namespace MacroTrackerUI.Views.DialogView
 
                 validInputs = false;
             }
+            // Check for duplicate name
+            if (ViewModel.Foods.Any(food => food.Name == FoodNameTextBox.Text))
+            {
+                NameErrorTextBlock.Text = $"{FoodNameTextBox.Text} already exists.";
+                NameErrorTextBlock.Visibility = Visibility.Visible;
+
+                validInputs = false;
+            }
+
 
             // Check for invalid input
             if ((!int.TryParse(CaloriesTextBox.Text, out int calories) || calories <= 0) && CaloriesErrorTextBlock.Visibility == Visibility.Collapsed)

@@ -28,11 +28,11 @@ public class FoodViewModel : INotifyPropertyChanged
         Foods.Add(food);
     }
 
-    public void RemoveFood(string foodName)
+    public void RemoveFood(int foodId)
     {
-        Sender.RemoveFood(foodName);
+        Sender.RemoveFood(foodId);
 
-        var foodToRemove = Foods.FirstOrDefault(food => food.Name.Equals(foodName, StringComparison.OrdinalIgnoreCase));
+        var foodToRemove = Foods.FirstOrDefault(food => food.FoodId == foodId);
 
         if (foodToRemove != null)
         {

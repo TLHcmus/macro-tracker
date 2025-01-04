@@ -31,9 +31,9 @@ public class DaoSender
     }
 
     // Remove food
-    public void RemoveFood(string foodName)
+    public void RemoveFood(int foodId)
     {
-        Receiver.RemoveFood(JsonSerializer.Serialize(foodName));
+        Receiver.RemoveFood(JsonSerializer.Serialize(foodId));
     }
 
     /// <summary>
@@ -50,9 +50,9 @@ public class DaoSender
         Receiver.AddExercise(JsonSerializer.Serialize(exercise));
     }
     // Remove exercise
-    public void RemoveExercise(string exerciseName)
+    public void RemoveExercise(int exerciseId)
     {
-        Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseName));
+        Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseId));
     }
 
     // Get Goal

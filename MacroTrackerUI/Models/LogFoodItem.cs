@@ -10,7 +10,7 @@ public class LogFoodItem
 {
     public int LogFoodId { get; set; }
 
-    public string FoodName { get; set; }
+    public int FoodId { get; set; }
 
     public double NumberOfServings { get; set; }
 

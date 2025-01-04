@@ -45,14 +45,14 @@ public class DaoReceiver
     }
 
     // Remove food
-    public void RemoveFood(string foodNameJson)
+    public void RemoveFood(string foodIdJson)
     {
-        string? foodName = JsonSerializer.Deserialize<string>(foodNameJson);
-        if (foodName == null)
+        int foodId = JsonSerializer.Deserialize<int>(foodIdJson);
+        if (foodId <= 0)
         {
             throw new ArgumentNullException();
         }
-        Dao.RemoveFood(foodName);
+        Dao.RemoveFood(foodId);
     }
 
 
@@ -82,20 +82,27 @@ public class DaoReceiver
         Dao.AddExercise(exercise);
     }
     // Remove exercise
-    public void RemoveExercise(string exerciseNameJson)
+    public void RemoveExercise(string exerciseIdJson)
     {
-        string? exerciseName = JsonSerializer.Deserialize<string>(exerciseNameJson);
-        if (exerciseName == null)
+        int exerciseId = JsonSerializer.Deserialize<int>(exerciseIdJson);
+        if (exerciseId <= 0)
         {
             throw new ArgumentNullException();
         }
-        Dao.RemoveExercise(exerciseName);
+        Dao.RemoveExercise(exerciseId);
     }
 
     // Get Goal
     public string GetGoal()
     {
-        return JsonSerializer.Serialize(Dao.GetGoal());
+        JsonSerializerOptions options = new()
+        {
+            IncludeFields = true,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
+
+        return JsonSerializer.Serialize(Dao.GetGoal(), options);
     }
     // Update goal
     public void UpdateGoal (string goalJson)

@@ -4,6 +4,7 @@ namespace MacroTrackerUI.Models;
 
 public class Food : INotifyPropertyChanged
 {
+    public int FoodId { get; set; }
     public string Name { get; set; } = null!;
 
     public double CaloriesPer100g { get; set; }
@@ -14,7 +15,7 @@ public class Food : INotifyPropertyChanged
 
     public double FatPer100g { get; set; }
 
-    public string IconFileName { get; set; }
+    public byte[] Image { get; set; }
 
     public (double Calories, double Protein, double Carbs, double Fat) GetNutrition(double grams)
     {

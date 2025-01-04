@@ -1,4 +1,5 @@
-﻿using MacroTrackerUI.Models;
+﻿using MacroTrackerUI.Helpers;
+using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
@@ -32,7 +33,9 @@ public sealed partial class ExercisePage : Page
 
         if (selectedExercise != null)
         {
-            ExerciseImage.Source = new BitmapImage(new Uri($"ms-appx:///Assets/ExerciseIcons/{selectedExercise.IconFileName}"));
+            // Chuyen doi byte[] sang Image
+            var image = ImageHelper.ConvertByteArrayToImage(selectedExercise.Image);
+            ExerciseImage.Source = image;
 
             ExerciseDetail.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
             NoExerciseSelectedMessage.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
@@ -130,17 +133,17 @@ public sealed partial class ExercisePage : Page
         if (result == ContentDialogResult.Primary)
         {
             // Nếu bài tập bị xóa là món ăn đang được chọn, ẩn phần chi tiết
-            if (selectedExercise != null && selectedExercise.Name == exerciseToDelete.Name)
+            if (selectedExercise != null && selectedExercise.ExerciseId == exerciseToDelete.ExerciseId)
             {
                 ExerciseDetail.Visibility = Visibility.Collapsed;
                 NoExerciseSelectedMessage.Visibility = Visibility.Visible;
             }
 
-            ViewModel.RemoveExercise(exerciseToDelete.Name);
+            ViewModel.RemoveExercise(exerciseToDelete.ExerciseId);
         }
     }
 
-    private void LogExerciseButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void LogExerciseButton_Click(object sender, RoutedEventArgs e)
     {
         return;
     }

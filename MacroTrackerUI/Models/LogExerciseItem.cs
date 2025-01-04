@@ -10,7 +10,7 @@ public class LogExerciseItem
 {
     public int LogExerciseId { get; set; }
 
-    public string ExerciseName { get; set; }
+    public int ExerciseId { get; set; }
 
     public double Duration { get; set; }
 

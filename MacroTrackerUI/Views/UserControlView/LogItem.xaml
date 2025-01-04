@@ -110,7 +110,7 @@
                         <TextBlock Grid.Column="0"
                                    Margin="10 20 10 20">
                             
-                            <Run Text="{x:Bind Duration}"/> minutes of  <Run Text="{x:Bind ExerciseName}"/>
+                            <Run Text="{x:Bind Duration}"/> minutes of  <Run Text="{x:Bind ExerciseId}"/>
 
                         </TextBlock>
 
@@ -166,7 +166,7 @@
                         <TextBlock Grid.Column="0"
                                    Margin="10 20 10 20">
                             
-                            <Run Text="{x:Bind NumberOfServings}"/> <Run Text="{x:Bind FoodName}"/>
+                            <Run Text="{x:Bind NumberOfServings}"/> <Run Text="{x:Bind FoodId}"/>
 
                         </TextBlock>
 

@@ -14,4 +14,8 @@ public partial class Goal
     public int? Carbs { get; set; }
 
     public int? Fat { get; set; }
+
+    public int? UserId { get; set; }
+
+    public virtual User? User { get; set; }
 }

@@ -5,11 +5,15 @@
     xmlns:local="using:MacroTrackerUI.Views.PageView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:usrctl="using:MacroTrackerUI.Views.UserControlView"
+    xmlns:helper="using:MacroTrackerUI.Helpers.Converter"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-
+    <Page.Resources>
+        <helper:ExerciseFileNameToPathConverter x:Key="ExerciseFileNameToPath"/>
+        <helper:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+    </Page.Resources>
 
     <RelativePanel>
     <Grid Padding="20"
@@ -96,8 +100,8 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Image Grid.Column="0" Source="{Binding IconFileName}" Width="40" Height="40" Margin="0,0,10,0"/>
+
+                                        <Image Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteArrayToImageConverter}}" Width="40" Height="40" Margin="0,0,10,0"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>
@@ -114,9 +118,7 @@
                 <StackPanel x:Name="FoodDetail" Visibility="Collapsed">
                     <TextBlock x:Name="FoodName" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                     <!--Food image-->
-                    <StackPanel Background="Gray" Margin="0 10 0 20">
-                        <Image x:Name="FoodImage" Width="200" Height="200" Margin="0,0,0,20" />
-                    </StackPanel>
+                    <Image x:Name="FoodImage" Height="200" Margin="0,0,0,20" />
                     <!-- Input for number of servings -->
                     <TextBlock Text="Number of Servings (gram):" FontSize="16"/>
                     <TextBox x:Name="ServingInput" PlaceholderText="Enter number of servings" Margin="0,10,0,10" FontSize="16" />

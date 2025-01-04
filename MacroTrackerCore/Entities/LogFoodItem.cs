@@ -9,13 +9,13 @@ public partial class LogFoodItem
 
     public int? LogId { get; set; }
 
-    public string? FoodName { get; set; }
+    public int? FoodId { get; set; }
 
     public double? NumberOfServings { get; set; }
 
     public double? TotalCalories { get; set; }
 
-    public virtual Food? FoodNameNavigation { get; set; }
+    public virtual Food? Food { get; set; }
 
     public virtual Log? Log { get; set; }
 }

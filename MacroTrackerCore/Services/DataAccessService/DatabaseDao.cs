@@ -1,10 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MacroTrackerCore.Entities;
 using MacroTrackerCore.Services.ProviderService;
 using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
-using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -35,9 +33,9 @@ public class DatabaseDao : IDao
     }
 
     // Remove food
-    public void RemoveFood(string foodName)
+    public void RemoveFood(int foodId)
     {
-        var food = _context.Foods.Find(foodName);
+        var food = _context.Foods.Find(foodId);
 
         if (food == null)
         {
@@ -64,9 +62,9 @@ public class DatabaseDao : IDao
     }
 
     // Remove exercise
-    public void RemoveExercise(string exerciseName)
+    public void RemoveExercise(int exerciseId)
     {
-        var exercise = _context.Exercises.Find(exerciseName);
+        var exercise = _context.Exercises.Find(exerciseId);
 
         if (exercise == null)
         {
@@ -81,23 +79,30 @@ public class DatabaseDao : IDao
     // Goal
     public Goal GetGoal()
     {
-        return _context.Goals.FirstOrDefault();
+        var userId = CurrentUser.UserId;
+
+        return _context.Goals.FirstOrDefault(goal => goal.UserId == userId);
     }
     // Update goal
     public void UpdateGoal(Goal goal)
     {
-        var existingGoal = _context.Goals.FirstOrDefault();
+        var userId = CurrentUser.UserId;
+
+        var existingGoal = _context.Goals.FirstOrDefault(g => g.UserId == userId);
         
         if (existingGoal == null)
         {
+            // Gan user id cho goal moi
+            goal.UserId = userId;
             _context.Goals.Add(goal);
-            return;
         }
-
-        existingGoal.Calories = goal.Calories;
-        existingGoal.Protein = goal.Protein;
-        existingGoal.Carbs = goal.Carbs;
-        existingGoal.Fat = goal.Fat;
+        else
+        {    
+            existingGoal.Calories = goal.Calories;
+            existingGoal.Protein = goal.Protein;
+            existingGoal.Carbs = goal.Carbs;
+            existingGoal.Fat = goal.Fat;
+        }   
 
         _context.SaveChanges();
     }
@@ -121,38 +126,31 @@ public class DatabaseDao : IDao
     }
 
     // Check user match password
-    static int FindUsernameIndex(List<User> users, string userName)
-    {
-        for (int i = 0; i < users.Count; i++)
-        {
-            if (users[i].Username.Equals(userName)) // Case-sensitive comparison  
-            {
-                return i; // Return the index if found  
-            }
-        }
-        return -1; // Return -1 if not found  
-    }
 
     public bool DoesUserMatchPassword(string username, string password)
     {
-        var users = GetUsers();
-
-        int indexUsername = FindUsernameIndex(users, username);
-        if (indexUsername == -1)
+        var user = _context.Users
+            .FirstOrDefault(u => u.Username == username); 
+        if (user == null)
             return false;
 
+        // Kiểm tra mật khẩu
         IPasswordEncryption passwordEncryption =
             ProviderCore.GetServiceProvider().GetRequiredService<IPasswordEncryption>();
+        
+        // Luu user id
+        CurrentUser.UserId = user.UserId;
 
-        if (users[indexUsername].EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password))
-            return true;
-        return false;
+        Debug.WriteLine($"UserId after login: {CurrentUser.UserId}");
+
+        return user.EncryptedPassword == passwordEncryption.EncryptPasswordToDatabase(password);
     }
 
     public bool DoesUsernameExist(string username)
     {
-        var users = GetUsers();
-        return FindUsernameIndex(users, username) != -1;
+        var user = _context.Users
+            .FirstOrDefault(u => u.Username == username); 
+        return user != null;
     }
 
     public void AddUser(User user)
@@ -165,11 +163,14 @@ public class DatabaseDao : IDao
     // Log
     public List<Log> GetLogs()
     {
-        return _context.Logs
-        .Include(log => log.LogExerciseItems)
-        .Include(log => log.LogFoodItems)
-        .ToList();
-        //return _context.Logs.ToList();
+        var userId = CurrentUser.UserId;
+        // Debug
+        Debug.WriteLine("UserId in GetLogs: " + userId);
+
+        return _context.Logs.Where(log => log.UserId == userId)
+            .Include(log => log.LogFoodItems)
+            .Include(log => log.LogExerciseItems)
+            .ToList();
     }
 
     public void AddLog(Log log)
