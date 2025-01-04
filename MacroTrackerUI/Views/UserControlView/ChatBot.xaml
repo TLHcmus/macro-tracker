@@ -142,7 +142,6 @@
                          Margin="10"
                          TextWrapping="Wrap"
                          KeyDown="Key_KeyDown"
-                         KeyUp="Key_KeyUp"
                          Text="{x:Bind ViewModel.PromptContent, 
                                        Mode=TwoWay,
                                        UpdateSourceTrigger=PropertyChanged}"/>

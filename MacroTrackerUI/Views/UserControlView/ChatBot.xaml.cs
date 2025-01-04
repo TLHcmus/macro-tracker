@@ -70,44 +70,26 @@ public sealed partial class ChatBot : Page
     }
 
     /// <summary>
-    /// Gets or sets the list of keys currently pressed.
-    /// </summary>
-    private HashSet<VirtualKey> KeyList { get; set; } = [];
-
-    /// <summary>
-    /// Handles the KeyDown event of the control.
+    /// Handles the KeyDown event of the control. Check for 
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="KeyRoutedEventArgs"/> instance containing the event data.</param>
     private void Key_KeyDown(object sender, KeyRoutedEventArgs e)
     {
-        KeyList.Add(e.Key);
-
-        // Check if the Enter key is pressed (without combinations)
         if (e.Key == VirtualKey.Enter)
         {
-            if (!string.IsNullOrEmpty(ViewModel.PromptContent) && KeyList.Count == 1)
-            {
-                ViewModel.SendPrompt();
-                ViewModel.PromptContent = "";
-            }
-
-            if (KeyList.Count == 2 && (KeyList.Contains(VirtualKey.LeftControl) || KeyList.Contains(VirtualKey.RightControl) || KeyList.Contains(VirtualKey.Control)))
+            // Check if the Enter key is pressed with Shift
+            if (!string.IsNullOrEmpty(ViewModel.PromptContent) && Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(Windows.System.VirtualKey.Shift).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
             {
                 ViewModel.PromptContent += "\n";
                 PromptFill.SelectionStart = ViewModel.PromptContent.Length;
             }
+            else 
+            {
+                ViewModel.SendPrompt();
+                ViewModel.PromptContent = "";
+            }
         }
-    }
-
-    /// <summary>
-    /// Handles the KeyUp event of the control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="KeyRoutedEventArgs"/> instance containing the event data.</param>
-    private void Key_KeyUp(object sender, KeyRoutedEventArgs e)
-    {
-        KeyList.Remove(e.Key);
     }
 
     /// <summary>
