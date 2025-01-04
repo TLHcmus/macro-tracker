@@ -1143,4 +1143,829 @@ public sealed class MacroTrackerContextIT
             Assert.IsNull(retrievedFood.IconFileName);
         }
     }
+
+    [TestClass]
+    public class LogExerciseItemEntityIT
+    {
+        private MacroTrackerContext _context;
+
+        [TestInitialize]
+        public void Setup_Context_CreatesInMemoryDatabase()
+        {
+            _context = new("test");
+            _context.InitSqliteForTest();
+            _context.Database.EnsureCreated();
+        }
+
+        [TestCleanup]
+        public void Cleanup_Context_RemovesInMemoryDatabase()
+        {
+            _context.DisposeSqliteForTest(_context.Database.GetDbConnection());
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+        }
+
+        [TestMethod]
+        public void AddLogExerciseItem_WithValidDetails_ShouldPersistInDatabase()
+        {
+            // Arrange
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = 1,  // Using seeded log
+                ExerciseName = "Basketball",  // Using seeded exercise
+                Duration = 45.0,
+                TotalCalories = 45.0  // 45 minutes * 1 calorie per minute
+            };
+
+            // Act
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.AreEqual(45.0, retrievedItem.Duration);
+            Assert.AreEqual(45.0, retrievedItem.TotalCalories);
+            Assert.AreEqual("Basketball", retrievedItem.ExerciseName);
+        }
+
+        [TestMethod]
+        public void GetLogExerciseItem_WithNavigationProperties_ShouldLoadRelatedEntities()
+        {
+            // Arrange & Act
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = 1,
+                ExerciseName = "Basketball",
+                Duration = 30.0,
+                TotalCalories = 30.0
+            };
+
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogExerciseItems
+                .Include(i => i.ExerciseNameNavigation)
+                .Include(i => i.Log)
+                .FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNotNull(retrievedItem.ExerciseNameNavigation);
+            Assert.IsNotNull(retrievedItem.Log);
+            Assert.AreEqual("Basketball", retrievedItem.ExerciseNameNavigation.Name);
+            Assert.AreEqual(1.0, retrievedItem.ExerciseNameNavigation.CaloriesPerMinute);
+        }
+
+        [TestMethod]
+        public void UpdateLogExerciseItem_WithValidDetails_ShouldUpdateDatabase()
+        {
+            // Arrange
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = 1,
+                ExerciseName = "Basketball",
+                Duration = 30.0,
+                TotalCalories = 30.0
+            };
+
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            // Act
+            var retrievedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+            Assert.IsNotNull(retrievedItem);
+
+            retrievedItem.Duration = 45.0;
+            retrievedItem.TotalCalories = 45.0;
+            _context.SaveChanges();
+
+            var updatedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNotNull(updatedItem);
+            Assert.AreEqual(45.0, updatedItem.Duration);
+            Assert.AreEqual(45.0, updatedItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void DeleteLogExerciseItem_WithExistingItem_ShouldRemoveFromDatabase()
+        {
+            // Arrange
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = 1,
+                ExerciseName = "Basketball",
+                Duration = 30.0,
+                TotalCalories = 30.0
+            };
+
+            // Act
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+            Assert.IsNotNull(retrievedItem);
+
+            _context.LogExerciseItems.Remove(retrievedItem);
+            _context.SaveChanges();
+
+            var deletedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNull(deletedItem);
+        }
+
+        [TestMethod]
+        public void AddLogExerciseItem_WithInvalidExerciseName_ShouldThrowException()
+        {
+            // Arrange & Act & Assert
+            Assert.ThrowsException<DbUpdateException>(() =>
+            {
+                var logExerciseItem = new LogExerciseItem
+                {
+                    LogId = 1,
+                    ExerciseName = "NonExistentExercise",
+                    Duration = 30.0,
+                    TotalCalories = 30.0
+                };
+
+                _context.LogExerciseItems.Add(logExerciseItem);
+                _context.SaveChanges();
+            });
+        }
+
+        [TestMethod]
+        public void AddLogExerciseItem_WithInvalidLogId_ShouldThrowException()
+        {
+            // Arrange & Act & Assert
+            Assert.ThrowsException<DbUpdateException>(() =>
+            {
+                var logExerciseItem = new LogExerciseItem
+                {
+                    LogId = 999, // Non-existent log ID
+                    ExerciseName = "Basketball",
+                    Duration = 30.0,
+                    TotalCalories = 30.0
+                };
+
+                _context.LogExerciseItems.Add(logExerciseItem);
+                _context.SaveChanges();
+            });
+        }
+
+        [TestMethod]
+        public void GetAllLogExerciseItems_ForSpecificLog_ShouldReturnCorrectCount()
+        {
+            // Arrange & Act
+            var logId = 1;
+            var existingCount = _context.LogExerciseItems.Count(i => i.LogId == logId);
+
+            var newItems = new[]
+            {
+            new LogExerciseItem { LogId = logId, ExerciseName = "Basketball", Duration = 30.0, TotalCalories = 30.0 },
+            new LogExerciseItem { LogId = logId, ExerciseName = "Running", Duration = 45.0, TotalCalories = 67.5 }
+        };
+
+            _context.LogExerciseItems.AddRange(newItems);
+            _context.SaveChanges();
+
+            var items = _context.LogExerciseItems.Where(i => i.LogId == logId).ToList();
+
+            // Assert
+            Assert.AreEqual(existingCount + 2, items.Count);
+        }
+
+        [TestMethod]
+        public void AddLogExerciseItem_WithNullableFields_ShouldPersistInDatabase()
+        {
+            // Arrange & Act
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = 1,
+                ExerciseName = "Basketball",
+                Duration = null,
+                TotalCalories = null
+            };
+
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNull(retrievedItem.Duration);
+            Assert.IsNull(retrievedItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void CascadeDelete_WhenDeletingLog_ShouldDeleteAssociatedLogExerciseItems()
+        {
+            // Arrange
+            var log = new Log { LogDate = DateOnly.Parse("2024-01-04"), TotalCalories = 0 };
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            var logExerciseItem = new LogExerciseItem
+            {
+                LogId = log.LogId,
+                ExerciseName = "Basketball",
+                Duration = 30.0,
+                TotalCalories = 30.0
+            };
+
+            _context.LogExerciseItems.Add(logExerciseItem);
+            _context.SaveChanges();
+
+            // Act
+            _context.Logs.Remove(log);
+            _context.SaveChanges();
+
+            var deletedItem = _context.LogExerciseItems.FirstOrDefault(i => i.LogExerciseId == logExerciseItem.LogExerciseId);
+
+            // Assert
+            Assert.IsNull(deletedItem);
+        }
+    }
+
+    [TestClass]
+    public class LogFoodItemEntityIT
+    {
+        private MacroTrackerContext _context;
+
+        [TestInitialize]
+        public void Setup_Context_CreatesInMemoryDatabase()
+        {
+            _context = new("test");
+            _context.InitSqliteForTest();
+            _context.Database.EnsureCreated();
+        }
+
+        [TestCleanup]
+        public void Cleanup_Context_RemovesInMemoryDatabase()
+        {
+            _context.DisposeSqliteForTest(_context.Database.GetDbConnection());
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+        }
+
+        [TestMethod]
+        public void AddLogFoodItem_WithValidDetails_ShouldPersistInDatabase()
+        {
+            // Arrange
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1, // Using seeded log
+                FoodName = "Chicken breast", // Using seeded food
+                NumberOfServings = 2.0,
+                TotalCalories = 240.0 // 2 servings * 120 calories per serving
+            };
+
+            // Act
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.AreEqual(2.0, retrievedItem.NumberOfServings);
+            Assert.AreEqual(240.0, retrievedItem.TotalCalories);
+            Assert.AreEqual("Chicken breast", retrievedItem.FoodName);
+        }
+
+        [TestMethod]
+        public void GetLogFoodItem_WithNavigationProperties_ShouldLoadRelatedEntities()
+        {
+            // Arrange & Act
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1,
+                FoodName = "Chicken breast",
+                NumberOfServings = 1.5,
+                TotalCalories = 180.0
+            };
+
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogFoodItems
+                .Include(i => i.FoodNameNavigation)
+                .Include(i => i.Log)
+                .FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNotNull(retrievedItem.FoodNameNavigation);
+            Assert.IsNotNull(retrievedItem.Log);
+            Assert.AreEqual("Chicken breast", retrievedItem.FoodNameNavigation.Name);
+            Assert.AreEqual(120.0, retrievedItem.FoodNameNavigation.CaloriesPer100g);
+            Assert.AreEqual(22.5, retrievedItem.FoodNameNavigation.ProteinPer100g);
+        }
+
+        [TestMethod]
+        public void UpdateLogFoodItem_WithValidDetails_ShouldUpdateDatabase()
+        {
+            // Arrange
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1,
+                FoodName = "White rice",
+                NumberOfServings = 1.0,
+                TotalCalories = 129.0
+            };
+
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            // Act
+            var retrievedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+            Assert.IsNotNull(retrievedItem);
+
+            retrievedItem.NumberOfServings = 2.0;
+            retrievedItem.TotalCalories = 258.0;
+            _context.SaveChanges();
+
+            var updatedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNotNull(updatedItem);
+            Assert.AreEqual(2.0, updatedItem.NumberOfServings);
+            Assert.AreEqual(258.0, updatedItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void DeleteLogFoodItem_WithExistingItem_ShouldRemoveFromDatabase()
+        {
+            // Arrange
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1,
+                FoodName = "White rice",
+                NumberOfServings = 1.0,
+                TotalCalories = 129.0
+            };
+
+            // Act
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+            Assert.IsNotNull(retrievedItem);
+
+            _context.LogFoodItems.Remove(retrievedItem);
+            _context.SaveChanges();
+
+            var deletedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNull(deletedItem);
+        }
+
+        [TestMethod]
+        public void AddLogFoodItem_WithInvalidFoodName_ShouldThrowException()
+        {
+            // Arrange & Act & Assert
+            Assert.ThrowsException<DbUpdateException>(() =>
+            {
+                var logFoodItem = new LogFoodItem
+                {
+                    LogId = 1,
+                    FoodName = "NonExistentFood",
+                    NumberOfServings = 1.0,
+                    TotalCalories = 100.0
+                };
+
+                _context.LogFoodItems.Add(logFoodItem);
+                _context.SaveChanges();
+            });
+        }
+
+        [TestMethod]
+        public void AddLogFoodItem_WithInvalidLogId_ShouldThrowException()
+        {
+            // Arrange & Act & Assert
+            Assert.ThrowsException<DbUpdateException>(() =>
+            {
+                var logFoodItem = new LogFoodItem
+                {
+                    LogId = 999, // Non-existent log ID
+                    FoodName = "Chicken breast",
+                    NumberOfServings = 1.0,
+                    TotalCalories = 120.0
+                };
+
+                _context.LogFoodItems.Add(logFoodItem);
+                _context.SaveChanges();
+            });
+        }
+
+        [TestMethod]
+        public void GetAllLogFoodItems_ForSpecificLog_ShouldReturnCorrectCount()
+        {
+            // Arrange & Act
+            var logId = 1;
+            var existingCount = _context.LogFoodItems.Count(i => i.LogId == logId);
+
+            var newItems = new[]
+            {
+            new LogFoodItem { LogId = logId, FoodName = "Chicken breast", NumberOfServings = 1.0, TotalCalories = 120.0 },
+            new LogFoodItem { LogId = logId, FoodName = "White rice", NumberOfServings = 2.0, TotalCalories = 258.0 }
+        };
+
+            _context.LogFoodItems.AddRange(newItems);
+            _context.SaveChanges();
+
+            var items = _context.LogFoodItems.Where(i => i.LogId == logId).ToList();
+
+            // Assert
+            Assert.AreEqual(existingCount + 2, items.Count);
+        }
+
+        [TestMethod]
+        public void AddLogFoodItem_WithNullableFields_ShouldPersistInDatabase()
+        {
+            // Arrange & Act
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1,
+                FoodName = "Chicken breast",
+                NumberOfServings = null,
+                TotalCalories = null
+            };
+
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNull(retrievedItem.NumberOfServings);
+            Assert.IsNull(retrievedItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void CascadeDelete_WhenDeletingLog_ShouldDeleteAssociatedLogFoodItems()
+        {
+            // Arrange
+            var log = new Log { LogDate = DateOnly.Parse("2024-01-04"), TotalCalories = 0 };
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = log.LogId,
+                FoodName = "Chicken breast",
+                NumberOfServings = 1.0,
+                TotalCalories = 120.0
+            };
+
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            // Act
+            _context.Logs.Remove(log);
+            _context.SaveChanges();
+
+            var deletedItem = _context.LogFoodItems.FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNull(deletedItem);
+        }
+
+        [TestMethod]
+        public void VerifyMacroCalculations_ForLoggedFood_ShouldMatchFoodNutrition()
+        {
+            // Arrange & Act
+            var logFoodItem = new LogFoodItem
+            {
+                LogId = 1,
+                FoodName = "Chicken breast",
+                NumberOfServings = 2.0,
+                TotalCalories = 240.0 // 2 servings * 120 calories
+            };
+
+            _context.LogFoodItems.Add(logFoodItem);
+            _context.SaveChanges();
+
+            var retrievedItem = _context.LogFoodItems
+                .Include(i => i.FoodNameNavigation)
+                .FirstOrDefault(i => i.LogFoodId == logFoodItem.LogFoodId);
+
+            // Assert
+            Assert.IsNotNull(retrievedItem);
+            Assert.IsNotNull(retrievedItem.FoodNameNavigation);
+
+            var food = retrievedItem.FoodNameNavigation;
+            var servings = retrievedItem.NumberOfServings ?? 0;
+
+            // Verify that total calories match the food's nutrition data
+            Assert.AreEqual(food.CaloriesPer100g * servings, retrievedItem.TotalCalories);
+        }
+    }
+
+    [TestClass]
+    public class LogEntityIT
+    {
+        private MacroTrackerContext _context;
+
+        [TestInitialize]
+        public void Setup_Context_CreatesInMemoryDatabase()
+        {
+            _context = new("test");
+            _context.InitSqliteForTest();
+            _context.Database.EnsureCreated();
+        }
+
+        [TestCleanup]
+        public void Cleanup_Context_RemovesInMemoryDatabase()
+        {
+            _context.DisposeSqliteForTest(_context.Database.GetDbConnection());
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+        }
+
+        [TestMethod]
+        public void AddLog_WithValidDetails_ShouldPersistInDatabase()
+        {
+            // Arrange
+            var logDate = new DateOnly(2024, 1, 4);
+            var log = new Log { LogDate = logDate, TotalCalories = 0 };
+
+            // Act
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            var retrievedLog = _context.Logs
+                .FirstOrDefault(l => l.LogDate == logDate);
+
+            // Assert
+            Assert.IsNotNull(retrievedLog);
+            Assert.AreEqual(logDate, retrievedLog.LogDate);
+            Assert.AreEqual(0, retrievedLog.TotalCalories);
+        }
+
+        [TestMethod]
+        public void AddLogWithExerciseItems_ShouldPersistWithRelationships()
+        {
+            // Arrange
+            var exercise = new Exercise
+            {
+                Name = "Kayaking",
+                CaloriesPerMinute = 10.0,
+                IconFileName = "kayaking.png"
+            };
+            _context.Exercises.Add(exercise);
+
+            var log = new Log
+            {
+                LogDate = new DateOnly(2024, 1, 4),
+                TotalCalories = 0
+            };
+
+            var exerciseItem = new LogExerciseItem
+            {
+                ExerciseName = "Kayaking",
+                Duration = 30,
+                TotalCalories = 300,
+                Log = log
+            };
+
+            log.LogExerciseItems.Add(exerciseItem);
+
+            // Act
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            // Assert
+            var retrievedLog = _context.Logs
+                .Include(l => l.LogExerciseItems)
+                .ThenInclude(lei => lei.ExerciseNameNavigation)
+                .FirstOrDefault(l => l.LogId == log.LogId);
+
+            Assert.IsNotNull(retrievedLog);
+            Assert.AreEqual(1, retrievedLog.LogExerciseItems.Count);
+
+            var retrievedExerciseItem = retrievedLog.LogExerciseItems.First();
+            Assert.AreEqual("Kayaking", retrievedExerciseItem.ExerciseName);
+            Assert.AreEqual(30, retrievedExerciseItem.Duration);
+            Assert.AreEqual(300, retrievedExerciseItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void AddLogWithFoodItems_ShouldPersistWithRelationships()
+        {
+            // Arrange
+            var food = new Food
+            {
+                Name = "Chicken",
+                CaloriesPer100g = 165,
+                ProteinPer100g = 31,
+                CarbsPer100g = 0,
+                FatPer100g = 3.6,
+                IconFileName = "chicken.png"
+            };
+            _context.Foods.Add(food);
+
+            var log = new Log
+            {
+                LogDate = new DateOnly(2024, 1, 4),
+                TotalCalories = 0
+            };
+
+            var foodItem = new LogFoodItem
+            {
+                FoodName = "Chicken",
+                NumberOfServings = 2,
+                TotalCalories = 330,
+                Log = log
+            };
+
+            log.LogFoodItems.Add(foodItem);
+
+            // Act
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            // Assert
+            var retrievedLog = _context.Logs
+                .Include(l => l.LogFoodItems)
+                .ThenInclude(lfi => lfi.FoodNameNavigation)
+                .FirstOrDefault(l => l.LogId == log.LogId);
+
+            Assert.IsNotNull(retrievedLog);
+            Assert.AreEqual(1, retrievedLog.LogFoodItems.Count);
+
+            var retrievedFoodItem = retrievedLog.LogFoodItems.First();
+            Assert.AreEqual("Chicken", retrievedFoodItem.FoodName);
+            Assert.AreEqual(2, retrievedFoodItem.NumberOfServings);
+            Assert.AreEqual(330, retrievedFoodItem.TotalCalories);
+        }
+
+        [TestMethod]
+        public void UpdateLog_WithNewExerciseAndFoodItems_ShouldUpdateRelationships()
+        {
+            // Arrange
+            var exercise = new Exercise { Name = "Kayaking", CaloriesPerMinute = 10.0 };
+            var food = new Food { Name = "Chicken", CaloriesPer100g = 165 };
+
+            _context.Exercises.Add(exercise);
+            _context.Foods.Add(food);
+
+            var log = new Log { LogDate = new DateOnly(2024, 1, 4), TotalCalories = 0 };
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            // Act
+            var retrievedLog = _context.Logs.Find(log.LogId);
+            Assert.IsNotNull(retrievedLog);
+
+            retrievedLog.LogExerciseItems.Add(new LogExerciseItem
+            {
+                ExerciseName = "Kayaking",
+                Duration = 30,
+                TotalCalories = 300
+            });
+
+            retrievedLog.LogFoodItems.Add(new LogFoodItem
+            {
+                FoodName = "Chicken",
+                NumberOfServings = 2,
+                TotalCalories = 330
+            });
+
+            _context.SaveChanges();
+
+            // Assert
+            var updatedLog = _context.Logs
+                .Include(l => l.LogExerciseItems)
+                .Include(l => l.LogFoodItems)
+                .FirstOrDefault(l => l.LogId == log.LogId);
+
+            Assert.IsNotNull(updatedLog);
+            Assert.AreEqual(1, updatedLog.LogExerciseItems.Count);
+            Assert.AreEqual(1, updatedLog.LogFoodItems.Count);
+        }
+
+        [TestMethod]
+        public void DeleteLog_ShouldCascadeDeleteRelatedItems()
+        {
+            // Arrange
+            var exercise = new Exercise { Name = "Kayaking", CaloriesPerMinute = 10.0 };
+            var food = new Food { Name = "Chicken", CaloriesPer100g = 165 };
+
+            _context.Exercises.Add(exercise);
+            _context.Foods.Add(food);
+
+            var log = new Log
+            {
+                LogDate = new DateOnly(2024, 1, 4),
+                TotalCalories = 0,
+                LogExerciseItems =
+            {
+                new LogExerciseItem
+                {
+                    ExerciseName = "Kayaking",
+                    Duration = 30,
+                    TotalCalories = 300
+                }
+            },
+                LogFoodItems =
+            {
+                new LogFoodItem
+                {
+                    FoodName = "Chicken",
+                    NumberOfServings = 2,
+                    TotalCalories = 330
+                }
+            }
+            };
+
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            // Act
+            _context.Logs.Remove(log);
+            _context.SaveChanges();
+
+            // Assert
+            var deletedLog = _context.Logs.Find(log.LogId);
+            Assert.IsNull(deletedLog);
+
+            var exerciseItems = _context.Set<LogExerciseItem>()
+                .Where(lei => lei.LogId == log.LogId)
+                .ToList();
+            var foodItems = _context.Set<LogFoodItem>()
+                .Where(lfi => lfi.LogId == log.LogId)
+                .ToList();
+
+            Assert.AreEqual(0, exerciseItems.Count);
+            Assert.AreEqual(0, foodItems.Count);
+        }
+
+        [TestMethod]
+        public void GetLogWithItems_ShouldLoadAllRelationships()
+        {
+            // Arrange
+            var exercise = new Exercise { Name = "Kayaking", CaloriesPerMinute = 10.0 };
+            var food = new Food { Name = "Chicken", CaloriesPer100g = 165 };
+
+            _context.Exercises.Add(exercise);
+            _context.Foods.Add(food);
+
+            var log = new Log
+            {
+                LogDate = new DateOnly(2024, 1, 4),
+                TotalCalories = 0,
+                LogExerciseItems =
+            {
+                new LogExerciseItem
+                {
+                    ExerciseName = "Kayaking",
+                    Duration = 30,
+                    TotalCalories = 300
+                }
+            },
+                LogFoodItems =
+            {
+                new LogFoodItem
+                {
+                    FoodName = "Chicken",
+                    NumberOfServings = 2,
+                    TotalCalories = 330
+                }
+            }
+            };
+
+            _context.Logs.Add(log);
+            _context.SaveChanges();
+
+            // Act
+            var retrievedLog = _context.Logs
+                .Include(l => l.LogExerciseItems)
+                .ThenInclude(lei => lei.ExerciseNameNavigation)
+                .Include(l => l.LogFoodItems)
+                .ThenInclude(lfi => lfi.FoodNameNavigation)
+                .FirstOrDefault(l => l.LogId == log.LogId);
+
+            // Assert
+            Assert.IsNotNull(retrievedLog);
+            Assert.AreEqual(new DateOnly(2024, 1, 4), retrievedLog.LogDate);
+
+            Assert.AreEqual(1, retrievedLog.LogExerciseItems.Count);
+            var exerciseItem = retrievedLog.LogExerciseItems.First();
+            Assert.AreEqual("Kayaking", exerciseItem.ExerciseName);
+            Assert.AreEqual(30, exerciseItem.Duration);
+            Assert.AreEqual(300, exerciseItem.TotalCalories);
+
+            Assert.AreEqual(1, retrievedLog.LogFoodItems.Count);
+            var foodItem = retrievedLog.LogFoodItems.First();
+            Assert.AreEqual("Chicken", foodItem.FoodName);
+            Assert.AreEqual(2, foodItem.NumberOfServings);
+            Assert.AreEqual(330, foodItem.TotalCalories);
+        }
+    }
 }

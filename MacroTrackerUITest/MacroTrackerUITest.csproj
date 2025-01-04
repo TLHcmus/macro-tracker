@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
@@ -52,12 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MacroTrackerUI\MacroTrackerUI.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\DialogView\" />
-    <Folder Include="Views\WindowView\" />
-    <Folder Include="Views\UserControlView\" />
-    <Folder Include="Views\PageView\" />
   </ItemGroup>
 
   <!-- 

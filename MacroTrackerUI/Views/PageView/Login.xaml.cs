@@ -78,11 +78,11 @@ public sealed partial class Login : Page
 
         localSettings.Values["Username"] = ViewModel.Username;
 
-        (string localStorageEncryptedPassword, string entropy) password =
+        (string localStorageEncryptedPassword, string entropy) =
             ViewModel.EncryptionSender.EncryptPasswordToLocalStorage(ViewModel.Password);
 
-        localSettings.Values["Password"] = password.localStorageEncryptedPassword;
-        localSettings.Values["Entropy"] = password.entropy;
+        localSettings.Values["Password"] = localStorageEncryptedPassword;
+        localSettings.Values["Entropy"] = entropy;
     }
 
     /// <summary>

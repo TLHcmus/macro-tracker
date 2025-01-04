@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MacroTrackerCore.Entities;
+﻿namespace MacroTrackerCore.Entities;
 
 /// <summary>
 /// Represents a user in the MacroTracker system.

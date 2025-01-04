@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MacroTrackerCore.Entities;
+﻿namespace MacroTrackerCore.Entities;
 
 /// <summary>
 /// Represents an exercise entity with details about the exercise.
