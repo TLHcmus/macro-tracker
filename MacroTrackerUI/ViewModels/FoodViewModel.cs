@@ -23,8 +23,10 @@ public class FoodViewModel : INotifyPropertyChanged
 
     public void AddFood(Food food)
     {
-        Sender.AddFood(food);
+        var foodId = Sender.AddFood(food);
 
+        // Cap nhat food id cua mon vua them
+        food.FoodId = foodId;
         Foods.Add(food);
     }
 

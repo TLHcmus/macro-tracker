@@ -84,11 +84,11 @@ public class ReportViewModel : INotifyPropertyChanged
                 Date = group.Key,
                 TotalCalories = group.Sum(log => log.TotalCalories),
                 TotalProtein = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodId, out var food) ? food.ProteinPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.ProteinPer100g * (item.NumberOfServings / 100) : 0)),
                 TotalCarbs = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodId, out var food) ? food.CarbsPer100g * (item.NumberOfServings) : 0)),
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.CarbsPer100g * (item.NumberOfServings / 100) : 0)),
                 TotalFat = group.Sum(log => log.LogFoodItems.Sum(item =>
-                    foodDict.TryGetValue(item.FoodId, out var food) ? food.FatPer100g * (item.NumberOfServings) : 0))
+                    foodDict.TryGetValue(item.FoodId, out var food) ? food.FatPer100g * (item.NumberOfServings / 100) : 0))
             })
             .OrderBy(x => x.Date)
             .ToList();

@@ -22,7 +22,10 @@ public class ExerciseViewModel : INotifyPropertyChanged
     }
     public void AddExercise(Exercise exercise)
     {
-        Sender.AddExercise(exercise);
+        var exerciseId = Sender.AddExercise(exercise);
+
+        // Cap nhat exercise id cua bai tap vua them
+        exercise.ExerciseId = exerciseId;
         Exercises.Add(exercise);
     }
 

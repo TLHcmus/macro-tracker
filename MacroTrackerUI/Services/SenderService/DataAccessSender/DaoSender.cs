@@ -4,6 +4,7 @@ using MacroTrackerUI.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.Json;
 using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
@@ -24,15 +25,16 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods());
     }
 
-    // Add food
-    public void AddFood(Food food)
+    // Add food tra ve id cua mon vua them
+    public int AddFood(Food food)
     {
-        Receiver.AddFood(JsonSerializer.Serialize(food));
+        return Receiver.AddFood(JsonSerializer.Serialize(food));
     }
 
     // Remove food
     public void RemoveFood(int foodId)
     {
+        Debug.WriteLine($"food id xoa: {foodId}");
         Receiver.RemoveFood(JsonSerializer.Serialize(foodId));
     }
 
@@ -44,10 +46,10 @@ public class DaoSender
     {
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
-    // Add exercise
-    public void AddExercise(Exercise exercise)
+    // Add exercise tra ve id cua bai tap vua them
+    public int AddExercise(Exercise exercise)
     {
-        Receiver.AddExercise(JsonSerializer.Serialize(exercise));
+        return Receiver.AddExercise(JsonSerializer.Serialize(exercise));
     }
     // Remove exercise
     public void RemoveExercise(int exerciseId)

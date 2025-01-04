@@ -24,12 +24,15 @@ public class DatabaseDao : IDao
         return _context.Foods.ToList();
     }
 
-    // Add food
-    public void AddFood(Food food)
+    // Add food tra ve id cua mon an vua them
+    public int AddFood(Food food)
     {
         _context.Foods.Add(food);
 
         _context.SaveChanges();
+
+        // Trả về món ăn đã có ID từ cơ sở dữ liệu
+        return food.FoodId;
     }
 
     // Remove food
@@ -53,12 +56,14 @@ public class DatabaseDao : IDao
         return _context.Exercises.ToList();
     }
 
-    // Add exercise
-    public void AddExercise(Exercise exercise)
+    // Add exercise tra ve id cua bai tap vua them
+    public int AddExercise(Exercise exercise)
     {
         _context.Exercises.Add(exercise);
 
         _context.SaveChanges();
+
+        return exercise.ExerciseId;
     }
 
     // Remove exercise

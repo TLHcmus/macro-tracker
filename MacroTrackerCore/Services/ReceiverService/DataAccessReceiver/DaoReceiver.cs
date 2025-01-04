@@ -4,6 +4,7 @@ using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -33,15 +34,15 @@ public class DaoReceiver
 
         return JsonSerializer.Serialize(Dao.GetFoods(), options);
     }
-    // Add food
-    public void AddFood(string foodJson)
+    // Add food tra ve id cua mon vua them
+    public int AddFood(string foodJson)
     {
         Food? food = JsonSerializer.Deserialize<Food>(foodJson);
         if (food == null)
         {
             throw new ArgumentNullException();
         }
-        Dao.AddFood(food);
+        return Dao.AddFood(food);
     }
 
     // Remove food
@@ -71,15 +72,15 @@ public class DaoReceiver
 
         return JsonSerializer.Serialize(Dao.GetExercises(), options);
     }
-    // Add exercise
-    public void AddExercise(string exerciseJson)
+    // Add exercise tra ve id cua bai tap vua them
+    public int AddExercise(string exerciseJson)
     {
         Exercise? exercise = JsonSerializer.Deserialize<Exercise>(exerciseJson);
         if (exercise == null)
         {
             throw new ArgumentNullException();
         }
-        Dao.AddExercise(exercise);
+        return Dao.AddExercise(exercise);
     }
     // Remove exercise
     public void RemoveExercise(string exerciseIdJson)
@@ -194,10 +195,11 @@ public class DaoReceiver
             ReferenceHandler = ReferenceHandler.IgnoreCycles,
             WriteIndented = true
         };
-        return JsonSerializer.Serialize(
-            Dao.GetLogs(),
-            options
-        );
+
+        var json = JsonSerializer.Serialize(Dao.GetLogs(), options);
+        Debug.WriteLine($"JSON size: {json.Length / 1024.0} KB");
+
+        return json;
     }
 
     //public List<Log> GetLogs()

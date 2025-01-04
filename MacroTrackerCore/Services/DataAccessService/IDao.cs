@@ -16,8 +16,8 @@ public interface IDao
     /// <returns>A list of <see cref="Food"/> objects.</returns>
     List<Food> GetFoods();
 
-    // Add food
-    void AddFood(Food food);
+    // Add food tra ve id cua mon vua them
+    int AddFood(Food food);
 
     // Remove food
     void RemoveFood(int foodId);
@@ -30,8 +30,8 @@ public interface IDao
     /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     List<Exercise> GetExercises();
     
-    // Add exercise
-    void AddExercise(Exercise exercise);
+    // Add exercise tra ve id cua bai tap vua them
+    int AddExercise(Exercise exercise);
     // Remove exercise
     void RemoveExercise(int exerciseId);
 
