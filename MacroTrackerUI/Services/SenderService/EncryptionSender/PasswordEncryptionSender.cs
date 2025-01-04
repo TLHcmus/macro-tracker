@@ -1,6 +1,7 @@
 ﻿using MacroTrackerCore.Services.ReceiverService.EncryptionReceiver;
 using MacroTrackerUI.Services.ProviderService;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Text.Json;
 
 namespace MacroTrackerUI.Services.SenderService.EncryptionSender;
@@ -10,7 +11,7 @@ namespace MacroTrackerUI.Services.SenderService.EncryptionSender;
 /// </summary>
 public class PasswordEncryptionSender : IPasswordEncryptionSender
 {
-    public ServiceProvider ProviderUI { get; } = ProviderService.ProviderUI.GetServiceProvider();
+    public IServiceProvider ProviderUI { get; } = ProviderService.ProviderUI.GetServiceProvider();
     private readonly IPasswordEncryptionReceiver _receiver;
 
     /// <summary>

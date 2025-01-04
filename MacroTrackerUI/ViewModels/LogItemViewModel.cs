@@ -21,7 +21,20 @@ public class LogItemViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access sender service.
     /// </summary>
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    private IDaoSender Sender { get; }
+    public IServiceProvider Provider { get; }
+
+    public LogItemViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+    }
+
+    public LogItemViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+    }
 
     /// <summary>
     /// Updates the total calories for a given log by summing the calories from food and exercise items.

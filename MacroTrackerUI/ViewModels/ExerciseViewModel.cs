@@ -19,16 +19,27 @@ public class ExerciseViewModel : INotifyPropertyChanged
     /// </summary>
     public ObservableCollection<Exercise> Exercises { get; set; }
 
-    private DaoSender Sender { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IServiceProvider Provider { get; set; }
+
+    private IDaoSender Sender { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExerciseViewModel"/> class.
     /// </summary>
     public ExerciseViewModel()
     {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
         Exercises = new ObservableCollection<Exercise>(Sender.GetExercises());
     }
+
+    public ExerciseViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        Exercises = new ObservableCollection<Exercise>(Sender.GetExercises());
+    }
+
     public void AddExercise(Exercise exercise)
     {
         Sender.AddExercise(exercise);

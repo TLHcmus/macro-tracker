@@ -27,8 +27,23 @@ public class ReportViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access sender.
     /// </summary>
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    private IDaoSender Sender { get; }
 
+    private IServiceProvider Provider { get; }
+
+    public ReportViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
+
+    public ReportViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
 
     public ObservableCollection<ISeries> CaloriesSeries { get; set; }
     public ObservableCollection<ISeries> ProteinSeries { get; set; }
@@ -41,44 +56,8 @@ public class ReportViewModel : INotifyPropertyChanged
     public ObservableCollection<Axis> CarbsYAxes { get; set; }
     public ObservableCollection<Axis> FatYAxes { get; set; }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ReportViewModel"/> class.
-    /// </summary>
-    public ReportViewModel()
+    public void SetUpDiagrams()
     {
-        //LogList = new ObservableCollection<Log>(Sender.GetLogs());
-
-        //var caloriesByDate = LogList
-        //   .GroupBy(log => log.LogDate)
-        //   .Select(group => new { Date = group.Key, TotalCalories = group.Sum(log => log.TotalCalories) })
-        //   .OrderBy(x => x.Date)
-        //   .ToList();
-
-        //Series = new ObservableCollection<ISeries>
-        //{
-        //    new LineSeries<double>
-        //    {
-        //        Values = caloriesByDate.Select(x => x.TotalCalories).ToList()
-        //    }
-        //};
-
-        //XAxes = new ObservableCollection<Axis>
-        //{
-        //    new Axis
-        //    {
-        //        Labels = caloriesByDate.Select(x => x.Date?.ToString("MM/dd/yyyy")).ToList(),
-        //        Name = "Date"
-        //    }
-        //};
-        //YAxes = new ObservableCollection<Axis>
-        //{
-        //    new Axis
-        //    {
-        //        Name = "Total Calories"
-        //    }
-        //};
-
-
         // Lấy danh sách tất cả các món ăn từ database
         var foods = Sender.GetFoods(); // Lấy danh sách foods (có thông tin dinh dưỡng)
         var foodDict = foods.ToDictionary(food => food.Name, food => food); // Tạo dictionary để tra cứu 
@@ -103,9 +82,10 @@ public class ReportViewModel : INotifyPropertyChanged
             })
             .OrderBy(x => x.Date)
             .ToList();
+
         // Tao cac bieu do
-        CaloriesSeries = new ObservableCollection<ISeries>
-        {
+        CaloriesSeries =
+        [
             new LineSeries<double>
             {
                 Values = nutrientsByDate.Select(x => x.TotalCalories).ToList(),
@@ -116,10 +96,10 @@ public class ReportViewModel : INotifyPropertyChanged
                 GeometryFill = null,
                 GeometryStroke = null
             }
-        };
+        ];
 
-        ProteinSeries = new ObservableCollection<ISeries>
-        {
+        ProteinSeries =
+        [
             new LineSeries<double>
             {
                 Values = nutrientsByDate.Select(x => x.TotalProtein).ToList(),
@@ -130,10 +110,10 @@ public class ReportViewModel : INotifyPropertyChanged
                 GeometryFill = null,
                 GeometryStroke = null
             }
-        };
+        ];
 
-        CarbsSeries = new ObservableCollection<ISeries>
-        {
+        CarbsSeries =
+        [
             new LineSeries<double>
             {
                 Values = nutrientsByDate.Select(x => x.TotalCarbs).ToList(),
@@ -144,10 +124,10 @@ public class ReportViewModel : INotifyPropertyChanged
                 GeometryFill = null,
                 GeometryStroke = null
             }
-        };
+        ];
 
-        FatSeries = new ObservableCollection<ISeries>
-        {
+        FatSeries =
+        [
             new LineSeries<double>
             {
                 Values = nutrientsByDate.Select(x => x.TotalFat).ToList(),
@@ -158,38 +138,36 @@ public class ReportViewModel : INotifyPropertyChanged
                 GeometryFill = null,
                 GeometryStroke = null
             }
-        };
+        ];
 
         // XAxes dung chung hien thi ngay
-        XAxes = new ObservableCollection<Axis>
-        {
-            new Axis
-            { 
+        XAxes =
+        [
+            new() {
                 Labels = nutrientsByDate.Select(x => x.Date?.ToString("MM/dd/yyyy")).ToList(),
                 Name = "Date"
             }
-        };
+        ];
         // Tao cac YAxes khac nhau
-        CaloriesYAxes = new ObservableCollection<Axis>
-        {
-            new Axis { Name = "Total Calories" }
-        };
+        CaloriesYAxes =
+        [
+            new() { Name = "Total Calories" }
+        ];
 
-        ProteinYAxes = new ObservableCollection<Axis>
-        {
-            new Axis { Name = "Total Protein" }
-        };
+        ProteinYAxes =
+        [
+            new() { Name = "Total Protein" }
+        ];
 
-        CarbsYAxes = new ObservableCollection<Axis>
-        {
-            new Axis { Name = "Total Carbs" }
-        };
+        CarbsYAxes =
+        [
+            new() { Name = "Total Carbs" }
+        ];
 
-        FatYAxes = new ObservableCollection<Axis>
-        {
-            new Axis { Name = "Total Fat" }
-        };
-
+        FatYAxes =
+        [
+            new() { Name = "Total Fat" }
+        ];
     }
 
     /// <summary>

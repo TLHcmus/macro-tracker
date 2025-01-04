@@ -13,7 +13,7 @@ namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 /// </summary>
 public class DaoSender : IDaoSender
 {
-    public ServiceProvider ProviderUI { get; } 
+    public IServiceProvider ProviderUI { get; } 
     private IDaoReceiver Receiver { get; } 
     private JsonSerializerOptions Options { get; } = new() { IncludeFields = true };
 
@@ -23,7 +23,7 @@ public class DaoSender : IDaoSender
         Receiver = ProviderUI.GetRequiredService<IDaoReceiver>();
     }
 
-    public DaoSender(ServiceProvider providerUI)
+    public DaoSender(IServiceProvider providerUI)
     {
         ProviderUI = providerUI;
         Receiver = ProviderUI.GetService<IDaoReceiver>();

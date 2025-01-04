@@ -16,7 +16,7 @@ public partial class App : Application
     /// <summary>
     /// Gets the chat bot conversation.
     /// </summary>
-    public static ObservableCollection<Message> ChatBotConversation { get; private set; } = new ObservableCollection<Message>();
+    public static ObservableCollection<Message> ChatBotConversation { get; set; } = [];
 
     /// <summary>
     /// Initializes the singleton application object. This is the first line of authored code

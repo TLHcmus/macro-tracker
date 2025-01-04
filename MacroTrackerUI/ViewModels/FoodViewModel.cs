@@ -13,11 +13,21 @@ public class FoodViewModel : INotifyPropertyChanged
 {
     public ObservableCollection<Food> Foods { get; set; }
 
-    private DaoSender Sender { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IServiceProvider Provider { get; set; }
+
+    private IDaoSender Sender { get; }
 
     public FoodViewModel()
     {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        Foods = new ObservableCollection<Food>(Sender.GetFoods());
+    }
+
+    public FoodViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
         Foods = new ObservableCollection<Food>(Sender.GetFoods());
     }
 

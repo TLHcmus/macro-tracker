@@ -2,7 +2,6 @@
 using MacroTrackerUI.Services.ProviderService;
 using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using Microsoft.Extensions.DependencyInjection;
-using PropertyChanged;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -19,15 +18,24 @@ public class GoalsViewModel : INotifyPropertyChanged
     /// </summary>
     public Goal CurrentGoal { get; set; }
 
+    private IServiceProvider Provider { get; } 
 
-    private DaoSender Sender { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IDaoSender Sender { get; } 
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GoalsViewModel"/> class.
     /// </summary>
     public GoalsViewModel()
     {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        CurrentGoal = Sender.GetGoal();
+    }
+
+    public GoalsViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
         CurrentGoal = Sender.GetGoal();
     }
 

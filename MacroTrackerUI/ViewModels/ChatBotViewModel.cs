@@ -1,5 +1,7 @@
 ﻿using MacroTrackerCore.Services.ChatBotService;
 using MacroTrackerUI.Models;
+using MacroTrackerUI.Services.ProviderService;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,8 @@ namespace MacroTrackerUI.ViewModels;
 /// </summary>
 public class ChatBotViewModel : INotifyPropertyChanged
 {
+    public IServiceProvider ServiceProvider { get; set; }
+
     /// <summary>
     /// Gets or sets the content of the prompt.
     /// </summary>
@@ -22,12 +26,24 @@ public class ChatBotViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets or sets the ChatBot instance.
     /// </summary>
-    public ChatBot ChatBot { get; set; } = new();
+    public IChatBot ChatBot { get; set; }
 
     /// <summary>
     /// Event triggered when a property value changes.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    public ChatBotViewModel()
+    {
+        ServiceProvider = ProviderUI.GetServiceProvider();
+        ChatBot = ServiceProvider.GetService<IChatBot>();
+    }
+
+    public ChatBotViewModel(IServiceProvider serviceProvider)
+    {
+        ServiceProvider = serviceProvider;
+        ChatBot = ServiceProvider.GetService<IChatBot>();
+    }
 
     /// <summary>
     /// Sends the user prompt to the ChatBot and handles the response.
@@ -48,7 +64,7 @@ public class ChatBotViewModel : INotifyPropertyChanged
 
         try
         {
-            string response = await RunWithTimeout(ChatBot.GetResponse(PromptContent), TimeSpan.FromSeconds(6));
+            string response = await RunWithTimeout(ChatBot.GetResponse(PromptContent), TimeSpan.FromSeconds(10));
 
             App.ChatBotConversation.RemoveAt(App.ChatBotConversation.Count - 1);
 
@@ -64,7 +80,7 @@ public class ChatBotViewModel : INotifyPropertyChanged
 
             App.ChatBotConversation.Add(new Message
             {
-                Content = "",
+                Content = "There is an error.",
                 Role = Message.RoleType.AssistantError
             });
         }
@@ -82,11 +98,5 @@ public class ChatBotViewModel : INotifyPropertyChanged
             // Task timed out
             throw new TimeoutException();
         }
-    }
-
-    public static async Task SomeAsyncOperation()
-    {
-        // Simulate a long-running task
-        await Task.Delay(5000); // 5 seconds delay
     }
 }

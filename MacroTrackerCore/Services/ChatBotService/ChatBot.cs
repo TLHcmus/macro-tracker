@@ -2,14 +2,13 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.HuggingFace;
 using DotEnv.Core;
-using System.Diagnostics;
 
 namespace MacroTrackerCore.Services.ChatBotService;
 
 /// <summary>
 /// Represents a chatbot service for macro tracking and related queries.
 /// </summary>
-public class ChatBot
+public class ChatBot : IChatBot
 {
     /// <summary>
     /// Gets the Kernel instance used by the chatbot.

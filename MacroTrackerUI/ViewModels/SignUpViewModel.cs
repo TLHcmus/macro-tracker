@@ -3,6 +3,7 @@ using MacroTrackerUI.Services.ProviderService;
 using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using MacroTrackerUI.Services.SenderService.EncryptionSender;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.ComponentModel;
 
 namespace MacroTrackerUI.ViewModels;
@@ -30,7 +31,23 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object for sending data.
     /// </summary>
-    private DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IDaoSender Sender { get; } 
+
+    private IServiceProvider Provider { get; }
+
+    public SignUpViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        PasswordEncryptionHandle = Provider.GetService<IPasswordEncryptionSender>();
+    }
+
+    public SignUpViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        PasswordEncryptionHandle = Provider.GetService<IPasswordEncryptionSender>();
+    }
 
     /// <summary>
     /// Event triggered when a property value changes.
@@ -99,7 +116,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the username exists; otherwise, false.</returns>
     public bool DoesUsernameExist()
     {
-        return string.IsNullOrEmpty(Username) || Dao.DoesUsernameExist(Username);
+        return string.IsNullOrEmpty(Username) || Sender.DoesUsernameExist(Username);
     }
 
     /// <summary>
@@ -114,8 +131,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the password encryption handler.
     /// </summary>
-    public PasswordEncryptionSender PasswordEncryptionHandle { get; } =
-        ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
+    public IPasswordEncryptionSender PasswordEncryptionHandle { get; }
 
     /// <summary>
     /// Adds a user to the database.
@@ -123,6 +139,6 @@ public class SignUpViewModel : INotifyPropertyChanged
     public void AddUser()
     {
         string encryptedPassword = PasswordEncryptionHandle.EncryptPasswordToDatabase(Password);
-        Dao.AddUser((Username, encryptedPassword));
+        Sender.AddUser((Username, encryptedPassword));
     }
 }

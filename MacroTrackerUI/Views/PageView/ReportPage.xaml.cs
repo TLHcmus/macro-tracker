@@ -20,5 +20,4 @@ public sealed partial class ReportPage : Page
         this.DataContext = ViewModel;
         ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
-
 }

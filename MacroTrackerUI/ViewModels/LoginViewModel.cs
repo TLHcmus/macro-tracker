@@ -25,12 +25,28 @@ public class LoginViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object sender.
     /// </summary>
-    public DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    public IDaoSender Dao { get; }
+
+    public IServiceProvider Provider { get; }
 
     /// <summary>
     /// Gets the password encryption sender.
     /// </summary>
-    public PasswordEncryptionSender EncryptionSender { get; } = ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
+    public IPasswordEncryptionSender EncryptionSender { get; }
+
+    public LoginViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Dao = Provider.GetService<IDaoSender>();
+        EncryptionSender = Provider.GetService<IPasswordEncryptionSender>();
+    }
+
+    public LoginViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Dao = Provider.GetService<IDaoSender>();
+        EncryptionSender = Provider.GetService<IPasswordEncryptionSender>();
+    }
 
     /// <summary>
     /// Occurs when a property value changes.

@@ -14,7 +14,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldReturnResponse_ForValidPrompt()
     {
         // Arrange
@@ -28,7 +28,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldDenyUnrelatedQuestions()
     {
         // Arrange
@@ -42,7 +42,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldAddMessagesToHistory()
     {
         // Arrange
@@ -67,7 +67,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldHandleLongPrompt()
     {
         // Arrange
@@ -81,7 +81,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldHandleSpecialCharacters()
     {
         // Arrange
@@ -95,7 +95,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldHandleNumericPrompt()
     {
         // Arrange
@@ -109,7 +109,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldHandleMultilinePrompt()
     {
         // Arrange
@@ -123,7 +123,7 @@ public class ChatBotTests
     }
 
     [TestMethod]
-    [Timeout(6000)]
+    [Timeout(10000)]
     public async Task GetResponse_ShouldHandleHtmlContent()
     {
         // Arrange

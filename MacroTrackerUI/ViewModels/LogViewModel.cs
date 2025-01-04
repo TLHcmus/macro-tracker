@@ -16,12 +16,26 @@ public class LogViewModel
     /// <summary>
     /// Gets or sets the list of logs.
     /// </summary>
-    public ObservableCollection<Log> LogList { get; set; } = new ObservableCollection<Log>();
+    public ObservableCollection<Log> LogList { get; set; } = [];
 
     /// <summary>
     /// Gets the data access sender.
     /// </summary>
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    private IDaoSender Sender { get; } 
+
+    private IServiceProvider Provider { get; }
+
+    public LogViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+    }
+
+    public LogViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+    }
 
     /// <summary>
     /// Gets or sets the paging size.
