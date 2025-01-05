@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MacroTrackerUI.Models;
+namespace MacroTrackerCore.DTOs;
 
-public class LogExerciseItem : INotifyPropertyChanged
+public class LogExerciseItemDTO
 {
     public int LogExerciseId { get; set; }
 
@@ -16,6 +15,4 @@ public class LogExerciseItem : INotifyPropertyChanged
     public double Duration { get; set; }
 
     public double TotalCalories { get; set; }
-
-    public event PropertyChangedEventHandler PropertyChanged;
 }

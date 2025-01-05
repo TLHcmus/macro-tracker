@@ -5,6 +5,8 @@ using MacroTrackerCore.Services.EncryptionService;
 using MacroTrackerCore.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using MacroTrackerCore.DTOs;
+using System.Collections.ObjectModel;
 
 namespace MacroTrackerCore.Services.DataAccessService;
 
@@ -19,10 +21,22 @@ public class DatabaseDao : IDao
     }
 
     // Food
-    public List<Food> GetFoods()
+    public List<FoodDTO> GetFoods()
     {
-        return _context.Foods.ToList();
+        return _context.Foods
+            .Select(food => new FoodDTO
+            {
+                FoodId = food.FoodId,
+                Name = food.Name ?? string.Empty,
+                CaloriesPer100g = food.CaloriesPer100g ?? 0,
+                ProteinPer100g = food.ProteinPer100g ?? 0,
+                CarbsPer100g = food.CarbsPer100g ?? 0,
+                FatPer100g = food.FatPer100g ?? 0,
+                Image = food.Image ?? Array.Empty<byte>()
+            })
+            .ToList();
     }
+
 
     // Add food tra ve id cua mon an vua them
     public int AddFood(Food food)
@@ -51,10 +65,19 @@ public class DatabaseDao : IDao
     }
 
     // Exercise
-    public List<Exercise> GetExercises()
+    public List<ExerciseDTO> GetExercises()
     {
-        return _context.Exercises.ToList();
+        return _context.Exercises
+            .Select(exercise => new ExerciseDTO
+            {
+                ExerciseId = exercise.ExerciseId,
+                Name = exercise.Name ?? string.Empty,
+                CaloriesPerMinute = exercise.CaloriesPerMinute ?? 0,
+                Image = exercise.Image ?? Array.Empty<byte>()
+            })
+            .ToList();
     }
+
 
     // Add exercise tra ve id cua bai tap vua them
     public int AddExercise(Exercise exercise)
@@ -82,19 +105,41 @@ public class DatabaseDao : IDao
     }
 
     // Goal
-    public Goal GetGoal()
+    public GoalDTO GetGoal()
     {
         var userId = CurrentUser.UserId;
 
-        return _context.Goals.FirstOrDefault(goal => goal.UserId == userId);
+        var goal = _context.Goals.FirstOrDefault(goal => goal.UserId == userId);
+
+        if (goal == null)
+        {
+            // Tra ve Goal mac dinh
+            return new GoalDTO
+            {
+                Calories = 0,
+                Protein = 0,
+                Carbs = 0,
+                Fat = 0
+            };
+        }
+
+        return new GoalDTO
+        {
+            GoalId = goal.GoalId,
+            Calories = goal.Calories ?? 0,
+            Protein = goal.Protein ?? 0,
+            Carbs = goal.Carbs ?? 0,
+            Fat = goal.Fat ?? 0
+        };
     }
+
     // Update goal
     public void UpdateGoal(Goal goal)
     {
         var userId = CurrentUser.UserId;
 
         var existingGoal = _context.Goals.FirstOrDefault(g => g.UserId == userId);
-        
+        // Neu user chua co goal
         if (existingGoal == null)
         {
             // Gan user id cho goal moi
@@ -166,17 +211,49 @@ public class DatabaseDao : IDao
     }
 
     // Log
-    public List<Log> GetLogs()
+    //public List<Log> GetLogs()
+    //{
+    //    var userId = CurrentUser.UserId;
+    //    // Debug
+    //    Debug.WriteLine("UserId in GetLogs: " + userId);
+
+    //    return _context.Logs.Where(log => log.UserId == userId)
+    //        .Include(log => log.LogFoodItems)
+    //        .Include(log => log.LogExerciseItems)
+    //        .ToList();
+    //}
+    public List<LogDTO> GetLogs()
     {
         var userId = CurrentUser.UserId;
-        // Debug
-        Debug.WriteLine("UserId in GetLogs: " + userId);
 
         return _context.Logs.Where(log => log.UserId == userId)
-            .Include(log => log.LogFoodItems)
-            .Include(log => log.LogExerciseItems)
-            .ToList();
+            .Select(log => new LogDTO
+            {
+                LogId = log.LogId,
+                LogDate = log.LogDate,
+                TotalCalories = log.TotalCalories ?? 0,
+                LogExerciseItems = new List<LogExerciseItemDTO>(
+                    log.LogExerciseItems.Select(exerciseItem => new LogExerciseItemDTO
+                    {
+                        LogExerciseId = exerciseItem.LogExerciseId,
+                        ExerciseId = exerciseItem.ExerciseId ?? 0,
+                        Duration = exerciseItem.Duration ?? 0,
+                        TotalCalories = exerciseItem.TotalCalories ?? 0
+                    })
+                ),
+                LogFoodItems = new List<LogFoodItemDTO>(
+                    log.LogFoodItems.Select(foodItem => new LogFoodItemDTO
+                    {
+                        LogFoodId = foodItem.LogFoodId,
+                        FoodId = foodItem.FoodId ?? 0,
+                        NumberOfServings = foodItem.NumberOfServings ?? 0,
+                        TotalCalories = foodItem.TotalCalories ?? 0
+                    })
+                )
+            }).ToList();
     }
+
+
 
     public void AddLog(Log log)
     {

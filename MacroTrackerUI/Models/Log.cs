@@ -12,8 +12,6 @@ public class Log : INotifyPropertyChanged
     public DateOnly? LogDate { get; set; }
 
     public double TotalCalories { get; set; }
-    public int? UserId { get; set; }
-
     public ObservableCollection<LogExerciseItem> LogExerciseItems { get; set; }
 
     public ObservableCollection<LogFoodItem> LogFoodItems { get; set; } 

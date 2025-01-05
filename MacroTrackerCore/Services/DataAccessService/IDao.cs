@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using MacroTrackerCore.DTOs;
 using MacroTrackerCore.Entities;
 
 /// <summary>
@@ -14,7 +15,7 @@ public interface IDao
     /// Retrieves a list of foods.
     /// </summary>
     /// <returns>A list of <see cref="Food"/> objects.</returns>
-    List<Food> GetFoods();
+    List<FoodDTO> GetFoods();
 
     // Add food tra ve id cua mon vua them
     int AddFood(Food food);
@@ -28,7 +29,7 @@ public interface IDao
     /// Retrieves a collection of exercises.
     /// </summary>
     /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
-    List<Exercise> GetExercises();
+    List<ExerciseDTO> GetExercises();
     
     // Add exercise tra ve id cua bai tap vua them
     int AddExercise(Exercise exercise);
@@ -39,7 +40,7 @@ public interface IDao
     // Goal
 
     // Get goal
-    Goal GetGoal();
+    GoalDTO GetGoal();
     // Update goal
     void UpdateGoal(Goal goal);
 
@@ -79,7 +80,7 @@ public interface IDao
     void AddUser(User user);
 
     // Get Logs
-    List<Log> GetLogs();
+    List<LogDTO> GetLogs();
     // Add log
     void AddLog(Log log);
     // Delete log

@@ -54,7 +54,8 @@ public class DaoSender
     // Remove exercise
     public void RemoveExercise(int exerciseId)
     {
-        Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseId));
+        //Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseId));
+        Receiver.RemoveExercise(exerciseId);
     }
 
     // Get Goal
@@ -88,10 +89,11 @@ public class DaoSender
     public bool DoesUserMatchPassword(string username, string password)
     {
 
-        string signInJson = JsonSerializer.Serialize((username, password), Options);
-        return JsonSerializer.Deserialize<bool>(
-            Receiver.DoesUserMatchPassword(signInJson)
-        );
+        //string signInJson = JsonSerializer.Serialize((username, password), Options);
+        //return JsonSerializer.Deserialize<bool>(
+        //    Receiver.DoesUserMatchPassword(signInJson)
+        //);
+        return Receiver.DoesUserMatchPassword(username, password);
     }
 
     /// <summary>
@@ -103,10 +105,11 @@ public class DaoSender
     /// </returns>
     public bool DoesUsernameExist(string username)
     {
-        string usernameJson = JsonSerializer.Serialize(username);
-        return JsonSerializer.Deserialize<bool>(
-            Receiver.DoesUsernameExist(usernameJson)
-        );
+        //string usernameJson = JsonSerializer.Serialize(username);
+        //return JsonSerializer.Deserialize<bool>(
+        //    Receiver.DoesUsernameExist(usernameJson)
+        //);
+        return Receiver.DoesUsernameExist(username);
     }
 
     /// <summary>
@@ -115,9 +118,10 @@ public class DaoSender
     /// <param name="user">The user to add.</param>
     public void AddUser((string, string) user)
     {
-        Receiver.AddUser(
-            JsonSerializer.Serialize(user, Options)
-        );
+        //Receiver.AddUser(
+        //    JsonSerializer.Serialize(user, Options)
+        //);
+        Receiver.AddUser(user);
     }
 
     public List<Log> GetLogs()
@@ -135,9 +139,10 @@ public class DaoSender
 
     public void DeleteLog(int logId)
     {
-        Receiver.DeleteLog(
-            JsonSerializer.Serialize(logId)
-        );
+        //Receiver.DeleteLog(
+        //    JsonSerializer.Serialize(logId)
+        //);
+        Receiver.DeleteLog(logId);
     }
 
     public void DeleteLogFood(int logDateID, int logID)

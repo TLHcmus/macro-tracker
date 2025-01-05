@@ -25,14 +25,7 @@ public class DaoReceiver
     /// <returns>A JSON string representing a list of <see cref="Food"/> objects.</returns>
     public string GetFoods()
     {
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true,
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
-
-        return JsonSerializer.Serialize(Dao.GetFoods(), options);
+        return JsonSerializer.Serialize(Dao.GetFoods());
     }
     // Add food tra ve id cua mon vua them
     public int AddFood(string foodJson)
@@ -63,14 +56,7 @@ public class DaoReceiver
     /// <returns>A JSON string representing an <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
     public string GetExercises()
     {
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true,
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
-
-        return JsonSerializer.Serialize(Dao.GetExercises(), options);
+        return JsonSerializer.Serialize(Dao.GetExercises());
     }
     // Add exercise tra ve id cua bai tap vua them
     public int AddExercise(string exerciseJson)
@@ -83,9 +69,9 @@ public class DaoReceiver
         return Dao.AddExercise(exercise);
     }
     // Remove exercise
-    public void RemoveExercise(string exerciseIdJson)
+    public void RemoveExercise(int exerciseId)
     {
-        int exerciseId = JsonSerializer.Deserialize<int>(exerciseIdJson);
+        //int exerciseId = JsonSerializer.Deserialize<int>(exerciseIdJson);
         if (exerciseId <= 0)
         {
             throw new ArgumentNullException();
@@ -96,14 +82,14 @@ public class DaoReceiver
     // Get Goal
     public string GetGoal()
     {
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true,
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
+        //JsonSerializerOptions options = new()
+        //{
+        //    IncludeFields = true,
+        //    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        //    WriteIndented = true
+        //};
 
-        return JsonSerializer.Serialize(Dao.GetGoal(), options);
+        return JsonSerializer.Serialize(Dao.GetGoal());
     }
     // Update goal
     public void UpdateGoal (string goalJson)
@@ -134,16 +120,17 @@ public class DaoReceiver
     /// <returns>
     /// A JSON string representing <c>true</c> if the username and password match; otherwise, <c>false</c>.
     /// </returns>
-    public string DoesUserMatchPassword(string userJson)
+    public bool DoesUserMatchPassword(string username, string password)
     {
-        (string username, string password) = 
-            JsonSerializer.Deserialize<(string, string)>(userJson, Options);
-        if (username == null || password == null)
-        {
-            throw new ArgumentNullException();
-        }
+        //(string username, string password) = 
+        //    JsonSerializer.Deserialize<(string, string)>(userJson, Options);
+        //if (username == null || password == null)
+        //{
+        //    throw new ArgumentNullException();
+        //}
 
-        return JsonSerializer.Serialize(Dao.DoesUserMatchPassword(username, password));
+        //return JsonSerializer.Serialize(Dao.DoesUserMatchPassword(username, password));
+        return Dao.DoesUserMatchPassword(username, password);
     }
 
     /// <summary>
@@ -153,24 +140,25 @@ public class DaoReceiver
     /// <returns>
     /// A JSON string representing <c>true</c> if the username exists; otherwise, <c>false</c>.
     /// </returns>
-    public string DoesUsernameExist(string usernameJson)
+    public bool DoesUsernameExist(string username)
     {
-        string? username = JsonSerializer.Deserialize<string>(usernameJson);
-        if (username == null)
-        {
-            throw new ArgumentNullException();
-        }
+        //string? username = JsonSerializer.Deserialize<string>(usernameJson);
+        //if (username == null)
+        //{
+        //    throw new ArgumentNullException();
+        //}
 
-        return JsonSerializer.Serialize(Dao.DoesUsernameExist(username));
+        //return JsonSerializer.Serialize(Dao.DoesUsernameExist(username));
+        return Dao.DoesUsernameExist(username);
     }
 
     /// <summary>
     /// Adds a new user.
     /// </summary>
     /// <param name="user">The user to add.</param>
-    public void AddUser(string userJson)
+    public void AddUser((string, string) user)
     {
-        (string username, string password) = JsonSerializer.Deserialize<(string, string)>(userJson, Options);
+        (string username, string password) = user;
         if (username == null || password == null)
         {
             throw new ArgumentNullException();
@@ -189,14 +177,14 @@ public class DaoReceiver
 
     public string GetLogs()
     {
-        JsonSerializerOptions options = new()
-        {
-            IncludeFields = true,
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
+        //JsonSerializerOptions options = new()
+        //{
+        //    IncludeFields = true,
+        //    ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        //    WriteIndented = true
+        //};
 
-        var json = JsonSerializer.Serialize(Dao.GetLogs(), options);
+        var json = JsonSerializer.Serialize(Dao.GetLogs());
         Debug.WriteLine($"JSON size: {json.Length / 1024.0} KB");
 
         return json;
@@ -217,9 +205,10 @@ public class DaoReceiver
         Dao.AddLog(log);
     }
 
-    public void DeleteLog(string logIdJson)
+    public void DeleteLog(int logId)
     {
-        Dao.DeleteLog(JsonSerializer.Deserialize<int>(logIdJson));
+        //Dao.DeleteLog(JsonSerializer.Deserialize<int>(logIdJson));
+        Dao.DeleteLog(logId);
     }
 
     public void DeleteLogFood(string idDeleteJson)
