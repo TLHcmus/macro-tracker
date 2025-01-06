@@ -1,6 +1,6 @@
 -- Tao bang foods
 create table foods (
-	food_id int primary key auto_increment,
+	food_id integer primary key autoincrement,
 	name nvarchar(255),
     calories_per_100g double,
     protein_per_100g double,
@@ -11,7 +11,7 @@ create table foods (
 
 -- Tao bang exercises
 create table exercises (
-	exercise_id int primary key auto_increment,
+	exercise_id integer primary key autoincrement,
 	name nvarchar(255),
     calories_per_minute double,
 	image longblob  
@@ -19,36 +19,36 @@ create table exercises (
 
 -- Tao bang users
 create table users (
-	user_id int primary key auto_increment,
+	user_id integer primary key autoincrement,
 	username nvarchar(255),
     encrypted_password nvarchar(255) 
 );
 
 -- Tao bang goal
 create table goal (
-	goal_id int primary key auto_increment,
-	calories int,
-    protein int, 
-    carbs int,
-    fat int,
-    user_id int,
+	goal_id integer primary key autoincrement,
+	calories integer,
+    protein integer, 
+    carbs integer,
+    fat integer,
+    user_id integer,
     foreign key (user_id) references users(user_id) on delete cascade
 );
 
 -- Tao bang log
 create table logs (
-    log_id int primary key auto_increment, 
+    log_id integer primary key autoincrement, 
     log_date date,            
     total_calories double default 0,
-    user_id int,
+    user_id integer,
     foreign key (user_id) references users(user_id) on delete cascade
 );
 
 -- Tao bang log_food_items
 create table log_food_items (
-	log_food_id int primary key auto_increment,
-    log_id int,
-    food_id int,
+	log_food_id integer primary key autoincrement,
+    log_id integer,
+    food_id integer,
     number_of_servings double,
     total_calories double,
     foreign key (log_id) references logs(log_id) on delete cascade,
@@ -57,35 +57,15 @@ create table log_food_items (
 
 -- Tao bang exercise_food_items
 create table log_exercise_items (
-	log_exercise_id int primary key auto_increment,
-    log_id int,
-    exercise_id int,
+	log_exercise_id integer primary key autoincrement,
+    log_id integer,
+    exercise_id integer,
     duration double,
     total_calories double,
     foreign key (log_id) references logs(log_id) on delete cascade,
     foreign key (exercise_id) references exercises(exercise_id) on delete cascade
 );
 
-
-
--- Them data vao bang exercises
-insert into exercises (name, calories_per_minute, image)
-values
-	('Basketball', 10, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Exercises/basketball.png')),
-    ('Martial Arts', 20, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Exercises/martial-arts.png')),
-    ('Running', 15, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Exercises/running.png')),
-    ('Swimming', 7, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Exercises/swimming.png')),
-    ('Pickle Ball', 12, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Exercises/pickle-ball.png'));
-    
--- Them data vao bang foods
-insert into foods (name, calories_per_100g, protein_per_100g, carbs_per_100g, fat_per_100g, image)
-values
-	('Chicken breast', 120, 22.5, 0, 2.6, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Foods/chicken-breast.png')),
-    ('White rice', 129, 2.7, 27.6, 0.3, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Foods/white-rice.png')),
-    ('Pork Chops', 115, 20.3, 0.9, 4, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Foods/pork-chops.png')),
-    ('Oat meal', 379, 13.1, 57.6, 6.5, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Foods/oat-meal.png')),
-    ('Beef', 152, 20.5, 0, 7.1, LOAD_FILE('C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/MacroTracker/Assets/Foods/beef.png'));
-    
 -- Them data vao bang user
 insert into users (username, encrypted_password)
 values ('admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3' );

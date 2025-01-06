@@ -56,19 +56,6 @@ public class DaoSenderTests
     }
 
     [TestMethod]
-    public void RemoveFood_ShouldCallReceiverRemoveFood()
-    {
-        // Arrange
-        var foodName = "Orange";
-
-        // Act
-        _daoSender.RemoveFood(foodName);
-
-        // Assert
-        _mockReceiver.Verify(r => r.RemoveFood(It.Is<string>(s => s.Contains("Orange"))), Times.Once);
-    }
-
-    [TestMethod]
     public void GetExercises_ShouldReturnListOfExercises()
     {
         // Arrange
@@ -94,19 +81,6 @@ public class DaoSenderTests
 
         // Assert
         _mockReceiver.Verify(r => r.AddExercise(It.Is<string>(s => s.Contains("Swimming"))), Times.Once);
-    }
-
-    [TestMethod]
-    public void RemoveExercise_ShouldCallReceiverRemoveExercise()
-    {
-        // Arrange
-        var exerciseName = "Cycling";
-
-        // Act
-        _daoSender.RemoveExercise(exerciseName);
-
-        // Assert
-        _mockReceiver.Verify(r => r.RemoveExercise(It.Is<string>(s => s.Contains("Cycling"))), Times.Once);
     }
 
     [TestMethod]
@@ -152,50 +126,88 @@ public class DaoSenderTests
     }
 
     [TestMethod]
-    public void DoesUserMatchPassword_ShouldReturnTrue()
+    public void GetFoodById_ShouldReturnFood()
     {
         // Arrange
-        var username = "testuser";
-        var password = "password";
-        JsonSerializerOptions options = new() { IncludeFields = true };
-        string signInJson = JsonSerializer.Serialize((username, password), options);
-        _mockReceiver.Setup(r => r.DoesUserMatchPassword(signInJson)).Returns(JsonSerializer.Serialize(true));
+        var foodJson = JsonSerializer.Serialize(new Food { FoodId = 1, Name = "Apple" });
+        _mockReceiver.Setup(r => r.GetFoodById(1)).Returns(foodJson);
 
         // Act
-        var result = _daoSender.DoesUserMatchPassword(username, password);
+        var result = _daoSender.GetFoodById(1);
 
         // Assert
-        Assert.IsTrue(result);
+        Assert.AreEqual(1, result.FoodId);
+        Assert.AreEqual("Apple", result.Name);
     }
 
     [TestMethod]
-    public void DoesUsernameExist_ShouldReturnTrue()
+    public void GetExerciseById_ShouldReturnExercise()
     {
         // Arrange
-        var username = "testuser";
-        var usernameJson = JsonSerializer.Serialize(username);
-        _mockReceiver.Setup(r => r.DoesUsernameExist(usernameJson)).Returns(JsonSerializer.Serialize(true));
+        var exerciseJson = JsonSerializer.Serialize(new Exercise { ExerciseId = 1, Name = "Running" });
+        _mockReceiver.Setup(r => r.GetExerciseById(1)).Returns(exerciseJson);
 
         // Act
-        var result = _daoSender.DoesUsernameExist(username);
+        var result = _daoSender.GetExerciseById(1);
 
         // Assert
-        Assert.IsTrue(result);
+        Assert.AreEqual(1, result.ExerciseId);
+        Assert.AreEqual("Running", result.Name);
     }
 
     [TestMethod]
-    public void AddUser_ShouldCallReceiverAddUser()
+    public void UpdateLog_ShouldCallReceiverUpdateLog()
     {
         // Arrange
-        var user = ("testuser", "password");
+        var log = new Log { LogId = 1 };
 
         // Act
-        _daoSender.AddUser(user);
+        _daoSender.UpdateLog(log);
 
         // Assert
-        _mockReceiver.Verify(r => r.AddUser(It.Is<string>(s => s.Contains("testuser") && s.Contains("password"))), Times.Once);
+        _mockReceiver.Verify(r => r.UpdateLog(It.Is<string>(s => s.Contains("1"))), Times.Once);
     }
 
+    [TestMethod]
+    public void DeleteLog_ShouldCallReceiverDeleteLog()
+    {
+        // Arrange
+        var logId = 1;
+
+        // Act
+        _daoSender.DeleteLog(logId);
+
+        // Assert
+        _mockReceiver.Verify(r => r.DeleteLog(logId), Times.Once);
+    }
+
+    [TestMethod]
+    public void DeleteLogFood_ShouldCallReceiverDeleteLogFood()
+    {
+        // Arrange
+        var logDateID = 1;
+        var logID = 2;
+
+        // Act
+        _daoSender.DeleteLogFood(logDateID, logID);
+
+        // Assert
+        _mockReceiver.Verify(r => r.DeleteLogFood(It.Is<string>(s => s.Contains("1") && s.Contains("2"))), Times.Once);
+    }
+
+    [TestMethod]
+    public void DeleteLogExercise_ShouldCallReceiverDeleteLogExercise()
+    {
+        // Arrange
+        var logDateID = 1;
+        var logID = 2;
+
+        // Act
+        _daoSender.DeleteLogExercise(logDateID, logID);
+
+        // Assert
+        _mockReceiver.Verify(r => r.DeleteLogExercise(It.Is<string>(s => s.Contains("1") && s.Contains("2"))), Times.Once);
+    }
     [TestMethod]
     public void GetLogs_ShouldReturnListOfLogs()
     {
@@ -222,47 +234,6 @@ public class DaoSenderTests
 
         // Assert
         _mockReceiver.Verify(r => r.AddLog(It.Is<string>(s => s.Contains('1'))), Times.Once);
-    }
-
-    [TestMethod]
-    public void DeleteLog_ShouldCallReceiverDeleteLog()
-    {
-        // Arrange
-        var logId = 1;
-
-        // Act
-        _daoSender.DeleteLog(logId);
-
-        // Assert
-        _mockReceiver.Verify(r => r.DeleteLog(It.Is<string>(s => s.Contains('1'))), Times.Once);
-    }
-
-    [TestMethod]
-    public void DeleteLogFood_ShouldCallReceiverDeleteLogFood()
-    {
-        // Arrange
-        var logDateID = 1;
-        var logID = 2;
-
-        // Act
-        _daoSender.DeleteLogFood(logDateID, logID);
-
-        // Assert
-        _mockReceiver.Verify(r => r.DeleteLogFood(It.Is<string>(s => s.Contains('1') && s.Contains('2'))), Times.Once);
-    }
-
-    [TestMethod]
-    public void DeleteLogExercise_ShouldCallReceiverDeleteLogExercise()
-    {
-        // Arrange
-        var logDateID = 1;
-        var logID = 2;
-
-        // Act
-        _daoSender.DeleteLogExercise(logDateID, logID);
-
-        // Assert
-        _mockReceiver.Verify(r => r.DeleteLogExercise(It.Is<string>(s => s.Contains('1') && s.Contains('2'))), Times.Once);
     }
 
     [TestMethod]

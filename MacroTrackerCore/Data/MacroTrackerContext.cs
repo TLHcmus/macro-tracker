@@ -117,7 +117,6 @@ public partial class MacroTrackerContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name")
-                .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.ProteinPer100g).HasColumnName("protein_per_100g");
         });
@@ -263,12 +262,10 @@ public partial class MacroTrackerContext : DbContext
             entity.Property(e => e.EncryptedPassword)
                 .HasMaxLength(255)
                 .HasColumnName("encrypted_password")
-                .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.Username)
                 .HasMaxLength(255)
                 .HasColumnName("username")
-                .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
         });
     }

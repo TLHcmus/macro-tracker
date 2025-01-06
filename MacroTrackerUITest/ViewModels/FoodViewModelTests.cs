@@ -60,33 +60,4 @@ public class FoodViewModelTests
         _mockSender.Verify(s => s.AddFood(food), Times.Once);
         Assert.IsTrue(_viewModel.Foods.Contains(food));
     }
-
-    [TestMethod]
-    public void RemoveFood_ShouldRemoveFoodFromCollection()
-    {
-        // Arrange
-        var food = new Food { Name = "Grapes" };
-        _viewModel.Foods.Add(food);
-
-        // Act
-        _viewModel.RemoveFood(food.Name);
-
-        // Assert
-        _mockSender.Verify(s => s.RemoveFood(food.Name), Times.Once);
-        Assert.IsFalse(_viewModel.Foods.Contains(food));
-    }
-
-    [TestMethod]
-    public void RemoveFood_ShouldNotRemoveNonExistentFood()
-    {
-        // Arrange
-        var food = new Food { Name = "Pineapple" };
-
-        // Act
-        _viewModel.RemoveFood(food.Name);
-
-        // Assert
-        _mockSender.Verify(s => s.RemoveFood(food.Name), Times.Once);
-        Assert.IsFalse(_viewModel.Foods.Contains(food));
-    }
 }

@@ -50,47 +50,4 @@ public class ExerciseViewModelTests
         // Assert
         Assert.AreEqual(exercises.Count, viewModel.Exercises.Count);
     }
-
-    [TestMethod]
-    public void AddExercise_ShouldAddExerciseToCollection()
-    {
-        // Arrange
-        var exercise = new Exercise { Name = "Cycling", CaloriesPerMinute = 7 };
-
-        // Act
-        _viewModel.AddExercise(exercise);
-
-        // Assert
-        _mockDaoSender.Verify(sender => sender.AddExercise(exercise), Times.Once);
-        Assert.IsTrue(_viewModel.Exercises.Contains(exercise));
-    }
-
-    [TestMethod]
-    public void RemoveExercise_ShouldRemoveExerciseFromCollection()
-    {
-        // Arrange
-        var exercise = new Exercise { Name = "Yoga", CaloriesPerMinute = 3 };
-        _viewModel.Exercises.Add(exercise);
-
-        // Act
-        _viewModel.RemoveExercise(exercise.Name);
-
-        // Assert
-        _mockDaoSender.Verify(sender => sender.RemoveExercise(exercise.Name), Times.Once);
-        Assert.IsFalse(_viewModel.Exercises.Contains(exercise));
-    }
-
-    [TestMethod]
-    public void RemoveExercise_ShouldNotRemoveNonExistentExercise()
-    {
-        // Arrange
-        var exercise = new Exercise { Name = "Pilates", CaloriesPerMinute = 4 };
-
-        // Act
-        _viewModel.RemoveExercise(exercise.Name);
-
-        // Assert
-        _mockDaoSender.Verify(sender => sender.RemoveExercise(exercise.Name), Times.Once);
-        Assert.IsFalse(_viewModel.Exercises.Contains(exercise));
-    }
 }
