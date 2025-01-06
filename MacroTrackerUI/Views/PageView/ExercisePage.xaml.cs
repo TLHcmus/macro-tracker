@@ -6,10 +6,12 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
+using Windows.Media.Devices;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -98,7 +100,7 @@ public sealed partial class ExercisePage : Page
 
         if (result == ContentDialogResult.Primary) // Nếu nhấn "Add"
         {
-            var exercise = addExerciseDialog.GetExerciseFromInput();
+            var exercise = await addExerciseDialog.GetExerciseFromInput();
 
             // Nếu exercise là null, tức là có lỗi trong quá trình nhập liệu
             if (exercise != null)
