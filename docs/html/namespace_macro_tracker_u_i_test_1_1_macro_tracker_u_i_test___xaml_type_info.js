@@ -1,0 +1,4 @@
+var namespace_macro_tracker_u_i_test_1_1_macro_tracker_u_i_test___xaml_type_info =
+[
+    [ "XamlMetaDataProvider", "class_macro_tracker_u_i_test_1_1_macro_tracker_u_i_test___xaml_type_info_1_1_xaml_meta_data_provider.html", "class_macro_tracker_u_i_test_1_1_macro_tracker_u_i_test___xaml_type_info_1_1_xaml_meta_data_provider" ]
+];

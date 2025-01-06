@@ -1,0 +1,5 @@
+var namespace_macro_tracker_core_1_1_services_1_1_receiver_service =
+[
+    [ "DataAccessReceiver", "namespace_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver.html", "namespace_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver" ],
+    [ "EncryptionReceiver", "namespace_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_encryption_receiver.html", "namespace_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_encryption_receiver" ]
+];

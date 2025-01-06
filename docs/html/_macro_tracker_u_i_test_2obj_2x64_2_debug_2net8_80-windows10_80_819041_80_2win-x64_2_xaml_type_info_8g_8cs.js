@@ -1,0 +1,5 @@
+var _macro_tracker_u_i_test_2obj_2x64_2_debug_2net8_80_windows10_80_819041_80_2win_x64_2_xaml_type_info_8g_8cs =
+[
+    [ "MacroTrackerUITest.UnitTestApp", "class_macro_tracker_u_i_test_1_1_unit_test_app.html", "class_macro_tracker_u_i_test_1_1_unit_test_app" ],
+    [ "MacroTrackerUITest.MacroTrackerUITest_XamlTypeInfo.XamlMetaDataProvider", "class_macro_tracker_u_i_test_1_1_macro_tracker_u_i_test___xaml_type_info_1_1_xaml_meta_data_provider.html", "class_macro_tracker_u_i_test_1_1_macro_tracker_u_i_test___xaml_type_info_1_1_xaml_meta_data_provider" ]
+];

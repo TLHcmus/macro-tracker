@@ -1,0 +1,126 @@
+\doxysection{Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector Class Reference}
+\hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector}{}\label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+
+
+Selects the appropriate Data\+Template based on the role of the message.  
+
+
+Inheritance diagram for Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_af63b53c8bbdf2d728ce626ffdf71f873}{Select\+Template\+Chat\+Bot}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_message}{Message}} message)
+\begin{DoxyCompactList}\small\item\em Selects the appropriate Data\+Template based on the role of the message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a6a16612bb06930f6e8af889896f24b01}{Select\+Template\+Core}} (object item, Dependency\+Object container)
+\begin{DoxyCompactList}\small\item\em Selects the appropriate Data\+Template based on the role of the message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a3bd58a641e6108fccbcb150307b706bc}{User\+Template}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Data\+Template for user messages. \end{DoxyCompactList}\item 
+Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5b981eeb604416152be37f2c7ff44f16}{Bot\+Template}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Data\+Template for bot messages. \end{DoxyCompactList}\item 
+Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a0308790aed0ef09306e402bcd602234a}{User\+Error\+Template}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Data\+Template for user error messages. \end{DoxyCompactList}\item 
+Data\+Template \mbox{\hyperlink{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5a780001269deb0d8a8d581806788e09}{Assistant\+Error\+Template}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the Data\+Template for assistant error messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Selects the appropriate Data\+Template based on the role of the message. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_af63b53c8bbdf2d728ce626ffdf71f873}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!SelectTemplateChatBot@{SelectTemplateChatBot}}
+\index{SelectTemplateChatBot@{SelectTemplateChatBot}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{SelectTemplateChatBot()}{SelectTemplateChatBot()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_af63b53c8bbdf2d728ce626ffdf71f873} 
+Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+Select\+Template\+Chat\+Bot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_message}{Message}}}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Selects the appropriate Data\+Template based on the role of the message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message object containing the role type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The selected Data\+Template or null if no match is found.
+\end{DoxyReturn}
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a6a16612bb06930f6e8af889896f24b01}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!SelectTemplateCore@{SelectTemplateCore}}
+\index{SelectTemplateCore@{SelectTemplateCore}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{SelectTemplateCore()}{SelectTemplateCore()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a6a16612bb06930f6e8af889896f24b01} 
+override Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+Select\+Template\+Core (\begin{DoxyParamCaption}\item[{object}]{item}{, }\item[{Dependency\+Object}]{container}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Selects the appropriate Data\+Template based on the role of the message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The data object for which to select the template.\\
+\hline
+{\em container} & The data-\/bound object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The selected Data\+Template or the base implementation if no match is found.
+\end{DoxyReturn}
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5a780001269deb0d8a8d581806788e09}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!AssistantErrorTemplate@{AssistantErrorTemplate}}
+\index{AssistantErrorTemplate@{AssistantErrorTemplate}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{AssistantErrorTemplate}{AssistantErrorTemplate}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5a780001269deb0d8a8d581806788e09} 
+Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+Assistant\+Error\+Template\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Data\+Template for assistant error messages. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5b981eeb604416152be37f2c7ff44f16}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!BotTemplate@{BotTemplate}}
+\index{BotTemplate@{BotTemplate}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{BotTemplate}{BotTemplate}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a5b981eeb604416152be37f2c7ff44f16} 
+Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+Bot\+Template\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Data\+Template for bot messages. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a0308790aed0ef09306e402bcd602234a}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!UserErrorTemplate@{UserErrorTemplate}}
+\index{UserErrorTemplate@{UserErrorTemplate}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{UserErrorTemplate}{UserErrorTemplate}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a0308790aed0ef09306e402bcd602234a} 
+Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+User\+Error\+Template\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Data\+Template for user error messages. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a3bd58a641e6108fccbcb150307b706bc}\index{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}!UserTemplate@{UserTemplate}}
+\index{UserTemplate@{UserTemplate}!MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector@{MacroTrackerUI.Helpers.Selector.ChatBotDataTemplateSelector}}
+\doxysubsubsection{\texorpdfstring{UserTemplate}{UserTemplate}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_a3bd58a641e6108fccbcb150307b706bc} 
+Data\+Template Macro\+Tracker\+UI.\+Helpers.\+Selector.\+Chat\+Bot\+Data\+Template\+Selector.\+User\+Template\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the Data\+Template for user messages. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+UI/\+Helpers/\+Selector/\mbox{\hyperlink{_chat_bot_data_template_selector_8cs}{Chat\+Bot\+Data\+Template\+Selector.\+cs}}\end{DoxyCompactItemize}

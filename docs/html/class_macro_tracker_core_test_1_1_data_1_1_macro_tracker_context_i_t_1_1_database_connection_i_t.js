@@ -1,0 +1,12 @@
+var class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t =
+[
+    [ "GetInitSqlitePathForTest_WhenCalled_ReturnsValidPath", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a81ca1083ce64f5bacf1b62a8fc695634", null ],
+    [ "GetInitSqlitePathForTest_WithExistingFilePath_ReturnsCorrectPath", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#ab47e51cb44176fe7f438ea3e7aec5a84", null ],
+    [ "OnConfiguring_WithDefaultEnvironment_UsesMySql", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a1e25aefd7d0d93ffa610fb19c00cb3c5", null ],
+    [ "OnConfiguring_WithDevEnvironment_UsesMySql", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a1c7ea005ba8783962fe4d82460904b55", null ],
+    [ "OnConfiguring_WithTestEnvironment_ContextIsInitialized", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#ab362f3a663a91294be070a0ca9def00c", null ],
+    [ "OnModelCreating_SelectAllUsersWithDevEnvironment_ReturnsAllUsers", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a2094a2e4d7dfb2485bda9c69e0a4e74c", null ],
+    [ "OnModelCreating_WhenCalled_ConfiguresExerciseEntity", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a1dfa4a48c7ae5863308603e99b6d28f6", null ],
+    [ "OnModelCreating_WhenCalled_ConfiguresFoodEntity", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#a23098122b723fb2bab8787c6ed74f385", null ],
+    [ "OnModelCreating_WhenCalled_ConfiguresUserEntity", "class_macro_tracker_core_test_1_1_data_1_1_macro_tracker_context_i_t_1_1_database_connection_i_t.html#ac6c36cbdd43afd0f089c5b3600d0928e", null ]
+];

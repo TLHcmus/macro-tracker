@@ -1,0 +1,584 @@
+\doxysection{Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender Class Reference}
+\hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender}{}\label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+
+
+Provides methods to interact with the data access layer and perform various operations.  
+
+
+Inheritance diagram for Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7aa2a8f0f89d2ca5c95e177c002b249f}{Dao\+Sender}} ()
+\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a44d95ca1d4f8019781e982f4b278002b}{Dao\+Sender}} (Service\+Provider provider\+UI)
+\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af1923986048175e8f6c38a05984085d7}{Get\+Foods}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a list of foods. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66ad9dc46ba9ae4cd9daf79224f371a6}{Add\+Food}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}} food)
+\begin{DoxyCompactList}\small\item\em Adds a new food item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ad70830fbed1494d858dea30874e9d082}{Remove\+Food}} (int food\+Id)
+\begin{DoxyCompactList}\small\item\em Removes a food item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a56f33cd0a38e53dd25b51604f6d97339}{Get\+Food\+By\+Id}} (int food\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a food item by its ID. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aa34c1bbc217d1369d931313ebc19dc7d}{Get\+Exercises}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a collection of exercises. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66e46118b9d1d1b3f47d6700efb45d70}{Get\+Exercise\+By\+Id}} (int exercise\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves an exercise item by its ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a9295ddce86b8ef66f836b705a5d10576}{Add\+Exercise}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}} exercise)
+\begin{DoxyCompactList}\small\item\em Adds a new exercise item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ac83827f1bd6db37318872da509cfcbcb}{Remove\+Exercise}} (int exercise\+Id)
+\begin{DoxyCompactList}\small\item\em Removes an exercise item. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_goal}{Goal}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a047fb3c7cd3daf986d7e0380511bdf3e}{Get\+Goal}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the goal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5acba7de02e85ced3333d801de1a0784}{Update\+Goal}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_goal}{Goal}} goal)
+\begin{DoxyCompactList}\small\item\em Updates the goal. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_user}{User}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab84a0126df30e3372a258e38029eb7ba}{Get\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a list of users. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aebd7ea69f7b5427c6269e55b10f17075}{Does\+User\+Match\+Password}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Checks if the provided username and password match. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a2ade8490dd16a9efc632cf51de35fc24}{Does\+Username\+Exist}} (string username)
+\begin{DoxyCompactList}\small\item\em Checks if the provided username exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7e6af9cd1d3cc982a4fc6d8230ece093}{Add\+User}} ((string, string) user)
+\begin{DoxyCompactList}\small\item\em Adds a new user. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a12691b93f8017a8c6f8174f59355fcb5}{Get\+Logs}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a list of logs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ace46140b3342ec414bcd3972436dc870}{Get\+Log\+By\+Date}} (Date\+Only date)
+\begin{DoxyCompactList}\small\item\em Retrieves a log entry by its date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af81aa1a91a197b97c2c6bc95ea9cd4d9}{Update\+Log}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} log)
+\begin{DoxyCompactList}\small\item\em Updates an existing log entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_abe832835d21948cc370f97cf3075e85c}{Add\+Log}} (\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} log)
+\begin{DoxyCompactList}\small\item\em Adds a new log entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a352ffd308e47080fe21e62c22fc2539d}{Delete\+Log}} (int log\+Id)
+\begin{DoxyCompactList}\small\item\em Deletes a log entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_afc26edca111c58e69c12596bbe099beb}{Delete\+Log\+Food}} (int log\+Date\+ID, int log\+ID)
+\begin{DoxyCompactList}\small\item\em Deletes a log food item by log date and log ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ae95eb95a7f38819a3961fd685539d3da}{Delete\+Log\+Exercise}} (int log\+Date\+ID, int log\+ID)
+\begin{DoxyCompactList}\small\item\em Deletes a log exercise item by log date and log ID. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a41cf0ff0b8602c8533f55b8095247f67}{Get\+Log\+With\+Pagination}} (int number\+Item\+Offset, Date\+Only end\+Date)
+\begin{DoxyCompactList}\small\item\em Retrieves logs with pagination. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5fb1a1b6d19b059e9689397f1c2e53e1}{Get\+NLog\+With\+Pagination}} (int n, int number\+Item\+Offset, Date\+Only end\+Date)
+\begin{DoxyCompactList}\small\item\em Retrieves logs with pagination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_addbfa37d037521872e2f18b00476f5ed}{Update\+Total\+Calories}} (int log\+Id, double total\+Calories)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Service\+Provider \mbox{\hyperlink{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab9c110a42aca868342b619eb6c386c42}{Provider\+UI}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides methods to interact with the data access layer and perform various operations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7aa2a8f0f89d2ca5c95e177c002b249f}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DaoSender@{DaoSender}}
+\index{DaoSender@{DaoSender}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DaoSender()}{DaoSender()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7aa2a8f0f89d2ca5c95e177c002b249f} 
+Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Dao\+Sender (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a44d95ca1d4f8019781e982f4b278002b}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DaoSender@{DaoSender}}
+\index{DaoSender@{DaoSender}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DaoSender()}{DaoSender()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a44d95ca1d4f8019781e982f4b278002b} 
+Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Dao\+Sender (\begin{DoxyParamCaption}\item[{Service\+Provider}]{provider\+UI}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a9295ddce86b8ef66f836b705a5d10576}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!AddExercise@{AddExercise}}
+\index{AddExercise@{AddExercise}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{AddExercise()}{AddExercise()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a9295ddce86b8ef66f836b705a5d10576} 
+int Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Add\+Exercise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}}}]{exercise}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new exercise item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise} & The exercise item to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the added exercise item.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a6d60fdd4da12594c58d183447c6158e6}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66ad9dc46ba9ae4cd9daf79224f371a6}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!AddFood@{AddFood}}
+\index{AddFood@{AddFood}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{AddFood()}{AddFood()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66ad9dc46ba9ae4cd9daf79224f371a6} 
+int Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Add\+Food (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}}}]{food}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new food item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food} & The food item to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the added food item.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_ac66ad2dd50c36844e3d80f648fa02c0a}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_abe832835d21948cc370f97cf3075e85c}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!AddLog@{AddLog}}
+\index{AddLog@{AddLog}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{AddLog()}{AddLog()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_abe832835d21948cc370f97cf3075e85c} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Add\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}}}]{log}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & The log entry to add.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a057405b3fd1204692217601398a9ec43}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7e6af9cd1d3cc982a4fc6d8230ece093}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a7e6af9cd1d3cc982a4fc6d8230ece093} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Add\+User (\begin{DoxyParamCaption}\item[{(string, string)}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to add.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_ac178b7f3918c0eb824e70055edd701a2}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a352ffd308e47080fe21e62c22fc2539d}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DeleteLog@{DeleteLog}}
+\index{DeleteLog@{DeleteLog}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DeleteLog()}{DeleteLog()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a352ffd308e47080fe21e62c22fc2539d} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Delete\+Log (\begin{DoxyParamCaption}\item[{int}]{log\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Id} & The ID of the log entry to delete.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_aaae27ff21fe0f16a0258f391026d9466}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ae95eb95a7f38819a3961fd685539d3da}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DeleteLogExercise@{DeleteLogExercise}}
+\index{DeleteLogExercise@{DeleteLogExercise}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DeleteLogExercise()}{DeleteLogExercise()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ae95eb95a7f38819a3961fd685539d3da} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Delete\+Log\+Exercise (\begin{DoxyParamCaption}\item[{int}]{log\+Date\+ID}{, }\item[{int}]{log\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a log exercise item by log date and log ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Date\+ID} & The log date ID.\\
+\hline
+{\em log\+ID} & The log ID.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a614d0bc9a34f9a8df316a66e5d803896}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_afc26edca111c58e69c12596bbe099beb}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DeleteLogFood@{DeleteLogFood}}
+\index{DeleteLogFood@{DeleteLogFood}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DeleteLogFood()}{DeleteLogFood()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_afc26edca111c58e69c12596bbe099beb} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Delete\+Log\+Food (\begin{DoxyParamCaption}\item[{int}]{log\+Date\+ID}{, }\item[{int}]{log\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a log food item by log date and log ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Date\+ID} & The log date ID.\\
+\hline
+{\em log\+ID} & The log ID.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a290bfee9221a43bc9e9d03638b151f4d}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aebd7ea69f7b5427c6269e55b10f17075}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DoesUserMatchPassword@{DoesUserMatchPassword}}
+\index{DoesUserMatchPassword@{DoesUserMatchPassword}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DoesUserMatchPassword()}{DoesUserMatchPassword()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aebd7ea69f7b5427c6269e55b10f17075} 
+bool Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Does\+User\+Match\+Password (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the provided username and password match. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to check.\\
+\hline
+{\em password} & The password to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the username and password match; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a315c51f18d8d4e490064074c3a2c1027}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a2ade8490dd16a9efc632cf51de35fc24}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!DoesUsernameExist@{DoesUsernameExist}}
+\index{DoesUsernameExist@{DoesUsernameExist}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{DoesUsernameExist()}{DoesUsernameExist()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a2ade8490dd16a9efc632cf51de35fc24} 
+bool Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Does\+Username\+Exist (\begin{DoxyParamCaption}\item[{string}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the provided username exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the username exists; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_abd3022ff594c38a43984bf5010840ab7}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66e46118b9d1d1b3f47d6700efb45d70}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetExerciseById@{GetExerciseById}}
+\index{GetExerciseById@{GetExerciseById}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetExerciseById()}{GetExerciseById()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a66e46118b9d1d1b3f47d6700efb45d70} 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}} Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Exercise\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{exercise\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves an exercise item by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise\+Id} & The ID of the exercise item to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Exercise object.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a1019bbe1dc0f515b3ccb16f108451202}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aa34c1bbc217d1369d931313ebc19dc7d}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetExercises@{GetExercises}}
+\index{GetExercises@{GetExercises}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetExercises()}{GetExercises()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_aa34c1bbc217d1369d931313ebc19dc7d} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_exercise}{Exercise}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Exercises (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a collection of exercises. 
+
+\begin{DoxyReturn}{Returns}
+A list of Exercise objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a7dc463333c2f0041ced6a372252e7a3a}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a56f33cd0a38e53dd25b51604f6d97339}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetFoodById@{GetFoodById}}
+\index{GetFoodById@{GetFoodById}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetFoodById()}{GetFoodById()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a56f33cd0a38e53dd25b51604f6d97339} 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}} Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Food\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{food\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a food item by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food\+Id} & The ID of the food item to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Food object.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_afe93d8bdc2d80bcb77335fc1a4a8c705}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af1923986048175e8f6c38a05984085d7}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetFoods@{GetFoods}}
+\index{GetFoods@{GetFoods}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetFoods()}{GetFoods()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af1923986048175e8f6c38a05984085d7} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_food}{Food}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Foods (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a list of foods. 
+
+\begin{DoxyReturn}{Returns}
+A list of Food objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_aca37e54934a8a97d958f0dbd828e4e6f}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a047fb3c7cd3daf986d7e0380511bdf3e}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetGoal@{GetGoal}}
+\index{GetGoal@{GetGoal}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetGoal()}{GetGoal()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a047fb3c7cd3daf986d7e0380511bdf3e} 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_goal}{Goal}} Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Goal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the goal. 
+
+\begin{DoxyReturn}{Returns}
+A Goal object.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_aad4602095bc7d533edbc4ac4164e631a}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ace46140b3342ec414bcd3972436dc870}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetLogByDate@{GetLogByDate}}
+\index{GetLogByDate@{GetLogByDate}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetLogByDate()}{GetLogByDate()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ace46140b3342ec414bcd3972436dc870} 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Log\+By\+Date (\begin{DoxyParamCaption}\item[{Date\+Only}]{date}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a log entry by its date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & The date of the log entry to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Log object.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a68356cb33ff78c95851d354fdb83269a}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a12691b93f8017a8c6f8174f59355fcb5}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetLogs@{GetLogs}}
+\index{GetLogs@{GetLogs}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetLogs()}{GetLogs()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a12691b93f8017a8c6f8174f59355fcb5} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Logs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a list of logs. 
+
+\begin{DoxyReturn}{Returns}
+A list of Log objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a4d7be7ec07619b34f38abc214eb1a6f5}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a41cf0ff0b8602c8533f55b8095247f67}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetLogWithPagination@{GetLogWithPagination}}
+\index{GetLogWithPagination@{GetLogWithPagination}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetLogWithPagination()}{GetLogWithPagination()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a41cf0ff0b8602c8533f55b8095247f67} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Log\+With\+Pagination (\begin{DoxyParamCaption}\item[{int}]{number\+Item\+Offset}{, }\item[{Date\+Only}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves logs with pagination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\+Item\+Offset} & The number of items to offset.\\
+\hline
+{\em end\+Date} & The end date for the logs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of Log objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_acedb7558cd93e26d9d37a8add4718ea6}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5fb1a1b6d19b059e9689397f1c2e53e1}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetNLogWithPagination@{GetNLogWithPagination}}
+\index{GetNLogWithPagination@{GetNLogWithPagination}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetNLogWithPagination()}{GetNLogWithPagination()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5fb1a1b6d19b059e9689397f1c2e53e1} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+NLog\+With\+Pagination (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{int}]{number\+Item\+Offset}{, }\item[{Date\+Only}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves logs with pagination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of items to retrieve.\\
+\hline
+{\em number\+Item\+Offset} & The number of items to offset.\\
+\hline
+{\em end\+Date} & The end date for the logs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of Log objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_ac1a1ca3c22b48270a055d3e54f30ba3f}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab84a0126df30e3372a258e38029eb7ba}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{GetUsers()}{GetUsers()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab84a0126df30e3372a258e38029eb7ba} 
+List$<$ \mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_user}{User}} $>$ Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Get\+Users (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a list of users. 
+
+\begin{DoxyReturn}{Returns}
+A list of User objects.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_ae3c3b3bef957883deb2fabd1a7278c00}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ac83827f1bd6db37318872da509cfcbcb}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!RemoveExercise@{RemoveExercise}}
+\index{RemoveExercise@{RemoveExercise}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{RemoveExercise()}{RemoveExercise()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ac83827f1bd6db37318872da509cfcbcb} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Remove\+Exercise (\begin{DoxyParamCaption}\item[{int}]{exercise\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Removes an exercise item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise\+Id} & The ID of the exercise item to remove.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_ad7cf4d2c08e5f261262088d57417a5e6}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ad70830fbed1494d858dea30874e9d082}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!RemoveFood@{RemoveFood}}
+\index{RemoveFood@{RemoveFood}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{RemoveFood()}{RemoveFood()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ad70830fbed1494d858dea30874e9d082} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Remove\+Food (\begin{DoxyParamCaption}\item[{int}]{food\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Removes a food item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food\+Id} & The ID of the food item to remove.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_abf0f309f75e539ad46492b843dd90306}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5acba7de02e85ced3333d801de1a0784}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!UpdateGoal@{UpdateGoal}}
+\index{UpdateGoal@{UpdateGoal}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{UpdateGoal()}{UpdateGoal()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_a5acba7de02e85ced3333d801de1a0784} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Update\+Goal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_goal}{Goal}}}]{goal}{}\end{DoxyParamCaption})}
+
+
+
+Updates the goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em goal} & The goal to update.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a3f2d4e6285ae2f67b81c2d6631d2eae1}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af81aa1a91a197b97c2c6bc95ea9cd4d9}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!UpdateLog@{UpdateLog}}
+\index{UpdateLog@{UpdateLog}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{UpdateLog()}{UpdateLog()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_af81aa1a91a197b97c2c6bc95ea9cd4d9} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Update\+Log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_macro_tracker_u_i_1_1_models_1_1_log}{Log}}}]{log}{}\end{DoxyParamCaption})}
+
+
+
+Updates an existing log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & The log entry to update.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_abc18d33b98ebec8e23a8c0cdb44f6096}{IDao\+Sender}}.
+
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_addbfa37d037521872e2f18b00476f5ed}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!UpdateTotalCalories@{UpdateTotalCalories}}
+\index{UpdateTotalCalories@{UpdateTotalCalories}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{UpdateTotalCalories()}{UpdateTotalCalories()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_addbfa37d037521872e2f18b00476f5ed} 
+void Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Update\+Total\+Calories (\begin{DoxyParamCaption}\item[{int}]{log\+Id}{, }\item[{double}]{total\+Calories}{}\end{DoxyParamCaption})}
+
+
+
+Implements \mbox{\hyperlink{interface_i_dao_sender_a4bd56a0ff272310d3cda0c558968c883}{IDao\+Sender}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab9c110a42aca868342b619eb6c386c42}\index{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}!ProviderUI@{ProviderUI}}
+\index{ProviderUI@{ProviderUI}!MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender@{MacroTrackerUI.Services.SenderService.DataAccessSender.DaoSender}}
+\doxysubsubsection{\texorpdfstring{ProviderUI}{ProviderUI}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_ab9c110a42aca868342b619eb6c386c42} 
+Service\+Provider Macro\+Tracker\+UI.\+Services.\+Sender\+Service.\+Data\+Access\+Sender.\+Dao\+Sender.\+Provider\+UI\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+UI/\+Services/\+Sender\+Service/\+Data\+Access\+Sender/\mbox{\hyperlink{_dao_sender_8cs}{Dao\+Sender.\+cs}}\end{DoxyCompactItemize}

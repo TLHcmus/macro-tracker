@@ -1,0 +1,4 @@
+var _dao_receiver_8cs =
+[
+    [ "MacroTrackerCore.Services.ReceiverService.DataAccessReceiver.DaoReceiver", "class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver.html", "class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver" ]
+];

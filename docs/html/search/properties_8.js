@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['image_0',['Image',['../class_macro_tracker_core_1_1_d_t_os_1_1_exercise_d_t_o.html#aa9f6274a045ff302dc1f6ce57efe941c',1,'MacroTrackerCore.DTOs.ExerciseDTO.Image'],['../class_macro_tracker_core_1_1_d_t_os_1_1_food_d_t_o.html#a057ea412cddfb1d4d673fb42f150b2a6',1,'MacroTrackerCore.DTOs.FoodDTO.Image'],['../class_macro_tracker_core_1_1_entities_1_1_exercise.html#a4781da7c8a2b3d6a1ee640f078060bc8',1,'MacroTrackerCore.Entities.Exercise.Image'],['../class_macro_tracker_core_1_1_entities_1_1_food.html#a1dae03ddae19198e9f64c74445bf17b3',1,'MacroTrackerCore.Entities.Food.Image'],['../class_macro_tracker_u_i_1_1_models_1_1_exercise.html#a77deccdf7e35c2fa6e9e0c580911c672',1,'MacroTrackerUI.Models.Exercise.Image'],['../class_macro_tracker_u_i_1_1_models_1_1_food.html#a7d3a9b1980d9bf73e9ffa2539ea1377d',1,'MacroTrackerUI.Models.Food.Image']]],
+  ['initpathfortest_1',['InitPathForTest',['../class_macro_tracker_core_1_1_data_1_1_macro_tracker_context.html#a807abc22c46253299d9e17180c264976',1,'MacroTrackerCore::Data::MacroTrackerContext']]]
+];

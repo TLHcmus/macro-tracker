@@ -1,0 +1,216 @@
+\doxysection{Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model Class Reference}
+\hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}{}\label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+
+
+View\+Model for handling user sign-\/up functionality.  
+
+
+Inheritance diagram for Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3414c34a524cba9834fae40d7500a3c8}{Sign\+Up\+View\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}{Sign\+Up\+View\+Model} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a00afcd37cc7853b56eade9422c17d370}{Sign\+Up\+View\+Model}} (IService\+Provider provider)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}{Sign\+Up\+View\+Model} class with a specified service provider. \end{DoxyCompactList}\item 
+bool? \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ab78fa61ed884a8f08eaeccd6e7dd55b9}{Is\+Sign\+Up\+Valid}} (out string prompt\+Message)
+\begin{DoxyCompactList}\small\item\em Checks if the sign-\/up is valid. This includes\+: \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_acda0a8bef05c1c93223e12a152216f19}{Is\+Password\+Strong}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the password is strong with a length of at least 8 characters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a9a81b8549ceb9ff700878218e8997f94}{Does\+Username\+Exist}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the username already exists. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aa113c728035ae13477f346fd5c69ffe1}{Do\+Passwords\+Match}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the passwords match. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aadddf86f0256662da6faa7eab963e0f7}{Add\+User}} ()
+\begin{DoxyCompactList}\small\item\em Adds a user to the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ac251a32a7a2125821e576a4e0dbbbed5}{Username}} = "{}"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the username entered by the user. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a2b935c73fe1be5b121579d74ca909e8a}{Password}} = "{}"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the password entered by the user. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a34351985d9f8b0154e1ec579f3952fb7}{Reentered\+Password}} = "{}"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the re-\/entered password for confirmation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_encryption_sender_1_1_i_password_encryption_sender}{IPassword\+Encryption\+Sender}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a48ad3ff2be72666046f7d35b21c72c32}{Password\+Encryption\+Handle}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the password encryption handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3254c630aa39a383e6ceb45b815fd294}{Property\+Changed}}
+\begin{DoxyCompactList}\small\item\em Event triggered when a property value changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View\+Model for handling user sign-\/up functionality. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3414c34a524cba9834fae40d7500a3c8}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!SignUpViewModel@{SignUpViewModel}}
+\index{SignUpViewModel@{SignUpViewModel}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{SignUpViewModel()}{SignUpViewModel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3414c34a524cba9834fae40d7500a3c8} 
+Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Sign\+Up\+View\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}{Sign\+Up\+View\+Model} class. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a00afcd37cc7853b56eade9422c17d370}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!SignUpViewModel@{SignUpViewModel}}
+\index{SignUpViewModel@{SignUpViewModel}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{SignUpViewModel()}{SignUpViewModel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a00afcd37cc7853b56eade9422c17d370} 
+Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Sign\+Up\+View\+Model (\begin{DoxyParamCaption}\item[{IService\+Provider}]{provider}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model}{Sign\+Up\+View\+Model} class with a specified service provider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em provider} & The service provider.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aadddf86f0256662da6faa7eab963e0f7}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aadddf86f0256662da6faa7eab963e0f7} 
+void Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Add\+User (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Adds a user to the database. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a9a81b8549ceb9ff700878218e8997f94}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!DoesUsernameExist@{DoesUsernameExist}}
+\index{DoesUsernameExist@{DoesUsernameExist}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{DoesUsernameExist()}{DoesUsernameExist()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a9a81b8549ceb9ff700878218e8997f94} 
+bool Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Does\+Username\+Exist (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the username already exists. 
+
+\begin{DoxyReturn}{Returns}
+true if the username exists; otherwise, false.
+\end{DoxyReturn}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aa113c728035ae13477f346fd5c69ffe1}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!DoPasswordsMatch@{DoPasswordsMatch}}
+\index{DoPasswordsMatch@{DoPasswordsMatch}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{DoPasswordsMatch()}{DoPasswordsMatch()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_aa113c728035ae13477f346fd5c69ffe1} 
+bool Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Do\+Passwords\+Match (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the passwords match. 
+
+\begin{DoxyReturn}{Returns}
+true if the passwords match; otherwise, false.
+\end{DoxyReturn}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_acda0a8bef05c1c93223e12a152216f19}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!IsPasswordStrong@{IsPasswordStrong}}
+\index{IsPasswordStrong@{IsPasswordStrong}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{IsPasswordStrong()}{IsPasswordStrong()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_acda0a8bef05c1c93223e12a152216f19} 
+bool Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Is\+Password\+Strong (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the password is strong with a length of at least 8 characters. 
+
+\begin{DoxyReturn}{Returns}
+true if the password is strong; otherwise, false.
+\end{DoxyReturn}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ab78fa61ed884a8f08eaeccd6e7dd55b9}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!IsSignUpValid@{IsSignUpValid}}
+\index{IsSignUpValid@{IsSignUpValid}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{IsSignUpValid()}{IsSignUpValid()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ab78fa61ed884a8f08eaeccd6e7dd55b9} 
+bool? Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Is\+Sign\+Up\+Valid (\begin{DoxyParamCaption}\item[{out string}]{prompt\+Message}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the sign-\/up is valid. This includes\+: 
+
+
+\begin{DoxyItemize}
+\item Checking if the username is null or empty.
+\item Checking if the username already exists.
+\item Checking if the password is strong.
+\item Checking if the passwords match. If everything is valid, adds the user to the database and assigns a successful prompt message. If the username is null or empty, does nothing and the prompt message is null. Otherwise, assigns an error prompt message.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em prompt\+Message} & The prompt message to be assigned based on the validation result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true\+: if the sign-\/up is valid with the prompt message\+: "{}\+Sign up successfully"{}. false\+: if the sign-\/up is invalid with one of these prompt messages\+: "{}\+Username has already existed!"{}, "{}\+Password is not strong!"{}, "{}\+Passwords do not match!"{}. null\+: no action is taken and the prompt message is not assigned. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a2b935c73fe1be5b121579d74ca909e8a}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!Password@{Password}}
+\index{Password@{Password}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a2b935c73fe1be5b121579d74ca909e8a} 
+string Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Password = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the password entered by the user. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a48ad3ff2be72666046f7d35b21c72c32}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!PasswordEncryptionHandle@{PasswordEncryptionHandle}}
+\index{PasswordEncryptionHandle@{PasswordEncryptionHandle}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{PasswordEncryptionHandle}{PasswordEncryptionHandle}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a48ad3ff2be72666046f7d35b21c72c32} 
+\mbox{\hyperlink{interface_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_encryption_sender_1_1_i_password_encryption_sender}{IPassword\+Encryption\+Sender}} Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Password\+Encryption\+Handle\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the password encryption handler. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a34351985d9f8b0154e1ec579f3952fb7}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!ReenteredPassword@{ReenteredPassword}}
+\index{ReenteredPassword@{ReenteredPassword}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{ReenteredPassword}{ReenteredPassword}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a34351985d9f8b0154e1ec579f3952fb7} 
+string Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Reentered\+Password = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the re-\/entered password for confirmation. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ac251a32a7a2125821e576a4e0dbbbed5}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!Username@{Username}}
+\index{Username@{Username}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{Username}{Username}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_ac251a32a7a2125821e576a4e0dbbbed5} 
+string Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Username = "{}"{}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the username entered by the user. 
+
+
+
+\doxysubsection{Event Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3254c630aa39a383e6ceb45b815fd294}\index{MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}!PropertyChanged@{PropertyChanged}}
+\index{PropertyChanged@{PropertyChanged}!MacroTrackerUI.ViewModels.SignUpViewModel@{MacroTrackerUI.ViewModels.SignUpViewModel}}
+\doxysubsubsection{\texorpdfstring{PropertyChanged}{PropertyChanged}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_sign_up_view_model_a3254c630aa39a383e6ceb45b815fd294} 
+Property\+Changed\+Event\+Handler Macro\+Tracker\+UI.\+View\+Models.\+Sign\+Up\+View\+Model.\+Property\+Changed}
+
+
+
+Event triggered when a property value changes. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+UI/\+View\+Models/\mbox{\hyperlink{_sign_up_view_model_8cs}{Sign\+Up\+View\+Model.\+cs}}\end{DoxyCompactItemize}

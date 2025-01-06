@@ -1,0 +1,541 @@
+\doxysection{IDao\+Receiver Interface Reference}
+\hypertarget{interface_i_dao_receiver}{}\label{interface_i_dao_receiver}\index{IDaoReceiver@{IDaoReceiver}}
+
+
+Interface for data access operations related to the receiver service.  
+
+
+Inheritance diagram for IDao\+Receiver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_i_dao_receiver}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_aed13bf4aa793ae6bb756591787ca689c}{Get\+Foods}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all foods. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_i_dao_receiver_ad5124551f2cbfb64da1446225f7b664c}{Add\+Food}} (string food\+Json)
+\begin{DoxyCompactList}\small\item\em Adds a new food. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a81e2259d3d9979fc0492f14ea174efdd}{Remove\+Food}} (string food\+Id\+Json)
+\begin{DoxyCompactList}\small\item\em Removes a food. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_a9578e1e7aea0ceb728cb96ab45aa0982}{Get\+Food\+By\+Id}} (int food\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a food by its ID. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_a7ae16d3095426acf9c9cd50a942e5414}{Get\+Exercises}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all exercises. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_aab7373467dae1cefa545daabea02eca4}{Get\+Exercise\+By\+Id}} (int exercise\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves an exercise by its ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_i_dao_receiver_a64b2c4215b34c6ea7c9a1c5fcf52b513}{Add\+Exercise}} (string exercise\+Json)
+\begin{DoxyCompactList}\small\item\em Adds a new exercise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a41949d50585abcee5476b6e297b86a8c}{Remove\+Exercise}} (int exercise\+Id)
+\begin{DoxyCompactList}\small\item\em Removes an exercise. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_a01df072abb79457cbf5f7e48236a0ce1}{Get\+Goal}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the goal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_ae51685a721101e4c9f8a6723d8fca70a}{Update\+Goal}} (string goal\+Json)
+\begin{DoxyCompactList}\small\item\em Updates the goal. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_a74583f524cb5505969e64813e019d80e}{Get\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all users. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{interface_i_dao_receiver_a6075ac2efa4ad7a06d0ceddbc6fcc7ec}{Does\+User\+Match\+Password}} (string username, string password)
+\begin{DoxyCompactList}\small\item\em Checks if the username and password match. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{interface_i_dao_receiver_aa73c3c7a971f836acf9d010dd89c1846}{Does\+Username\+Exist}} (string username)
+\begin{DoxyCompactList}\small\item\em Checks if the username exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a646669a5fd468403104cc35fc4a146d8}{Add\+User}} ((string, string) user)
+\begin{DoxyCompactList}\small\item\em Adds a new user. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_aefa84487adca5f63191fbd0b800f9643}{Get\+Logs}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all logs. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_ad82c712ab320ae3a9e086b6dcd60df53}{Get\+Log\+By\+Date}} (Date\+Only date)
+\begin{DoxyCompactList}\small\item\em Retrieves a log by its date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a376cca453b2d5775a0ba5370ccc0b83f}{Update\+Log}} (string log\+Json)
+\begin{DoxyCompactList}\small\item\em Updates a log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_ab974599461d2056bb0ed00513c411fe2}{Add\+Log}} (string log\+Json)
+\begin{DoxyCompactList}\small\item\em Adds a new log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_aa16cdc56fa05749f93d3bb81e185fd70}{Delete\+Log}} (int log\+Id)
+\begin{DoxyCompactList}\small\item\em Deletes a log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a6db1dde44e565472898008f7e6c5f465}{Delete\+Log\+Food}} (string id\+Delete\+Json)
+\begin{DoxyCompactList}\small\item\em Deletes a food from a log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a93010be10b30c387606705adf8e54dba}{Delete\+Log\+Exercise}} (string id\+Delete\+Json)
+\begin{DoxyCompactList}\small\item\em Deletes an exercise from a log. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_ae4a4555d4b879fe1e0fd61a9d8b57c53}{Get\+Log\+With\+Pagination}} (string page\+Offset\+Json)
+\begin{DoxyCompactList}\small\item\em Retrieves logs with pagination. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_dao_receiver_a38c186880a4c8ff901fe0ec97a907f9b}{Get\+NLog\+With\+Pagination}} (string page\+Offset\+Json)
+\begin{DoxyCompactList}\small\item\em Retrieves N logs with pagination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_dao_receiver_a4c628af2a7d2d20d266631305f7b4a09}{Update\+Total\+Calories}} (string log\+Id\+Json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for data access operations related to the receiver service. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_i_dao_receiver_a64b2c4215b34c6ea7c9a1c5fcf52b513}\index{IDaoReceiver@{IDaoReceiver}!AddExercise@{AddExercise}}
+\index{AddExercise@{AddExercise}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{AddExercise()}{AddExercise()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a64b2c4215b34c6ea7c9a1c5fcf52b513} 
+int IDao\+Receiver.\+Add\+Exercise (\begin{DoxyParamCaption}\item[{string}]{exercise\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new exercise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise\+Json} & A JSON string representing the exercise to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the added exercise.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a53c8fe1cd0d95396857669fdbe6186c2}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_ad5124551f2cbfb64da1446225f7b664c}\index{IDaoReceiver@{IDaoReceiver}!AddFood@{AddFood}}
+\index{AddFood@{AddFood}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{AddFood()}{AddFood()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_ad5124551f2cbfb64da1446225f7b664c} 
+int IDao\+Receiver.\+Add\+Food (\begin{DoxyParamCaption}\item[{string}]{food\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food\+Json} & A JSON string representing the food to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the added food.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a995d3ec51d264d5b56b284dfcc492dcc}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_ab974599461d2056bb0ed00513c411fe2}\index{IDaoReceiver@{IDaoReceiver}!AddLog@{AddLog}}
+\index{AddLog@{AddLog}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{AddLog()}{AddLog()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_ab974599461d2056bb0ed00513c411fe2} 
+void IDao\+Receiver.\+Add\+Log (\begin{DoxyParamCaption}\item[{string}]{log\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Json} & A JSON string representing the log to add.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a78dcd1d1707bb99187bc3715648bc5df}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a646669a5fd468403104cc35fc4a146d8}\index{IDaoReceiver@{IDaoReceiver}!AddUser@{AddUser}}
+\index{AddUser@{AddUser}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{AddUser()}{AddUser()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a646669a5fd468403104cc35fc4a146d8} 
+void IDao\+Receiver.\+Add\+User (\begin{DoxyParamCaption}\item[{(string, string)}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & A tuple containing the username and password of the user to add.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_af9cb14b32cc2d62e604bb57e37135e97}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_aa16cdc56fa05749f93d3bb81e185fd70}\index{IDaoReceiver@{IDaoReceiver}!DeleteLog@{DeleteLog}}
+\index{DeleteLog@{DeleteLog}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{DeleteLog()}{DeleteLog()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_aa16cdc56fa05749f93d3bb81e185fd70} 
+void IDao\+Receiver.\+Delete\+Log (\begin{DoxyParamCaption}\item[{int}]{log\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Id} & The ID of the log to delete.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_ad89a9d9f0a873bff5626ab3a3a727c60}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a93010be10b30c387606705adf8e54dba}\index{IDaoReceiver@{IDaoReceiver}!DeleteLogExercise@{DeleteLogExercise}}
+\index{DeleteLogExercise@{DeleteLogExercise}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{DeleteLogExercise()}{DeleteLogExercise()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a93010be10b30c387606705adf8e54dba} 
+void IDao\+Receiver.\+Delete\+Log\+Exercise (\begin{DoxyParamCaption}\item[{string}]{id\+Delete\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Deletes an exercise from a log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+Delete\+Json} & A JSON string representing the ID of the exercise to delete from the log.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_ad9057c0b29ebf367d8c71015816369d9}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a6db1dde44e565472898008f7e6c5f465}\index{IDaoReceiver@{IDaoReceiver}!DeleteLogFood@{DeleteLogFood}}
+\index{DeleteLogFood@{DeleteLogFood}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{DeleteLogFood()}{DeleteLogFood()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a6db1dde44e565472898008f7e6c5f465} 
+void IDao\+Receiver.\+Delete\+Log\+Food (\begin{DoxyParamCaption}\item[{string}]{id\+Delete\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Deletes a food from a log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+Delete\+Json} & A JSON string representing the ID of the food to delete from the log.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_ace83013e4d88e3ec52fc8f22e9ab7b2f}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a6075ac2efa4ad7a06d0ceddbc6fcc7ec}\index{IDaoReceiver@{IDaoReceiver}!DoesUserMatchPassword@{DoesUserMatchPassword}}
+\index{DoesUserMatchPassword@{DoesUserMatchPassword}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{DoesUserMatchPassword()}{DoesUserMatchPassword()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a6075ac2efa4ad7a06d0ceddbc6fcc7ec} 
+bool IDao\+Receiver.\+Does\+User\+Match\+Password (\begin{DoxyParamCaption}\item[{string}]{username}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the username and password match. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to check.\\
+\hline
+{\em password} & The password to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the username and password match, otherwise false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a2087c203bda4b68d982f1a9ca0013fd5}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_aa73c3c7a971f836acf9d010dd89c1846}\index{IDaoReceiver@{IDaoReceiver}!DoesUsernameExist@{DoesUsernameExist}}
+\index{DoesUsernameExist@{DoesUsernameExist}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{DoesUsernameExist()}{DoesUsernameExist()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_aa73c3c7a971f836acf9d010dd89c1846} 
+bool IDao\+Receiver.\+Does\+Username\+Exist (\begin{DoxyParamCaption}\item[{string}]{username}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the username exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the username exists, otherwise false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a64234cca1ace7834540a7d8a53bffc89}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_aab7373467dae1cefa545daabea02eca4}\index{IDaoReceiver@{IDaoReceiver}!GetExerciseById@{GetExerciseById}}
+\index{GetExerciseById@{GetExerciseById}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetExerciseById()}{GetExerciseById()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_aab7373467dae1cefa545daabea02eca4} 
+string IDao\+Receiver.\+Get\+Exercise\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{exercise\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves an exercise by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise\+Id} & The ID of the exercise to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JSON string representing the exercise.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a6fa5f21785352090bb092508e0f760ee}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a7ae16d3095426acf9c9cd50a942e5414}\index{IDaoReceiver@{IDaoReceiver}!GetExercises@{GetExercises}}
+\index{GetExercises@{GetExercises}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetExercises()}{GetExercises()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a7ae16d3095426acf9c9cd50a942e5414} 
+string IDao\+Receiver.\+Get\+Exercises (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves all exercises. 
+
+\begin{DoxyReturn}{Returns}
+A JSON string representing all exercises.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_aa8c015236b3627e649695cc7cb12e45d}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a9578e1e7aea0ceb728cb96ab45aa0982}\index{IDaoReceiver@{IDaoReceiver}!GetFoodById@{GetFoodById}}
+\index{GetFoodById@{GetFoodById}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetFoodById()}{GetFoodById()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a9578e1e7aea0ceb728cb96ab45aa0982} 
+string IDao\+Receiver.\+Get\+Food\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{food\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a food by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food\+Id} & The ID of the food to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JSON string representing the food.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_aa9798764e191fc981ebdfeedefc0d306}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_aed13bf4aa793ae6bb756591787ca689c}\index{IDaoReceiver@{IDaoReceiver}!GetFoods@{GetFoods}}
+\index{GetFoods@{GetFoods}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetFoods()}{GetFoods()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_aed13bf4aa793ae6bb756591787ca689c} 
+string IDao\+Receiver.\+Get\+Foods (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves all foods. 
+
+\begin{DoxyReturn}{Returns}
+A JSON string representing all foods.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a9e54e79a64a68f140ac073b766a516d0}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a01df072abb79457cbf5f7e48236a0ce1}\index{IDaoReceiver@{IDaoReceiver}!GetGoal@{GetGoal}}
+\index{GetGoal@{GetGoal}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetGoal()}{GetGoal()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a01df072abb79457cbf5f7e48236a0ce1} 
+string IDao\+Receiver.\+Get\+Goal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the goal. 
+
+\begin{DoxyReturn}{Returns}
+A JSON string representing the goal.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_ab9ebafbca5c6c202f5e4ecb77f412b0d}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_ad82c712ab320ae3a9e086b6dcd60df53}\index{IDaoReceiver@{IDaoReceiver}!GetLogByDate@{GetLogByDate}}
+\index{GetLogByDate@{GetLogByDate}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetLogByDate()}{GetLogByDate()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_ad82c712ab320ae3a9e086b6dcd60df53} 
+string IDao\+Receiver.\+Get\+Log\+By\+Date (\begin{DoxyParamCaption}\item[{Date\+Only}]{date}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a log by its date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & The date of the log to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JSON string representing the log.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_af6665af6ae35befd0b57a23f00f51ea0}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_aefa84487adca5f63191fbd0b800f9643}\index{IDaoReceiver@{IDaoReceiver}!GetLogs@{GetLogs}}
+\index{GetLogs@{GetLogs}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetLogs()}{GetLogs()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_aefa84487adca5f63191fbd0b800f9643} 
+string IDao\+Receiver.\+Get\+Logs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves all logs. 
+
+\begin{DoxyReturn}{Returns}
+A JSON string representing all logs.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a3592a93c2d8f0cfd88974f411b7ae01c}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_ae4a4555d4b879fe1e0fd61a9d8b57c53}\index{IDaoReceiver@{IDaoReceiver}!GetLogWithPagination@{GetLogWithPagination}}
+\index{GetLogWithPagination@{GetLogWithPagination}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetLogWithPagination()}{GetLogWithPagination()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_ae4a4555d4b879fe1e0fd61a9d8b57c53} 
+string IDao\+Receiver.\+Get\+Log\+With\+Pagination (\begin{DoxyParamCaption}\item[{string}]{page\+Offset\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves logs with pagination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Offset\+Json} & A JSON string representing the page offset for pagination.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JSON string representing the logs with pagination.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a181023f35ef7d04d6dd7e291c546057a}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a38c186880a4c8ff901fe0ec97a907f9b}\index{IDaoReceiver@{IDaoReceiver}!GetNLogWithPagination@{GetNLogWithPagination}}
+\index{GetNLogWithPagination@{GetNLogWithPagination}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetNLogWithPagination()}{GetNLogWithPagination()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a38c186880a4c8ff901fe0ec97a907f9b} 
+string IDao\+Receiver.\+Get\+NLog\+With\+Pagination (\begin{DoxyParamCaption}\item[{string}]{page\+Offset\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves N logs with pagination. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+Offset\+Json} & A JSON string representing the page offset for pagination.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A JSON string representing the N logs with pagination.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a590efafebc6ff5ca9ec9e83e0e2e5061}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a74583f524cb5505969e64813e019d80e}\index{IDaoReceiver@{IDaoReceiver}!GetUsers@{GetUsers}}
+\index{GetUsers@{GetUsers}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{GetUsers()}{GetUsers()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a74583f524cb5505969e64813e019d80e} 
+string IDao\+Receiver.\+Get\+Users (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves all users. 
+
+\begin{DoxyReturn}{Returns}
+A JSON string representing all users.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a5c4652a8370820bbc374f90c5858707f}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a41949d50585abcee5476b6e297b86a8c}\index{IDaoReceiver@{IDaoReceiver}!RemoveExercise@{RemoveExercise}}
+\index{RemoveExercise@{RemoveExercise}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{RemoveExercise()}{RemoveExercise()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a41949d50585abcee5476b6e297b86a8c} 
+void IDao\+Receiver.\+Remove\+Exercise (\begin{DoxyParamCaption}\item[{int}]{exercise\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Removes an exercise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exercise\+Id} & The ID of the exercise to remove.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a7d606c2a373364f2e59bbc693342c547}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a81e2259d3d9979fc0492f14ea174efdd}\index{IDaoReceiver@{IDaoReceiver}!RemoveFood@{RemoveFood}}
+\index{RemoveFood@{RemoveFood}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{RemoveFood()}{RemoveFood()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a81e2259d3d9979fc0492f14ea174efdd} 
+void IDao\+Receiver.\+Remove\+Food (\begin{DoxyParamCaption}\item[{string}]{food\+Id\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Removes a food. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em food\+Id\+Json} & A JSON string representing the ID of the food to remove.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a573c90ac77585c517e5adcb16f8381ce}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_ae51685a721101e4c9f8a6723d8fca70a}\index{IDaoReceiver@{IDaoReceiver}!UpdateGoal@{UpdateGoal}}
+\index{UpdateGoal@{UpdateGoal}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{UpdateGoal()}{UpdateGoal()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_ae51685a721101e4c9f8a6723d8fca70a} 
+void IDao\+Receiver.\+Update\+Goal (\begin{DoxyParamCaption}\item[{string}]{goal\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Updates the goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em goal\+Json} & A JSON string representing the goal to update.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a2e2ec38973f4367153145997f921b5e0}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a376cca453b2d5775a0ba5370ccc0b83f}\index{IDaoReceiver@{IDaoReceiver}!UpdateLog@{UpdateLog}}
+\index{UpdateLog@{UpdateLog}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{UpdateLog()}{UpdateLog()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a376cca453b2d5775a0ba5370ccc0b83f} 
+void IDao\+Receiver.\+Update\+Log (\begin{DoxyParamCaption}\item[{string}]{log\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Updates a log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+Json} & A JSON string representing the log to update.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_a3309c2a21bc65b4f18cbf3d1e373b2ff}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+\Hypertarget{interface_i_dao_receiver_a4c628af2a7d2d20d266631305f7b4a09}\index{IDaoReceiver@{IDaoReceiver}!UpdateTotalCalories@{UpdateTotalCalories}}
+\index{UpdateTotalCalories@{UpdateTotalCalories}!IDaoReceiver@{IDaoReceiver}}
+\doxysubsubsection{\texorpdfstring{UpdateTotalCalories()}{UpdateTotalCalories()}}
+{\footnotesize\ttfamily \label{interface_i_dao_receiver_a4c628af2a7d2d20d266631305f7b4a09} 
+void IDao\+Receiver.\+Update\+Total\+Calories (\begin{DoxyParamCaption}\item[{string}]{log\+Id\+Json}{}\end{DoxyParamCaption})}
+
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_receiver_service_1_1_data_access_receiver_1_1_dao_receiver_af16fb427680c2c58c9503cf14a7c9672}{Macro\+Tracker\+Core.\+Services.\+Receiver\+Service.\+Data\+Access\+Receiver.\+Dao\+Receiver}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+Core/\+Services/\+Receiver\+Service/\+Data\+Access\+Receiver/\mbox{\hyperlink{_i_dao_receiver_8cs}{IDao\+Receiver.\+cs}}\end{DoxyCompactItemize}

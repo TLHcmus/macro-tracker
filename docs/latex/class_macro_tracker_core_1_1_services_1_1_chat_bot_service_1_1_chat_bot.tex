@@ -1,0 +1,136 @@
+\doxysection{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot Class Reference}
+\hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot}{}\label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+
+
+Represents a chatbot service for macro tracking and related queries.  
+
+
+Inheritance diagram for Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a6202c940410ccaa2579de996932969b8}{Chat\+Bot}} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot}{Chat\+Bot} class. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a1a100f838a0e40d18fea710386085cc1}{Get\+Response}} (string prompt)
+\begin{DoxyCompactList}\small\item\em Gets the response from the chatbot for a given prompt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Kernel \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ae9d70df00d9eebe813ece1449442af21}{Kernel}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the Kernel instance used by the chatbot. \end{DoxyCompactList}\item 
+IChat\+Completion\+Service \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a0de241e074fe924585c635cc6fa488e0}{Chat\+Completion\+Service}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the chat completion service used by the chatbot. \end{DoxyCompactList}\item 
+Prompt\+Execution\+Settings \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ad669c0b57f2dc7bc4c15dd86750ca942}{Prompt\+Execution\+Settings}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the prompt execution settings for the chatbot. \end{DoxyCompactList}\item 
+Chat\+History \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_af53c57be23599e5ac8f278f2db56da22}{History}} = new Chat\+History()\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the chat history of the chatbot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a chatbot service for macro tracking and related queries. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a6202c940410ccaa2579de996932969b8}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!ChatBot@{ChatBot}}
+\index{ChatBot@{ChatBot}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{ChatBot()}{ChatBot()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a6202c940410ccaa2579de996932969b8} 
+Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+Chat\+Bot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxylink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot}{Chat\+Bot} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a1a100f838a0e40d18fea710386085cc1}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!GetResponse@{GetResponse}}
+\index{GetResponse@{GetResponse}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{GetResponse()}{GetResponse()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a1a100f838a0e40d18fea710386085cc1} 
+async Task$<$ string $>$ Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+Get\+Response (\begin{DoxyParamCaption}\item[{string}]{prompt}{}\end{DoxyParamCaption})}
+
+
+
+Gets the response from the chatbot for a given prompt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prompt} & The user prompt.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The chatbot\textquotesingle{}s response.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab1a4b23df7144f28c3bfb8b35c5cde60}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a0de241e074fe924585c635cc6fa488e0}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!ChatCompletionService@{ChatCompletionService}}
+\index{ChatCompletionService@{ChatCompletionService}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{ChatCompletionService}{ChatCompletionService}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a0de241e074fe924585c635cc6fa488e0} 
+IChat\+Completion\+Service Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+Chat\+Completion\+Service\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the chat completion service used by the chatbot. 
+
+
+
+Implements \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_af43dd84176571bb20b8a7cba0dd51e74}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot}}.
+
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_af53c57be23599e5ac8f278f2db56da22}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!History@{History}}
+\index{History@{History}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{History}{History}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_af53c57be23599e5ac8f278f2db56da22} 
+Chat\+History Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+History = new Chat\+History()\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the chat history of the chatbot. 
+
+
+
+Implements \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a34eb5eaf42b4a97cd3eb58fbb359c15a}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot}}.
+
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ae9d70df00d9eebe813ece1449442af21}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!Kernel@{Kernel}}
+\index{Kernel@{Kernel}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{Kernel}{Kernel}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ae9d70df00d9eebe813ece1449442af21} 
+Kernel Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+Kernel\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the Kernel instance used by the chatbot. 
+
+
+
+Implements \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab79a7df2882104de366ad53770406625}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot}}.
+
+\Hypertarget{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ad669c0b57f2dc7bc4c15dd86750ca942}\index{MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}!PromptExecutionSettings@{PromptExecutionSettings}}
+\index{PromptExecutionSettings@{PromptExecutionSettings}!MacroTrackerCore.Services.ChatBotService.ChatBot@{MacroTrackerCore.Services.ChatBotService.ChatBot}}
+\doxysubsubsection{\texorpdfstring{PromptExecutionSettings}{PromptExecutionSettings}}
+{\footnotesize\ttfamily \label{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ad669c0b57f2dc7bc4c15dd86750ca942} 
+Prompt\+Execution\+Settings Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot.\+Prompt\+Execution\+Settings\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the prompt execution settings for the chatbot. 
+
+
+
+Implements \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a2df2746a46f8389756adc3fa9c2b5877}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+Core/\+Services/\+Chat\+Bot\+Service/\mbox{\hyperlink{_chat_bot_8cs}{Chat\+Bot.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+var interface_i_dao_sender =
+[
+    [ "AddExercise", "interface_i_dao_sender.html#a6d60fdd4da12594c58d183447c6158e6", null ],
+    [ "AddFood", "interface_i_dao_sender.html#ac66ad2dd50c36844e3d80f648fa02c0a", null ],
+    [ "AddLog", "interface_i_dao_sender.html#a057405b3fd1204692217601398a9ec43", null ],
+    [ "AddUser", "interface_i_dao_sender.html#ac178b7f3918c0eb824e70055edd701a2", null ],
+    [ "DeleteLog", "interface_i_dao_sender.html#aaae27ff21fe0f16a0258f391026d9466", null ],
+    [ "DeleteLogExercise", "interface_i_dao_sender.html#a614d0bc9a34f9a8df316a66e5d803896", null ],
+    [ "DeleteLogFood", "interface_i_dao_sender.html#a290bfee9221a43bc9e9d03638b151f4d", null ],
+    [ "DoesUserMatchPassword", "interface_i_dao_sender.html#a315c51f18d8d4e490064074c3a2c1027", null ],
+    [ "DoesUsernameExist", "interface_i_dao_sender.html#abd3022ff594c38a43984bf5010840ab7", null ],
+    [ "GetExerciseById", "interface_i_dao_sender.html#a1019bbe1dc0f515b3ccb16f108451202", null ],
+    [ "GetExercises", "interface_i_dao_sender.html#a7dc463333c2f0041ced6a372252e7a3a", null ],
+    [ "GetFoodById", "interface_i_dao_sender.html#afe93d8bdc2d80bcb77335fc1a4a8c705", null ],
+    [ "GetFoods", "interface_i_dao_sender.html#aca37e54934a8a97d958f0dbd828e4e6f", null ],
+    [ "GetGoal", "interface_i_dao_sender.html#aad4602095bc7d533edbc4ac4164e631a", null ],
+    [ "GetLogByDate", "interface_i_dao_sender.html#a68356cb33ff78c95851d354fdb83269a", null ],
+    [ "GetLogs", "interface_i_dao_sender.html#a4d7be7ec07619b34f38abc214eb1a6f5", null ],
+    [ "GetLogWithPagination", "interface_i_dao_sender.html#acedb7558cd93e26d9d37a8add4718ea6", null ],
+    [ "GetNLogWithPagination", "interface_i_dao_sender.html#ac1a1ca3c22b48270a055d3e54f30ba3f", null ],
+    [ "GetUsers", "interface_i_dao_sender.html#ae3c3b3bef957883deb2fabd1a7278c00", null ],
+    [ "RemoveExercise", "interface_i_dao_sender.html#ad7cf4d2c08e5f261262088d57417a5e6", null ],
+    [ "RemoveFood", "interface_i_dao_sender.html#abf0f309f75e539ad46492b843dd90306", null ],
+    [ "UpdateGoal", "interface_i_dao_sender.html#a3f2d4e6285ae2f67b81c2d6631d2eae1", null ],
+    [ "UpdateLog", "interface_i_dao_sender.html#abc18d33b98ebec8e23a8c0cdb44f6096", null ],
+    [ "UpdateTotalCalories", "interface_i_dao_sender.html#a4bd56a0ff272310d3cda0c558968c883", null ]
+];

@@ -1,0 +1,27 @@
+var interface_i_dao_receiver =
+[
+    [ "AddExercise", "interface_i_dao_receiver.html#a64b2c4215b34c6ea7c9a1c5fcf52b513", null ],
+    [ "AddFood", "interface_i_dao_receiver.html#ad5124551f2cbfb64da1446225f7b664c", null ],
+    [ "AddLog", "interface_i_dao_receiver.html#ab974599461d2056bb0ed00513c411fe2", null ],
+    [ "AddUser", "interface_i_dao_receiver.html#a646669a5fd468403104cc35fc4a146d8", null ],
+    [ "DeleteLog", "interface_i_dao_receiver.html#aa16cdc56fa05749f93d3bb81e185fd70", null ],
+    [ "DeleteLogExercise", "interface_i_dao_receiver.html#a93010be10b30c387606705adf8e54dba", null ],
+    [ "DeleteLogFood", "interface_i_dao_receiver.html#a6db1dde44e565472898008f7e6c5f465", null ],
+    [ "DoesUserMatchPassword", "interface_i_dao_receiver.html#a6075ac2efa4ad7a06d0ceddbc6fcc7ec", null ],
+    [ "DoesUsernameExist", "interface_i_dao_receiver.html#aa73c3c7a971f836acf9d010dd89c1846", null ],
+    [ "GetExerciseById", "interface_i_dao_receiver.html#aab7373467dae1cefa545daabea02eca4", null ],
+    [ "GetExercises", "interface_i_dao_receiver.html#a7ae16d3095426acf9c9cd50a942e5414", null ],
+    [ "GetFoodById", "interface_i_dao_receiver.html#a9578e1e7aea0ceb728cb96ab45aa0982", null ],
+    [ "GetFoods", "interface_i_dao_receiver.html#aed13bf4aa793ae6bb756591787ca689c", null ],
+    [ "GetGoal", "interface_i_dao_receiver.html#a01df072abb79457cbf5f7e48236a0ce1", null ],
+    [ "GetLogByDate", "interface_i_dao_receiver.html#ad82c712ab320ae3a9e086b6dcd60df53", null ],
+    [ "GetLogs", "interface_i_dao_receiver.html#aefa84487adca5f63191fbd0b800f9643", null ],
+    [ "GetLogWithPagination", "interface_i_dao_receiver.html#ae4a4555d4b879fe1e0fd61a9d8b57c53", null ],
+    [ "GetNLogWithPagination", "interface_i_dao_receiver.html#a38c186880a4c8ff901fe0ec97a907f9b", null ],
+    [ "GetUsers", "interface_i_dao_receiver.html#a74583f524cb5505969e64813e019d80e", null ],
+    [ "RemoveExercise", "interface_i_dao_receiver.html#a41949d50585abcee5476b6e297b86a8c", null ],
+    [ "RemoveFood", "interface_i_dao_receiver.html#a81e2259d3d9979fc0492f14ea174efdd", null ],
+    [ "UpdateGoal", "interface_i_dao_receiver.html#ae51685a721101e4c9f8a6723d8fca70a", null ],
+    [ "UpdateLog", "interface_i_dao_receiver.html#a376cca453b2d5775a0ba5370ccc0b83f", null ],
+    [ "UpdateTotalCalories", "interface_i_dao_receiver.html#a4c628af2a7d2d20d266631305f7b4a09", null ]
+];

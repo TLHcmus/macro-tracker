@@ -1,0 +1,7 @@
+var class_macro_tracker_core_test_1_1_services_1_1_provider_service_1_1_provider_core_tests =
+[
+    [ "GetServiceProvider_WhenCalled_ShouldResolveIDao", "class_macro_tracker_core_test_1_1_services_1_1_provider_service_1_1_provider_core_tests.html#a8b4b03aea9521e38b3e10f014d951020", null ],
+    [ "GetServiceProvider_WhenCalled_ShouldResolveIPasswordEncryption", "class_macro_tracker_core_test_1_1_services_1_1_provider_service_1_1_provider_core_tests.html#ad7dbc65a2789704bb18db3e80ce6808f", null ],
+    [ "GetServiceProvider_WhenCalled_ShouldReturnServiceProviderInstance", "class_macro_tracker_core_test_1_1_services_1_1_provider_service_1_1_provider_core_tests.html#a9f59cbab12fc1a5ffe39bb51204820d9", null ],
+    [ "GetServiceProvider_WhenCalledTwice_ShouldReturnSameInstance", "class_macro_tracker_core_test_1_1_services_1_1_provider_service_1_1_provider_core_tests.html#a3a71daa9c4953733f85637d24fd900d3", null ]
+];

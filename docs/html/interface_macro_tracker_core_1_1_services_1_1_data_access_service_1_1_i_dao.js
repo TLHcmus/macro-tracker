@@ -1,0 +1,27 @@
+var interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao =
+[
+    [ "AddExercise", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a697f5f9560320fb90df5c204f8da95fa", null ],
+    [ "AddFood", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#adbfbd73b24a42a33cdf749a86852109d", null ],
+    [ "AddLog", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#ab2f3304fb8a00f092d5d9b60c6559674", null ],
+    [ "AddUser", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#ae81571bc0eef29c3f3eab473369c7975", null ],
+    [ "DeleteLog", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a67755eee6f6385fd0a7a22e8fa07a3a8", null ],
+    [ "DeleteLogExercise", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#aa0078af4fd5101aff11ee95542329891", null ],
+    [ "DeleteLogFood", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a42dea037df90be99f690851d137621ac", null ],
+    [ "DoesUserMatchPassword", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a92d7f0d4f3608b0f4364ee1a4ac5d847", null ],
+    [ "DoesUsernameExist", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#aaa74ac8a5502c57014909d1609220bd3", null ],
+    [ "GetExerciseById", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a215dc588bd1c23cb21eae1b442ac6202", null ],
+    [ "GetExercises", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a42dcfd2ff792e67502095e8ca84f1df4", null ],
+    [ "GetFoodById", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a58c34e5bc3df9aa519a70a8fe654b1fd", null ],
+    [ "GetFoods", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#acde1260151c8d0131180da28c847045d", null ],
+    [ "GetGoal", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a0ff567112e5a6a1ec9b7dc21d1d322aa", null ],
+    [ "GetLogByDate", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a520e47679229e7bffa0e434c860b91f3", null ],
+    [ "GetLogs", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#ab6264cab81f5cdbf1c3b8443a4a4655c", null ],
+    [ "GetLogWithPagination", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#ac3bbaa3652be5c5a92c55c477d6261d7", null ],
+    [ "GetLogWithPagination", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#af6e133b5fe2563629ae7e054c9d84cfe", null ],
+    [ "GetUsers", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a3286620538da59678373c22cdbd6f0ec", null ],
+    [ "RemoveExercise", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a049b062c3202326fc4b9e03a4ed4f75c", null ],
+    [ "RemoveFood", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#a6ed09b02d52fd7f1ab0fb51a8f031c6b", null ],
+    [ "UpdateGoal", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#abd6dcc883c8f61a0b0d8ad761382c9c5", null ],
+    [ "UpdateLog", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#aa3424fbaff87d4ed4f368b2348511c76", null ],
+    [ "UpdateTotalCalories", "interface_macro_tracker_core_1_1_services_1_1_data_access_service_1_1_i_dao.html#ad82d20d683f30c8b2fd491eeadd1d619", null ]
+];

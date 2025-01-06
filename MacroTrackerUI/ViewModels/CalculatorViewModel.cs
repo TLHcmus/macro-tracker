@@ -65,7 +65,10 @@ public partial class CalculatorViewModel
         };
     }
 
-    // Update Goal
+    /// <summary>
+    /// Updates the goal with the provided goal object.
+    /// </summary>
+    /// <param name="goal">The goal object containing updated goal information.</param>
     public void UpdateGoal(Goal goal)
     {
         Sender.UpdateGoal(goal);

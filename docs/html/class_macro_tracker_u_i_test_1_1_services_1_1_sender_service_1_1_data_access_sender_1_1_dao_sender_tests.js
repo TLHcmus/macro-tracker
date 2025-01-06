@@ -1,0 +1,22 @@
+var class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests =
+[
+    [ "AddExercise_ShouldCallReceiverAddExercise", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#ad873199e723b944b4bc5e4b8b198a582", null ],
+    [ "AddFood_ShouldCallReceiverAddFood", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a691beedc453ad6b6d4f74834eb2e530d", null ],
+    [ "AddLog_ShouldCallReceiverAddLog", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a9416ad46c64ec34841c158c7bd614670", null ],
+    [ "DeleteLog_ShouldCallReceiverDeleteLog", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#aa38ebda798bef370567010e0cf90ce0c", null ],
+    [ "DeleteLogExercise_ShouldCallReceiverDeleteLogExercise", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#aa8b0f656eef5b965c68e2c0ba87e07ee", null ],
+    [ "DeleteLogFood_ShouldCallReceiverDeleteLogFood", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a8e6ceb5d8398100967e2ff204d0cbcae", null ],
+    [ "GetExerciseById_ShouldReturnExercise", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a22a1f70739362ea6bda3419318f9d6e4", null ],
+    [ "GetExercises_ShouldReturnListOfExercises", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a1ceb2d9ea567f1b4ce119599399ea743", null ],
+    [ "GetFoodById_ShouldReturnFood", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a51bb21bfde39ec89afc0fd99cb581044", null ],
+    [ "GetFoods_ShouldReturnListOfFoods", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a9f79ba8a2af545e91d80c586d805fd84", null ],
+    [ "GetGoal_ShouldReturnGoal", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#aa499b61543a71315e7cfb6ee6c2d2cc0", null ],
+    [ "GetLogs_ShouldReturnListOfLogs", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#acb95d32c667b0006cfcee4de989114da", null ],
+    [ "GetLogWithPagination_ShouldReturnListOfLogs", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a1a9129a1595c192f775644a0c721c67e", null ],
+    [ "GetNLogWithPagination_ShouldReturnListOfLogs", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a0b84340d7239ca6b62963ef4c8c7c4d9", null ],
+    [ "GetUsers_ShouldReturnListOfUsers", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#ab8fb03fa8b853069ca72992baf378677", null ],
+    [ "Setup", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a15359d66ee72e3e8ee3be397eaf4b625", null ],
+    [ "UpdateGoal_ShouldCallReceiverUpdateGoal", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#aa1c0e1add4df1f55a8b271191a7282c0", null ],
+    [ "UpdateLog_ShouldCallReceiverUpdateLog", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a0b792fee9bf43595e6819cdc8f0f3e13", null ],
+    [ "UpdateTotalCalories_ShouldCallReceiverUpdateTotalCalories", "class_macro_tracker_u_i_test_1_1_services_1_1_sender_service_1_1_data_access_sender_1_1_dao_sender_tests.html#a93ca690a521a20aaa0847c5f696fc9f1", null ]
+];

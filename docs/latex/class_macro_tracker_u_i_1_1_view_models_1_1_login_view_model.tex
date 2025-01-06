@@ -1,0 +1,173 @@
+\doxysection{Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model Class Reference}
+\hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}{}\label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+
+
+View\+Model for handling login functionality.  
+
+
+Inheritance diagram for Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a1e5b4d575169f2837cdb75f192666f71}{Login\+View\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}{Login\+View\+Model} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a65bcc86afbec895aa3220bf4461d62a5}{Login\+View\+Model}} (IService\+Provider provider)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}{Login\+View\+Model} class with a specified service provider. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a0c8c080d905589bfe4430a055a346c69}{Does\+User\+Match\+Password}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the username and database encrypted password match. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_ae3d5c7a00ee34da096920ceda98fefb0}{Login\+Info\+Null}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the login information is null or empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a6fb6c2408ea7b3c5a15aaab885da9049}{Username}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the username. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a9a22c23aa95e9bef71610a7c10dac696}{Password}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the password. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_i_dao_sender}{IDao\+Sender}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a09fde179599e601287e3c218e766e58c}{Dao}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the data access object sender. \end{DoxyCompactList}\item 
+IService\+Provider \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_aa73c279c4f6162e47f0617129a01f9bb}{Provider}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the service provider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_encryption_sender_1_1_i_password_encryption_sender}{IPassword\+Encryption\+Sender}} \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a21c725796cbdf5045b938eb522dd1078}{Encryption\+Sender}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the password encryption sender. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Property\+Changed\+Event\+Handler \mbox{\hyperlink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a911dc596d47b68b7687f84207ae31a76}{Property\+Changed}}
+\begin{DoxyCompactList}\small\item\em Occurs when a property value changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View\+Model for handling login functionality. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a1e5b4d575169f2837cdb75f192666f71}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!LoginViewModel@{LoginViewModel}}
+\index{LoginViewModel@{LoginViewModel}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{LoginViewModel()}{LoginViewModel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a1e5b4d575169f2837cdb75f192666f71} 
+Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Login\+View\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}{Login\+View\+Model} class. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a65bcc86afbec895aa3220bf4461d62a5}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!LoginViewModel@{LoginViewModel}}
+\index{LoginViewModel@{LoginViewModel}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{LoginViewModel()}{LoginViewModel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a65bcc86afbec895aa3220bf4461d62a5} 
+Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Login\+View\+Model (\begin{DoxyParamCaption}\item[{IService\+Provider}]{provider}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a new instance of the \doxylink{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model}{Login\+View\+Model} class with a specified service provider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em provider} & The service provider.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a0c8c080d905589bfe4430a055a346c69}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!DoesUserMatchPassword@{DoesUserMatchPassword}}
+\index{DoesUserMatchPassword@{DoesUserMatchPassword}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{DoesUserMatchPassword()}{DoesUserMatchPassword()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a0c8c080d905589bfe4430a055a346c69} 
+bool Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Does\+User\+Match\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the username and database encrypted password match. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the username and password match; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_ae3d5c7a00ee34da096920ceda98fefb0}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!LoginInfoNull@{LoginInfoNull}}
+\index{LoginInfoNull@{LoginInfoNull}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{LoginInfoNull()}{LoginInfoNull()}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_ae3d5c7a00ee34da096920ceda98fefb0} 
+bool Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Login\+Info\+Null (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the login information is null or empty. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the username or password is null or empty; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a09fde179599e601287e3c218e766e58c}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!Dao@{Dao}}
+\index{Dao@{Dao}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{Dao}{Dao}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a09fde179599e601287e3c218e766e58c} 
+\mbox{\hyperlink{interface_i_dao_sender}{IDao\+Sender}} Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Dao\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the data access object sender. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a21c725796cbdf5045b938eb522dd1078}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!EncryptionSender@{EncryptionSender}}
+\index{EncryptionSender@{EncryptionSender}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{EncryptionSender}{EncryptionSender}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a21c725796cbdf5045b938eb522dd1078} 
+\mbox{\hyperlink{interface_macro_tracker_u_i_1_1_services_1_1_sender_service_1_1_encryption_sender_1_1_i_password_encryption_sender}{IPassword\+Encryption\+Sender}} Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Encryption\+Sender\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the password encryption sender. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a9a22c23aa95e9bef71610a7c10dac696}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!Password@{Password}}
+\index{Password@{Password}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{Password}{Password}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a9a22c23aa95e9bef71610a7c10dac696} 
+string Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Password\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the password. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_aa73c279c4f6162e47f0617129a01f9bb}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!Provider@{Provider}}
+\index{Provider@{Provider}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{Provider}{Provider}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_aa73c279c4f6162e47f0617129a01f9bb} 
+IService\+Provider Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Provider\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the service provider. 
+
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a6fb6c2408ea7b3c5a15aaab885da9049}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!Username@{Username}}
+\index{Username@{Username}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{Username}{Username}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a6fb6c2408ea7b3c5a15aaab885da9049} 
+string Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Username\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the username. 
+
+
+
+\doxysubsection{Event Documentation}
+\Hypertarget{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a911dc596d47b68b7687f84207ae31a76}\index{MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}!PropertyChanged@{PropertyChanged}}
+\index{PropertyChanged@{PropertyChanged}!MacroTrackerUI.ViewModels.LoginViewModel@{MacroTrackerUI.ViewModels.LoginViewModel}}
+\doxysubsubsection{\texorpdfstring{PropertyChanged}{PropertyChanged}}
+{\footnotesize\ttfamily \label{class_macro_tracker_u_i_1_1_view_models_1_1_login_view_model_a911dc596d47b68b7687f84207ae31a76} 
+Property\+Changed\+Event\+Handler Macro\+Tracker\+UI.\+View\+Models.\+Login\+View\+Model.\+Property\+Changed}
+
+
+
+Occurs when a property value changes. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+UI/\+View\+Models/\mbox{\hyperlink{_login_view_model_8cs}{Login\+View\+Model.\+cs}}\end{DoxyCompactItemize}

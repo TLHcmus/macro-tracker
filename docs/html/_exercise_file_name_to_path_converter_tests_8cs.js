@@ -1,0 +1,4 @@
+var _exercise_file_name_to_path_converter_tests_8cs =
+[
+    [ "MacroTrackerUITest.Helpers.Converter.ExerciseFileNameToPathConverterTests", "class_macro_tracker_u_i_test_1_1_helpers_1_1_converter_1_1_exercise_file_name_to_path_converter_tests.html", "class_macro_tracker_u_i_test_1_1_helpers_1_1_converter_1_1_exercise_file_name_to_path_converter_tests" ]
+];

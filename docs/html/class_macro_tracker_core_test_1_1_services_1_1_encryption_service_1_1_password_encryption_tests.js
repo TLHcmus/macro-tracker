@@ -1,0 +1,9 @@
+var class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests =
+[
+    [ "DecryptPasswordFromLocalStorage_ShouldReturnOriginalPassword", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#a17de8a85eb38d478bd0050ebbfbd2e86", null ],
+    [ "DecryptPasswordFromLocalStorage_ShouldThrowPlatformNotSupportedException_OnNonWindowsPlatform", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#ad3ea44bd13e6cbdbbf9000cf068e8b28", null ],
+    [ "EncryptPasswordToDatabase_ShouldReturnHashedPassword", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#a7748e39ba62d01367290d3857eb62b0d", null ],
+    [ "EncryptPasswordToLocalStorage_ShouldReturnEncryptedPasswordAndEntropy", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#a1057ce3e0a6fe6bc4454ad18bfe11148", null ],
+    [ "EncryptPasswordToLocalStorage_ShouldThrowPlatformNotSupportedException_OnNonWindowsPlatform", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#ad369321c250351240a0195f94ee98dce", null ],
+    [ "Setup", "class_macro_tracker_core_test_1_1_services_1_1_encryption_service_1_1_password_encryption_tests.html#afb7da6818fe3b14de085769e12e4a3da", null ]
+];

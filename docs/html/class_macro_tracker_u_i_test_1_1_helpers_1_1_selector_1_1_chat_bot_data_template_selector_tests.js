@@ -1,0 +1,9 @@
+var class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests =
+[
+    [ "SelectTemplateCore_AssistantErrorMessage_ReturnsAssistantErrorTemplate", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#a009d5ef85ddfeea172fae0f1879623a3", null ],
+    [ "SelectTemplateCore_BotMessage_ReturnsBotTemplate", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#a0d16b9e44d056e84b1fea26838a8e281", null ],
+    [ "SelectTemplateCore_UnknownMessageRole_ReturnsBaseImplementation", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#afa8717b4b2b6c92e69f32e4e0f1a3c41", null ],
+    [ "SelectTemplateCore_UserErrorMessage_ReturnsUserErrorTemplate", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#a6a6087ea29e34adce280c60722adf3f9", null ],
+    [ "SelectTemplateCore_UserMessage_ReturnsUserTemplate", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#ae876d584c35fc1cbc162b75c3bac5e6a", null ],
+    [ "Setup", "class_macro_tracker_u_i_test_1_1_helpers_1_1_selector_1_1_chat_bot_data_template_selector_tests.html#ae8b09eb30f5a9592e849ae5524db5043", null ]
+];

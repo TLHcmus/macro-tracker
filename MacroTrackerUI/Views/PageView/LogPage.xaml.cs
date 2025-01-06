@@ -45,7 +45,11 @@ public sealed partial class LogPage : Page
     }
 
 
-    // Khi chon ngay khac
+    /// <summary>
+    /// Handles the event when a different date is selected in the date picker.
+    /// </summary>
+    /// <param name="sender">The date picker control.</param>
+    /// <param name="args">The event data.</param>
     private void LogDatePicker_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
     {
         // Kiểm tra xem giá trị ngày có hợp lệ không
@@ -57,6 +61,11 @@ public sealed partial class LogPage : Page
         }
     }
 
+    /// <summary>
+    /// Handles the event when the remove menu item is clicked for a food item.
+    /// </summary>
+    /// <param name="sender">The menu item control.</param>
+    /// <param name="e">The event data.</param>
     private async void FoodsContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
     {
         // Lấy item từ context
@@ -80,7 +89,7 @@ public sealed partial class LogPage : Page
         };
 
         var result = await confirmDialog.ShowAsync();
-        if(result == ContentDialogResult.Primary)
+        if (result == ContentDialogResult.Primary)
         {
             ViewModel.Log.LogFoodItems.Remove(foodItem); // Xóa item khỏi danh sách
             // Cap nhat total calories cua log
@@ -88,9 +97,13 @@ public sealed partial class LogPage : Page
 
             ViewModel.UpdateLog(); // Cập nhật log
         }
-
     }
 
+    /// <summary>
+    /// Handles the event when the adjust menu item is clicked for a food item.
+    /// </summary>
+    /// <param name="sender">The menu item control.</param>
+    /// <param name="e">The event data.</param>
     private async void FoodsContactAdjustMenuItem_Click(object sender, RoutedEventArgs e)
     {
         var menuItem = sender as MenuFlyoutItem;
@@ -103,59 +116,64 @@ public sealed partial class LogPage : Page
 
         // Tạo dialog để người dùng nhập khẩu phần mới
         var inputBox = new TextBox
+        {
+            PlaceholderText = "Enter new portion...",
+            Margin = new Thickness(0, 10, 0, 0)
+        };
+
+        var dialog = new ContentDialog
+        {
+            Title = "Adjust Portion",
+            Content = inputBox,
+            PrimaryButtonText = "Save",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = this.XamlRoot
+        };
+
+        // Hiển thị dialog và chờ kết quả
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary)
+        {
+            var newPortion = inputBox.Text;
+
+            // Xử lý cập nhật khẩu phần mới
+            if (double.TryParse(newPortion, out var portionValue))
             {
-                PlaceholderText = "Enter new portion...",
-                Margin = new Thickness(0, 10, 0, 0)
-            };
+                // Cập nhật số lượng khẩu phần
+                foodItem.NumberOfServings = portionValue;
 
-            var dialog = new ContentDialog
+                // Cap nhat total calories cua log
+                ViewModel.Log.TotalCalories -= foodItem.TotalCalories + (portionValue * (foodItem.Food.CaloriesPer100g / 100));
+
+                // Cap nhat tong calories cua item
+                foodItem.TotalCalories = portionValue * (foodItem.Food.CaloriesPer100g / 100);
+
+                // Cap nhat log
+
+                ViewModel.UpdateLog();
+            }
+            else
             {
-                Title = "Adjust Portion",
-                Content = inputBox,
-                PrimaryButtonText = "Save",
-                CloseButtonText = "Cancel",
-                DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = this.XamlRoot
-            };
-
-            // Hiển thị dialog và chờ kết quả
-            var result = await dialog.ShowAsync();
-
-            if (result == ContentDialogResult.Primary)
-            {
-                var newPortion = inputBox.Text;
-
-                // Xử lý cập nhật khẩu phần mới
-                if (double.TryParse(newPortion, out var portionValue))
+                // Hiển thị thông báo lỗi nếu giá trị nhập không hợp lệ
+                var errorDialog = new ContentDialog
                 {
-                    // Cập nhật số lượng khẩu phần
-                    foodItem.NumberOfServings = portionValue;
-
-                    // Cap nhat total calories cua log
-                    ViewModel.Log.TotalCalories -= foodItem.TotalCalories + (portionValue * (foodItem.Food.CaloriesPer100g / 100));
-
-                    // Cap nhat tong calories cua item
-                    foodItem.TotalCalories = portionValue * (foodItem.Food.CaloriesPer100g / 100);
-                    
-                    // Cap nhat log
-
-                    ViewModel.UpdateLog();
-                }
-                else
-                {
-                    // Hiển thị thông báo lỗi nếu giá trị nhập không hợp lệ
-                    var errorDialog = new ContentDialog
-                    {
-                        Title = "Invalid Input",
-                        Content = "Please enter a valid number for the portion size.",
-                        CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
-                    };
-                    await errorDialog.ShowAsync();
-                }
+                    Title = "Invalid Input",
+                    Content = "Please enter a valid number for the portion size.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await errorDialog.ShowAsync();
             }
         }
+    }
 
+    /// <summary>
+    /// Handles the event when the remove menu item is clicked for an exercise item.
+    /// </summary>
+    /// <param name="sender">The menu item control.</param>
+    /// <param name="e">The event data.</param>
     private async void ExercisesContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
     {
         // Lấy item từ context
@@ -183,12 +201,17 @@ public sealed partial class LogPage : Page
         {
             ViewModel.Log.LogExerciseItems.Remove(exerciseItem); // Xóa item khỏi danh sách
             // Cap nhat tong calories cua log
-            ViewModel.Log.TotalCalories += exerciseItem.TotalCalories; 
+            ViewModel.Log.TotalCalories += exerciseItem.TotalCalories;
 
             ViewModel.UpdateLog(); // Cập nhật log
         }
     }
 
+    /// <summary>
+    /// Handles the event when the adjust menu item is clicked for an exercise item.
+    /// </summary>
+    /// <param name="sender">The menu item control.</param>
+    /// <param name="e">The event data.</param>
     private async void ExercisesContactAdjustMenuItem_Click(object sender, RoutedEventArgs e)
     {
         var menuItem = sender as MenuFlyoutItem;

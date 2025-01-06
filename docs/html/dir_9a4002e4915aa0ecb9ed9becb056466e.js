@@ -1,0 +1,5 @@
+var dir_9a4002e4915aa0ecb9ed9becb056466e =
+[
+    [ "ShellWindow.g.cs", "_macro_tracker_u_i_2obj_2x64_2_debug_2net8_80-windows10_80_819041_80_2win-x64_2_views_2_window_view_2_shell_window_8g_8cs.html", "_macro_tracker_u_i_2obj_2x64_2_debug_2net8_80-windows10_80_819041_80_2win-x64_2_views_2_window_view_2_shell_window_8g_8cs" ],
+    [ "ShellWindow.g.i.cs", "_macro_tracker_u_i_2obj_2x64_2_debug_2net8_80-windows10_80_819041_80_2win-x64_2_views_2_window_view_2_shell_window_8g_8i_8cs.html", "_macro_tracker_u_i_2obj_2x64_2_debug_2net8_80-windows10_80_819041_80_2win-x64_2_views_2_window_view_2_shell_window_8g_8i_8cs" ]
+];

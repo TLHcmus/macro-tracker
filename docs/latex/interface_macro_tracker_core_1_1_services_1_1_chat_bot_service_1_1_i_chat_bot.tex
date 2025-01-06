@@ -1,0 +1,121 @@
+\doxysection{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot Interface Reference}
+\hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot}{}\label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+
+
+Represents the interface for a chatbot service for macro tracking and related queries.  
+
+
+Inheritance diagram for Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab1a4b23df7144f28c3bfb8b35c5cde60}{Get\+Response}} (string prompt)
+\begin{DoxyCompactList}\small\item\em Gets the response from the chatbot for a given prompt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Kernel \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab79a7df2882104de366ad53770406625}{Kernel}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the Kernel instance used by the chatbot. \end{DoxyCompactList}\item 
+IChat\+Completion\+Service \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_af43dd84176571bb20b8a7cba0dd51e74}{Chat\+Completion\+Service}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the chat completion service used by the chatbot. \end{DoxyCompactList}\item 
+Prompt\+Execution\+Settings \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a2df2746a46f8389756adc3fa9c2b5877}{Prompt\+Execution\+Settings}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the prompt execution settings for the chatbot. \end{DoxyCompactList}\item 
+Chat\+History \mbox{\hyperlink{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a34eb5eaf42b4a97cd3eb58fbb359c15a}{History}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the chat history of the chatbot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the interface for a chatbot service for macro tracking and related queries. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab1a4b23df7144f28c3bfb8b35c5cde60}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}!GetResponse@{GetResponse}}
+\index{GetResponse@{GetResponse}!MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+\doxysubsubsection{\texorpdfstring{GetResponse()}{GetResponse()}}
+{\footnotesize\ttfamily \label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab1a4b23df7144f28c3bfb8b35c5cde60} 
+Task$<$ string $>$ Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot.\+Get\+Response (\begin{DoxyParamCaption}\item[{string}]{prompt}{}\end{DoxyParamCaption})}
+
+
+
+Gets the response from the chatbot for a given prompt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prompt} & The user prompt.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A task that represents the asynchronous operation. The task result contains the chatbot\textquotesingle{}s response.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a1a100f838a0e40d18fea710386085cc1}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_af43dd84176571bb20b8a7cba0dd51e74}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}!ChatCompletionService@{ChatCompletionService}}
+\index{ChatCompletionService@{ChatCompletionService}!MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+\doxysubsubsection{\texorpdfstring{ChatCompletionService}{ChatCompletionService}}
+{\footnotesize\ttfamily \label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_af43dd84176571bb20b8a7cba0dd51e74} 
+IChat\+Completion\+Service Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot.\+Chat\+Completion\+Service\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the chat completion service used by the chatbot. 
+
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_a0de241e074fe924585c635cc6fa488e0}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot}}.
+
+\Hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a34eb5eaf42b4a97cd3eb58fbb359c15a}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}!History@{History}}
+\index{History@{History}!MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+\doxysubsubsection{\texorpdfstring{History}{History}}
+{\footnotesize\ttfamily \label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a34eb5eaf42b4a97cd3eb58fbb359c15a} 
+Chat\+History Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot.\+History\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the chat history of the chatbot. 
+
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_af53c57be23599e5ac8f278f2db56da22}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot}}.
+
+\Hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab79a7df2882104de366ad53770406625}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}!Kernel@{Kernel}}
+\index{Kernel@{Kernel}!MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+\doxysubsubsection{\texorpdfstring{Kernel}{Kernel}}
+{\footnotesize\ttfamily \label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_ab79a7df2882104de366ad53770406625} 
+Kernel Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot.\+Kernel\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the Kernel instance used by the chatbot. 
+
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ae9d70df00d9eebe813ece1449442af21}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot}}.
+
+\Hypertarget{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a2df2746a46f8389756adc3fa9c2b5877}\index{MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}!PromptExecutionSettings@{PromptExecutionSettings}}
+\index{PromptExecutionSettings@{PromptExecutionSettings}!MacroTrackerCore.Services.ChatBotService.IChatBot@{MacroTrackerCore.Services.ChatBotService.IChatBot}}
+\doxysubsubsection{\texorpdfstring{PromptExecutionSettings}{PromptExecutionSettings}}
+{\footnotesize\ttfamily \label{interface_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_i_chat_bot_a2df2746a46f8389756adc3fa9c2b5877} 
+Prompt\+Execution\+Settings Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+IChat\+Bot.\+Prompt\+Execution\+Settings\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the prompt execution settings for the chatbot. 
+
+
+
+Implemented in \mbox{\hyperlink{class_macro_tracker_core_1_1_services_1_1_chat_bot_service_1_1_chat_bot_ad669c0b57f2dc7bc4c15dd86750ca942}{Macro\+Tracker\+Core.\+Services.\+Chat\+Bot\+Service.\+Chat\+Bot}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Macro\+Tracker\+Core/\+Services/\+Chat\+Bot\+Service/\mbox{\hyperlink{_i_chat_bot_8cs}{IChat\+Bot.\+cs}}\end{DoxyCompactItemize}
