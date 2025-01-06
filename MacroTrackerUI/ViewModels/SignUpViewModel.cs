@@ -3,6 +3,7 @@ using MacroTrackerUI.Services.ProviderService;
 using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using MacroTrackerUI.Services.SenderService.EncryptionSender;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.ComponentModel;
 
 namespace MacroTrackerUI.ViewModels;
@@ -30,7 +31,35 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <summary>
     /// Gets the data access object for sending data.
     /// </summary>
-    private DaoSender Dao { get; } = ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IDaoSender Sender { get; }
+
+    /// <summary>
+    /// Gets the password encryption handler.
+    /// </summary>
+    public IPasswordEncryptionSender PasswordEncryptionHandle { get; }
+
+    private IServiceProvider Provider { get; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpViewModel"/> class.
+    /// </summary>
+    public SignUpViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        PasswordEncryptionHandle = Provider.GetService<IPasswordEncryptionSender>();
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SignUpViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
+    public SignUpViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        PasswordEncryptionHandle = Provider.GetService<IPasswordEncryptionSender>();
+    }
 
     /// <summary>
     /// Event triggered when a property value changes.
@@ -55,7 +84,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// </returns>
     public bool? IsSignUpValid(out string promptMessage)
     {
-        if (Username == "" || Username == null)
+        if (string.IsNullOrEmpty(Username))
         {
             promptMessage = null;
             return null;
@@ -90,9 +119,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the password is strong; otherwise, false.</returns>
     public bool IsPasswordStrong()
     {
-        if (Password == null || Password.Length < 8)
-            return false;
-        return true;
+        return Password != null && Password.Length >= 8;
     }
 
     /// <summary>
@@ -101,9 +128,7 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the username exists; otherwise, false.</returns>
     public bool DoesUsernameExist()
     {
-        if (Username == null || Username == "" || Dao.DoesUsernameExist(Username))
-            return true;
-        return false;
+        return string.IsNullOrEmpty(Username) || Sender.DoesUsernameExist(Username);
     }
 
     /// <summary>
@@ -112,25 +137,15 @@ public class SignUpViewModel : INotifyPropertyChanged
     /// <returns>true if the passwords match; otherwise, false.</returns>
     public bool DoPasswordsMatch()
     {
-        if (Password == ReenteredPassword)
-            return true;
-        return false;
+        return Password == ReenteredPassword;
     }
-
-    /// <summary>
-    /// Gets the password encryption handler.
-    /// </summary>
-    public PasswordEncryptionSender PasswordEncryptionHandle { get; } =
-        ProviderUI.GetServiceProvider().GetService<PasswordEncryptionSender>();
 
     /// <summary>
     /// Adds a user to the database.
     /// </summary>
     public void AddUser()
     {
-        // Ma hoa mat khau
         string encryptedPassword = PasswordEncryptionHandle.EncryptPasswordToDatabase(Password);
-
-        Dao.AddUser((Username, Password));
+        Sender.AddUser((Username, encryptedPassword));
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media; 
 using System;
+using System.Threading.Tasks;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -55,20 +56,28 @@ public sealed partial class SignUp : Page
 
         if (statusSignUp.HasValue)
         {
-            // Show the status dialog
-            var contentDialog = new ContentDialog
-            {
-                XamlRoot = this.XamlRoot,
-                Content = promptMessage,
-                CloseButtonText = "OK"
-            };
-            await contentDialog.ShowAsync();
+            await ShowContentDialog(promptMessage);
         }
 
         if (statusSignUp == true)
         {
             SignUpClickEvent?.Invoke(sender, e);
         }
+    }
+
+    /// <summary>
+    /// Shows a content dialog with the specified message.
+    /// </summary>
+    /// <param name="message">The message to display in the dialog.</param>
+    private async Task ShowContentDialog(string message)
+    {
+        var contentDialog = new ContentDialog
+        {
+            XamlRoot = this.XamlRoot,
+            Content = message,
+            CloseButtonText = "OK"
+        };
+        await contentDialog.ShowAsync();
     }
 
     /// <summary>
@@ -90,23 +99,25 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void Username_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (ViewModel.Username is null | ViewModel.Username == "")
+        UpdateUsernamePrompt();
+    }
+
+    /// <summary>
+    /// Updates the username prompt based on the validation result.
+    /// </summary>
+    private void UpdateUsernamePrompt()
+    {
+        if (string.IsNullOrEmpty(ViewModel.Username))
         {
-            UsernamePrompt.Text = "Username cannot be empty!";
-            UsernamePrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
+            SetPromptMessage(UsernamePrompt, "Username cannot be empty!", Microsoft.UI.Colors.LightPink);
+        }
+        else if (ViewModel.DoesUsernameExist())
+        {
+            SetPromptMessage(UsernamePrompt, "Username has already existed!", Microsoft.UI.Colors.LightPink);
         }
         else
         {
-            if (ViewModel.DoesUsernameExist())
-            {
-                UsernamePrompt.Text = "Username has already existed!";
-                UsernamePrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
-            }
-            else
-            {
-                UsernamePrompt.Text = "Accepted";
-                UsernamePrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightGreen);
-            }
+            SetPromptMessage(UsernamePrompt, "Accepted", Microsoft.UI.Colors.LightGreen);
         }
     }
 
@@ -118,23 +129,25 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void Password_TextChanged(object sender, RoutedEventArgs e)
     {
-        if (ViewModel.Password is null | ViewModel.Password == "")
+        UpdatePasswordPrompt();
+    }
+
+    /// <summary>
+    /// Updates the password prompt based on the validation result.
+    /// </summary>
+    private void UpdatePasswordPrompt()
+    {
+        if (string.IsNullOrEmpty(ViewModel.Password))
         {
-            PasswordPrompt.Text = "Password cannot be empty!";
-            PasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
+            SetPromptMessage(PasswordPrompt, "Password cannot be empty!", Microsoft.UI.Colors.LightPink);
+        }
+        else if (!ViewModel.IsPasswordStrong())
+        {
+            SetPromptMessage(PasswordPrompt, "Password is not strong!", Microsoft.UI.Colors.LightPink);
         }
         else
         {
-            if (!ViewModel.IsPasswordStrong())
-            {
-                PasswordPrompt.Text = "Password is not strong!";
-                PasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
-            }
-            else
-            {
-                PasswordPrompt.Text = "Accepted";
-                PasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightGreen);
-            }
+            SetPromptMessage(PasswordPrompt, "Accepted", Microsoft.UI.Colors.LightGreen);
         }
     }
 
@@ -146,23 +159,37 @@ public sealed partial class SignUp : Page
     /// <param name="e">The event data.</param>
     private void ReenteredPassword_PasswordChanged(object sender, RoutedEventArgs e)
     {
-        if (ViewModel.ReenteredPassword is null | ViewModel.ReenteredPassword == "")
+        UpdateReenteredPasswordPrompt();
+    }
+
+    /// <summary>
+    /// Updates the reentered password prompt based on the validation result.
+    /// </summary>
+    private void UpdateReenteredPasswordPrompt()
+    {
+        if (string.IsNullOrEmpty(ViewModel.ReenteredPassword))
         {
-            ReenteredPasswordPrompt.Text = "Reentered password cannot be empty!";
-            ReenteredPasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
+            SetPromptMessage(ReenteredPasswordPrompt, "Reentered password cannot be empty!", Microsoft.UI.Colors.LightPink);
+        }
+        else if (!ViewModel.DoPasswordsMatch())
+        {
+            SetPromptMessage(ReenteredPasswordPrompt, "Reentered password does not match!", Microsoft.UI.Colors.LightPink);
         }
         else
         {
-            if (!ViewModel.DoPasswordsMatch())
-            {
-                ReenteredPasswordPrompt.Text = "Reentered password does not match!";
-                ReenteredPasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightPink);
-            }
-            else
-            {
-                ReenteredPasswordPrompt.Text = "Accepted";
-                ReenteredPasswordPrompt.Foreground = new SolidColorBrush(Microsoft.UI.Colors.LightGreen);
-            }
+            SetPromptMessage(ReenteredPasswordPrompt, "Accepted", Microsoft.UI.Colors.LightGreen);
         }
+    }
+
+    /// <summary>
+    /// Sets the prompt message and its foreground color.
+    /// </summary>
+    /// <param name="textBlock">The TextBlock to update.</param>
+    /// <param name="message">The message to display.</param>
+    /// <param name="color">The color of the message.</param>
+    private void SetPromptMessage(TextBlock textBlock, string message, Windows.UI.Color color)
+    {
+        textBlock.Text = message;
+        textBlock.Foreground = new SolidColorBrush(color);
     }
 }

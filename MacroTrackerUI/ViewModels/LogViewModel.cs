@@ -13,7 +13,10 @@ using System.Linq;
 
 namespace MacroTrackerUI.ViewModels;
 
-public class LogViewModel : INotifyPropertyChanged
+/// <summary>
+/// ViewModel for managing logs.
+/// </summary>
+public class LogViewModel
 {
     public Log Log { get; set; }
     // Calories muc tieu
@@ -21,8 +24,8 @@ public class LogViewModel : INotifyPropertyChanged
     public int FoodsTotalCalories { get; set; }
     public int ExercisesTotalCalories { get; set; }
     public int RemainingCalories {  get; set; }
-    private DaoSender Sender { get; } =
-         ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    private IDaoSender Sender { get; } =
+         ProviderUI.GetServiceProvider().GetRequiredService<IDaoSender>();
 
     public LogViewModel()
     {

@@ -8,51 +8,69 @@ using MacroTrackerCore.Entities;
 namespace MacroTrackerCore.Services.DataAccessService;
 public interface IDao
 {
-
-    // Food
-
     /// <summary>
     /// Retrieves a list of foods.
     /// </summary>
-    /// <returns>A list of <see cref="Food"/> objects.</returns>
+    /// <returns>A list of <see cref="FoodDTO"/> objects.</returns>
     List<FoodDTO> GetFoods();
 
-    // Add food tra ve id cua mon vua them
+    /// <summary>
+    /// Adds a new food item.
+    /// </summary>
+    /// <param name="food">The food item to add.</param>
+    /// <returns>The ID of the added food item.</returns>
     int AddFood(Food food);
 
-    // Remove food
+    /// <summary>
+    /// Removes a food item by its ID.
+    /// </summary>
+    /// <param name="foodId">The ID of the food item to remove.</param>
     void RemoveFood(int foodId);
 
-    // Get Food by Id
+    /// <summary>
+    /// Retrieves a food item by its ID.
+    /// </summary>
+    /// <param name="foodId">The ID of the food item to retrieve.</param>
+    /// <returns>A <see cref="FoodDTO"/> object.</returns>
     FoodDTO GetFoodById(int foodId);
 
-    // Get Exercise by Id
+    /// <summary>
+    /// Retrieves an exercise item by its ID.
+    /// </summary>
+    /// <param name="exerciseId">The ID of the exercise item to retrieve.</param>
+    /// <returns>An <see cref="ExerciseDTO"/> object.</returns>
     ExerciseDTO GetExerciseById(int exerciseId);
-
-    // Exercise
 
     /// <summary>
     /// Retrieves a collection of exercises.
     /// </summary>
-    /// <returns>An <see cref="ObservableCollection{ExerciseInfo}"/> containing exercise information.</returns>
+    /// <returns>A list of <see cref="ExerciseDTO"/> objects.</returns>
     List<ExerciseDTO> GetExercises();
-    
-    // Add exercise tra ve id cua bai tap vua them
+
+    /// <summary>
+    /// Adds a new exercise item.
+    /// </summary>
+    /// <param name="exercise">The exercise item to add.</param>
+    /// <returns>The ID of the added exercise item.</returns>
     int AddExercise(Exercise exercise);
-    // Remove exercise
+
+    /// <summary>
+    /// Removes an exercise item by its ID.
+    /// </summary>
+    /// <param name="exerciseId">The ID of the exercise item to remove.</param>
     void RemoveExercise(int exerciseId);
 
-
-    // Goal
-
-    // Get goal
+    /// <summary>
+    /// Retrieves the current goal.
+    /// </summary>
+    /// <returns>A <see cref="GoalDTO"/> object.</returns>
     GoalDTO GetGoal();
-    // Update goal
+
+    /// <summary>
+    /// Updates the current goal.
+    /// </summary>
+    /// <param name="goal">The goal to update.</param>
     void UpdateGoal(Goal goal);
-
-
-
-    // User
 
     /// <summary>
     /// Retrieves a list of users.
@@ -85,23 +103,72 @@ public interface IDao
     /// <param name="user">The user to add.</param>
     void AddUser(User user);
 
-    // Get Logs
+    /// <summary>
+    /// Retrieves a list of logs.
+    /// </summary>
+    /// <returns>A list of <see cref="LogDTO"/> objects.</returns>
     List<LogDTO> GetLogs();
-    // Add log
+
+    /// <summary>
+    /// Adds a new log entry.
+    /// </summary>
+    /// <param name="log">The log entry to add.</param>
     void AddLog(Log log);
-    // Delete log
+
+    /// <summary>
+    /// Deletes a log entry by its ID.
+    /// </summary>
+    /// <param name="logId">The ID of the log entry to delete.</param>
     void DeleteLog(int logId);
-    // Get log by date
+
+    /// <summary>
+    /// Retrieves a log entry by its date.
+    /// </summary>
+    /// <param name="date">The date of the log entry to retrieve.</param>
+    /// <returns>A <see cref="LogDTO"/> object.</returns>
     LogDTO GetLogByDate(DateOnly date);
-    // Update log
+
+    /// <summary>
+    /// Updates an existing log entry.
+    /// </summary>
+    /// <param name="log">The log entry to update.</param>
     void UpdateLog(Log log);
 
-
+    /// <summary>
+    /// Deletes a food item from a log entry.
+    /// </summary>
+    /// <param name="idLogDate">The date ID of the log entry.</param>
+    /// <param name="idLog">The ID of the log entry.</param>
     void DeleteLogFood(int idLogDate, int idLog);
 
+    /// <summary>
+    /// Deletes an exercise item from a log entry.
+    /// </summary>
+    /// <param name="idLogDate">The date ID of the log entry.</param>
+    /// <param name="idLog">The ID of the log entry.</param>
     void DeleteLogExercise(int idLogDate, int idLog);
 
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of <see cref="Log"/> objects.</returns>
     List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate);
+
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="n">The number of items to retrieve.</param>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of <see cref="Log"/> objects.</returns>
     List<Log> GetLogWithPagination(int n, int numberItemOffset, DateOnly endDate);
+
+    /// <summary>
+    /// Updates the total calories for a log entry.
+    /// </summary>
+    /// <param name="logId">The ID of the log entry.</param>
+    /// <param name="totalCalories">The total calories to update.</param>
     void UpdateTotalCalories(int logId, double totalCalories);
 }

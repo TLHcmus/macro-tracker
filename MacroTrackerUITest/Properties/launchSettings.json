@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MacroTrackerUITest (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MacroTrackerUITest (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

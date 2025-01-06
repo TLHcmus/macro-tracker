@@ -2,13 +2,14 @@
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using Windows.Storage;
 
 namespace MacroTrackerUI.Helpers.Converter;
 
 /// <summary>
 /// Converts an exercise file name to a BitmapImage path.
 /// </summary>
-class ExerciseFileNameToPathConverter : IValueConverter
+public class ExerciseFileNameToPathConverter : IValueConverter
 {
     /// <summary>
     /// Converts a file name to a BitmapImage path.
@@ -20,16 +21,11 @@ class ExerciseFileNameToPathConverter : IValueConverter
     /// <returns>A BitmapImage object representing the exercise icon.</returns>
     public object Convert(object value, Type targetType, object parameter, string language)
     {
-        string path = AssetsPathRegistry.RegisteredAssetsPath["ExerciseIcon"];
-        try
-        {
-            string iconFileName = value as string;
-            return new BitmapImage(new Uri($"{path}/{iconFileName}"));
-        }
-        catch (Exception)
-        {
-            return new BitmapImage(new Uri($"{path}/default.png"));
-        }
+        string path = AssetsPathRegistry.RegisteredAssetsPath["ExerciseIcons"];
+
+        string iconFileName = value as string;
+        Uri uri = new($"{path}/{iconFileName}");
+        return new BitmapImage(uri);
     }
 
     /// <summary>

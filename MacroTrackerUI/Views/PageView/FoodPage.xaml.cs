@@ -6,12 +6,9 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Design;
 using System.Linq;
-using Windows.Media.Devices;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -22,6 +19,9 @@ public sealed partial class FoodPage : Page
 {
     private FoodViewModel ViewModel { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FoodPage"/> class.
+    /// </summary>
     public FoodPage()
     {
         this.InitializeComponent();
@@ -29,6 +29,9 @@ public sealed partial class FoodPage : Page
         ViewModel = new FoodViewModel();
     }
 
+    /// <summary>
+    /// Handles the selection change event of the food list.
+    /// </summary>
     private void FoodList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         // An thong bao log food
@@ -78,61 +81,49 @@ public sealed partial class FoodPage : Page
         }
     }
 
+
+    /// <summary>
+    /// Handles the text changed event of the search bar.
+    /// </summary>
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         var searchText = SearchBar.Text.ToLower();
-        // Loc danh sach 
-        if (string.IsNullOrWhiteSpace(searchText))
-        {
-            FoodList.ItemsSource = ViewModel.Foods;
-        }
-        else
-        {
-            FoodList.ItemsSource = ViewModel.Foods
-                .Where(food => food.Name.ToLower().Contains(searchText))
-                .ToList();
-        }
+        FoodList.ItemsSource = string.IsNullOrWhiteSpace(searchText)
+            ? ViewModel.Foods
+            : ViewModel.Foods.Where(food => food.Name.ToLower().Contains(searchText)).ToList();
     }
 
+    /// <summary>
+    /// Handles the click event of the add food button.
+    /// </summary>
     private async void AddFoodButton_Click(object sender, RoutedEventArgs e)
     {
-        // Tạo một đối tượng Food mới
-        var addFoodDialog = new AddFoodDialog()
-        {
-            XamlRoot = this.XamlRoot
-        };
-
-        // Hiển thị dialog
+        var addFoodDialog = new AddFoodDialog { XamlRoot = this.XamlRoot };
         var result = await addFoodDialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary) // Nếu nhấn "Add"
+        if (result == ContentDialogResult.Primary)
         {
             var food = await addFoodDialog.GetFoodFromInput();
 
             // Nếu food là null, tức là có lỗi trong quá trình nhập liệu
             if (food != null)
             {
-                // Gọi phương thức AddFood của ViewModel để thêm món ăn
                 ViewModel.AddFood(food);
             }
         }
     }
 
+    /// <summary>
+    /// Handles the click event of the remove menu item.
+    /// </summary>
     private async void ContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        // Lấy đối tượng food được liên kết với item
         var menuFlyoutItem = sender as MenuFlyoutItem;
-        var foodToDelete = (menuFlyoutItem?.DataContext as Food);
+        var foodToDelete = menuFlyoutItem?.DataContext as Food;
 
-        if(foodToDelete == null)
-        {
-            return;
-        }
+        if (foodToDelete == null) return;
 
-        // Lưu lại món ăn hiện tại nếu nó đang được chọn
         var selectedFood = (Food)FoodList.SelectedItem;
-
-        // Hop thoai xac nhan hanh dong xoa
         var confirmDialog = new ContentDialog
         {
             Title = "Confirm Removal",
@@ -158,6 +149,9 @@ public sealed partial class FoodPage : Page
         }
     }
 
+    /// <summary>
+    /// Handles the click event of the log food button.
+    /// </summary>
     private void LogFoodButton_Click(object sender, RoutedEventArgs e)
     {
         SucessLogMessage.Visibility = Visibility.Collapsed;

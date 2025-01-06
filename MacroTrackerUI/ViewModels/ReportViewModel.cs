@@ -14,12 +14,36 @@ using SkiaSharp;
 
 namespace MacroTrackerUI.ViewModels;
 
+/// <summary>
+/// ViewModel for generating reports based on logs.
+/// </summary>
 public class ReportViewModel : INotifyPropertyChanged
 {
+    /// <summary>
+    /// Gets or sets the collection of logs.
+    /// </summary>
     public ObservableCollection<Log> LogList { get; set; }
 
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
+    /// <summary>
+    /// Gets the data access sender.
+    /// </summary>
+    private IDaoSender Sender { get; }
 
+    private IServiceProvider Provider { get; }
+
+    public ReportViewModel()
+    {
+        Provider = ProviderUI.GetServiceProvider();
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
+
+    public ReportViewModel(IServiceProvider provider)
+    {
+        Provider = provider;
+        Sender = Provider.GetService<IDaoSender>();
+        SetUpDiagrams();
+    }
 
     public ObservableCollection<ISeries> CaloriesSeries { get; set; }
     public ObservableCollection<ISeries> ProteinSeries { get; set; }
@@ -42,7 +66,7 @@ public class ReportViewModel : INotifyPropertyChanged
     }
 
 
-    public ReportViewModel()
+    public void SetUpDiagrams()
     {
         // Lấy danh sách tất cả các món ăn từ database
         var foods = Sender.GetFoods(); // Lấy danh sách foods (có thông tin dinh dưỡng)
@@ -108,95 +132,96 @@ public class ReportViewModel : INotifyPropertyChanged
         }
 
         // Tạo các biểu đồ
-        CaloriesSeries = new ObservableCollection<ISeries>
-    {
-        new LineSeries<double>
-        {
-            Values = nutrientsByDate.Select(x => x.TotalCalories).ToList(),
-            Name = "Total Calories",
-            LineSmoothness = 0,
-            Stroke = new SolidColorPaint(new SKColor(0, 0, 255)) { StrokeThickness = 2 },
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        }
-    };
+        CaloriesSeries =
+        [
+            new LineSeries<double>
+            {
+                Values = nutrientsByDate.Select(x => x.TotalCalories).ToList(),
+                Name = "Total Calories",
+                LineSmoothness = 0,
+                Stroke = new SolidColorPaint(new SKColor(0, 0, 255)) { StrokeThickness = 2 },
+                Fill = null,
+                GeometryFill = null,
+                GeometryStroke = null
+            }
+        ];
 
-        ProteinSeries = new ObservableCollection<ISeries>
-    {
-        new LineSeries<double>
-        {
-            Values = nutrientsByDate.Select(x => x.TotalProtein).ToList(),
-            Name = "Total Protein",
-            LineSmoothness = 0,
-            Stroke = new SolidColorPaint(new SKColor(255, 0, 0)) { StrokeThickness = 2 },
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        }
-    };
+        ProteinSeries =
+        [
+            new LineSeries<double>
+            {
+                Values = nutrientsByDate.Select(x => x.TotalProtein).ToList(),
+                Name = "Total Protein",
+                LineSmoothness = 0,
+                Stroke = new SolidColorPaint(new SKColor(255, 0, 0)) { StrokeThickness = 2 },
+                Fill = null,
+                GeometryFill = null,
+                GeometryStroke = null
+            }
+        ];
 
-        CarbsSeries = new ObservableCollection<ISeries>
-    {
-        new LineSeries<double>
-        {
-            Values = nutrientsByDate.Select(x => x.TotalCarbs).ToList(),
-            Name = "Total Carbs",
-            LineSmoothness = 0,
-            Stroke = new SolidColorPaint(new SKColor(0, 255, 0)) { StrokeThickness = 2 },
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        }
-    };
+        CarbsSeries =
+        [
+            new LineSeries<double>
+            {
+                Values = nutrientsByDate.Select(x => x.TotalCarbs).ToList(),
+                Name = "Total Carbs",
+                LineSmoothness = 0,
+                Stroke = new SolidColorPaint(new SKColor(0, 255, 0)) { StrokeThickness = 2 },
+                Fill = null,
+                GeometryFill = null,
+                GeometryStroke = null
+            }
+        ];
 
-        FatSeries = new ObservableCollection<ISeries>
-    {
-        new LineSeries<double>
-        {
-            Values = nutrientsByDate.Select(x => x.TotalFat).ToList(),
-            Name = "Total Fat",
-            LineSmoothness = 0,
-            Stroke = new SolidColorPaint(new SKColor(255, 170, 29)) { StrokeThickness = 2 },
-            Fill = null,
-            GeometryFill = null,
-            GeometryStroke = null
-        }
-    };
+        FatSeries =
+        [
+            new LineSeries<double>
+            {
+                Values = nutrientsByDate.Select(x => x.TotalFat).ToList(),
+                Name = "Total Fat",
+                LineSmoothness = 0,
+                Stroke = new SolidColorPaint(new SKColor(255, 170, 29)) { StrokeThickness = 2 },
+                Fill = null,
+                GeometryFill = null,
+                GeometryStroke = null
+            }
+        ];
 
         // XAxes dùng chung hiển thị ngày
-        XAxes = new ObservableCollection<Axis>
-    {
-        new Axis
-        {
-            Labels = nutrientsByDate.Select(x => x.Date.ToString("MM/dd/yyyy")).ToList(),
-            Name = "Date"
-        }
-    };
+        XAxes =
+        [
+            new Axis
+            {
+                Labels = nutrientsByDate.Select(x => x.Date.ToString("MM/dd/yyyy")).ToList(),
+                Name = "Date"
+            }
+        ];
 
         // Tạo các YAxes khác nhau
-        CaloriesYAxes = new ObservableCollection<Axis>
-    {
-        new Axis { Name = "Total Calories" }
-    };
+        CaloriesYAxes =
+        [
+            new Axis { Name = "Total Calories" }
+        ];
 
-        ProteinYAxes = new ObservableCollection<Axis>
-    {
-        new Axis { Name = "Total Protein" }
-    };
+        ProteinYAxes =
+        [
+            new Axis { Name = "Total Protein" }
+        ];
 
-        CarbsYAxes = new ObservableCollection<Axis>
-    {
-        new Axis { Name = "Total Carbs" }
-    };
+        CarbsYAxes =
+        [
+            new Axis { Name = "Total Carbs" }
+        ];
 
-        FatYAxes = new ObservableCollection<Axis>
-    {
-        new Axis { Name = "Total Fat" }
-    };
+        FatYAxes =
+        [
+            new Axis { Name = "Total Fat" }
+        ];
     }
 
-
-
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 }

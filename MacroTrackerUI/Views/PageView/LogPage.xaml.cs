@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,14 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class LogPage : Page
 {
-    private LogViewModel ViewModel { get; set; }
+    /// <summary>
+    /// Gets or sets the ViewModel for managing logs.
+    /// </summary>
+    private LogViewModel ViewModel { get; set; } = new LogViewModel();
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LogPage"/> class.
+    /// </summary>
     public LogPage()
     {
         this.InitializeComponent();

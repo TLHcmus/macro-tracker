@@ -3,9 +3,7 @@ using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using Windows.Gaming.Input.ForceFeedback;
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -45,7 +43,7 @@ public sealed partial class CalculatorPage : Page
             (!(MaleRadioButton.IsChecked == true) && !(FemaleRadioButton.IsChecked == true)))
         {
             // Tao va hien thi thong bao loi
-            ContentDialog errorDialog = new ContentDialog
+            ContentDialog errorDialog = new()
             {
                 Title = "Missing Information",
                 Content = "Please enter all values.",
@@ -71,7 +69,7 @@ public sealed partial class CalculatorPage : Page
         else
         {
             // Tao va hien thi thong bao loi
-            ContentDialog errorDialog = new ContentDialog
+            ContentDialog errorDialog = new()
             {
                 Title = "Invalid Information",
                 Content = "Please enter valid values.",

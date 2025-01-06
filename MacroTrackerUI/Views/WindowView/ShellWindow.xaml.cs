@@ -1,17 +1,19 @@
 using MacroTrackerUI.Views.PageView;
 using Microsoft.UI.Xaml;
 
-namespace MacroTrackerUI.Views.WindowView
+namespace MacroTrackerUI.Views.WindowView;
+
+/// <summary>
+/// Represents the main window of the application.
+/// </summary>
+public sealed partial class ShellWindow : Window
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// Initializes a new instance of the <see cref="ShellWindow"/> class.
     /// </summary>
-    public sealed partial class ShellWindow : Window
+    public ShellWindow()
     {
-        public ShellWindow()
-        {
-            this.InitializeComponent();
-            MainFrame.Navigate(typeof(LoginPageShell));
-        }
+        this.InitializeComponent();
+        MainFrame.Navigate(typeof(LoginPageShell));
     }
 }

@@ -13,9 +13,13 @@ namespace MacroTrackerUI;
 /// </summary>
 public partial class App : Application
 {
-    public static ObservableCollection<Message> ChatBotConversation { get; private set; } = [];
     /// <summary>
-    /// Initializes the singleton application object.  This is the first line of authored code
+    /// Gets the chat bot conversation.
+    /// </summary>
+    public static ObservableCollection<Message> ChatBotConversation { get; set; } = [];
+
+    /// <summary>
+    /// Initializes the singleton application object. This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().
     /// </summary>
     public App()
@@ -34,6 +38,10 @@ public partial class App : Application
         m_window.Activate();
     }
 
+    /// <summary>
+    /// Maximizes the specified window.
+    /// </summary>
+    /// <param name="m_window">The window to maximize.</param>
     private void MaximizeWindow(Window m_window)
     {
         var windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
@@ -43,5 +51,8 @@ public partial class App : Application
         presenter.Maximize();
     }
 
+    /// <summary>
+    /// The main window of the application.
+    /// </summary>
     public static Window m_window;
 }

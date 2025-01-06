@@ -9,17 +9,42 @@ using System.Linq;
 
 namespace MacroTrackerUI.ViewModels;
 
+/// <summary>
+/// ViewModel for managing exercises.
+/// </summary>
 public class ExerciseViewModel : INotifyPropertyChanged
 {
+    /// <summary>
+    /// Gets or sets the collection of exercises.
+    /// </summary>
     public ObservableCollection<Exercise> Exercises { get; set; }
 
-    private DaoSender Sender { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+    private IServiceProvider Provider { get; }
+    private IDaoSender Sender { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExerciseViewModel"/> class.
+    /// </summary>
     public ExerciseViewModel()
+        : this(ProviderUI.GetServiceProvider())
     {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExerciseViewModel"/> class with a specified service provider.
+    /// </summary>
+    /// <param name="provider">The service provider.</param>
+    public ExerciseViewModel(IServiceProvider provider)
+    {
+        Provider = provider ?? throw new ArgumentNullException(nameof(provider));
+        Sender = Provider.GetService<IDaoSender>() ?? throw new InvalidOperationException("IDaoSender service not found.");
         Exercises = new ObservableCollection<Exercise>(Sender.GetExercises());
     }
+
+    /// <summary>
+    /// Adds a new exercise to the collection and data source.
+    /// </summary>
+    /// <param name="exercise">The exercise to add.</param>
     public void AddExercise(Exercise exercise)
     {
         var exerciseId = Sender.AddExercise(exercise);
@@ -37,7 +62,6 @@ public class ExerciseViewModel : INotifyPropertyChanged
 
         if (exerciseToRemove != null)
         {
-            // Xóa bài tập nếu tìm thấy
             Exercises.Remove(exerciseToRemove);
         }
     }
@@ -53,5 +77,8 @@ public class ExerciseViewModel : INotifyPropertyChanged
     }
 
 
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 }

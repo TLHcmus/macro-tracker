@@ -3,7 +3,6 @@ using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 
 namespace MacroTrackerUI.Views.PageView;
@@ -13,10 +12,14 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class GoalsPage : Page
 {
-    public GoalsViewModel ViewModel
-    {
-        get; set;
-    }
+    /// <summary>
+    /// Gets or sets the ViewModel for managing goals.
+    /// </summary>
+    public GoalsViewModel ViewModel { get; set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GoalsPage"/> class.
+    /// </summary>
     public GoalsPage()
     {
         this.InitializeComponent();
@@ -24,23 +27,26 @@ public sealed partial class GoalsPage : Page
         ChatBot.ChatBotConversation = App.ChatBotConversation;
     }
 
-    // Edit goal click event handler
+    /// <summary>
+    /// Handles the click event for editing a goal.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The event data.</param>
     private async void EditGoal_Click(object sender, RoutedEventArgs e)
     {
-        var editGoalDialog = new EditGoalDialog()
+        var editGoalDialog = new EditGoalDialog
         {
             XamlRoot = this.XamlRoot
         };
-        // Hien thi diaglog
+
         var result = await editGoalDialog.ShowAsync();
-        if(result == ContentDialogResult.Primary) // Neu nhan nut Confirm
+        if (result == ContentDialogResult.Primary)
         {
             var goal = editGoalDialog.GetGoalFromInput();
-
             if (goal != null)
             {
                 ViewModel.UpdateGoal(goal);
             }
-    }
         }
+    }
 }

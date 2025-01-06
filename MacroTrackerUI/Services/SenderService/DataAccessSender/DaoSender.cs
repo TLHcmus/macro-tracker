@@ -6,15 +6,29 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.Json;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
 namespace MacroTrackerUI.Services.SenderService.DataAccessSender;
 
-public class DaoSender
+/// <summary>
+/// Provides methods to interact with the data access layer and perform various operations.
+/// </summary>
+public class DaoSender : IDaoSender
 {
-    private DaoReceiver Receiver { get; } =
-        ProviderUI.GetServiceProvider().GetService<DaoReceiver>();
+    public ServiceProvider ProviderUI { get; }
+    private IDaoReceiver Receiver { get; }
     private JsonSerializerOptions Options { get; } = new() { IncludeFields = true };
+
+    public DaoSender()
+    {
+        ProviderUI = ProviderService.ProviderUI.GetServiceProvider();
+        Receiver = ProviderUI.GetRequiredService<IDaoReceiver>();
+    }
+
+    public DaoSender(ServiceProvider providerUI)
+    {
+        ProviderUI = providerUI;
+        Receiver = ProviderUI.GetService<IDaoReceiver>();
+    }
 
     /// <summary>
     /// Retrieves a list of foods.
@@ -25,24 +39,35 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Food>>(Receiver.GetFoods());
     }
 
-    // Add food tra ve id cua mon vua them
+    /// <summary>
+    /// Adds a new food item.
+    /// </summary>
+    /// <param name="food">The food item to add.</param>
+    /// <returns>The ID of the added food item.</returns>
     public int AddFood(Food food)
     {
         return Receiver.AddFood(JsonSerializer.Serialize(food));
     }
 
-    // Remove food
+    /// <summary>
+    /// Removes a food item.
+    /// </summary>
+    /// <param name="foodId">The ID of the food item to remove.</param>
     public void RemoveFood(int foodId)
     {
         Debug.WriteLine($"food id xoa: {foodId}");
         Receiver.RemoveFood(JsonSerializer.Serialize(foodId));
     }
-    // Get Food by Id
+
+    /// <summary>
+    /// Retrieves a food item by its ID.
+    /// </summary>
+    /// <param name="foodId">The ID of the food item to retrieve.</param>
+    /// <returns>A <see cref="Food"/> object.</returns>
     public Food GetFoodById(int foodId)
     {
         return JsonSerializer.Deserialize<Food>(Receiver.GetFoodById(foodId));
     }
-
 
     /// <summary>
     /// Retrieves a collection of exercises.
@@ -53,30 +78,48 @@ public class DaoSender
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
 
-    // Get Exercise by Id
+    /// <summary>
+    /// Retrieves an exercise item by its ID.
+    /// </summary>
+    /// <param name="exerciseId">The ID of the exercise item to retrieve.</param>
+    /// <returns>An <see cref="Exercise"/> object.</returns>
     public Exercise GetExerciseById(int exerciseId)
     {
         return JsonSerializer.Deserialize<Exercise>(Receiver.GetExerciseById(exerciseId));
     }
 
-    // Add exercise tra ve id cua bai tap vua them
+    /// <summary>
+    /// Adds a new exercise item.
+    /// </summary>
+    /// <param name="exercise">The exercise item to add.</param>
+    /// <returns>The ID of the added exercise item.</returns>
     public int AddExercise(Exercise exercise)
     {
         return Receiver.AddExercise(JsonSerializer.Serialize(exercise));
     }
-    // Remove exercise
+
+    /// <summary>
+    /// Removes an exercise item.
+    /// </summary>
+    /// <param name="exerciseId">The ID of the exercise item to remove.</param>
     public void RemoveExercise(int exerciseId)
     {
-        //Receiver.RemoveExercise(JsonSerializer.Serialize(exerciseId));
         Receiver.RemoveExercise(exerciseId);
     }
 
-    // Get Goal
+    /// <summary>
+    /// Retrieves the goal.
+    /// </summary>
+    /// <returns>A <see cref="Goal"/> object.</returns>
     public Goal GetGoal()
     {
         return JsonSerializer.Deserialize<Goal>(Receiver.GetGoal());
     }
-    // Update goal
+
+    /// <summary>
+    /// Updates the goal.
+    /// </summary>
+    /// <param name="goal">The goal to update.</param>
     public void UpdateGoal(Goal goal)
     {
         Receiver.UpdateGoal(JsonSerializer.Serialize(goal));
@@ -101,11 +144,6 @@ public class DaoSender
     /// </returns>
     public bool DoesUserMatchPassword(string username, string password)
     {
-
-        //string signInJson = JsonSerializer.Serialize((username, password), Options);
-        //return JsonSerializer.Deserialize<bool>(
-        //    Receiver.DoesUserMatchPassword(signInJson)
-        //);
         return Receiver.DoesUserMatchPassword(username, password);
     }
 
@@ -118,10 +156,6 @@ public class DaoSender
     /// </returns>
     public bool DoesUsernameExist(string username)
     {
-        //string usernameJson = JsonSerializer.Serialize(username);
-        //return JsonSerializer.Deserialize<bool>(
-        //    Receiver.DoesUsernameExist(usernameJson)
-        //);
         return Receiver.DoesUsernameExist(username);
     }
 
@@ -131,59 +165,81 @@ public class DaoSender
     /// <param name="user">The user to add.</param>
     public void AddUser((string, string) user)
     {
-        //Receiver.AddUser(
-        //    JsonSerializer.Serialize(user, Options)
-        //);
         Receiver.AddUser(user);
     }
 
+    /// <summary>
+    /// Retrieves a list of logs.
+    /// </summary>
+    /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetLogs()
     {
-        return JsonSerializer.Deserialize<List<Log>>(
-            Receiver.GetLogs()
-        );
-        //return (List<Log>)Receiver.GetLogs();
+        return JsonSerializer.Deserialize<List<Log>>(Receiver.GetLogs());
     }
-    // Get log by date
+
+    /// <summary>
+    /// Retrieves a log entry by its date.
+    /// </summary>
+    /// <param name="date">The date of the log entry to retrieve.</param>
+    /// <returns>A <see cref="Log"/> object.</returns>
     public Log GetLogByDate(DateOnly date)
     {
-        return JsonSerializer.Deserialize<Log>(
-            Receiver.GetLogByDate(date)
-        );
+        return JsonSerializer.Deserialize<Log>(Receiver.GetLogByDate(date));
     }
-    // Update log
+
+    /// <summary>
+    /// Updates an existing log entry.
+    /// </summary>
+    /// <param name="log">The log entry to update.</param>
     public void UpdateLog(Log log)
     {
         Receiver.UpdateLog(JsonSerializer.Serialize(log));
     }
 
+    /// <summary>
+    /// Adds a new log entry.
+    /// </summary>
+    /// <param name="log">The log entry to add.</param>
     public void AddLog(Log log)
     {
         Receiver.AddLog(JsonSerializer.Serialize(log));
     }
 
+    /// <summary>
+    /// Deletes a log entry.
+    /// </summary>
+    /// <param name="logId">The ID of the log entry to delete.</param>
     public void DeleteLog(int logId)
     {
-        //Receiver.DeleteLog(
-        //    JsonSerializer.Serialize(logId)
-        //);
         Receiver.DeleteLog(logId);
     }
 
+    /// <summary>
+    /// Deletes a log food item by log date and log ID.
+    /// </summary>
+    /// <param name="logDateID">The log date ID.</param>
+    /// <param name="logID">The log ID.</param>
     public void DeleteLogFood(int logDateID, int logID)
     {
-        Receiver.DeleteLogFood(
-            JsonSerializer.Serialize((logDateID, logID), Options)
-        );
+        Receiver.DeleteLogFood(JsonSerializer.Serialize((logDateID, logID), Options));
     }
 
+    /// <summary>
+    /// Deletes a log exercise item by log date and log ID.
+    /// </summary>
+    /// <param name="logDateID">The log date ID.</param>
+    /// <param name="logID">The log ID.</param>
     public void DeleteLogExercise(int logDateID, int logID)
     {
-        Receiver.DeleteLogExercise(
-            JsonSerializer.Serialize((logDateID, logID), Options)
-        );
+        Receiver.DeleteLogExercise(JsonSerializer.Serialize((logDateID, logID), Options));
     }
 
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetLogWithPagination(int numberItemOffset, DateOnly endDate)
     {
         return JsonSerializer.Deserialize<List<Log>>(
@@ -193,6 +249,13 @@ public class DaoSender
         );
     }
 
+    /// <summary>
+    /// Retrieves logs with pagination.
+    /// </summary>
+    /// <param name="n">The number of items to retrieve.</param>
+    /// <param name="numberItemOffset">The number of items to offset.</param>
+    /// <param name="endDate">The end date for the logs.</param>
+    /// <returns>A list of <see cref="Log"/> objects.</returns>
     public List<Log> GetNLogWithPagination(int n, int numberItemOffset, DateOnly endDate)
     {
         return JsonSerializer.Deserialize<List<Log>>(
