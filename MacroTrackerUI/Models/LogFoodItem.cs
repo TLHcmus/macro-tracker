@@ -16,6 +16,7 @@ public class LogFoodItem : INotifyPropertyChanged
     public double NumberOfServings { get; set; }
 
     public double TotalCalories { get; set; }
+    public Food Food { get; set; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged; 
 }

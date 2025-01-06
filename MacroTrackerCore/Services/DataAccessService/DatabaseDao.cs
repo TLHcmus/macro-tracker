@@ -63,6 +63,28 @@ public class DatabaseDao : IDao
 
         _context.SaveChanges();
     }
+    // Get Food by Id
+    public FoodDTO GetFoodById(int foodId)
+    {
+        var food = _context.Foods.Find(foodId);
+
+        if (food == null)
+        {
+            throw new Exception("Food not found");
+        }
+
+        return new FoodDTO
+        {
+            FoodId = food.FoodId,
+            Name = food.Name ?? string.Empty,
+            CaloriesPer100g = food.CaloriesPer100g ?? 0,
+            ProteinPer100g = food.ProteinPer100g ?? 0,
+            CarbsPer100g = food.CarbsPer100g ?? 0,
+            FatPer100g = food.FatPer100g ?? 0,
+            Image = food.Image ?? Array.Empty<byte>()
+        };
+    }
+
 
     // Exercise
     public List<ExerciseDTO> GetExercises()
@@ -76,6 +98,25 @@ public class DatabaseDao : IDao
                 Image = exercise.Image ?? Array.Empty<byte>()
             })
             .ToList();
+    }
+
+    // Get Exercise by Id
+    public ExerciseDTO GetExerciseById(int exerciseId)
+    {
+        var exercise = _context.Exercises.Find(exerciseId);
+
+        if (exercise == null)
+        {
+            throw new Exception("Exercise not found");
+        }
+
+        return new ExerciseDTO
+        {
+            ExerciseId = exercise.ExerciseId,
+            Name = exercise.Name ?? string.Empty,
+            CaloriesPerMinute = exercise.CaloriesPerMinute ?? 0,
+            Image = exercise.Image ?? Array.Empty<byte>()
+        };
     }
 
 
@@ -147,7 +188,8 @@ public class DatabaseDao : IDao
             _context.Goals.Add(goal);
         }
         else
-        {    
+        {
+            // Cap nhat goal
             existingGoal.Calories = goal.Calories;
             existingGoal.Protein = goal.Protein;
             existingGoal.Carbs = goal.Carbs;
@@ -275,6 +317,125 @@ public class DatabaseDao : IDao
 
         _context.SaveChanges();
     }
+
+    // Get log by date
+    public LogDTO GetLogByDate(DateOnly date)
+    {
+        var userId = CurrentUser.UserId;
+
+        Log log = _context.Logs
+                            .Include(l => l.LogExerciseItems)
+                            .Include(l => l.LogFoodItems)
+                            .FirstOrDefault(log => log.UserId == userId && log.LogDate == date);
+
+        if (log == null)
+        {
+            return null;
+        }
+
+        var logDto = new LogDTO
+        {
+            LogId = log.LogId,
+            LogDate = log.LogDate,
+            TotalCalories = log.TotalCalories ?? 0,
+            LogExerciseItems = new List<LogExerciseItemDTO>(
+                     log.LogExerciseItems.Select(exerciseItem => new LogExerciseItemDTO
+                     {
+                        LogExerciseId = exerciseItem.LogExerciseId,
+                        ExerciseId = exerciseItem.ExerciseId ?? 0,
+                        Duration = exerciseItem.Duration ?? 0,
+                        TotalCalories = exerciseItem.TotalCalories ?? 0
+                     })
+            ), 
+            LogFoodItems = new List<LogFoodItemDTO>(
+                     log.LogFoodItems.Select(foodItem => new LogFoodItemDTO
+                     {
+                        LogFoodId = foodItem.LogFoodId,
+                        FoodId = foodItem.FoodId ?? 0,
+                        NumberOfServings = foodItem.NumberOfServings ?? 0,
+                        TotalCalories = foodItem.TotalCalories ?? 0
+                     })
+            )
+        };
+        return logDto;
+    }
+
+    // Update Log
+    public void UpdateLog(Log log)
+    {
+        var userId = CurrentUser.UserId;
+
+        var logId = log.LogId;
+        var existingLog = _context.Logs
+            .Include(l => l.LogFoodItems)
+            .Include(l => l.LogExerciseItems)
+            .FirstOrDefault(l => l.LogId == logId);
+
+        if (existingLog == null)
+        {
+            log.UserId = userId;
+            _context.Logs.Add(log); 
+        }
+        else
+        {
+            // Cập nhật các thuộc tính cơ bản
+            existingLog.LogDate = log.LogDate;
+            existingLog.TotalCalories = log.TotalCalories;
+
+            // Đồng bộ LogFoodItems
+            foreach (var item in existingLog.LogFoodItems.ToList())
+            {
+                if (!log.LogFoodItems.Any(f => f.LogFoodId == item.LogFoodId))
+                {
+                    _context.Remove(item);
+                }
+            }
+
+            foreach (var item in log.LogFoodItems)
+            {
+                var existingItem = existingLog.LogFoodItems.FirstOrDefault(f => f.LogFoodId == item.LogFoodId);
+                if (existingItem == null)
+                {
+                    existingLog.LogFoodItems.Add(item);
+                }
+                else
+                {
+                    // Cập nhật mục hiện có
+                    existingItem.FoodId = item.FoodId;  
+                    existingItem.NumberOfServings = item.NumberOfServings;
+                    existingItem.TotalCalories = item.TotalCalories;
+                }
+            }
+
+            // Đồng bộ LogExerciseItems (tương tự như trên)
+            foreach (var item in existingLog.LogExerciseItems.ToList())
+            {
+                if (!log.LogExerciseItems.Any(e => e.LogExerciseId == item.LogExerciseId))
+                {
+                    _context.Remove(item);
+                }
+            }
+
+            foreach (var item in log.LogExerciseItems)
+            {
+                var existingItem = existingLog.LogExerciseItems.FirstOrDefault(e => e.LogExerciseId == item.LogExerciseId);
+                if (existingItem == null)
+                {
+                    existingLog.LogExerciseItems.Add(item);
+                }
+                else
+                {
+                    // Cập nhật mục hiện có
+                    existingItem.ExerciseId = item.ExerciseId;
+                    existingItem.Duration = item.Duration;
+                    existingItem.TotalCalories = item.TotalCalories;
+                }
+            }
+        }
+        _context.SaveChanges();
+    }
+
+
     public void DeleteLogFood(int logDateID, int logID) => throw new NotImplementedException();
 
     public void DeleteLogExercise(int logDateID, int logID) => throw new NotImplementedException();

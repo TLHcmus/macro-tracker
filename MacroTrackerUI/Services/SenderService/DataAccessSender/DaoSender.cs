@@ -37,6 +37,12 @@ public class DaoSender
         Debug.WriteLine($"food id xoa: {foodId}");
         Receiver.RemoveFood(JsonSerializer.Serialize(foodId));
     }
+    // Get Food by Id
+    public Food GetFoodById(int foodId)
+    {
+        return JsonSerializer.Deserialize<Food>(Receiver.GetFoodById(foodId));
+    }
+
 
     /// <summary>
     /// Retrieves a collection of exercises.
@@ -46,6 +52,13 @@ public class DaoSender
     {
         return JsonSerializer.Deserialize<List<Exercise>>(Receiver.GetExercises());
     }
+
+    // Get Exercise by Id
+    public Exercise GetExerciseById(int exerciseId)
+    {
+        return JsonSerializer.Deserialize<Exercise>(Receiver.GetExerciseById(exerciseId));
+    }
+
     // Add exercise tra ve id cua bai tap vua them
     public int AddExercise(Exercise exercise)
     {
@@ -130,6 +143,18 @@ public class DaoSender
             Receiver.GetLogs()
         );
         //return (List<Log>)Receiver.GetLogs();
+    }
+    // Get log by date
+    public Log GetLogByDate(DateOnly date)
+    {
+        return JsonSerializer.Deserialize<Log>(
+            Receiver.GetLogByDate(date)
+        );
+    }
+    // Update log
+    public void UpdateLog(Log log)
+    {
+        Receiver.UpdateLog(JsonSerializer.Serialize(log));
     }
 
     public void AddLog(Log log)

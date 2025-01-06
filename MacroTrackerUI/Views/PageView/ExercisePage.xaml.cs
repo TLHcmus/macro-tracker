@@ -2,10 +2,13 @@
 using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,6 +31,9 @@ public sealed partial class ExercisePage : Page
 
     private void ExerciseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        // An thong bao log exercise
+        SucessLogMessage.Visibility = Visibility.Collapsed;
+
         // Lay mon an duoc chon
         var selectedExercise = (Exercise)ExerciseList.SelectedItem;         
 
@@ -145,6 +151,64 @@ public sealed partial class ExercisePage : Page
 
     private void LogExerciseButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        SucessLogMessage.Visibility = Visibility.Collapsed;
+
+        if (DatePicker.Date == null)
+        {
+            SucessLogMessage.Text = "Please select a date.";
+            SucessLogMessage.Foreground = new SolidColorBrush(Colors.Red);
+            SucessLogMessage.Visibility = Visibility.Visible;
+
+            return;
+        }
+        // Lay log cua ngay duoc chon
+        var selectedDate = DateOnly.FromDateTime(DatePicker.Date.Value.DateTime);
+
+        var log = ViewModel.GetLogByDate(selectedDate);
+        // Neu chua ton tai thi tao log moi
+        if (log == null)
+        {
+            log = new Log
+            {
+                LogDate = selectedDate,
+                TotalCalories = 0,
+                LogFoodItems = new ObservableCollection<LogFoodItem>(),
+                LogExerciseItems = new ObservableCollection<LogExerciseItem>(),
+            };
+        }
+
+        // Lay ngay duoc chon
+        var selectedExercise = (Exercise)ExerciseList.SelectedItem;
+
+        // Lay macro
+        if (!double.TryParse(DurationInput.Text, out double duration) || duration <= 0)
+        {
+            SucessLogMessage.Text = "Please enter a valid duration.";
+            SucessLogMessage.Foreground = new SolidColorBrush(Colors.Red);
+            SucessLogMessage.Visibility = Visibility.Visible;
+
+            return;
+        }
+        var caloriesBurned = selectedExercise.CaloriesPerMinute * duration;
+
+        // Them log exercise item vao log
+        var logExerciseItem = new LogExerciseItem
+        {
+            ExerciseId = selectedExercise.ExerciseId,
+            Duration = duration,
+            TotalCalories = caloriesBurned,
+        };
+
+        log.LogExerciseItems.Add(logExerciseItem);
+
+        // Cap nhat lai calories
+        log.TotalCalories -= caloriesBurned;
+
+        // Cap nhat log
+        ViewModel.UpdateLog(log);
+
+        SucessLogMessage.Text = "Exercise logged successfully.";
+        SucessLogMessage.Foreground = new SolidColorBrush(Colors.Green);
+        SucessLogMessage.Visibility = Visibility.Visible;
     }
 }

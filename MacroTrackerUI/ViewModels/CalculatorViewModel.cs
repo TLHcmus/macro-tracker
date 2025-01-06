@@ -1,4 +1,7 @@
 ﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.Services.ProviderService;
+using MacroTrackerUI.Services.SenderService.DataAccessSender;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using System.Reflection;
 
@@ -6,6 +9,9 @@ namespace MacroTrackerUI.ViewModels;
 
 public partial class CalculatorViewModel
 {
+    private DaoSender Sender { get; } =
+        ProviderUI.GetServiceProvider().GetService<DaoSender>();
+
     // Health Info
     public int Age
     {
@@ -60,5 +66,10 @@ public partial class CalculatorViewModel
             tdee = bmr * activityMultiplier;
             return tdee;
     }
-    
+
+    // Update Goal
+    public void UpdateGoal(Goal goal)
+    {
+        Sender.UpdateGoal(goal);
+    }
 }

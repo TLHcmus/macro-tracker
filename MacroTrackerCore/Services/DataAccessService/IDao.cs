@@ -23,6 +23,12 @@ public interface IDao
     // Remove food
     void RemoveFood(int foodId);
 
+    // Get Food by Id
+    FoodDTO GetFoodById(int foodId);
+
+    // Get Exercise by Id
+    ExerciseDTO GetExerciseById(int exerciseId);
+
     // Exercise
 
     /// <summary>
@@ -85,6 +91,11 @@ public interface IDao
     void AddLog(Log log);
     // Delete log
     void DeleteLog(int logId);
+    // Get log by date
+    LogDTO GetLogByDate(DateOnly date);
+    // Update log
+    void UpdateLog(Log log);
+
 
     void DeleteLogFood(int idLogDate, int idLog);
 

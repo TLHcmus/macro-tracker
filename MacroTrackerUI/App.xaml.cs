@@ -43,5 +43,5 @@ public partial class App : Application
         presenter.Maximize();
     }
 
-    private Window m_window;
+    public static Window m_window;
 }

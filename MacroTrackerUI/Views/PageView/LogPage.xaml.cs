@@ -1,13 +1,23 @@
-using MacroTrackerUI.Models;
+﻿using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace MacroTrackerUI.Views.PageView;
 
@@ -16,113 +26,223 @@ namespace MacroTrackerUI.Views.PageView;
 /// </summary>
 public sealed partial class LogPage : Page
 {
-    private LogViewModel ViewModel { get; set; } = new LogViewModel();
-
+    private LogViewModel ViewModel { get; set; }
     public LogPage()
     {
         this.InitializeComponent();
-        ViewModel.GetNextLogsPage();
-
-        // Deduce the paging size on the first load
-        ViewModel.PagingSize = ViewModel.LogList.Count;
         ChatBot.ChatBotConversation = App.ChatBotConversation;
+        ViewModel = new LogViewModel();
+        // Dat ngay mac dinh la hom nay
+        LogDatePicker.Date = DateTime.Now;
     }
 
-    private void AddLogButton_Click(object sender, RoutedEventArgs e)
+
+    // Khi chon ngay khac
+    private void LogDatePicker_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
     {
-        DateTime date = DateTime.Now;
-        ViewModel.EndDate = date;
+        // Kiểm tra xem giá trị ngày có hợp lệ không
+        if (LogDatePicker.SelectedDate.HasValue)
+        {
+            var selectedDate = DateOnly.FromDateTime(LogDatePicker.SelectedDate.Value.Date);
 
-        TodayButton.BorderThickness = new Thickness(2);
-        Calendar.SelectedDates.Clear();
-        Calendar.SelectedDates.Add(date);
-        Calendar.SetDisplayDate(date);
+            ViewModel.GetLogByDate(selectedDate);
+        }
+    }
 
-        DateOnly dateOnly = DateOnly.FromDateTime(DateTime.Now);
-        if (ViewModel.DoesContainDate(dateOnly))
+    private async void FoodsContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        // Lấy item từ context
+        var menuItem = sender as MenuFlyoutItem;
+        var foodItem = menuItem?.DataContext as LogFoodItem;
+
+        if (foodItem == null)
+        {
             return;
+        }
 
-        ViewModel.AddLog(
-            new Log
+        // Hop thoai xac nhan hanh dong xoa
+        var confirmDialog = new ContentDialog
+        {
+            Title = "Confirm Removal",
+            Content = $"Are you sure you want to remove {foodItem.NumberOfServings} gram of {foodItem.Food.Name}?",
+            PrimaryButtonText = "Yes",
+            CloseButtonText = "No",
+            XamlRoot = this.XamlRoot,
+            DefaultButton = ContentDialogButton.Close
+        };
+
+        var result = await confirmDialog.ShowAsync();
+        if(result == ContentDialogResult.Primary)
+        {
+            ViewModel.Log.LogFoodItems.Remove(foodItem); // Xóa item khỏi danh sách
+            // Cap nhat total calories cua log
+            ViewModel.Log.TotalCalories -= foodItem.TotalCalories;
+
+            ViewModel.UpdateLog(); // Cập nhật log
+        }
+
+    }
+
+    private async void FoodsContactAdjustMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var menuItem = sender as MenuFlyoutItem;
+        var foodItem = menuItem?.DataContext as LogFoodItem;
+
+        if (foodItem == null)
+        {
+            return;
+        }
+
+        // Tạo dialog để người dùng nhập khẩu phần mới
+        var inputBox = new TextBox
             {
-                LogDate = dateOnly,
-                LogFoodItems = [],
-                LogExerciseItems = []
+                PlaceholderText = "Enter new portion...",
+                Margin = new Thickness(0, 10, 0, 0)
+            };
+
+            var dialog = new ContentDialog
+            {
+                Title = "Adjust Portion",
+                Content = inputBox,
+                PrimaryButtonText = "Save",
+                CloseButtonText = "Cancel",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = this.XamlRoot
+            };
+
+            // Hiển thị dialog và chờ kết quả
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                var newPortion = inputBox.Text;
+
+                // Xử lý cập nhật khẩu phần mới
+                if (double.TryParse(newPortion, out var portionValue))
+                {
+                    // Cập nhật số lượng khẩu phần
+                    foodItem.NumberOfServings = portionValue;
+
+                    // Cap nhat total calories cua log
+                    ViewModel.Log.TotalCalories -= foodItem.TotalCalories + (portionValue * (foodItem.Food.CaloriesPer100g / 100));
+
+                    // Cap nhat tong calories cua item
+                    foodItem.TotalCalories = portionValue * (foodItem.Food.CaloriesPer100g / 100);
+                    
+                    // Cap nhat log
+
+                    ViewModel.UpdateLog();
+                }
+                else
+                {
+                    // Hiển thị thông báo lỗi nếu giá trị nhập không hợp lệ
+                    var errorDialog = new ContentDialog
+                    {
+                        Title = "Invalid Input",
+                        Content = "Please enter a valid number for the portion size.",
+                        CloseButtonText = "OK",
+                        XamlRoot = this.XamlRoot
+                    };
+                    await errorDialog.ShowAsync();
+                }
             }
-        );
-        return;
-    }
+        }
 
-    private void DeleteLog(int ID)
+    private async void ExercisesContactRemoveMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel.DeleteLog(ID);
+        // Lấy item từ context
+        var menuItem = sender as MenuFlyoutItem;
+        var exerciseItem = menuItem?.DataContext as LogExerciseItem;
 
-        if (ViewModel.LogList.Count < ViewModel.PagingSize)
-            ViewModel.GetNextLogsItem(ViewModel.PagingSize - ViewModel.LogList.Count);
-    }
-
-    private void DeleteLogFood(int logDateID, int logID)
-    {
-        ViewModel.DeleteLogFood(logDateID, logID);
-    }
-
-    private void DeleteLogExercise(int logDateID, int logID)
-    {
-        ViewModel.DeleteLogExercise(logDateID, logID);
-    }
-
-    private void LogsListView_Loaded(object sender, RoutedEventArgs e)
-    {
-        Border border = VisualTreeHelper.GetChild(LogsListView, 0) as Border;
-        ScrollViewer scrollViewer = VisualTreeHelper.GetChild(border, 0) as ScrollViewer;
-
-        if (scrollViewer != null)
+        if (exerciseItem == null)
         {
-            scrollViewer.ViewChanged += ScrollViewer_ViewChanged;
+            return;
+        }
+
+        // Hop thoai xac nhan hanh dong xoa
+        var confirmDialog = new ContentDialog
+        {
+            Title = "Confirm Removal",
+            Content = $"Are you sure you want to remove {exerciseItem.Duration} minutes of {exerciseItem.Exercise.Name}?",
+            PrimaryButtonText = "Yes",
+            CloseButtonText = "No",
+            XamlRoot = this.XamlRoot,
+            DefaultButton = ContentDialogButton.Close
+        };
+
+        var result = await confirmDialog.ShowAsync();
+        if (result == ContentDialogResult.Primary)
+        {
+            ViewModel.Log.LogExerciseItems.Remove(exerciseItem); // Xóa item khỏi danh sách
+            // Cap nhat tong calories cua log
+            ViewModel.Log.TotalCalories += exerciseItem.TotalCalories; 
+
+            ViewModel.UpdateLog(); // Cập nhật log
         }
     }
 
-    private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    private async void ExercisesContactAdjustMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        var scrollViewer = sender as ScrollViewer;
-        if (scrollViewer != null && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+        var menuItem = sender as MenuFlyoutItem;
+        var exerciseItem = menuItem?.DataContext as LogExerciseItem;
+
+        if (exerciseItem == null)
         {
-            OnScrollToEnd();
+            return;
         }
-    }
 
-    private void OnScrollToEnd()
-    {
-        // Trigger the event or perform the action when scrolled to the end
-        ViewModel.GetNextLogsPage();
-    }
-
-    private void CalenderViewFlyout_SelectedDatesChanged(
-        CalendarView sender, 
-        CalendarViewSelectedDatesChangedEventArgs args)
-    {
-        if (args.AddedDates.Count == 1)
+        // Tạo dialog để người dùng nhập khẩu phần mới
+        var inputBox = new TextBox
         {
-            DateTime date = args.AddedDates[0].DateTime;
+            PlaceholderText = "Enter new portion...",
+            Margin = new Thickness(0, 10, 0, 0)
+        };
 
-            if (date.Date == DateTime.Now.Date)
-                TodayButton.BorderThickness = new Thickness(2);
+        var dialog = new ContentDialog
+        {
+            Title = "Adjust Duration",
+            Content = inputBox,
+            PrimaryButtonText = "Save",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Primary,
+            XamlRoot = this.XamlRoot
+        };
+
+        // Hiển thị dialog và chờ kết quả
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary)
+        {
+            var newDuration = inputBox.Text;
+
+            // Xử lý cập nhật khẩu phần mới
+            if (double.TryParse(newDuration, out var durationValue))
+            {
+                // Cập nhật số lượng khẩu phần
+                exerciseItem.Duration = durationValue;
+
+                // Cap nhat tong calories cua log
+                ViewModel.Log.TotalCalories += exerciseItem.TotalCalories - (durationValue * exerciseItem.Exercise.CaloriesPerMinute);
+
+                // Cap nhat tong calories cua item
+                exerciseItem.TotalCalories = durationValue * exerciseItem.Exercise.CaloriesPerMinute;
+
+                // Cap nhat log
+
+                ViewModel.UpdateLog();
+            }
             else
-                TodayButton.BorderThickness = new Thickness(0.5);
-            ViewModel.EndDate = args.AddedDates[0].DateTime;
-            CalendarFlyout.Hide();
+            {
+                // Hiển thị thông báo lỗi nếu giá trị nhập không hợp lệ
+                var errorDialog = new ContentDialog
+                {
+                    Title = "Invalid Input",
+                    Content = "Please enter a valid number for the duration.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await errorDialog.ShowAsync();
+            }
         }
-    }
-
-    private void TodayButton_Click(object sender, RoutedEventArgs e)
-    {
-        DateTime date = DateTime.Now;
-        ViewModel.EndDate = date;
-        Calendar.SelectedDates.Clear();
-        Calendar.SelectedDates.Add(date);
-        Calendar.SetDisplayDate(date);
-        CalendarFlyout.Hide();
-
-        TodayButton.BorderThickness = new Thickness(2);
     }
 }

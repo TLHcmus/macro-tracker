@@ -29,19 +29,19 @@
                     <TextBox x:Name="AgeTextBox" Margin="0,0,0,16" Width="300" HorizontalAlignment="Left" PlaceholderText="Enter Age"/>
 
                     <TextBlock Text="Gender:" Margin="0,0,0,5"/>
-                    <ComboBox x:Name="GenderComboBox" Margin="0,0,0,16" 
+                    <!--<ComboBox x:Name="GenderComboBox" Margin="0,0,0,16" 
                                 SelectedValue="{x:Bind ViewModel.Gender, Mode=TwoWay}" 
                                 SelectedValuePath="Content">
                         <ComboBoxItem Content="Male"/>
                         <ComboBoxItem Content="Female"/>
-                    </ComboBox>
+                    </ComboBox>-->
 
-                    <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <RadioButton Content="Male" GroupName="GenderGroup" 
-                             IsChecked="{x:Bind ViewModel.HealthInfo.IsMale, Mode=TwoWay}" />
-                        <RadioButton Content="Female" GroupName="GenderGroup" 
-                             IsChecked="{x:Bind ViewModel.HealthInfo.IsFemale, Mode=TwoWay}" Margin="20,0,0,0"/>
-                    </StackPanel>-->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <RadioButton x:Name="MaleRadioButton" Content="Male" GroupName="GenderGroup" 
+                                    Checked="RadioButton_Checked" />
+                        <RadioButton x:Name="FemaleRadioButton" Content="Female" GroupName="GenderGroup" 
+                                    Checked="RadioButton_Checked" Margin="0,0,0,0" />
+                    </StackPanel>
 
                     <TextBlock Text="Activity Level:" Margin="0,0,0,5"/>
                     <ComboBox x:Name="ActivityLevelComboBox" Margin="0,0,0,16" 
@@ -55,7 +55,13 @@
                     </ComboBox>
 
                     <Button Content="Calculate TDEE" Click="CalculateButton_Click"/>
-                    <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="20,0,0,0"/>
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock x:Name="ResultTextBlock" FontSize="18" Margin="0,20,20,10" FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="SetAsGoalButton" Content="Set as Goal" Click="SetAsGoalButton_Click"  Visibility="Collapsed" />
+                            <TextBlock x:Name="SetAsGoalMessage" Foreground="Green" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>

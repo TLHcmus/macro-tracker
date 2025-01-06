@@ -60,54 +60,60 @@
                             Padding="10" 
                             TextChanged="SearchBar_TextChanged"/>
                     </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        <!--List view header-->
+                        <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                    <ListView 
-                        Grid.Row="1" 
-                        x:Name="ExerciseList" 
-                        Margin="0,0,0,20" 
-                        ItemsSource="{x:Bind ViewModel.Exercises}" 
-                        SelectionChanged="ExerciseList_SelectionChanged">
-                        <ListView.Header>
-                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" 
+                                       Text="List of Exercises" 
+                                       FontSize="18" 
+                                       Margin="10,0,10,0" 
+                                       VerticalAlignment="Center" />
+                            <Button Grid.Column="1" 
+                                    Content="Add Exercise" 
+                                    Margin="0,0,10,0" 
+                                    VerticalAlignment="Center" 
+                                    Click="AddExerciseButton_Click"/>
+                        </Grid>
 
-                                <TextBlock Grid.Column="0" 
-                                           Text="List of Exercises" 
-                                           FontSize="18" 
-                                           Margin="10,0,10,0" 
-                                           VerticalAlignment="Center" />
-                                <Button Grid.Column="1" 
-                                        Content="Add Exercise" 
-                                        Margin="0,0,10,0" 
-                                        VerticalAlignment="Center" 
-                                        Click="AddExerciseButton_Click"/>
-                            </Grid>
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Padding="10">
-                                    <!--Context menu for delete Food-->
-                                    <Grid.ContextFlyout>
-                                        <MenuFlyout>
-                                            <MenuFlyoutItem Text="Remove" Click="ContactRemoveMenuItem_Click"/>
-                                        </MenuFlyout>
-                                    </Grid.ContextFlyout>
+                            <ListView 
+                                    Grid.Row="1" 
+                                    x:Name="ExerciseList" 
+                                    Margin="0,0,0,20" 
+                                    ItemsSource="{x:Bind ViewModel.Exercises}" 
+                                    SelectionChanged="ExerciseList_SelectionChanged">
+                     
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10">
+                                        <!--Context menu for delete Food-->
+                                        <Grid.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem Text="Remove" Click="ContactRemoveMenuItem_Click"/>
+                                            </MenuFlyout>
+                                        </Grid.ContextFlyout>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteArrayToImageConverter}}" Width="40" Height="40" Margin="0,0,10,0"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
+                                        <Image Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteArrayToImageConverter}}" Width="40" Height="40" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Grid>
             </Border>
 
             <!-- Exercise Detail -->
@@ -132,17 +138,20 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="Calories burned: " FontSize="16"  Margin="10,5" />
+                            <TextBlock Text="Calories burned: " FontSize="16" FontWeight="Bold"  Margin="10,5" />
                         </StackPanel>
                         
                         <StackPanel Grid.Column="1">
-                            <TextBlock x:Name="Calories" FontSize="16"  Margin="10,5" HorizontalAlignment="Right" />
+                            <TextBlock x:Name="Calories" FontSize="16" FontWeight="Bold"  Margin="10,5" HorizontalAlignment="Right" />
                         </StackPanel>
                     </Grid>
                     <!--Success Message-->
-                    <TextBlock x:Name="SucessLogMessage" FontSize="16" Visibility="Collapsed"/>
+                        <TextBlock x:Name="SucessLogMessage" FontSize="16" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0, 10, 0, 0"/>
 
-                    <Button Content="Log Exercise" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,0" Click="LogExerciseButton_Click"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Log Exercise" FontSize="16" Margin="0,20,20,0" Click="LogExerciseButton_Click"/>
+                        <CalendarDatePicker x:Name="DatePicker" PlaceholderText="Select date" Margin="0,20,0,0"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>

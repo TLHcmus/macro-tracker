@@ -43,5 +43,17 @@ public class FoodViewModel : INotifyPropertyChanged
         }
     }
 
+    // Get log by date
+    public Log GetLogByDate(DateOnly date)
+    {
+        return Sender.GetLogByDate(date);
+    }
+
+    // Update log
+    public void UpdateLog(Log log)
+    {
+        Sender.UpdateLog(log);
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 }

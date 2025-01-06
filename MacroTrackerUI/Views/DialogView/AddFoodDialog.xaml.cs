@@ -1,9 +1,15 @@
-﻿using MacroTrackerUI.Models;
+﻿using MacroTrackerUI.Helpers;
+using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.PageView;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.Storage.Pickers;
+
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -16,7 +22,8 @@ namespace MacroTrackerUI.Views.DialogView
     /// </summary>
     public sealed partial class AddFoodDialog : ContentDialog
     {
-        FoodViewModel ViewModel { get; set; }
+        private FoodViewModel ViewModel { get; set; }
+        private string ImageFilePath { get; set; }
         public AddFoodDialog()
         {
             this.InitializeComponent();
@@ -118,7 +125,7 @@ namespace MacroTrackerUI.Views.DialogView
             }
         }
 
-        public Food GetFoodFromInput()
+        public async Task<Food> GetFoodFromInput()
         {
             // Chỉ trả về Food nếu không có lỗi
             if (NameErrorTextBlock.Visibility == Visibility.Collapsed ||
@@ -127,7 +134,7 @@ namespace MacroTrackerUI.Views.DialogView
                 CarbsErrorTextBlock.Visibility == Visibility.Collapsed ||
                 FatErrorTextBlock.Visibility == Visibility.Collapsed)
             {
-                return new Food
+                Food food = new Food
                 {
                     Name = FoodNameTextBox.Text,
                     CaloriesPer100g = double.Parse(CaloriesTextBox.Text),
@@ -135,9 +142,63 @@ namespace MacroTrackerUI.Views.DialogView
                     CarbsPer100g = double.Parse(CarbsTextBox.Text),
                     FatPer100g = double.Parse(FatTextBox.Text)
                 };
+                if (!string.IsNullOrEmpty(ImageFilePath))
+                {
+                    food.Image = await ImageHelper.ReadFileToByteArrayAsync(ImageFilePath);
+                }
+
+                return food;
             }
 
             return null;
+        }
+
+        private async void PickFoodImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            //disable the button to avoid double-clicking
+            var senderButton = sender as Button;
+            senderButton.IsEnabled = false;
+
+            // Clear previous returned file name, if it exists, between iterations of this scenario
+            PickFoodImageOutputTextBlock.Text = "";
+            FilenameTextBlock.Text = "";
+
+            // Create a file picker
+            var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+
+            // Initialize with the current window handle
+            var window = App.m_window;
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+            // Set options for your file picker
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+
+            // Open the picker for the user to pick a file
+            var file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                PickFoodImageOutputTextBlock.Text = "Picked image: ";
+                FilenameTextBlock.Text = file.Name;
+
+                ImageFilePath = file.Path;
+            }
+            else
+            {
+                PickFoodImageOutputTextBlock.Text = "Operation cancelled.";
+
+                ImageFilePath = "";
+            }
+
+            //re-enable the button
+            senderButton.IsEnabled = true;
         }
     }
 }

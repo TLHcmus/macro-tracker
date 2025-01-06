@@ -16,6 +16,7 @@ public class LogExerciseItem : INotifyPropertyChanged
     public double Duration { get; set; }
 
     public double TotalCalories { get; set; }
+    public Exercise Exercise { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

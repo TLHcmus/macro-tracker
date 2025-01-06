@@ -1,4 +1,6 @@
-﻿using MacroTrackerUI.ViewModels;
+﻿using MacroTrackerUI.Models;
+using MacroTrackerUI.Services.SenderService.DataAccessSender;
+using MacroTrackerUI.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -40,7 +42,7 @@ public sealed partial class CalculatorPage : Page
             string.IsNullOrWhiteSpace(HeightTextBox.Text) ||
             string.IsNullOrWhiteSpace(AgeTextBox.Text) || 
             ActivityLevelComboBox.SelectedItem == null ||
-            GenderComboBox.SelectedItem == null)
+            (!(MaleRadioButton.IsChecked == true) && !(FemaleRadioButton.IsChecked == true)))
         {
             // Tao va hien thi thong bao loi
             ContentDialog errorDialog = new ContentDialog
@@ -61,6 +63,9 @@ public sealed partial class CalculatorPage : Page
 
             int tdee = (int)ViewModel.CalculateTDEE();
             ResultTextBlock.Text = $"Your Maintaince Calories is {tdee} calories.";
+
+            // Hien thi nut de set as goal
+            SetAsGoalButton.Visibility = Visibility.Visible;
         }
         // Invalid value
         else
@@ -74,6 +79,33 @@ public sealed partial class CalculatorPage : Page
                 XamlRoot = this.Content.XamlRoot
             };
             await errorDialog.ShowAsync();
+        }
+    }
+
+    private void SetAsGoalButton_Click(object sender, RoutedEventArgs e)
+    {
+        int tdee = (int)ViewModel.CalculateTDEE();
+
+        // Set goal
+        var goal = new Goal
+        {
+            Calories = tdee,
+            // Mac dinh ti le 25:50:25%
+            Protein = (int)(tdee * 25 / 100 / 4),
+            Fat = (int)(tdee * 50 / 100 / 9),
+            Carbs = (int)(tdee * 25 / 100 / 4)
+        };
+        ViewModel.UpdateGoal(goal);
+
+        // Hien thi thong bao thanh cong
+        SetAsGoalMessage.Text = "Sucessfully set as your goal!";
+    }
+
+    private void RadioButton_Checked(object sender, RoutedEventArgs e)
+    {
+        if (sender is RadioButton radioButton)
+        {
+            ViewModel.Gender = radioButton.Content.ToString();
         }
     }
 }

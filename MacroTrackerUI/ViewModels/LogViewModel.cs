@@ -1,86 +1,115 @@
-﻿using MacroTrackerUI.Models;
+﻿
+using MacroTrackerUI.Models;
 using MacroTrackerUI.Services.ProviderService;
 using MacroTrackerUI.Services.SenderService.DataAccessSender;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MacroTrackerUI.ViewModels;
 
-public class LogViewModel
+public class LogViewModel : INotifyPropertyChanged
 {
-    public ObservableCollection<Log> LogList { get; set; } = [];
-    private DaoSender Sender { get; } = ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
-    public int PagingSize { get; set; }
+    public Log Log { get; set; }
+    // Calories muc tieu
+    public int GoalCalories { get; set; }
+    public int FoodsTotalCalories { get; set; }
+    public int ExercisesTotalCalories { get; set; }
+    public int RemainingCalories {  get; set; }
+    private DaoSender Sender { get; } =
+         ProviderUI.GetServiceProvider().GetRequiredService<DaoSender>();
 
-    private DateTime _endDate = DateTime.Now.Date;
-
-    public DateTime EndDate
+    public LogViewModel()
     {
-        get { return _endDate; }
-        set
+        // Lay log cua ngay hom nay
+        var today = DateOnly.FromDateTime(DateTime.Today);
+
+        GetLogByDate(today);
+        // Lay calories muc tieu
+        GoalCalories = Sender.GetGoal().Calories;
+
+        // Lay tong calories cua foods va exercises
+        GetFoodsTotalCalories();
+        GetExercisesTotalCalories();
+        GetRemainingCalories();
+    }
+
+    // Lay log theo ngay tuong ung
+    public void GetLogByDate(DateOnly date)
+    {
+        Log = Sender.GetLogByDate(date);
+
+        // Neu chua ton tai log thi tao log moi
+        if (Log == null)
         {
-            _endDate = value;
-            LogList.Clear();
-            GetNextLogsPage();
+             Log = new Log
+             {
+                LogDate = date,
+                TotalCalories = 0,
+                LogFoodItems = new ObservableCollection<LogFoodItem>(),
+                LogExerciseItems = new ObservableCollection<LogExerciseItem>(),
+             };
         }
+        Debug.WriteLine($"Number of exercise items: {Log.LogExerciseItems.Count()}");
+
+        // Lay Food bang Id cho tung item
+        foreach (var logFoodItem in Log.LogFoodItems)
+        {
+            logFoodItem.Food = Sender.GetFoodById(logFoodItem.FoodId); 
+        }
+        // Lay Exercise bang Id cho tung item
+        foreach (var logExerciseItem in Log.LogExerciseItems)
+        {
+
+            logExerciseItem.Exercise = Sender.GetExerciseById(logExerciseItem.ExerciseId);
+        }
+        // Cap nhat total calories cua foods va exercises
+        GetFoodsTotalCalories();
+        GetExercisesTotalCalories();
+        GetRemainingCalories();
     }
 
-    public void GetNextLogsPage()
+    // Lay tong calories cua foods
+    public int GetFoodsTotalCalories()
     {
-        var logs = Sender.GetLogWithPagination(LogList.Count, DateOnly.FromDateTime(EndDate));
-        
-        if (logs.Count == 0)
-            return;
-        
-        foreach (Log log in logs)
-            LogList.Add(log);
+        FoodsTotalCalories = (int)Log.LogFoodItems.Sum(food => food.TotalCalories);
+        return FoodsTotalCalories;
     }
 
-    public void GetNextLogsItem(int numItem)
+    // Lay tong caclories cua exercises
+    public int GetExercisesTotalCalories()
     {
-        var logs = Sender.GetNLogWithPagination(numItem, numItem, DateOnly.FromDateTime(EndDate));
+        foreach (var logExerciseItem in Log.LogExerciseItems)
+        {
+            Debug.WriteLine($"Exercise: {logExerciseItem.Exercise.Name}, Calories: {logExerciseItem.TotalCalories}");
+        }
 
-        if (logs.Count == 0)
-            return;
-
-        foreach (Log log in logs)
-            LogList.Add(log);
+        ExercisesTotalCalories = (int)Log.LogExerciseItems.Sum(exercise => exercise.TotalCalories);
+        Debug.WriteLine($"Tong calories cua exercises: {ExercisesTotalCalories}");
+        return ExercisesTotalCalories;
     }
-
-    public void AddLog(Log log)
+    // Lay tong calories con lai
+    public int GetRemainingCalories()
     {
-        Sender.AddLog(log);
-        LogList.Insert(0, log);
+        RemainingCalories = GoalCalories - FoodsTotalCalories + ExercisesTotalCalories;
+
+        return RemainingCalories;
     }
 
-    public bool DoesContainDate(DateOnly date)
+    // Update log
+    public void UpdateLog()
     {
-        return LogList.Any(log => log.LogDate.HasValue && log.LogDate == date);
+        Sender.UpdateLog(Log);
+        // Cap nhat tong calories cua mon an va bai tap
+        GetFoodsTotalCalories();
+        GetExercisesTotalCalories();
+        GetRemainingCalories();
     }
 
-    public void DeleteLog(int iD)
-    {
-        Sender.DeleteLog(iD);
-        LogList.Remove(LogList.First(log => log.LogId == iD));
-    }
-
-    public void DeleteLogFood(int logID, int logFoodID)
-    {
-        Sender.DeleteLogFood(logID, logFoodID);
-
-        Log log = LogList.First(log => log.LogId == logID);
-        log.LogFoodItems.Remove(log.LogFoodItems.First(logFood => logFood.LogFoodId == logFoodID));
-    }
-
-    public void DeleteLogExercise(int logID, int logFoodID)
-    {
-        Sender.DeleteLogExercise(logID, logFoodID);
-
-        Log log = LogList.First(logDate => logDate.LogId == logID);
-        log.LogExerciseItems.Remove(log.LogExerciseItems.First(
-            logExercise => logExercise.LogExerciseId == logFoodID)
-        );
-    }
+    public event PropertyChangedEventHandler PropertyChanged;
 }

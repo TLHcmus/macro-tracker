@@ -48,7 +48,11 @@ public class DaoReceiver
         }
         Dao.RemoveFood(foodId);
     }
-
+    // Get Food by Id
+    public string GetFoodById(int foodId)
+    {
+        return JsonSerializer.Serialize(Dao.GetFoodById(foodId));
+    }
 
     /// <summary>
     /// Retrieves a collection of exercises.
@@ -58,6 +62,13 @@ public class DaoReceiver
     {
         return JsonSerializer.Serialize(Dao.GetExercises());
     }
+
+    // Get Exercise by Id
+    public string GetExerciseById(int exerciseId)
+    {
+        return JsonSerializer.Serialize(Dao.GetExerciseById(exerciseId));
+    }
+
     // Add exercise tra ve id cua bai tap vua them
     public int AddExercise(string exerciseJson)
     {
@@ -188,6 +199,23 @@ public class DaoReceiver
         Debug.WriteLine($"JSON size: {json.Length / 1024.0} KB");
 
         return json;
+    }
+
+    // Get log by date
+    public string GetLogByDate(DateOnly date)
+    {
+        return JsonSerializer.Serialize(Dao.GetLogByDate(date));
+    }
+
+    // Update Log
+    public void UpdateLog(string logJson)
+    {
+        Log? log = JsonSerializer.Deserialize<Log>(logJson);
+        if (log == null)
+        {
+            throw new ArgumentNullException();
+        }
+        Dao.UpdateLog(log);
     }
 
     //public List<Log> GetLogs()

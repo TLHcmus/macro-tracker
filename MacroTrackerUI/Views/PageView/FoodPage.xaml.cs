@@ -2,10 +2,13 @@
 using MacroTrackerUI.Models;
 using MacroTrackerUI.ViewModels;
 using MacroTrackerUI.Views.DialogView;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Design;
 using System.Linq;
 using Windows.Media.Devices;
@@ -28,6 +31,9 @@ public sealed partial class FoodPage : Page
 
     private void FoodList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        // An thong bao log food
+        SucessLogMessage.Visibility = Visibility.Collapsed;
+
         // Lay mon an duoc chon
         var selectedFood = (Food)FoodList.SelectedItem;
 
@@ -53,9 +59,9 @@ public sealed partial class FoodPage : Page
             // Dinh luong mon an thay doi
             ServingInput.TextChanged += (s, e) =>
             {
-                if (double.TryParse(ServingInput.Text, out double serving))
+                if (double.TryParse(ServingInput.Text, out double servings) && servings >= 0)
                 {
-                    var nutrition = selectedFood.GetNutrition(serving);
+                    var nutrition = selectedFood.GetNutrition(servings);
                     Calories.Text = nutrition.Calories.ToString("0.#");
                     Protein.Text = nutrition.Protein.ToString("0.#") + " g";
                     Carbs.Text = nutrition.Carbs.ToString("0.#") + " g";
@@ -101,7 +107,7 @@ public sealed partial class FoodPage : Page
 
         if (result == ContentDialogResult.Primary) // Nếu nhấn "Add"
         {
-            var food = addFoodDialog.GetFoodFromInput();
+            var food = await addFoodDialog.GetFoodFromInput();
 
             // Nếu food là null, tức là có lỗi trong quá trình nhập liệu
             if (food != null)
@@ -154,6 +160,64 @@ public sealed partial class FoodPage : Page
 
     private void LogFoodButton_Click(object sender, RoutedEventArgs e)
     {
-        return;
+        SucessLogMessage.Visibility = Visibility.Collapsed;
+
+        if (DatePicker.Date == null)
+        {
+            SucessLogMessage.Text = "Please select a date.";
+            SucessLogMessage.Foreground = new SolidColorBrush(Colors.Red);
+            SucessLogMessage.Visibility = Visibility.Visible;
+
+            return;
+        }
+        // Lay log cua ngay duoc chon
+        var selectedDate = DateOnly.FromDateTime(DatePicker.Date.Value.DateTime);
+
+        var log = ViewModel.GetLogByDate(selectedDate);
+        // Neu chua ton tai thi tao log moi
+        if (log == null)
+        {
+            log = new Log
+            {
+                LogDate = selectedDate,
+                TotalCalories = 0,
+                LogFoodItems = new ObservableCollection<LogFoodItem>(),
+                LogExerciseItems = new ObservableCollection<LogExerciseItem>(),
+            };
+        }
+
+        // Lay ngay duoc chon
+        var selectedFood = (Food)FoodList.SelectedItem;
+
+        // Lay macro
+        if(!double.TryParse(ServingInput.Text, out double servings) || servings <= 0)
+        {
+            SucessLogMessage.Text = "Please enter a valid number of servings.";
+            SucessLogMessage.Foreground = new SolidColorBrush(Colors.Red);
+            SucessLogMessage.Visibility = Visibility.Visible;
+
+            return;
+        }
+        var nutrition = selectedFood.GetNutrition(servings);
+
+        // Them log food item vao log
+        var logFoodItem = new LogFoodItem
+        {
+            FoodId = selectedFood.FoodId,
+            NumberOfServings = servings,
+            TotalCalories = nutrition.Calories,
+        };
+
+        log.LogFoodItems.Add(logFoodItem);
+
+        // Cap nhat lai calories
+        log.TotalCalories += nutrition.Calories;
+
+        // Cap nhat log
+        ViewModel.UpdateLog(log);
+
+        SucessLogMessage.Text = "Food logged successfully.";
+        SucessLogMessage.Foreground = new SolidColorBrush(Colors.Green);
+        SucessLogMessage.Visibility = Visibility.Visible;
     }
 }
